@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: sans-serif;
-      background-color: #fff8f0;
+      background-color: #fdf6ef;
       color: #222;
     }
     header {
@@ -19,16 +19,13 @@
     }
     .container {
       display: flex;
-      flex-direction: row;
       max-width: 1400px;
       margin: auto;
-      padding: 1rem;
     }
     aside {
-      width: 250px;
+      width: 280px;
       padding: 1rem;
       background-color: #f2f2f2;
-      border-right: 1px solid #ccc;
     }
     main {
       flex: 1;
@@ -47,7 +44,8 @@
       color: #000;
       font-weight: 500;
     }
-    .theme-list li:hover {
+    .theme-list li.active {
+      font-weight: 700;
       text-decoration: underline;
     }
     .selectors {
@@ -107,104 +105,98 @@
       <div id="reportList"></div>
     </main>
   </div>
- <script>
-  const themeMap = {
-    1: 'Austerity',
-    2: 'Tax',
-    3: 'Climate and environment',
-    4: 'Social and Gendered impacts',
-    5: 'Social Services',
-    6: 'Private and external sector',
-    7: 'Financialisation',
-    8: 'Digitisation',
-    9: 'Governance'
-  };
+  <script>
+    const themeMap = {
+      1: 'Austerity',
+      2: 'Tax',
+      3: 'Climate and environment',
+      4: 'Social and Gendered impacts',
+      5: 'Social Services',
+      6: 'Private and external sector',
+      7: 'Financialisation',
+      8: 'Digitisation',
+      9: 'Governance'
+    };
 
-  const themeList = document.getElementById('themeList');
-  const sourceSelect = document.getElementById('sourceSelect');
-  const reportList = document.getElementById('reportList');
-  let currentData = [];
-  let currentTheme = null;
+    const themeList = document.getElementById('themeList');
+    const sourceSelect = document.getElementById('sourceSelect');
+    const reportList = document.getElementById('reportList');
+    let currentData = [], currentTheme = null;
 
-  // Count matching reports per theme
-  function updateThemeCounts() {
-    const counts = {};
-    Object.keys(themeMap).forEach(k => (counts[k] = 0));
-    currentData.forEach(r => {
-      const themes = extractThemeIDs(r.ai_analysis);
-      themes.forEach(id => {
-        if (counts[id] !== undefined) counts[id]++;
-      });
-    });
-
-    themeList.innerHTML = '';
-    for (const key in themeMap) {
-      const li = document.createElement('li');
-      li.textContent = `${themeMap[key]} (${counts[key]})`;
-      li.dataset.themeId = key;
-      li.classList.toggle("active", parseInt(key) === currentTheme);
-      themeList.appendChild(li);
-    }
-  }
-
-  function extractThemeIDs(analysis = '') {
-    const bracketMatches = analysis.match(/\[(\d+) - [^\]]+\]/g);
-    if (bracketMatches && bracketMatches.length > 0) {
-      return bracketMatches.map(m => parseInt(m.match(/\[(\d+)/)[1]));
+    // Setup theme selectors
+    function renderThemeCounts(counts = {}) {
+      themeList.innerHTML = '';
+      for (const [id, name] of Object.entries(themeMap)) {
+        const li = document.createElement('li');
+        li.textContent = `${name} (${counts[id] || 0})`;
+        li.dataset.themeId = id;
+        if (parseInt(id) === currentTheme) li.classList.add('active');
+        li.addEventListener('click', () => {
+          currentTheme = parseInt(id) === currentTheme ? null : parseInt(id);
+          displayReports();
+        });
+        themeList.appendChild(li);
+      }
     }
 
-    // Gemini fallback: extract from "**Summary of Top 3 Themes**" using themeMap
-    const summary = analysis.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0] || '';
-    return Object.entries(themeMap)
-      .filter(([id, label]) => summary.includes(label))
-      .map(([id]) => parseInt(id));
-  }
+    sourceSelect.addEventListener('change', loadReports);
 
-  themeList.addEventListener('click', e => {
-    if (e.target.tagName === 'LI') {
-      const selected = parseInt(e.target.dataset.themeId);
-      currentTheme = currentTheme === selected ? null : selected;
-      updateThemeCounts();
+    async function loadReports() {
+      const res = await fetch(`/${sourceSelect.value}`);
+      currentData = await res.json();
       displayReports();
     }
-  });
 
-  sourceSelect.addEventListener('change', loadReports);
+    function getThemeMatches(text, useStrict) {
+      if (useStrict) {
+        return (text.match(/\[\d+ - [^\]]+\]/g) || []).map(t => parseInt(t.match(/\[(\d+)/)[1]));
+      } else {
+        const matches = [];
+        for (const [id, label] of Object.entries(themeMap)) {
+          if (text.toLowerCase().includes(label.toLowerCase())) matches.push(parseInt(id));
+        }
+        return matches;
+      }
+    }
 
-  async function loadReports() {
-    const file = sourceSelect.value;
-    const res = await fetch(`/${file}`);
-    currentData = await res.json();
-    currentTheme = null;
-    updateThemeCounts();
-    displayReports();
-  }
+    function displayReports() {
+      reportList.innerHTML = '';
+      const useStrict = !sourceSelect.value.includes('gemini');
+      const themeCounts = {};
 
-  function displayReports() {
-    reportList.innerHTML = '';
-    currentData
-      .filter(r => {
-        if (!currentTheme) return true;
-        const themeIDs = extractThemeIDs(r.ai_analysis);
-        return themeIDs.includes(currentTheme);
-      })
-      .forEach(r => {
+      currentData.forEach(r => {
+        const analysis = r.ai_analysis || '';
+        const summary = analysis.includes("**Summary of Top 3 Themes**")
+          ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
+          : analysis;
+
+        const matchedThemes = getThemeMatches(summary, useStrict);
+        matchedThemes.forEach(id => themeCounts[id] = (themeCounts[id] || 0) + 1);
+      });
+
+      renderThemeCounts(themeCounts);
+
+      currentData.forEach(r => {
+        const analysis = r.ai_analysis || '';
+        const summary = analysis.includes("**Summary of Top 3 Themes**")
+          ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
+          : analysis;
+
+        const matchedThemes = getThemeMatches(summary, !sourceSelect.value.includes('gemini'));
+        if (currentTheme && !matchedThemes.includes(currentTheme)) return;
+
         const div = document.createElement('div');
         div.className = 'report';
         div.innerHTML = `
           <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
           <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
-          <div class="report-summary">
-            ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim() || 'No summary available.'}
-          </div>
+          <div class="report-summary">${summary || 'No summary available.'}</div>
         `;
         reportList.appendChild(div);
       });
-  }
+    }
 
-  loadReports();
-</script>
-
-
+    loadReports();
+  </script>
 </body>
 </html>
