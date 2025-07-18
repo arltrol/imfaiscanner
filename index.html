@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI IMF Article IV Scanner</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fff8f0;
+      color: #222;
+    }
+    header {
+      background-color: #dd6c1f;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+    }
+    aside {
+      width: 250px;
+      padding: 1rem;
+      background-color: #f3eee9;
+      border-right: 1px solid #ccc;
+    }
+    main {
+      flex: 1;
+      padding: 1rem;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .theme-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .theme-list li {
+      padding: 0.3rem 0;
+      cursor: pointer;
+      color: #dd6c1f;
+    }
+    .theme-list li:hover {
+      text-decoration: underline;
+    }
+    .selectors {
+      margin-bottom: 1rem;
+    }
+    .report {
+      border: 1px solid #ddd;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #fff;
+    }
+    .report-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem;
+    }
+    .report-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .report-summary {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI IMF Article IV Scanner</h1>
+  </header>
+  <div class="container">
+    <aside>
+      <h2>Filter by Theme</h2>
+      <div class="theme-list">
+        <ul id="themeList">
+          <!-- Themes will be injected here -->
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <div class="selectors">
+        <label for="sourceSelect">Select AI Model:</label>
+        <select id="sourceSelect">
+          <option value="reports_GPTTurbo.json">GPT Turbo (default)</option>
+          <option value="reports_GPT4.json">GPT-4</option>
+          <option value="reports_gemini.json">Gemini</option>
+        </select>
+      </div>
+      <div id="reportList">
+        <!-- Reports will be displayed here -->
+      </div>
+    </main>
+  </div>
+  <script>
+    const themeMap = {
+      1: 'Austerity',
+      2: 'Tax',
+      3: 'Climate and environment',
+      4: 'Social and Gendered impacts',
+      5: 'Social Services',
+      6: 'Private and external sector',
+      7: 'Financialisation',
+      8: 'Digitisation',
+      9: 'Governance'
+    };
+
+    const themeList = document.getElementById('themeList');
+    for (const key in themeMap) {
+      const li = document.createElement('li');
+      li.textContent = themeMap[key];
+      li.dataset.themeId = key;
+      themeList.appendChild(li);
+    }
+
+    const sourceSelect = document.getElementById('sourceSelect');
+    const reportList = document.getElementById('reportList');
+    let currentData = [];
+    let currentTheme = null;
+
+    themeList.addEventListener('click', e => {
+      if (e.target.tagName === 'LI') {
+        currentTheme = parseInt(e.target.dataset.themeId);
+        displayReports();
+      }
+    });
+
+    sourceSelect.addEventListener('change', loadReports);
+
+    async function loadReports() {
+      const file = sourceSelect.value;
+      const res = await fetch(`/${file}`);
+      currentData = await res.json();
+      displayReports();
+    }
+
+    function displayReports() {
+      reportList.innerHTML = '';
+      currentData
+        .filter(r => {
+          if (!currentTheme) return true;
+          if (!r.ai_analysis) return false;
+          const themes = r.ai_analysis.match(/\[\d+ - ([^\]]+)\]/g) || [];
+          return themes.some(t => parseInt(t.match(/\[(\d+)/)[1]) === currentTheme);
+        })
+        .forEach(r => {
+          const div = document.createElement('div');
+          div.className = 'report';
+          div.innerHTML = `
+            <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
+            <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
+            <div class="report-summary">
+              ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim() || 'No summary available.'}
+            </div>
+          `;
+          reportList.appendChild(div);
+        });
+    }
+
+    loadReports();
+  </script>
+</body>
+</html>
