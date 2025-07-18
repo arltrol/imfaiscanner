@@ -12,7 +12,7 @@
       color: #222;
     }
     header {
-      background-color: #639cff; /* Bretton Woods Project blue */
+      background-color: #639cff;
       color: black;
       padding: 1rem;
       text-align: center;
@@ -27,7 +27,7 @@
     aside {
       width: 250px;
       padding: 1rem;
-      background-color: #f2f2f2; /* Slightly grey like the reference */
+      background-color: #f2f2f2;
       border-right: 1px solid #ccc;
     }
     main {
@@ -41,12 +41,12 @@
       list-style: none;
       padding: 0;
     }
-   .theme-list li {
-  padding: 0.3rem 0;
-  cursor: pointer;
-  color: #000; /* ✅ Black like BrettonWoods sidebar */
-  font-weight: 500;
-}
+    .theme-list li {
+      padding: 0.3rem 0;
+      cursor: pointer;
+      color: #000;
+      font-weight: 500;
+    }
     .theme-list li:hover {
       text-decoration: underline;
     }
@@ -92,9 +92,7 @@
     <aside>
       <h2>Filter by Theme</h2>
       <div class="theme-list">
-        <ul id="themeList">
-          <!-- Themes will be injected here -->
-        </ul>
+        <ul id="themeList"></ul>
       </div>
     </aside>
     <main>
@@ -106,9 +104,7 @@
           <option value="reports_gemini.json">Gemini</option>
         </select>
       </div>
-      <div id="reportList">
-        <!-- Reports will be displayed here -->
-      </div>
+      <div id="reportList"></div>
     </main>
   </div>
   <script>
@@ -153,14 +149,21 @@
       displayReports();
     }
 
+    function extractThemes(text) {
+      if (!text) return [];
+      const squareMatch = [...text.matchAll(/\[(\d+) - [^\]]+\]/g)].map(m => parseInt(m[1]));
+      if (squareMatch.length) return squareMatch;
+      return [...text.matchAll(/- (\d) - /g)].map(m => parseInt(m[1]));
+    }
+
     function displayReports() {
       reportList.innerHTML = '';
       currentData
         .filter(r => {
           if (!currentTheme) return true;
           if (!r.ai_analysis) return false;
-          const themes = r.ai_analysis.match(/\[\d+ - ([^\]]+)\]/g) || [];
-          return themes.some(t => parseInt(t.match(/\[(\d+)/)[1]) === currentTheme);
+          const themes = extractThemes(r.ai_analysis);
+          return themes.includes(currentTheme);
         })
         .forEach(r => {
           const div = document.createElement('div');
