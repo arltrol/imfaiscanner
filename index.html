@@ -148,8 +148,8 @@
 
     function getThemeMatches(text, useStrict) {
       if (useStrict) {
-        const matchBlock = (text.match(/\*\*All Identified Themes\*\*(.*?)\*\*/s) || [])[1];
-        return matchBlock ? Array.from(matchBlock.matchAll(/\[(\d+) -/g), m => parseInt(m[1])) : [];
+        const explicit = text.match(/\[\d+ - [^\]]+\]/g);
+        return (explicit || []).map(t => parseInt(t.match(/\[(\d+)/)[1]));
       } else {
         const matches = [];
         for (const [id, label] of Object.entries(themeMap)) {
@@ -159,30 +159,33 @@
       }
     }
 
+    function extractSummary(text) {
+      if (!text) return '';
+      if (text.includes("**Summary of Top 3 Themes**") && text.includes("**All Identified Themes**")) {
+        return text.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim();
+      } else if (text.includes("Top 3 Themes:")) {
+        return text.split("Top 3 Themes:")[1].split("\n")[0].trim();
+      } else {
+        return text.slice(0, 500); // fallback to first 500 characters
+      }
+    }
+
     function displayReports() {
       reportList.innerHTML = '';
       const useStrict = !sourceSelect.value.includes('gemini');
       const themeCounts = {};
 
       currentData.forEach(r => {
-        const analysis = r.ai_analysis || '';
-        const summary = analysis.includes("**Summary of Top 3 Themes**")
-          ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
-          : analysis;
-
-        const matchedThemes = getThemeMatches(analysis, useStrict);
+        const summary = extractSummary(r.ai_analysis);
+        const matchedThemes = getThemeMatches(summary, useStrict);
         matchedThemes.forEach(id => themeCounts[id] = (themeCounts[id] || 0) + 1);
       });
 
       renderThemeCounts(themeCounts);
 
       currentData.forEach(r => {
-        const analysis = r.ai_analysis || '';
-        const summary = analysis.includes("**Summary of Top 3 Themes**")
-          ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
-          : analysis;
-
-        const matchedThemes = getThemeMatches(analysis, useStrict);
+        const summary = extractSummary(r.ai_analysis);
+        const matchedThemes = getThemeMatches(summary, !sourceSelect.value.includes('gemini'));
         if (currentTheme && !matchedThemes.includes(currentTheme)) return;
 
         const div = document.createElement('div');
