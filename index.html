@@ -11,18 +11,12 @@
       background-color: #fff8f0;
       color: #222;
     }
-
     header {
-      background-color: #639cff;
+      background-color: #dd6c1f;
+      color: white;
       padding: 1rem;
       text-align: center;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.6rem;
-    }
-
     .container {
       display: flex;
       flex-direction: row;
@@ -30,85 +24,61 @@
       margin: auto;
       padding: 1rem;
     }
-
     aside {
       width: 250px;
       padding: 1rem;
       background-color: #f3eee9;
       border-right: 1px solid #ccc;
-      box-sizing: border-box;
     }
-
-    .sidebar-logo {
-      width: 160px;
-      margin-bottom: 1rem;
-    }
-
     main {
       flex: 1;
       padding: 1rem;
     }
-
     h2 {
       margin-top: 0;
     }
-
     .theme-list ul {
       list-style: none;
       padding: 0;
     }
-
     .theme-list li {
       padding: 0.3rem 0;
       cursor: pointer;
       color: #dd6c1f;
     }
-
     .theme-list li:hover {
       text-decoration: underline;
     }
-
     .selectors {
       margin-bottom: 1rem;
     }
-
     .report {
       border: 1px solid #ddd;
       margin-bottom: 1rem;
       padding: 1rem;
       background-color: #fff;
     }
-
     .report-title {
       font-size: 1.2rem;
       margin: 0 0 0.5rem;
     }
-
     .report-meta {
       font-size: 0.9rem;
       color: #666;
       margin-bottom: 0.5rem;
     }
-
     .report-summary {
       font-size: 0.95rem;
       color: #333;
     }
-
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
       }
-
       aside {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #ccc;
-      }
-
-      .sidebar-logo {
-        display: block;
-        margin: 0 auto 1rem;
       }
     }
   </style>
@@ -117,10 +87,8 @@
   <header>
     <h1>AI IMF Article IV Scanner</h1>
   </header>
-
   <div class="container">
     <aside>
-      <img src="https://staging.brettonwoodsproject.org/wp-content/themes/bretton-woods/resources/img/logo.svg" alt="Bretton Woods Logo" class="sidebar-logo">
       <h2>Filter by Theme</h2>
       <div class="theme-list">
         <ul id="themeList">
@@ -128,7 +96,6 @@
         </ul>
       </div>
     </aside>
-
     <main>
       <div class="selectors">
         <label for="sourceSelect">Select AI Model:</label>
@@ -143,7 +110,6 @@
       </div>
     </main>
   </div>
-
   <script>
     const themeMap = {
       1: 'Austerity',
