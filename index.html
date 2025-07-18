@@ -123,6 +123,7 @@
     const reportList = document.getElementById('reportList');
     let currentData = [], currentTheme = null;
 
+    // Setup theme selectors
     function renderThemeCounts(counts = {}) {
       themeList.innerHTML = '';
       for (const [id, name] of Object.entries(themeMap)) {
@@ -147,9 +148,9 @@
     }
 
     function getThemeMatches(text, useStrict) {
-      if (!text) return [];
       if (useStrict) {
-        return (text.match(/\[\d+ - [^\]]+\]/g) || []).map(t => parseInt(t.match(/\[(\d+)/)[1]));
+        return (text.match(/\[\d+ - [^\]]+\]/g) || [])
+          .map(t => parseInt(t.match(/\[(\d+)/)[1]));
       } else {
         const matches = [];
         for (const [id, label] of Object.entries(themeMap)) {
@@ -161,15 +162,16 @@
 
     function displayReports() {
       reportList.innerHTML = '';
-      const useStrict = !sourceSelect.value.includes('gemini');
+      const useStrict = sourceSelect.value.includes('GPT');
       const themeCounts = {};
 
       currentData.forEach(r => {
         const analysis = r.ai_analysis || '';
-        const themeSection = useStrict && analysis.includes("**All Identified Themes**")
-          ? analysis.split("**All Identified Themes**")[1] || ''
+        const summary = useStrict && analysis.includes("**Summary of Top 3 Themes**")
+          ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
-        const matchedThemes = getThemeMatches(themeSection, useStrict);
+
+        const matchedThemes = getThemeMatches(summary, useStrict);
         matchedThemes.forEach(id => themeCounts[id] = (themeCounts[id] || 0) + 1);
       });
 
@@ -177,13 +179,11 @@
 
       currentData.forEach(r => {
         const analysis = r.ai_analysis || '';
-        const summary = analysis.includes("**Summary of Top 3 Themes**")
+        const summary = useStrict && analysis.includes("**Summary of Top 3 Themes**")
           ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
-        const themeSection = useStrict && analysis.includes("**All Identified Themes**")
-          ? analysis.split("**All Identified Themes**")[1] || ''
-          : analysis;
-        const matchedThemes = getThemeMatches(themeSection, useStrict);
+
+        const matchedThemes = getThemeMatches(summary, useStrict);
         if (currentTheme && !matchedThemes.includes(currentTheme)) return;
 
         const div = document.createElement('div');
