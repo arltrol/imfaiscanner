@@ -108,78 +108,99 @@
     </main>
   </div>
   <script>
-    const themeMap = {
-      1: 'Austerity',
-      2: 'Tax',
-      3: 'Climate and environment',
-      4: 'Social and Gendered impacts',
-      5: 'Social Services',
-      6: 'Private and external sector',
-      7: 'Financialisation',
-      8: 'Digitisation',
-      9: 'Governance'
-    };
+  const themeMap = {
+    1: 'Austerity',
+    2: 'Tax',
+    3: 'Climate and environment',
+    4: 'Social and Gendered impacts',
+    5: 'Social Services',
+    6: 'Private and external sector',
+    7: 'Financialisation',
+    8: 'Digitisation',
+    9: 'Governance'
+  };
 
-    const themeList = document.getElementById('themeList');
-    for (const key in themeMap) {
-      const li = document.createElement('li');
-      li.textContent = themeMap[key];
-      li.dataset.themeId = key;
-      themeList.appendChild(li);
-    }
+  const themeList = document.getElementById('themeList');
+  const sourceSelect = document.getElementById('sourceSelect');
+  const reportList = document.getElementById('reportList');
+  let currentData = [];
+  let currentTheme = null;
 
-    const sourceSelect = document.getElementById('sourceSelect');
-    const reportList = document.getElementById('reportList');
-    let currentData = [];
-    let currentTheme = null;
+  function updateThemeListCounts() {
+    themeList.innerHTML = '';
+    const counts = {};
 
-    themeList.addEventListener('click', e => {
-      if (e.target.tagName === 'LI') {
-        currentTheme = parseInt(e.target.dataset.themeId);
-        displayReports();
-      }
+    currentData.forEach(r => {
+      const themeIds = extractThemes(r.ai_analysis);
+      themeIds.forEach(id => counts[id] = (counts[id] || 0) + 1);
     });
 
-    sourceSelect.addEventListener('change', loadReports);
+    for (const key in themeMap) {
+      const li = document.createElement('li');
+      li.textContent = `${themeMap[key]} (${counts[key] || 0})`;
+      li.dataset.themeId = key;
+      li.style.fontWeight = currentTheme == key ? 'bold' : 'normal';
+      themeList.appendChild(li);
+    }
+  }
 
-    async function loadReports() {
-      const file = sourceSelect.value;
-      const res = await fetch(`/${file}`);
-      currentData = await res.json();
+  themeList.addEventListener('click', e => {
+    if (e.target.tagName === 'LI') {
+      currentTheme = parseInt(e.target.dataset.themeId);
       displayReports();
     }
+  });
 
-    function extractThemes(text) {
-      if (!text) return [];
-      const squareMatch = [...text.matchAll(/\[(\d+) - [^\]]+\]/g)].map(m => parseInt(m[1]));
-      if (squareMatch.length) return squareMatch;
-      return [...text.matchAll(/- (\d) - /g)].map(m => parseInt(m[1]));
-    }
+  sourceSelect.addEventListener('change', loadReports);
 
-    function displayReports() {
-      reportList.innerHTML = '';
-      currentData
-        .filter(r => {
-          if (!currentTheme) return true;
-          if (!r.ai_analysis) return false;
-          const themes = extractThemes(r.ai_analysis);
-          return themes.includes(currentTheme);
-        })
-        .forEach(r => {
-          const div = document.createElement('div');
-          div.className = 'report';
-          div.innerHTML = `
-            <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
-            <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
-            <div class="report-summary">
-              ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim() || 'No summary available.'}
-            </div>
-          `;
-          reportList.appendChild(div);
-        });
-    }
+  async function loadReports() {
+    const file = sourceSelect.value;
+    const res = await fetch(`/${file}`);
+    currentData = await res.json();
+    currentTheme = null;
+    displayReports();
+  }
 
-    loadReports();
-  </script>
+  function extractThemes(text) {
+    if (!text) return [];
+    const gptMatches = [...text.matchAll(/\[(\d+) - [^\]]+\]/g)];
+    if (gptMatches.length) return gptMatches.map(m => parseInt(m[1]));
+
+    const geminiMatches = [...text.matchAll(/- (\d) - [^\n\r]+/g)];
+    if (geminiMatches.length) return geminiMatches.map(m => parseInt(m[1]));
+
+    return [];
+  }
+
+  function displayReports() {
+    reportList.innerHTML = '';
+    const filtered = currentData.filter(r => {
+      if (!r.ai_analysis) return false;
+      const themes = extractThemes(r.ai_analysis);
+      if (!currentTheme) return true;
+      return themes.includes(currentTheme);
+    });
+
+    filtered.forEach(r => {
+      const div = document.createElement('div');
+      div.className = 'report';
+      div.innerHTML = `
+        <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
+        <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
+        <div class="report-summary">
+          ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim()
+          || r.ai_analysis?.split("**Summary of Top 3 Most Prevalent Themes**")[1]?.split("**")[0]?.trim()
+          || 'No summary available.'}
+        </div>
+      `;
+      reportList.appendChild(div);
+    });
+
+    updateThemeListCounts();
+  }
+
+  loadReports();
+</script>
+
 </body>
 </html>
