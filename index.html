@@ -123,7 +123,6 @@
     const reportList = document.getElementById('reportList');
     let currentData = [], currentTheme = null;
 
-    // Setup theme selectors
     function renderThemeCounts(counts = {}) {
       themeList.innerHTML = '';
       for (const [id, name] of Object.entries(themeMap)) {
@@ -149,7 +148,13 @@
 
     function getThemeMatches(text, useStrict) {
       if (useStrict) {
-        return (text.match(/\[\d+ - [^\]]+\]/g) || []).map(t => parseInt(t.match(/\[(\d+)/)[1]));
+        const themeSection = text.match(/\*\*All Identified Themes\*\*(.*?)\n\n/s);
+        if (!themeSection) return [];
+        const themeLines = themeSection[1].split('\n');
+        return themeLines.map(line => {
+          const match = line.match(/^(\d+) - /);
+          return match ? parseInt(match[1]) : null;
+        }).filter(Boolean);
       } else {
         const matches = [];
         for (const [id, label] of Object.entries(themeMap)) {
@@ -170,7 +175,7 @@
           ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
 
-        const matchedThemes = getThemeMatches(summary, useStrict);
+        const matchedThemes = getThemeMatches(analysis, useStrict);
         matchedThemes.forEach(id => themeCounts[id] = (themeCounts[id] || 0) + 1);
       });
 
@@ -182,7 +187,7 @@
           ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
 
-        const matchedThemes = getThemeMatches(summary, !sourceSelect.value.includes('gemini'));
+        const matchedThemes = getThemeMatches(analysis, !sourceSelect.value.includes('gemini'));
         if (currentTheme && !matchedThemes.includes(currentTheme)) return;
 
         const div = document.createElement('div');
