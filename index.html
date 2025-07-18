@@ -6,143 +6,205 @@
   <title>AI IMF Article IV Scanner</title>
   <style>
     body {
-      display: flex;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
+      font-family: sans-serif;
+      background-color: #fff8f0;
+      color: #222;
     }
-    .sidebar {
+    header {
+      background-color: #639cff;
+      color: black;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      max-width: 1400px;
+      margin: auto;
+      padding: 1rem;
+    }
+    aside {
       width: 250px;
-      background: #eee;
-      padding: 20px;
+      padding: 1rem;
+      background-color: #f2f2f2;
+      border-right: 1px solid #ccc;
     }
-    .content {
+    main {
       flex: 1;
-      padding: 20px;
-      background: #fff3eb;
+      padding: 1rem;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .theme-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .theme-list li {
+      padding: 0.3rem 0;
+      cursor: pointer;
+      color: #000;
+      font-weight: 500;
+    }
+    .theme-list li:hover {
+      text-decoration: underline;
+    }
+    .selectors {
+      margin-bottom: 1rem;
     }
     .report {
-      background: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-left: 5px solid #999;
+      border: 1px solid #ddd;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #fff;
     }
-    .theme {
-      cursor: pointer;
-      color: #3366cc;
+    .report-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem;
     }
-    .theme:hover {
-      text-decoration: underline;
+    .report-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .report-summary {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Filter by Theme</h2>
-    <div id="themeFilters"></div>
-  </div>
-  <div class="content">
+  <header>
     <h1>AI IMF Article IV Scanner</h1>
-    <label for="modelSelect">Select AI Model:</label>
-    <select id="modelSelect">
-      <option value="GPTTurbo" selected>GPT Turbo (default)</option>
-      <option value="GPT4">GPT-4</option>
-      <option value="Gemini">Gemini</option>
-    </select>
-    <div id="reports"></div>
+  </header>
+  <div class="container">
+    <aside>
+      <h2>Filter by Theme</h2>
+      <div class="theme-list">
+        <ul id="themeList"></ul>
+      </div>
+    </aside>
+    <main>
+      <div class="selectors">
+        <label for="sourceSelect">Select AI Model:</label>
+        <select id="sourceSelect">
+          <option value="reports_GPTTurbo.json">GPT Turbo (default)</option>
+          <option value="reports_GPT4.json">GPT-4</option>
+          <option value="reports_gemini.json">Gemini</option>
+        </select>
+      </div>
+      <div id="reportList"></div>
+    </main>
   </div>
+ <script>
+  const themeMap = {
+    1: 'Austerity',
+    2: 'Tax',
+    3: 'Climate and environment',
+    4: 'Social and Gendered impacts',
+    5: 'Social Services',
+    6: 'Private and external sector',
+    7: 'Financialisation',
+    8: 'Digitisation',
+    9: 'Governance'
+  };
 
-  <script>
-    let allReports = [];
-    let selectedModel = 'GPTTurbo';
+  const themeList = document.getElementById('themeList');
+  const sourceSelect = document.getElementById('sourceSelect');
+  const reportList = document.getElementById('reportList');
+  let currentData = [];
+  let currentTheme = null;
 
-    const modelToFile = {
-      'GPTTurbo': 'reports_GPTTurbo.json',
-      'GPT4': 'reports_GPT4.json',
-      'Gemini': 'reports_gemini.json'
-    };
-
-    const extractThemes = (text) => {
-      const themes = [];
-
-      // Gemini format (explicit theme listing)
-      if (text.includes("**Identified Themes**")) {
-        const match = text.match(/\*\*Identified Themes\*\*([\s\S]*?)\n\n/);
-        if (match && match[1]) {
-          match[1].split(/\n|\d+\./).forEach(t => {
-            const trimmed = t.trim();
-            if (trimmed) themes.push(trimmed);
-          });
-        }
-      }
-
-      // GPT formats (infer from keywords)
-      const knownThemes = [
-        "Austerity", "Tax", "Climate and environment", "Social and Gendered impacts",
-        "Social Services", "Private and external sector", "Financialisation",
-        "Digitisation", "Governance"
-      ];
-      knownThemes.forEach(theme => {
-        const pattern = new RegExp(theme, 'i');
-        if (pattern.test(text) && !themes.includes(theme)) {
-          themes.push(theme);
-        }
+  // Count matching reports per theme
+  function updateThemeCounts() {
+    const counts = {};
+    Object.keys(themeMap).forEach(k => (counts[k] = 0));
+    currentData.forEach(r => {
+      const themes = extractThemeIDs(r.ai_analysis);
+      themes.forEach(id => {
+        if (counts[id] !== undefined) counts[id]++;
       });
-
-      return themes;
-    };
-
-    const renderThemes = (reports) => {
-      const themeCounts = {};
-      reports.forEach(r => {
-        (r.themes || []).forEach(theme => {
-          themeCounts[theme] = (themeCounts[theme] || 0) + 1;
-        });
-      });
-      const container = document.getElementById("themeFilters");
-      container.innerHTML = "";
-      Object.keys(themeCounts).sort().forEach(theme => {
-        const el = document.createElement("div");
-        el.textContent = `${theme} (${themeCounts[theme]})`;
-        el.className = "theme";
-        el.onclick = () => showReports(theme);
-        container.appendChild(el);
-      });
-    };
-
-    const showReports = (filter = null) => {
-      const container = document.getElementById("reports");
-      container.innerHTML = "";
-      allReports.forEach(r => {
-        if (filter && !(r.themes || []).includes(filter)) return;
-        const el = document.createElement("div");
-        el.className = "report";
-        el.innerHTML = `
-          <h3><a href="${r.link}" target="_blank">${r.title}</a></h3>
-          <p>${r.date} | ${r.report_id}</p>
-          <p>${r.summary}</p>
-        `;
-        container.appendChild(el);
-      });
-    };
-
-    const loadReports = async () => {
-      const res = await fetch(modelToFile[selectedModel]);
-      const data = await res.json();
-      allReports = data.map(entry => ({
-        ...entry,
-        themes: extractThemes(entry.summary)
-      }));
-      renderThemes(allReports);
-      showReports();
-    };
-
-    document.getElementById("modelSelect").addEventListener("change", e => {
-      selectedModel = e.target.value;
-      loadReports();
     });
 
-    loadReports();
-  </script>
+    themeList.innerHTML = '';
+    for (const key in themeMap) {
+      const li = document.createElement('li');
+      li.textContent = `${themeMap[key]} (${counts[key]})`;
+      li.dataset.themeId = key;
+      li.classList.toggle("active", parseInt(key) === currentTheme);
+      themeList.appendChild(li);
+    }
+  }
+
+  function extractThemeIDs(analysis = '') {
+    const bracketMatches = analysis.match(/\[(\d+) - [^\]]+\]/g);
+    if (bracketMatches && bracketMatches.length > 0) {
+      return bracketMatches.map(m => parseInt(m.match(/\[(\d+)/)[1]));
+    }
+
+    // Gemini fallback: extract from "**Summary of Top 3 Themes**" using themeMap
+    const summary = analysis.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0] || '';
+    return Object.entries(themeMap)
+      .filter(([id, label]) => summary.includes(label))
+      .map(([id]) => parseInt(id));
+  }
+
+  themeList.addEventListener('click', e => {
+    if (e.target.tagName === 'LI') {
+      const selected = parseInt(e.target.dataset.themeId);
+      currentTheme = currentTheme === selected ? null : selected;
+      updateThemeCounts();
+      displayReports();
+    }
+  });
+
+  sourceSelect.addEventListener('change', loadReports);
+
+  async function loadReports() {
+    const file = sourceSelect.value;
+    const res = await fetch(`/${file}`);
+    currentData = await res.json();
+    currentTheme = null;
+    updateThemeCounts();
+    displayReports();
+  }
+
+  function displayReports() {
+    reportList.innerHTML = '';
+    currentData
+      .filter(r => {
+        if (!currentTheme) return true;
+        const themeIDs = extractThemeIDs(r.ai_analysis);
+        return themeIDs.includes(currentTheme);
+      })
+      .forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'report';
+        div.innerHTML = `
+          <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
+          <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
+          <div class="report-summary">
+            ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim() || 'No summary available.'}
+          </div>
+        `;
+        reportList.appendChild(div);
+      });
+  }
+
+  loadReports();
+</script>
+
+
 </body>
 </html>
