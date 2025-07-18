@@ -107,7 +107,7 @@
       <div id="reportList"></div>
     </main>
   </div>
-  <script>
+ <script>
   const themeMap = {
     1: 'Austerity',
     2: 'Tax',
@@ -126,27 +126,45 @@
   let currentData = [];
   let currentTheme = null;
 
-  function updateThemeListCounts() {
-    themeList.innerHTML = '';
+  // Count matching reports per theme
+  function updateThemeCounts() {
     const counts = {};
-
+    Object.keys(themeMap).forEach(k => (counts[k] = 0));
     currentData.forEach(r => {
-      const themeIds = extractThemes(r.ai_analysis);
-      themeIds.forEach(id => counts[id] = (counts[id] || 0) + 1);
+      const themes = extractThemeIDs(r.ai_analysis);
+      themes.forEach(id => {
+        if (counts[id] !== undefined) counts[id]++;
+      });
     });
 
+    themeList.innerHTML = '';
     for (const key in themeMap) {
       const li = document.createElement('li');
-      li.textContent = `${themeMap[key]} (${counts[key] || 0})`;
+      li.textContent = `${themeMap[key]} (${counts[key]})`;
       li.dataset.themeId = key;
-      li.style.fontWeight = currentTheme == key ? 'bold' : 'normal';
+      li.classList.toggle("active", parseInt(key) === currentTheme);
       themeList.appendChild(li);
     }
   }
 
+  function extractThemeIDs(analysis = '') {
+    const bracketMatches = analysis.match(/\[(\d+) - [^\]]+\]/g);
+    if (bracketMatches && bracketMatches.length > 0) {
+      return bracketMatches.map(m => parseInt(m.match(/\[(\d+)/)[1]));
+    }
+
+    // Gemini fallback: extract from "**Summary of Top 3 Themes**" using themeMap
+    const summary = analysis.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0] || '';
+    return Object.entries(themeMap)
+      .filter(([id, label]) => summary.includes(label))
+      .map(([id]) => parseInt(id));
+  }
+
   themeList.addEventListener('click', e => {
     if (e.target.tagName === 'LI') {
-      currentTheme = parseInt(e.target.dataset.themeId);
+      const selected = parseInt(e.target.dataset.themeId);
+      currentTheme = currentTheme === selected ? null : selected;
+      updateThemeCounts();
       displayReports();
     }
   });
@@ -158,49 +176,35 @@
     const res = await fetch(`/${file}`);
     currentData = await res.json();
     currentTheme = null;
+    updateThemeCounts();
     displayReports();
-  }
-
-  function extractThemes(text) {
-    if (!text) return [];
-    const gptMatches = [...text.matchAll(/\[(\d+) - [^\]]+\]/g)];
-    if (gptMatches.length) return gptMatches.map(m => parseInt(m[1]));
-
-    const geminiMatches = [...text.matchAll(/- (\d) - [^\n\r]+/g)];
-    if (geminiMatches.length) return geminiMatches.map(m => parseInt(m[1]));
-
-    return [];
   }
 
   function displayReports() {
     reportList.innerHTML = '';
-    const filtered = currentData.filter(r => {
-      if (!r.ai_analysis) return false;
-      const themes = extractThemes(r.ai_analysis);
-      if (!currentTheme) return true;
-      return themes.includes(currentTheme);
-    });
-
-    filtered.forEach(r => {
-      const div = document.createElement('div');
-      div.className = 'report';
-      div.innerHTML = `
-        <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
-        <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
-        <div class="report-summary">
-          ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim()
-          || r.ai_analysis?.split("**Summary of Top 3 Most Prevalent Themes**")[1]?.split("**")[0]?.trim()
-          || 'No summary available.'}
-        </div>
-      `;
-      reportList.appendChild(div);
-    });
-
-    updateThemeListCounts();
+    currentData
+      .filter(r => {
+        if (!currentTheme) return true;
+        const themeIDs = extractThemeIDs(r.ai_analysis);
+        return themeIDs.includes(currentTheme);
+      })
+      .forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'report';
+        div.innerHTML = `
+          <div class="report-title"><a href="${r.link}" target="_blank">${r.title}</a></div>
+          <div class="report-meta">${r.date} | ${r.series} | ${r.country || ''}</div>
+          <div class="report-summary">
+            ${r.ai_analysis?.split("**Summary of Top 3 Themes**")[1]?.split("**All Identified Themes**")[0]?.trim() || 'No summary available.'}
+          </div>
+        `;
+        reportList.appendChild(div);
+      });
   }
 
   loadReports();
 </script>
+
 
 </body>
 </html>
