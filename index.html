@@ -11,14 +11,24 @@
       background-color: #fff8f0;
       color: #222;
     }
- header {
-  background-color: #639cff; /* Bretton Woods blue */
-  color: black;
+header {
+  background-color: #639cff; /* Bretton Woods Project blue */
   padding: 1rem 1.5rem;
-  text-align: left;
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.header-logo {
+  height: 50px;
 }
 
     
@@ -90,8 +100,11 @@
 </head>
 <body>
   <header>
+  <div class="header-container">
+    <img src="https://staging.brettonwoodsproject.org/wp-content/themes/bretton-woods/resources/img/logo.svg" alt="Bretton Woods Logo" class="header-logo">
     <h1>AI IMF Article IV Scanner</h1>
-  </header>
+  </div>
+</header>
   <div class="container">
     <aside>
       <h2>Filter by Theme</h2>
