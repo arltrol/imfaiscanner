@@ -11,27 +11,18 @@
       background-color: #fff8f0;
       color: #222;
     }
-header {
-  background-color: #639cff; /* Bretton Woods Project blue */
-  padding: 1rem 1.5rem;
-}
 
-.header-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  text-align: center;
-}
+    header {
+      background-color: #639cff;
+      padding: 1rem;
+      text-align: center;
+    }
 
-.header-logo {
-  height: 50px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
 
-    
     .container {
       display: flex;
       flex-direction: row;
@@ -39,74 +30,97 @@ header {
       margin: auto;
       padding: 1rem;
     }
+
     aside {
       width: 250px;
       padding: 1rem;
       background-color: #f3eee9;
       border-right: 1px solid #ccc;
+      box-sizing: border-box;
     }
+
+    .sidebar-logo {
+      width: 160px;
+      margin-bottom: 1rem;
+    }
+
     main {
       flex: 1;
       padding: 1rem;
     }
+
     h2 {
       margin-top: 0;
     }
+
     .theme-list ul {
       list-style: none;
       padding: 0;
     }
+
     .theme-list li {
       padding: 0.3rem 0;
       cursor: pointer;
       color: #dd6c1f;
     }
+
     .theme-list li:hover {
       text-decoration: underline;
     }
+
     .selectors {
       margin-bottom: 1rem;
     }
+
     .report {
       border: 1px solid #ddd;
       margin-bottom: 1rem;
       padding: 1rem;
       background-color: #fff;
     }
+
     .report-title {
       font-size: 1.2rem;
       margin: 0 0 0.5rem;
     }
+
     .report-meta {
       font-size: 0.9rem;
       color: #666;
       margin-bottom: 0.5rem;
     }
+
     .report-summary {
       font-size: 0.95rem;
       color: #333;
     }
+
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
       }
+
       aside {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #ccc;
+      }
+
+      .sidebar-logo {
+        display: block;
+        margin: 0 auto 1rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-  <div class="header-container">
-    <img src="https://staging.brettonwoodsproject.org/wp-content/themes/bretton-woods/resources/img/logo.svg" alt="Bretton Woods Logo" class="header-logo">
     <h1>AI IMF Article IV Scanner</h1>
-  </div>
-</header>
+  </header>
+
   <div class="container">
     <aside>
+      <img src="https://staging.brettonwoodsproject.org/wp-content/themes/bretton-woods/resources/img/logo.svg" alt="Bretton Woods Logo" class="sidebar-logo">
       <h2>Filter by Theme</h2>
       <div class="theme-list">
         <ul id="themeList">
@@ -114,6 +128,7 @@ header {
         </ul>
       </div>
     </aside>
+
     <main>
       <div class="selectors">
         <label for="sourceSelect">Select AI Model:</label>
@@ -128,6 +143,7 @@ header {
       </div>
     </main>
   </div>
+
   <script>
     const themeMap = {
       1: 'Austerity',
