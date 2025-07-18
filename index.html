@@ -148,13 +148,8 @@
 
     function getThemeMatches(text, useStrict) {
       if (useStrict) {
-        const themeSection = text.match(/\*\*All Identified Themes\*\*(.*?)\n\n/s);
-        if (!themeSection) return [];
-        const themeLines = themeSection[1].split('\n');
-        return themeLines.map(line => {
-          const match = line.match(/^(\d+) - /);
-          return match ? parseInt(match[1]) : null;
-        }).filter(Boolean);
+        const matches = text.match(/\[\d+ - [^\]]+\]/g) || [];
+        return matches.map(t => parseInt(t.match(/\[(\d+)/)[1]));
       } else {
         const matches = [];
         for (const [id, label] of Object.entries(themeMap)) {
@@ -166,7 +161,7 @@
 
     function displayReports() {
       reportList.innerHTML = '';
-      const useStrict = !sourceSelect.value.includes('gemini');
+      const useStrict = sourceSelect.value.includes('GPT');
       const themeCounts = {};
 
       currentData.forEach(r => {
@@ -175,7 +170,7 @@
           ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
 
-        const matchedThemes = getThemeMatches(analysis, useStrict);
+        const matchedThemes = getThemeMatches(summary, useStrict);
         matchedThemes.forEach(id => themeCounts[id] = (themeCounts[id] || 0) + 1);
       });
 
@@ -187,7 +182,7 @@
           ? analysis.split("**Summary of Top 3 Themes**")[1].split("**All Identified Themes**")[0].trim()
           : analysis;
 
-        const matchedThemes = getThemeMatches(analysis, !sourceSelect.value.includes('gemini'));
+        const matchedThemes = getThemeMatches(summary, sourceSelect.value.includes('GPT'));
         if (currentTheme && !matchedThemes.includes(currentTheme)) return;
 
         const div = document.createElement('div');
