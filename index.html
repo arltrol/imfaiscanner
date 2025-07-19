@@ -260,7 +260,7 @@
           <div class="report-title">
             <a href="${r.detail_page_url}" target="_blank">${r.title}</a>
           </div>
-          <div class="meta"><strong>${r.publication_date}</strong> | ${r.publication_details?.series || ''}</div>
+          <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
           <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
           <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
           <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
