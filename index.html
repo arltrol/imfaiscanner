@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI IMF Scanner</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+    .container { display: flex; max-width: 1200px; margin: 20px auto; }
+    .menu { width: 200px; padding: 10px; background: #333; color: white; }
+    .menu ul { list-style: none; padding: 0; }
+    .menu li { padding: 10px; cursor: pointer; }
+    .menu li.selected { background: #555; }
+    .content { flex-grow: 1; padding: 10px; }
+    .entry { border: 1px solid #ddd; margin-bottom: 10px; padding: 10px; background: white; }
+    .expandable { display: none; }
+    .entry.expanded .expandable { display: block; }
+    .pagination { margin-top: 10px; }
+    select { padding: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="menu">
+      <ul id="taxonomyMenu">
+        <!-- Populated by JavaScript -->
+      </ul>
+    </div>
+    <div class="content">
+      <h1>AI IMF Scanner</h1>
+      <div id="entries"></div>
+      <div class="pagination">
+        <select id="pageSize" onchange="updateEntries()">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+        <button onclick="prevPage()">Previous</button>
+        <span id="pageInfo"></span>
+        <button onclick="nextPage()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let data = [];
+    let currentPage = 1;
+    let pageSize = 10;
+    let selectedTaxonomies = new Set();
+
+    // Fetch and parse JSON
+    fetch('reports_scrapev2.json')
+      .then(response => response.json())
+      .then(json => {
+        data = json;
+        populateTaxonomies();
+        updateEntries();
+      });
+
+    // Populate taxonomy menu
+    function populateTaxonomies() {
+      const taxonomies = new Set(data.map(item => item.taxonomy).flat());
+      const menu = document.getElementById('taxonomyMenu');
+      taxonomies.forEach(taxonomy => {
+        const count = data.filter(item => item.taxonomy.includes(taxonomy)).length;
+        const li = document.createElement('li');
+        li.textContent = `${taxonomy} (${count})`;
+        li.onclick = () => toggleTaxonomy(taxonomy);
+        menu.appendChild(li);
+      });
+    }
+
+    // Toggle taxonomy selection
+    function toggleTaxonomy(taxonomy) {
+      const li = document.getElementById('taxonomyMenu').getElementsByTagName('li');
+      for (let item of li) {
+        if (item.textContent.includes(taxonomy)) {
+          if (selectedTaxonomies.has(taxonomy)) {
+            selectedTaxonomies.delete(taxonomy);
+            item.classList.remove('selected');
+          } else {
+            selectedTaxonomies.add(taxonomy);
+            item.classList.add('selected');
+          }
+          updateEntries();
+          break;
+        }
+      }
+    }
+
+    // Update displayed entries
+    function updateEntries() {
+      const content = document.getElementById('entries');
+      content.innerHTML = '';
+      pageSize = document.getElementById('pageSize').value;
+      let filteredData = data.filter(item =>
+        selectedTaxonomies.size === 0 || item.taxonomy.some(t => selectedTaxonomies.has(t))
+      );
+
+      const start = (currentPage - 1) * pageSize;
+      const end = start + parseInt(pageSize);
+      const paginatedData = filteredData.slice(start, end);
+
+      paginatedData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'entry';
+        div.innerHTML = `
+          <h2>${item.title || 'Untitled'}</h2>
+          <p><strong>Publication Date:</strong> ${item.date || 'N/A'}</p>
+          <p><strong>AI Summary:</strong> ${item.ai_summary || 'Not available'}</p>
+          <p><strong>AI Top 3 Themes:</strong> ${item.top_themes?.join(', ') || 'Not available'}</p>
+          <button onclick="this.parentElement.classList.toggle('expanded')">More</button>
+          <div class="expandable">
+            <p><strong>PDF Link:</strong> <a href="${item.pdf_link || '#'}">${item.pdf_link || 'N/A'}</a></p>
+            <p><strong>Publication Details:</strong> ${item.details || 'N/A'}</p>
+          </div>
+        `;
+        content.appendChild(div);
+      });
+
+      document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${Math.ceil(filteredData.length / pageSize)}`;
+    }
+
+    // Pagination
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updateEntries();
+      }
+    }
+
+    function nextPage() {
+      const totalPages = Math.ceil(data.length / pageSize);
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateEntries();
+      }
+    }
+  </script>
+</body>
+</html>
