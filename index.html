@@ -206,7 +206,7 @@
       const regionList = document.getElementById('regionList');
       regionList.innerHTML = '';
       ALL_REGIONS.forEach(region => {
-        const count = reports.filter(r => r.region === region).length;
+        const count = reports.filter(r => (r.region || '').trim() === region).length;
         const div = document.createElement('div');
         div.className = 'filter-item';
         div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> ${region} (${count})</label>`;
@@ -232,7 +232,7 @@
       return reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         const matchesThemes = [...selectedThemes].every(sel => (ai?.content?.top_themes || []).some(t => t.name === sel));
-        const matchesRegion = selectedRegions.size === 0 || selectedRegions.has(r.region);
+        const matchesRegion = selectedRegions.size === 0 || selectedRegions.has((r.region || '').trim());
         return (!selectedThemes.size || matchesThemes) && matchesRegion;
       });
     }
