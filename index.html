@@ -185,34 +185,41 @@
       .then(res => res.json())
       .then(data => {
         reports = data;
+        console.log('JSON region sample:', reports.map(r => r.region).slice(0, 10));
         renderFilters();
         renderPage();
       });
 
     function renderFilters() {
-      const themeList = document.getElementById('themeList');
-      themeList.innerHTML = '';
-      ALL_THEMES.forEach(theme => {
-        const count = reports.filter(r => {
-          const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-          return ai?.content?.top_themes?.some(t => t.name === theme);
-        }).length;
-        const div = document.createElement('div');
-        div.className = 'filter-item';
-        div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> ${theme} (${count})</label>`;
-        themeList.appendChild(div);
-      });
+  // Render theme filters
+  const themeList = document.getElementById('themeList');
+  themeList.innerHTML = '';
+  ALL_THEMES.forEach(theme => {
+    const count = reports.filter(r => {
+      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      return ai?.content?.top_themes?.some(t => t.name === theme);
+    }).length;
+    const div = document.createElement('div');
+    div.className = 'filter-item';
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> ${theme} (${count})</label>`;
+    themeList.appendChild(div);
+  });
 
-     const regionList = document.getElementById('regionList');
-      regionList.innerHTML = '';
-      ALL_REGIONS.forEach(region => {
-        const count = reports.filter(r => (r.region || '').trim().toLowerCase() === region.toLowerCase()).length;
-        const div = document.createElement('div');
-        div.className = 'filter-item';
-        div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> ${region} (${count})</label>`;
-        regionList.appendChild(div);
-      });
-    }
+  // Render region filters (case-insensitive)
+  const regionList = document.getElementById('regionList');
+  regionList.innerHTML = '';
+  ALL_REGIONS.forEach(region => {
+    const count = reports.filter(r => {
+      const reg = (r.region || '').trim().toLowerCase();
+      return reg === region.toLowerCase();
+    }).length;
+    const div = document.createElement('div');
+    div.className = 'filter-item';
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> ${region} (${count})</label>`;
+    regionList.appendChild(div);
+  });
+}
+
 
     function toggleTheme(theme) {
       if (selectedThemes.has(theme)) selectedThemes.delete(theme);
