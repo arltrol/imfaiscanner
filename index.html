@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Article IV Scanner</title>
+  <title>AI IMF Article IV Scanner</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
+      background: #f9f9f9;
+      color: #333;
     }
     header {
-      background: #1f3c88;
+      background: #004080;
       color: white;
-      padding: 10px 20px;
+      padding: 20px;
       text-align: center;
     }
     #container {
@@ -25,7 +26,7 @@
     #sidebar {
       width: 250px;
       padding: 20px;
-      background: #ffffff;
+      background: #f0f0f0;
       border-right: 1px solid #ccc;
     }
     #main {
@@ -36,39 +37,55 @@
       background: #ffffff;
       border-radius: 5px;
       margin-bottom: 20px;
-      padding: 15px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    .report-title {
+    .report-title a {
       font-size: 1.1em;
       font-weight: bold;
+      color: #004080;
+      text-decoration: none;
+    }
+    .report-title a:hover {
+      text-decoration: underline;
     }
     .expand {
       cursor: pointer;
-      color: #1f3c88;
+      color: #004080;
       font-size: 0.9em;
-      margin-top: 5px;
+      margin-top: 8px;
       display: inline-block;
     }
     .publication-details {
       display: none;
       margin-top: 10px;
       font-size: 0.9em;
+      line-height: 1.4;
     }
     .tag {
-      background: #e0e0e0;
+      background: #ddeeff;
       padding: 3px 8px;
       border-radius: 3px;
       font-size: 0.85em;
       margin-right: 5px;
+      display: inline-block;
+      margin-bottom: 4px;
     }
     .pagination {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 30px;
     }
     .pagination button {
       margin: 0 5px;
-      padding: 5px 10px;
+      padding: 6px 12px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .pagination button:disabled {
+      background: #ccc;
     }
     @media(max-width: 768px) {
       #container {
@@ -84,11 +101,11 @@
 </head>
 <body>
   <header>
-    <h1>AI Article IV Scanner</h1>
+    <h1>AI IMF Article IV Scanner</h1>
   </header>
   <div id="container">
     <div id="sidebar">
-      <h3>Themes</h3>
+      <h3>Filter by Theme</h3>
       <ul id="themeList"></ul>
     </div>
     <div id="main">
@@ -123,23 +140,28 @@
       const list = document.getElementById('reportList');
       list.innerHTML = '';
       reports.slice(start, end).forEach((r, idx) => {
+        const ai = (r.ai_analysis || []).find(a => a.model === 'gpt-4-turbo');
+        const content = ai?.content || {};
+
         const el = document.createElement('div');
         el.className = 'report-card';
         el.innerHTML = `
-          <div class="report-title"><a href="${r.url}" target="_blank">${r.title}</a></div>
-          <div><strong>Country:</strong> ${r.country} | <strong>Region:</strong> ${r.region} | <strong>Date:</strong> ${r.publication_date || 'N/A'}</div>
-          <div><strong>Summary:</strong> ${r.gpt4?.summary || 'N/A'}</div>
-          <div><strong>Top 3 Themes:</strong> ${r.gpt4?.themes?.join(', ') || 'N/A'}</div>
-          <div><strong>Tags:</strong> ${(r.gpt4?.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ')}</div>
+          <div class="report-title">
+            <a href="${r.detail_page_url}" target="_blank">${r.title}</a>
+          </div>
+          <div><strong>Date:</strong> ${r.publication_date || 'N/A'} | <strong>Country:</strong> ${r.country || 'N/A'} | <strong>Region:</strong> ${r.region || 'N/A'}</div>
+          <div><strong>Summary:</strong> ${content.summary || 'N/A'}</div>
+          <div><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'N/A'}</div>
+          <div><strong>Tags:</strong> ${(content.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ') || 'N/A'}</div>
           <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
           <div class="publication-details">
             <strong>Pages:</strong> ${r.publication_details?.pages || 'N/A'}<br/>
             <strong>DOI:</strong> <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
-            <strong>Series:</strong> ${r.publication_details?.series}<br/>
-            <strong>ISBN:</strong> ${r.publication_details?.isbn}<br/>
-            <strong>ISSN:</strong> ${r.publication_details?.issn}<br/>
-            <strong>Stock No.:</strong> ${r.publication_details?.stock_no}<br/>
-            <strong>Volume:</strong> ${r.publication_details?.volume}, <strong>Issue:</strong> ${r.publication_details?.issue}
+            <strong>Series:</strong> ${r.publication_details?.series || 'N/A'}<br/>
+            <strong>ISBN:</strong> ${r.publication_details?.isbn || 'N/A'}<br/>
+            <strong>ISSN:</strong> ${r.publication_details?.issn || 'N/A'}<br/>
+            <strong>Stock No.:</strong> ${r.publication_details?.stock_no || 'N/A'}<br/>
+            <strong>Volume:</strong> ${r.publication_details?.volume || 'N/A'}, <strong>Issue:</strong> ${r.publication_details?.issue || 'N/A'}
           </div>
         `;
         list.appendChild(el);
@@ -175,15 +197,18 @@
     }
 
     function populateThemes() {
-      const themes = new Set();
+      const themes = new Map();
       reports.forEach(r => {
-        (r.gpt4?.themes || []).forEach(t => themes.add(t));
+        const ai = (r.ai_analysis || []).find(a => a.model === 'gpt-4-turbo');
+        (ai?.content?.top_themes || []).forEach(t => {
+          themes.set(t.name, (themes.get(t.name) || 0) + 1);
+        });
       });
       const list = document.getElementById('themeList');
       list.innerHTML = '';
-      [...themes].sort().forEach(theme => {
+      [...themes.entries()].sort().forEach(([theme, count]) => {
         const item = document.createElement('li');
-        item.innerText = theme;
+        item.innerText = `${theme} (${count})`;
         list.appendChild(item);
       });
     }
