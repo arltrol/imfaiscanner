@@ -134,6 +134,9 @@
         border-right: none;
         border-bottom: 1px solid #eee;
       }
+      .report-title:hover {
+  text-decoration: underline;
+}
     }
   </style>
 </head>
@@ -326,9 +329,12 @@ function updateResultsCount(count) {
         const el = document.createElement('div');
         el.className = 'report-card';
         el.innerHTML = `
-          <div class="report-title" onclick="toggleDetails(this)">
-              <strong>${r.title}</strong>
-          </div>
+         <div class="report-title" onclick="toggleDetails(this)" style="cursor: pointer;">
+  <span style="color: #003366; font-weight: bold; font-size: 1.2em;">${r.title}</span>
+  <span style="margin-left: 6px; font-size: 0.9em; color: #666;">[Click to expand]</span>
+</div>
+
+
 
           <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
           <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
