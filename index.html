@@ -368,13 +368,16 @@ function updateResultsCount(count) {
           <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
           <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
           <div class="publication-details">
-            Pages: ${r.publication_details?.pages || 'N/A'}<br/>
-            DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
-            ISBN: ${r.publication_details?.isbn}<br/>
-            ISSN: ${r.publication_details?.issn}<br/>
-            Stock No: ${r.publication_details?.stock_no}<br/>
-            Volume: ${r.publication_details?.volume}, Issue: ${r.publication_details?.issue}
-          </div>
+  Pages: ${r.publication_details?.pages || 'N/A'}<br/>
+  DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
+  ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
+  ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
+  Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
+  Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
+  📄 PDF: <a href="${r.report_pdf_url}" target="_blank">Download</a><br/>
+  🌐 Original Report: <a href="${r.original_report_url}" target="_blank">View on IMF site</a>
+</div>
+
         `;
         list.appendChild(el);
       });
