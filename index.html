@@ -177,7 +177,7 @@
     </aside>
     <main id="main">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-  <div id="resultsCount" style="font-size: 1em; color: #444;">Showing 0 results</div>
+<div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
   <div>
     <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
     <select id="perPage" onchange="changePerPage()" style="padding: 4px 8px; font-size: 0.95em;">
@@ -336,7 +336,7 @@ function updateResultsCount(total, start, end) {
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
   updateResultsCount(visible.length, start, end);
-
+  document.getElementById('resultsCount').style.display = 'block';
   const list = document.getElementById('reportList');
   list.innerHTML = '';
   visible.slice(start, end).forEach(r => {
