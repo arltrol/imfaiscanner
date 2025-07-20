@@ -99,6 +99,14 @@
       color: #003366;
       cursor: pointer;
     }
+    .expand:hover {
+  text-decoration: underline;
+}
+    .filter-item input:checked + span {
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
     .publication-details {
       display: none;
       margin-top: 10px;
@@ -232,7 +240,7 @@
     }).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> ${theme} (${count})</label>`;
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${count})</span></label>`;
     themeList.appendChild(div);
   });
 
@@ -246,7 +254,7 @@
     }).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> ${region} (${count})</label>`;
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>`;
     regionList.appendChild(div);
   });
 
@@ -263,7 +271,7 @@
     const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> ${year} (${count})</label>`;
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
     yearList.appendChild(div);
   });
 
