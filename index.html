@@ -204,7 +204,6 @@
       .then(res => res.json())
       .then(data => {
         reports = data;
-        console.log('JSON region sample:', reports.map(r => r.region).slice(0, 10));
         renderFilters();
         renderPage();
       });
