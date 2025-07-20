@@ -84,6 +84,25 @@
       margin-top: 8px;
       font-size: 0.95em;
     }
+    .report-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.report-title:hover {
+  background-color: #f0f8ff;
+  text-decoration: underline;
+}
+.toggle-icon {
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #666;
+  transition: transform 0.2s;
+}
+
+
     .tag {
       display: inline-block;
       background: #e0ecff;
@@ -99,17 +118,30 @@
       color: #003366;
       cursor: pointer;
     }
-    .publication-details {
-      display: none;
-      margin-top: 10px;
-      font-size: 0.9em;
-      color: #333;
-    }
+  .publication-details {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #333;
+  transition: max-height 0.3s ease;
+}
+
+.publication-details.open {
+  max-height: 500px; /* Adjust if needed */
+}
+
     .pagination {
       text-align: center;
       padding-top: 30px;
       border-top: 1px solid #eee;
     }
+    a {
+  color: #003366;
+}
+a:hover {
+  text-decoration: underline;
+}
     .pagination button {
       background: none;
       border: 1px solid #aaa;
@@ -123,6 +155,7 @@
       color: white;
       border-color: #003366;
     }
+    
     @media (max-width: 768px) {
       #container {
         flex-direction: column;
@@ -134,9 +167,7 @@
         border-right: none;
         border-bottom: 1px solid #eee;
       }
-      .report-title:hover {
-  text-decoration: underline;
-}
+     
     }
   </style>
 </head>
@@ -329,10 +360,11 @@ function updateResultsCount(count) {
         const el = document.createElement('div');
         el.className = 'report-card';
         el.innerHTML = `
-         <div class="report-title" onclick="toggleDetails(this)" style="cursor: pointer;">
-  <span style="color: #003366; font-weight: bold; font-size: 1.2em;">${r.title}</span>
-  <span style="margin-left: 6px; font-size: 0.9em; color: #666;">[Click to expand]</span>
+        <div class="report-title" onclick="toggleDetails(this)">
+  <span class="title-text" style="color: #003366; font-weight: bold; font-size: 1.2em;">${r.title}</span>
+  <span class="toggle-icon">+</span>
 </div>
+
 
 
 
@@ -354,16 +386,18 @@ function updateResultsCount(count) {
       updatePagination(visible.length);
     }
 
-    function toggleDetails(el) {
+ function toggleDetails(el) {
   const detailsBox = el.parentElement.querySelector('.publication-details');
   if (!detailsBox) return;
 
-  const isVisible = detailsBox.style.display === 'block';
-  detailsBox.style.display = isVisible ? 'none' : 'block';
+ const isOpen = detailsBox.classList.contains('open');
+detailsBox.classList.toggle('open', !isOpen);
 
-  // Optional: add class toggle if you want style feedback (e.g., bold/unbold)
-  el.classList.toggle('expanded', !isVisible);
+const icon = el.querySelector('.toggle-icon');
+if (icon) icon.textContent = isOpen ? '+' : '–';
+
 }
+
 
 
     function updatePagination(total) {
