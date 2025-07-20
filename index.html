@@ -147,6 +147,11 @@
         <h3>By region</h3>
         <div id="regionList"></div>
       </div>
+      <div class="filter-group">
+          <h3>By year</h3>
+          <div id="yearList"></div>
+      </div>
+
     </aside>
     <main id="main">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -171,6 +176,8 @@
     let perPage = 20;
     let selectedThemes = new Set();
     let selectedRegions = new Set();
+    let selectedYears = new Set();
+
 
     const ALL_THEMES = [
       "Austerity",
@@ -230,6 +237,24 @@
     div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> ${region} (${count})</label>`;
     regionList.appendChild(div);
   });
+
+        // Extract unique years from publication dates
+  const years = Array.from(
+    new Set(reports
+      .map(r => r.publication_date?.substring(0, 4))
+      .filter(y => y))
+  ).sort((a, b) => b - a);
+
+  const yearList = document.getElementById('yearList');
+  yearList.innerHTML = '';
+  years.forEach(year => {
+    const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
+    const div = document.createElement('div');
+    div.className = 'filter-item';
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> ${year} (${count})</label>`;
+    yearList.appendChild(div);
+  });
+
 }
 
 
@@ -247,6 +272,14 @@
       renderPage();
     }
 
+    function toggleYear(year) {
+  if (selectedYears.has(year)) selectedYears.delete(year);
+  else selectedYears.add(year);
+  currentPage = 1;
+  renderPage();
+}
+
+
     function changePerPage() {
   const selector = document.getElementById('perPage');
   perPage = parseInt(selector.value);
@@ -260,15 +293,18 @@ function updateResultsCount(count) {
 }
 
 
-    function filterReports() {
-      return reports.filter(r => {
-        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        const matchesThemes = [...selectedThemes].every(sel => (ai?.content?.top_themes || []).some(t => t.name === sel));
-        const regionVal = (r.region || '').trim().toLowerCase();
-        const matchesRegion = selectedRegions.size === 0 || [...selectedRegions].some(sel => sel.toLowerCase() === regionVal);
-        return (!selectedThemes.size || matchesThemes) && matchesRegion;
-      });
-    }
+   function filterReports() {
+  return reports.filter(r => {
+    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const matchesThemes = [...selectedThemes].every(sel => (ai?.content?.top_themes || []).some(t => t.name === sel));
+    const regionVal = (r.region || '').trim().toLowerCase();
+    const matchesRegion = selectedRegions.size === 0 || [...selectedRegions].some(sel => sel.toLowerCase() === regionVal);
+    const reportYear = r.publication_date?.substring(0, 4);
+    const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
+    return (!selectedThemes.size || matchesThemes) && matchesRegion && matchesYear;
+  });
+}
+
 
    
 
