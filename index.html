@@ -105,6 +105,14 @@
       font-size: 0.9em;
       color: #333;
     }
+    .publication-details a {
+  color: #003366;
+  text-decoration: none;
+}
+.publication-details a:hover {
+  text-decoration: underline;
+}
+
     .pagination {
       text-align: center;
       padding-top: 30px;
@@ -327,8 +335,9 @@ function updateResultsCount(count) {
         el.className = 'report-card';
         el.innerHTML = `
           <div class="report-title">
-            <a href="${r.detail_page_url}" target="_blank">${r.title}</a>
+              <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
           </div>
+
           <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
           <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
           <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
