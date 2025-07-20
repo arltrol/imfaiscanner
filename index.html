@@ -95,12 +95,7 @@
   background-color: #f0f8ff;
   text-decoration: underline;
 }
-.toggle-icon {
-  cursor: pointer;
-  font-size: 1.2em;
-  color: #666;
-  transition: transform 0.2s;
-}
+
 
 
     .tag {
@@ -360,10 +355,10 @@ function updateResultsCount(count) {
         const el = document.createElement('div');
         el.className = 'report-card';
         el.innerHTML = `
-        <div class="report-title" onclick="toggleDetails(this)">
+       <div class="report-title" onclick="toggleDetails(this)">
   <span class="title-text" style="color: #003366; font-weight: bold; font-size: 1.2em;">${r.title}</span>
-  <span class="toggle-icon">+</span>
 </div>
+
 
 
 
@@ -390,15 +385,14 @@ function updateResultsCount(count) {
   const detailsBox = el.parentElement.querySelector('.publication-details');
   if (!detailsBox) return;
 
- const isOpen = detailsBox.classList.contains('open');
-detailsBox.classList.toggle('open', !isOpen);
+  const isOpen = detailsBox.classList.contains('open');
+  detailsBox.classList.toggle('open', !isOpen);
 
-const icon = el.querySelector('.toggle-icon');
-if (icon) icon.textContent = isOpen ? '+' : '–';
-
+  // Only on mobile, scroll into view when opening
+  if (window.innerWidth <= 768 && !isOpen) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
-
-
 
     function updatePagination(total) {
       const pages = Math.ceil(total / perPage);
