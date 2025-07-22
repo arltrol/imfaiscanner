@@ -511,8 +511,10 @@
     output += `${key}: ${summaries[key]}\n\n`;
   }
 
-  alert(output); // Quick debug-friendly popup
+  document.getElementById('themeModalContent').innerText = output;
+  document.getElementById('themeModal').style.display = 'block';
 }
+
 
   </script>
 
@@ -522,5 +524,14 @@
     <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
     <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
   </footer>
+  <div id="themeModal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
+  width: 80%; max-height: 80%; overflow-y: auto; background:#fff; border:1px solid #ccc; padding:20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index:10000; border-radius: 6px;">
+  <div id="themeModalContent" style="white-space: pre-wrap; font-size: 0.95em; color: #333;"></div>
+  <div style="text-align:right; margin-top:20px;">
+    <button onclick="document.getElementById('themeModal').style.display='none'" style="padding:6px 12px;">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
