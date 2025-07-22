@@ -137,7 +137,59 @@
       "stock_no": "1SGPEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/16/Singapore-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568643"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/16/Singapore-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568643",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "5",
+              "name": "Social Services"
+            }
+          ],
+          "summary": "The report on Singapore highlights austerity measures, tax policies, and social services as key themes. Austerity is evident in fiscal adjustments and public sector reforms, while tax discussions focus on consumption taxes and fiscal rebalancing. Social services are addressed through social safety nets and fiscal support for vulnerable groups.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "5.5"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are prominent, with fiscal consolidation and public sector reforms aimed at enhancing fiscal sustainability [pp. 1-3].",
+            "2": "Tax policies are reviewed, focusing on consumption taxes and the need for fiscal rebalancing through tax reforms [pp. 1-3].",
+            "5": "Social services are addressed through various measures including social safety nets and targeted fiscal support for vulnerable groups [pp. 3].",
+            "1.1": "Fiscal discipline is emphasized through budget adjustments and expenditure rationalization to manage deficits and debt constraints [pp. 2].",
+            "1.2": "Public sector wages are managed through controls and adjustments, reflecting austerity measures impacting civil service salaries and employment [pp. 2].",
+            "1.4": "Privatisation and reform of public services are noted, particularly in sectors like housing and financial services, aligning with broader austerity strategies [pp. 3].",
+            "1.5": "Labour market reforms include measures for wage flexibility and employment adjustments, supporting fiscal consolidation efforts [pp. 2-3].",
+            "2.1": "Consumption taxes such as VAT are discussed, with implications for fiscal policy and social equity considered in the fiscal framework [pp. 2].",
+            "2.2": "Tax expenditures and policies to manage financial flows and tax avoidance are highlighted, reflecting efforts to enhance fiscal integrity and revenue [pp. 2].",
+            "5.1": "Social protection measures are emphasized, with policies aimed at rationalizing social spending and improving targeting to support the needy [pp. 3].",
+            "5.2": "Pension reforms are discussed as part of social security measures, with changes aimed at sustainability and adequacy of benefits [pp. 3].",
+            "5.4": "Public service fees and the affordability of essential services such as healthcare and education are considered under fiscal and social policies [pp. 3].",
+            "5.5": "Health expenditure rationalization is noted, with efforts to manage healthcare costs and improve efficiency in public health services [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "France: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for France",
