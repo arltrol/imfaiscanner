@@ -13,16 +13,17 @@
       background: #ffffff;
       color: #111;
     }
-    header {
-      background: #72a4fc;
-      color: #000;
-      padding: 30px 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 160px;
-    }
+   header {
+  background: #72a4fc;
+  color: #000;
+  padding: 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 160px; /* Adjust height as needed */
+}
+
     header h1 {
       font-size: 2.5em;
       margin-bottom: 5px;
@@ -99,12 +100,14 @@
       cursor: pointer;
     }
     .expand:hover {
-      text-decoration: underline;
-    }
-    .filter-item input:checked + span {
-      font-weight: bold;
-      font-size: 1.05em;
-    }
+  text-decoration: underline;
+}
+   .filter-item input:checked + span {
+  font-weight: bold;
+  font-size: 1.05em;
+ }
+    
+
     .publication-details {
       display: none;
       margin-top: 10px;
@@ -112,12 +115,13 @@
       color: #333;
     }
     .publication-details a {
-      color: #003366;
-      text-decoration: none;
-    }
-    .publication-details a:hover {
-      text-decoration: underline;
-    }
+  color: #003366;
+  text-decoration: none;
+}
+.publication-details a:hover {
+  text-decoration: underline;
+}
+
     .pagination {
       text-align: center;
       padding-top: 30px;
@@ -148,9 +152,6 @@
         border-bottom: 1px solid #eee;
       }
     }
-    details summary {
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -169,201 +170,188 @@
         <div id="regionList"></div>
       </div>
       <div class="filter-group">
-        <h3>By year</h3>
-        <div id="yearList"></div>
+          <h3>By year</h3>
+          <div id="yearList"></div>
       </div>
+
     </aside>
     <main id="main">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
-        <div>
-          <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
-          <select id="perPage" onchange="changePerPage()" style="padding: 4px 8px; font-size: 0.95em;">
-            <option value="10">10</option>
-            <option value="20" selected>20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-      </div>
-      <div id="reportList"></div>
+<div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
+  <div>
+    <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
+    <select id="perPage" onchange="changePerPage()" style="padding: 4px 8px; font-size: 0.95em;">
+      <option value="10">10</option>
+      <option value="20" selected>20</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+</div>
+<div id="reportList"></div>
+
       <div class="pagination" id="pageControls"></div>
     </main>
   </div>
-  <footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
-    <p style="margin: 0 0 8px;"><strong>About this tool</strong></p>
-    <p style="margin: 0;">Built using publicly available IMF Article IV consultation reports.</p>
-    <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
-    <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
-  </footer>
 
   <script>
-    let reports = [];
-    let currentPage = 1;
-    let perPage = 20;
-    let selectedThemes = new Set();
-    let selectedRegions = new Set();
-    let selectedYears = new Set();
+let reports = [];
+let currentPage = 1;
+let perPage = 20;
+let selectedThemes = new Set();
+let selectedRegions = new Set();
+let selectedYears = new Set();
+let selectedSubthemes = new Set();
 
-    // Define all possible themes based on taxonomy (expand as needed)
-    const ALL_THEMES = [
-      "Austerity", "Tax", "Climate and environment", "Social and Gendered impacts",
-      "Social Services", "Private and external sector", "Financialisation",
-      "Digitisation", "Governance"
-    ];
+const THEME_MAP = {
+  "Austerity": ["Fiscal consolidation", "Wage bill cuts", "Subsidy reform"],
+  "Tax": ["VAT", "Income tax", "Corporate tax", "Informal sector", "Property tax"],
+  "Climate and environment": ["Climate finance", "Carbon pricing", "Environmental policy"],
+  "Social and Gendered impacts": ["Gender impacts", "Poverty and inequality", "Labor markets", "Social unrest"],
+  "Social Services": ["Health", "Education", "Social protection"],
+  "Private and external sector": ["FDI", "Exports", "Remittances", "Debt restructuring", "Trade policy"],
+  "Financialisation": ["Financial inclusion", "Banking sector", "Capital markets", "Monetary policy"],
+  "Digitisation": ["Digital taxation", "Digital infrastructure", "Digital finance"],
+  "Governance": ["Transparency", "Corruption", "Policy credibility", "Political economy"]
+};
 
-    const ALL_REGIONS = [
-      "Africa", "Asia", "Europe", "Latin America", "North America", "Oceania"
-    ];
+const ALL_REGIONS = [
+  "Africa", "Asia", "Europe", "Latin America", "North America", "Oceania"
+];
 
-    // Fetch data and render
-    fetch('reports_scrapev2.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then(data => {
-        reports = data;
-        renderFilters();
-        renderPage();
-      })
-      .catch(error => console.error('Error fetching data:', error));
+fetch('reports_scrapev2.json')
+  .then(res => res.json())
+  .then(data => {
+    reports = data;
+    renderFilters();
+    renderPage();
+  });
 
-    function renderFilters() {
-      // Render theme filters
-      const themeList = document.getElementById('themeList');
-      themeList.innerHTML = '';
-      ALL_THEMES.forEach(theme => {
-        const count = reports.filter(r => {
-          const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-          return ai?.content?.top_themes?.some(t => t.name === theme);
-        }).length;
-        const div = document.createElement('div');
-        div.className = 'filter-item';
-        div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${count})</span></label>`;
-        themeList.appendChild(div);
-      });
-
-      // Render region filters
-      const regionList = document.getElementById('regionList');
-      regionList.innerHTML = '';
-      ALL_REGIONS.forEach(region => {
-        const count = reports.filter(r => r.region === region).length;
-        const div = document.createElement('div');
-        div.className = 'filter-item';
-        div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>`;
-        regionList.appendChild(div);
-      });
-
-      // Render year filters
-      const years = [...new Set(reports.map(r => r.publication_date?.substring(0, 4)))].sort((a, b) => b - a);
-      const yearList = document.getElementById('yearList');
-      yearList.innerHTML = '';
-      years.forEach(year => {
-        const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
-        const div = document.createElement('div');
-        div.className = 'filter-item';
-        div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
-        yearList.appendChild(div);
-      });
-    }
-
-    function toggleTheme(theme) {
-      if (selectedThemes.has(theme)) selectedThemes.delete(theme);
-      else selectedThemes.add(theme);
-      currentPage = 1;
-      renderPage();
-    }
-
-    function toggleRegion(region) {
-      if (selectedRegions.has(region)) selectedRegions.delete(region);
-      else selectedRegions.add(region);
-      currentPage = 1;
-      renderPage();
-    }
-
-    function toggleYear(year) {
-      if (selectedYears.has(year)) selectedYears.delete(year);
-      else selectedYears.add(year);
-      currentPage = 1;
-      renderPage();
-    }
-
-    function changePerPage() {
-      const selector = document.getElementById('perPage');
-      perPage = parseInt(selector.value);
-      currentPage = 1;
-      renderPage();
-    }
-
-    function updateResultsCount(total, start, end) {
-      const resultsText = `Showing ${start + 1}–${Math.min(end, total)} of ${total} results`;
-      document.getElementById('resultsCount').innerText = resultsText;
-      document.getElementById('resultsCount').style.display = 'block';
-    }
-
-    function filterReports() {
-      return reports.filter(r => {
+function renderFilters() {
+  const themeList = document.getElementById('themeList');
+  themeList.innerHTML = '';
+  Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
+    const themeCount = reports.filter(r => {
+      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      return ai?.content?.top_themes?.some(t => t.name === theme);
+    }).length;
+    const div = document.createElement('div');
+    const id = theme.replace(/\s+/g, '_');
+    div.className = 'filter-item';
+    div.innerHTML = `
+      <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
+      <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
+      <div style="cursor: pointer; color: #003366; font-size: 0.85em; margin-left: 4px;" onclick="toggleSub('${id}')">+ Show subthemes</div>
+    `;
+    themeList.appendChild(div);
+    const subContainer = document.getElementById(`sub_${id}`);
+    subthemes.forEach(sub => {
+      const subCount = reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        const matchesThemes = selectedThemes.size === 0 || (ai?.content?.top_themes?.some(t => selectedThemes.has(t.name)) || false);
-        const matchesRegion = selectedRegions.size === 0 || selectedRegions.has(r.region);
-        const reportYear = r.publication_date?.substring(0, 4);
-        const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
-        return matchesThemes && matchesRegion && matchesYear;
-      });
-    }
+        return ai?.content?.tags?.includes(sub);
+      }).length;
+      const subDiv = document.createElement('div');
+      subDiv.className = 'filter-item';
+      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
+      subContainer.appendChild(subDiv);
+    });
+  });
 
-    function renderPage() {
-      const visible = filterReports();
-      const start = (currentPage - 1) * perPage;
-      const end = start + perPage;
-      updateResultsCount(visible.length, start, end);
-      const list = document.getElementById('reportList');
-      list.innerHTML = '';
-      visible.slice(start, end).forEach(r => {
-        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        const content = ai?.content || {};
-        const el = document.createElement('div');
-        el.className = 'report-card';
-        el.innerHTML = `
-          <div class="report-title"><a href="${r.detail_page_url}" target="_blank">${r.title}</a></div>
-          <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
-          <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
-          <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
-          <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-          <details class="expand">
-            <summary>+ Expand Details</summary>
-            <div class="publication-details">
-              Pages: ${r.publication_details?.pages || 'N/A'}<br/>
-              DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi || 'N/A'}</a><br/>
-              ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
-              ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
-              Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
-              Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
-              📄 PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
-              🌐 Original Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a>
-            </div>
-          </details>
-        `;
-        list.appendChild(el);
-      });
-      updatePagination(visible.length);
-    }
+  const regionList = document.getElementById('regionList');
+  regionList.innerHTML = '';
+  ALL_REGIONS.forEach(region => {
+    const count = reports.filter(r => {
+      const reg = (r.region || '').trim().toLowerCase();
+      return reg === region.toLowerCase();
+    }).length;
+    const div = document.createElement('div');
+    div.className = 'filter-item';
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>`;
+    regionList.appendChild(div);
+  });
 
-    function updatePagination(total) {
-      const pages = Math.ceil(total / perPage);
-      const container = document.getElementById('pageControls');
-      container.innerHTML = '';
-      for (let i = 1; i <= pages; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        btn.className = i === currentPage ? 'active' : '';
-        btn.onclick = () => {
-          currentPage = i;
-          renderPage();
-        };
-        container.appendChild(btn);
-      }
-    }
-  </script>
+  const years = Array.from(new Set(reports.map(r => r.publication_date?.substring(0, 4)).filter(y => y))).sort((a, b) => b - a);
+  const yearList = document.getElementById('yearList');
+  yearList.innerHTML = '';
+  years.forEach(year => {
+    const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
+    const div = document.createElement('div');
+    div.className = 'filter-item';
+    div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
+    yearList.appendChild(div);
+  });
+}
+
+function toggleTheme(theme) {
+  if (selectedThemes.has(theme)) selectedThemes.delete(theme);
+  else selectedThemes.add(theme);
+  currentPage = 1;
+  renderPage();
+}
+
+function toggleSub(id) {
+  const el = document.getElementById(`sub_${id}`);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleSubtheme(sub) {
+  if (selectedSubthemes.has(sub)) selectedSubthemes.delete(sub);
+  else selectedSubthemes.add(sub);
+  currentPage = 1;
+  renderPage();
+}
+
+function toggleRegion(region) {
+  if (selectedRegions.has(region)) selectedRegions.delete(region);
+  else selectedRegions.add(region);
+  currentPage = 1;
+  renderPage();
+}
+
+function toggleYear(year) {
+  if (selectedYears.has(year)) selectedYears.delete(year);
+  else selectedYears.add(year);
+  currentPage = 1;
+  renderPage();
+}
+
+function changePerPage() {
+  const selector = document.getElementById('perPage');
+  perPage = parseInt(selector.value);
+  currentPage = 1;
+  renderPage();
+}
+
+function updateResultsCount(total, start, end) {
+  const resultsText = `Showing ${start + 1}–${Math.min(end, total)} of ${total} results`;
+  document.getElementById('resultsCount').innerText = resultsText;
+}
+
+function filterReports() {
+  return reports.filter(r => {
+    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const top = ai?.content?.top_themes?.map(t => t.name) || [];
+    const tags = ai?.content?.tags || [];
+    const matchesThemes = [...selectedThemes].every(sel => top.includes(sel));
+    const matchesSubs = [...selectedSubthemes].every(st => tags.includes(st));
+    const regionVal = (r.region || '').trim().toLowerCase();
+    const matchesRegion = selectedRegions.size === 0 || [...selectedRegions].some(sel => sel.toLowerCase() === regionVal);
+    const reportYear = r.publication_date?.substring(0, 4);
+    const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
+    return (!selectedThemes.size || matchesThemes) && (!selectedSubthemes.size || matchesSubs) && matchesRegion && matchesYear;
+  });
+}
+</script>
+  
+<footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
+  <p style="margin: 0 0 8px;"><strong>About this tool</strong></p>
+  <p style="margin: 0;">Built using publicly available IMF Article IV consultation reports.</p>
+  <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
+  <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
+</footer>
+
+
+
+
+  
 </body>
 </html>
