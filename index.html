@@ -272,15 +272,18 @@ function renderFilters() {
   const themeList = document.getElementById('themeList');
   themeList.innerHTML = '';
   Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
-   const subCodes = subthemes.map(getSubthemeCode);
+ const subCodes = subthemes.map(getSubthemeCode);
+const themeNum = getThemeNumber(theme); // <-- add this
 const themeCount = reports.filter(r => {
   const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
   const tops = ai?.content?.top_themes?.map(t => t.name) || [];
   const all = ai?.content?.all_themes || [];
   const matchesTop = tops.includes(theme);
   const matchesSub = subCodes.some(code => all.includes(code));
-  return matchesTop || matchesSub;
+  const matchesNum = all.includes(themeNum); // <-- NEW
+  return matchesTop || matchesSub || matchesNum; // <-- FIXED
 }).length;
+
 
     const div = document.createElement('div');
     const id = theme.replace(/\s+/g, '_');
@@ -329,6 +332,22 @@ const themeCount = reports.filter(r => {
   });
 }
 
+   function getThemeNumber(theme) {
+  const map = {
+    "Austerity": "1",
+    "Tax": "2",
+    "Climate and environment": "3",
+    "Social and Gendered impacts": "4",
+    "Social Services": "5",
+    "Private and external sector": "6",
+    "Financialisation": "7",
+    "Digitisation": "8",
+    "Governance": "9"
+  };
+  return map[theme] || '';
+}
+
+   
 function toggleTheme(theme) {
   if (selectedThemes.has(theme)) selectedThemes.delete(theme);
   else selectedThemes.add(theme);
