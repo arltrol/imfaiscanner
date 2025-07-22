@@ -506,14 +506,19 @@
     return;
   }
 
-  let output = 'Theme Summaries:\n\n';
+  let html = '';
   for (const key of Object.keys(summaries).sort()) {
-    output += `${key}: ${summaries[key]}\n\n`;
+    const isMain = /^[1-9]$/.test(key); // main themes like "1", "2"
+    html += `<div style="margin-bottom:10px;">
+      <strong style="font-size:${isMain ? '1.1em' : '1em'};">${key}:</strong>
+      <div style="margin-top:2px; padding-left:8px;">${summaries[key]}</div>
+    </div>`;
   }
 
-  document.getElementById('themeModalContent').innerText = output;
+  document.getElementById('themeModalContent').innerHTML = html;
   document.getElementById('themeModal').style.display = 'block';
 }
+
 
 
   </script>
@@ -524,8 +529,8 @@
     <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
     <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
   </footer>
-  <div id="themeModal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  width: 80%; max-height: 80%; overflow-y: auto; background:#fff; border:1px solid #ccc; padding:20px;
+  <div id="themeModal" style="display:none; position:fixed; top:5%; left:50%; transform:translateX(-50%);
+  width: 90%; height: 90%; overflow-y: auto; background:#fff; border:1px solid #ccc; padding:20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index:10000; border-radius: 6px;">
   <div id="themeModalContent" style="white-space: pre-wrap; font-size: 0.95em; color: #333;"></div>
   <div style="text-align:right; margin-top:20px;">
