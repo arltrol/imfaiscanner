@@ -189,12 +189,181 @@
       <div class="pagination" id="pageControls"></div>
     </main>
   </div>
+  <footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
+    <p style="margin: 0 0 8px;"><strong>About this tool</strong></p>
+    <p style="margin: 0;">Built using publicly available IMF Article IV consultation reports.</p>
+    <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
+    <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
+  </footer>
 
-<footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
-  <p style="margin: 0 0 8px;"><strong>About this tool</strong></p>
-  <p style="margin: 0;">Built using publicly available IMF Article IV consultation reports.</p>
-  <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
-  <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
-</footer>
+  <script>
+    let reports = [];
+    let currentPage = 1;
+    let perPage = 20;
+    let selectedThemes = new Set();
+    let selectedRegions = new Set();
+    let selectedYears = new Set();
+
+    // Define all possible themes based on taxonomy (expand as needed)
+    const ALL_THEMES = [
+      "Austerity", "Tax", "Climate and environment", "Social and Gendered impacts",
+      "Social Services", "Private and external sector", "Financialisation",
+      "Digitisation", "Governance"
+    ];
+
+    const ALL_REGIONS = [
+      "Africa", "Asia", "Europe", "Latin America", "North America", "Oceania"
+    ];
+
+    // Fetch data and render
+    fetch('reports_scrapev2.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then(data => {
+        reports = data;
+        renderFilters();
+        renderPage();
+      })
+      .catch(error => console.error('Error fetching data:', error));
+
+    function renderFilters() {
+      // Render theme filters
+      const themeList = document.getElementById('themeList');
+      themeList.innerHTML = '';
+      ALL_THEMES.forEach(theme => {
+        const count = reports.filter(r => {
+          const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+          return ai?.content?.top_themes?.some(t => t.name === theme);
+        }).length;
+        const div = document.createElement('div');
+        div.className = 'filter-item';
+        div.innerHTML = `<label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${count})</span></label>`;
+        themeList.appendChild(div);
+      });
+
+      // Render region filters
+      const regionList = document.getElementById('regionList');
+      regionList.innerHTML = '';
+      ALL_REGIONS.forEach(region => {
+        const count = reports.filter(r => r.region === region).length;
+        const div = document.createElement('div');
+        div.className = 'filter-item';
+        div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>`;
+        regionList.appendChild(div);
+      });
+
+      // Render year filters
+      const years = [...new Set(reports.map(r => r.publication_date?.substring(0, 4)))].sort((a, b) => b - a);
+      const yearList = document.getElementById('yearList');
+      yearList.innerHTML = '';
+      years.forEach(year => {
+        const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
+        const div = document.createElement('div');
+        div.className = 'filter-item';
+        div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
+        yearList.appendChild(div);
+      });
+    }
+
+    function toggleTheme(theme) {
+      if (selectedThemes.has(theme)) selectedThemes.delete(theme);
+      else selectedThemes.add(theme);
+      currentPage = 1;
+      renderPage();
+    }
+
+    function toggleRegion(region) {
+      if (selectedRegions.has(region)) selectedRegions.delete(region);
+      else selectedRegions.add(region);
+      currentPage = 1;
+      renderPage();
+    }
+
+    function toggleYear(year) {
+      if (selectedYears.has(year)) selectedYears.delete(year);
+      else selectedYears.add(year);
+      currentPage = 1;
+      renderPage();
+    }
+
+    function changePerPage() {
+      const selector = document.getElementById('perPage');
+      perPage = parseInt(selector.value);
+      currentPage = 1;
+      renderPage();
+    }
+
+    function updateResultsCount(total, start, end) {
+      const resultsText = `Showing ${start + 1}–${Math.min(end, total)} of ${total} results`;
+      document.getElementById('resultsCount').innerText = resultsText;
+      document.getElementById('resultsCount').style.display = 'block';
+    }
+
+    function filterReports() {
+      return reports.filter(r => {
+        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+        const matchesThemes = selectedThemes.size === 0 || (ai?.content?.top_themes?.some(t => selectedThemes.has(t.name)) || false);
+        const matchesRegion = selectedRegions.size === 0 || selectedRegions.has(r.region);
+        const reportYear = r.publication_date?.substring(0, 4);
+        const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
+        return matchesThemes && matchesRegion && matchesYear;
+      });
+    }
+
+    function renderPage() {
+      const visible = filterReports();
+      const start = (currentPage - 1) * perPage;
+      const end = start + perPage;
+      updateResultsCount(visible.length, start, end);
+      const list = document.getElementById('reportList');
+      list.innerHTML = '';
+      visible.slice(start, end).forEach(r => {
+        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+        const content = ai?.content || {};
+        const el = document.createElement('div');
+        el.className = 'report-card';
+        el.innerHTML = `
+          <div class="report-title"><a href="${r.detail_page_url}" target="_blank">${r.title}</a></div>
+          <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
+          <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
+          <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
+          <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+          <details class="expand">
+            <summary>+ Expand Details</summary>
+            <div class="publication-details">
+              Pages: ${r.publication_details?.pages || 'N/A'}<br/>
+              DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi || 'N/A'}</a><br/>
+              ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
+              ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
+              Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
+              Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
+              📄 PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
+              🌐 Original Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a>
+            </div>
+          </details>
+        `;
+        list.appendChild(el);
+      });
+      updatePagination(visible.length);
+    }
+
+    function updatePagination(total) {
+      const pages = Math.ceil(total / perPage);
+      const container = document.getElementById('pageControls');
+      container.innerHTML = '';
+      for (let i = 1; i <= pages; i++) {
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        btn.className = i === currentPage ? 'active' : '';
+        btn.onclick = () => {
+          currentPage = i;
+          renderPage();
+        };
+        container.appendChild(btn);
+      }
+    }
+  </script>
 </body>
 </html>
