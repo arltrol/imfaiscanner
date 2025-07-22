@@ -193,7 +193,7 @@
     </main>
   </div>
 
-  <script>
+ <script>
 let reports = [];
 let currentPage = 1;
 let perPage = 20;
@@ -324,6 +324,7 @@ function changePerPage() {
 function updateResultsCount(total, start, end) {
   const resultsText = `Showing ${start + 1}–${Math.min(end, total)} of ${total} results`;
   document.getElementById('resultsCount').innerText = resultsText;
+  document.getElementById('resultsCount').style.display = 'block';
 }
 
 function filterReports() {
@@ -340,7 +341,72 @@ function filterReports() {
     return (!selectedThemes.size || matchesThemes) && (!selectedSubthemes.size || matchesSubs) && matchesRegion && matchesYear;
   });
 }
+
+function renderPage() {
+  const visible = filterReports();
+  const start = (currentPage - 1) * perPage;
+  const end = start + perPage;
+  updateResultsCount(visible.length, start, end);
+  const list = document.getElementById('reportList');
+  list.innerHTML = '';
+  visible.slice(start, end).forEach(r => {
+    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const content = ai?.content || {};
+    const el = document.createElement('div');
+    el.className = 'report-card';
+    el.innerHTML = `
+      <div class="report-title">
+        <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
+      </div>
+      <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
+      <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
+      <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
+      <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+      <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
+      <div class="publication-details">
+        Pages: ${r.publication_details?.pages || 'N/A'}<br/>
+        DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
+        ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
+        ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
+        Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
+        Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
+        📄 PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
+        🌐 Original Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+  updatePagination(visible.length);
+}
+
+function toggleDetails(el) {
+  const box = el.nextElementSibling;
+  if (box.style.display === 'block') {
+    box.style.display = 'none';
+    el.innerText = '+ Expand Details';
+  } else {
+    box.style.display = 'block';
+    el.innerText = '- Hide Details';
+  }
+}
+
+function updatePagination(total) {
+  const pages = Math.ceil(total / perPage);
+  const container = document.getElementById('pageControls');
+  container.innerHTML = '';
+  for (let i = 1; i <= pages; i++) {
+    const btn = document.createElement('button');
+    btn.innerText = i;
+    btn.className = (i === currentPage ? 'active' : '');
+    btn.onclick = () => {
+      currentPage = i;
+      renderPage();
+    }
+    container.appendChild(btn);
+  }
+}
 </script>
+
   
 <footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
   <p style="margin: 0 0 8px;"><strong>About this tool</strong></p>
