@@ -207,7 +207,85 @@
       "stock_no": "1FRAEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/France-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568520"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/France-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568520",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report on France's economy underlines the need for austerity with emphasis on fiscal consolidation and structural reforms to boost productivity and manage public debt. Tax reforms, particularly around consumption taxes and corporate taxes, are highlighted as crucial for fiscal health. The document also acknowledges the importance of addressing climate policies, reflecting France's commitment to the green transition.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a central theme, with the French government focusing on fiscal consolidation to manage public debt effectively. Measures include expenditure rationalization and structural reforms aimed at enhancing productivity and economic resilience [pp. 5, 9, 14].",
+            "2": "Tax reforms are crucial, with a focus on consumption taxes and corporate taxes to broaden the tax base and ensure fiscal sustainability [pp. 5, 9].",
+            "3": "Climate and environmental policies are significant, with France taking a leading role in the green transition and focusing on sustainable practices [pp. 5, 14].",
+            "1.1": "Fiscal discipline is emphasized through the implementation of credible fiscal frameworks and adjustments in budgeting to ensure fiscal sustainability [pp. 5, 9].",
+            "1.2": "Public sector wage adjustments are noted, with efforts to manage the wage bill through freezes and rationalization, reflecting austerity measures [pp. 5, 14].",
+            "1.3": "Subsidy reforms, particularly in energy, are discussed as part of fiscal consolidation efforts to reduce government expenditure [pp. 9, 14].",
+            "1.4": "Privatisation and reform of public services are highlighted as strategies to reduce public sector involvement and encourage private sector engagement [pp. 14].",
+            "1.5": "Labour market reforms are suggested to increase flexibility and reduce regulatory burdens, aligning with broader austerity measures [pp. 14].",
+            "2.1": "The document discusses the need for adjustments in consumption taxes and the importance of progressive tax reforms to address fiscal challenges [pp. 9].",
+            "2.2": "Efforts to reduce tax expenditures and address illicit financial flows are recognized as important for improving tax revenue [pp. 9].",
+            "2.3": "Tax policies favoring financial capital are examined, with suggestions to adjust capital gains taxation to support fiscal health [pp. 9].",
+            "3.1": "Climate policies including adaptation, mitigation, and transition management are emphasized as key areas of focus for the French government [pp. 14].",
+            "3.2": "Land use and resource management are discussed in the context of climate policies, highlighting the importance of sustainable practices in agriculture and natural resource management [pp. 14]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Republic of Estonia: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -225,7 +303,63 @@
       "stock_no": "1ESTEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/Republic-of-Estonia-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568542"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/Republic-of-Estonia-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568542",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report highlights Estonia's economic recovery and the need for fiscal adjustment due to rising defense spending, alongside tax system reviews and structural reforms to enhance productivity and financial stability.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "2",
+            "2.1",
+            "2.2",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.2"
+          ],
+          "theme_summaries": {
+            "1": "The report discusses the need for fiscal adjustment to stabilize the debt ratio, which includes austerity measures such as controlling the growth of the public sector wage bill [pp. 6, 9, 14].",
+            "2": "Tax reforms are considered crucial, with a comprehensive review suggested to explore revenue mobilization and implications for long-term growth, reflecting on consumption taxes and tax expenditures [pp. 6, 9].",
+            "5": "Social services are indirectly referenced through discussions on fiscal policies affecting social benefits and pensions [pp. 6, 9].",
+            "6": "The need for structural reforms to enhance productivity and financial stability is discussed, with a focus on fostering a business-friendly environment and attracting FDI [pp. 6, 9].",
+            "7": "Monetary policies favoring financial sector growth are indirectly referenced through discussions on financial stability and the need for careful macroprudential policies [pp. 6, 9].",
+            "1.1": "Fiscal discipline is emphasized with proposed adjustments to achieve a structural deficit of less than 1 percent of GDP by 2032, highlighting the importance of credible fiscal frameworks [pp. 6, 9].",
+            "1.2": "The report recommends containing the growth of the public sector wage bill as part of austerity measures, with specific mention of limiting discretion in wage setting by ministries [pp. 6, 9].",
+            "2.1": "The introduction of a new motor vehicle tax and its inflationary effects are discussed, alongside the need for reviewing the tax system for better revenue mobilization [pp. 6, 9].",
+            "2.2": "Tax expenditures and potential reforms are highlighted as part of fiscal policy recommendations to address fiscal imbalances [pp. 6, 9].",
+            "5.1": "The report touches on social protection adjustments, suggesting means-testing for social benefits to manage expenditures [pp. 6, 9].",
+            "5.2": "Pension reforms are suggested, including reviewing indexation mechanisms to manage costs effectively [pp. 6, 9].",
+            "5.4": "Public service fees are indirectly addressed through the mention of new motor vehicle taxes affecting inflation and consumption [pp. 6, 9].",
+            "6.1": "Policies to enhance the business environment and attract foreign investment are recommended, including reducing regulatory burdens and fostering innovation [pp. 6, 9].",
+            "6.2": "The report discusses maintaining prudent financial policies and discouraging large dividend payouts to preserve bank capital, reflecting on public-private financial interactions [pp. 6, 9].",
+            "7.2": "The report suggests that monetary policies should be carefully calibrated to manage financial stability risks, particularly in real estate [pp. 6, 9]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Iraq: 2025 Article IV Consultation-Press Release; Staff Report; and Informational Annex",
@@ -243,7 +377,55 @@
       "stock_no": "1IRQEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/Iraq-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Informational-Annex-568569"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/Iraq-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Informational-Annex-568569",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "5",
+              "name": "Social Services"
+            }
+          ],
+          "summary": "The report highlights austerity measures, tax reforms, and social services adjustments in Iraq. Austerity is evident in fiscal consolidation efforts, public wage bill controls, and subsidy rationalization. Tax reforms focus on increasing non-oil revenues and enhancing tax administration. Social services are addressed through targeted social safety nets and pension system reforms.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2",
+            "2.1",
+            "2.2",
+            "5",
+            "5.1",
+            "5.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with fiscal consolidation and public spending adjustments aimed at stabilizing the economy amid financial constraints and lower oil revenues [pp. 2, 3].",
+            "2": "Tax reforms are highlighted, focusing on increasing customs duties, excise taxes, and reforming personal income tax to boost non-oil revenues [pp. 2].",
+            "5": "Social services adjustments are discussed, particularly in targeting social safety nets and reforming the pension system to ensure sustainability [pp. 3].",
+            "1.1": "Fiscal discipline is emphasized through proposed fiscal consolidation amounting to 1-1.5% of non-oil GDP per year, targeting non-essential expenditures and enhancing non-oil revenue [pp. 2].",
+            "1.2": "Public sector wage reforms are suggested, including limiting mandatory hiring and adopting attrition rules to manage the public wage bill effectively [pp. 3].",
+            "1.3": "Subsidy rationalization is proposed, particularly in the electricity sector, to achieve cost recovery and targeted subsidies for low-income users [pp. 3].",
+            "1.4": "Privatisation and reform efforts are noted in the electricity sector and state-owned banks, aiming to enhance efficiency and reduce reliance on state funding [pp. 3].",
+            "2.1": "The introduction of a general sales tax and reforms in personal income tax are discussed as means to increase tax revenues and address fiscal challenges [pp. 2].",
+            "2.2": "Efforts to combat tax evasion and enhance tax administration are mentioned as part of broader fiscal responsibility measures [pp. 2].",
+            "5.1": "The report suggests improvements in targeting the public distribution system and shifting to cash-based social safety nets [pp. 3].",
+            "5.2": "Pension system reforms are urgent, with recommendations to raise the retirement age and adjust accrual and replacement rates [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Kiribati: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -261,7 +443,73 @@
       "stock_no": "1KIREA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/10/Kiribati-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568412"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/10/Kiribati-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568412",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report on Kiribati's economy highlights austerity measures, tax reforms, and climate adaptation investments as key themes. Austerity is evident in fiscal consolidation efforts, including wage freezes and subsidy rationalization. Tax reforms focus on enhancing revenue through VAT adjustments and reducing tax exemptions. Investments in climate-resilient infrastructure address environmental challenges.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2",
+            "2.1",
+            "2.2",
+            "3",
+            "3.1",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are prominent, with fiscal consolidation including wage freezes and subsidy streamlining to manage debt and deficits [pp. 2, 3].",
+            "2": "Tax reforms are advised to enhance revenue through adjustments in VAT and reducing tax exemptions, aiming for a more sustainable fiscal environment [pp. 2, 3].",
+            "3": "Climate adaptation is prioritized through investments in climate-resilient infrastructure to manage environmental risks [pp. 2, 3].",
+            "5": "Social services are adjusted, with reforms in social protection and pension systems to ensure sustainability amidst fiscal constraints [pp. 3].",
+            "6": "External sector and FDI are focused on creating a business-friendly environment to attract investments and support economic growth [pp. 3].",
+            "7": "Financial sector policies include deregulation to stimulate market activities and growth, aligning with broader economic reforms [pp. 3].",
+            "1.1": "Fiscal discipline is enforced through credible frameworks aimed at sustainability, including managing public sector expenses and investments [pp. 2, 3].",
+            "1.2": "Public sector wages are controlled through freezes, reflecting austerity measures impacting civil service compensation [pp. 2].",
+            "1.3": "Subsidy rationalization, particularly in energy, aligns with austerity by reducing government expenditure on public utilities [pp. 2].",
+            "1.4": "Privatisation and reform of public services are suggested to improve efficiency in sectors like utilities and fisheries [pp. 3].",
+            "2.1": "Consumption taxes like VAT are adjusted to increase fiscal revenues, with a focus on broadening the tax base and improving tax compliance [pp. 2].",
+            "2.2": "Efforts to reduce tax expenditures and address illicit financial flows are recommended to improve fiscal health and compliance [pp. 3].",
+            "3.1": "Policies focus on mitigating climate change impacts through sustainable practices and infrastructure that can withstand environmental challenges [pp. 2].",
+            "5.1": "Social protection systems are streamlined to target the most vulnerable, ensuring efficient use of resources [pp. 3].",
+            "5.2": "Pension reforms include measures to ensure sustainability, such as adjusting contribution rates and eligibility criteria [pp. 3].",
+            "5.4": "Health expenditure rationalization includes measures to improve efficiency in public health services, reflecting broader austerity policies [pp. 3].",
+            "6.1": "Policies to enhance the business environment aim to attract foreign direct investment and support private sector development [pp. 3].",
+            "6.2": "Public-private partnerships are encouraged to leverage private investment in infrastructure, despite concerns about fiscal risks [pp. 3].",
+            "7.1": "Deregulation of financial markets is suggested to enhance financial sector dynamism and attract investment [pp. 3].",
+            "7.2": "Monetary policies are calibrated to support financial sector growth while managing inflation and economic stability [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Denmark: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -279,7 +527,111 @@
       "stock_no": "1DNKEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/03/Denmark-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568286"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/03/Denmark-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568286",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "The report focuses on Denmark's economic resilience, emphasizing austerity measures, tax policies, and climate adaptation strategies. Austerity is highlighted through fiscal sustainability efforts amid defense and aging-related expenditures. Tax discussions revolve around maintaining a high tax burden while exploring expenditure adjustments. Climate adaptation is underscored by the development of a national plan addressing sea level rise and urban flood management.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, focusing on maintaining fiscal sustainability amid rising defense and aging-related expenditures. The government explores both expenditure and revenue adjustments to uphold a strong fiscal position [pp. 1, 2, 4].",
+            "2": "Tax policies are crucial, with a focus on maintaining a high tax burden while exploring potential adjustments in public expenditures rather than increasing tax rates [pp. 1, 2].",
+            "3": "Climate and environmental policies are highlighted, particularly the development of a national climate adaptation plan addressing challenges like sea level rise and urban flood management [pp. 1, 4].",
+            "4": "Social and gendered impacts are considered in policy discussions, particularly how fiscal and structural reforms impact various social groups, including considerations for gender equality and social protection [pp. 2, 4].",
+            "5": "Social services, including social protection and healthcare, are pivotal in discussions about fiscal sustainability and public expenditure, with a focus on efficiency and targeted support [pp. 2, 4].",
+            "6": "Private and external sector policies, including FDI and public-private partnerships, are crucial for economic resilience and growth, reflecting Denmark's open economic structure and integration into global markets [pp. 2, 4].",
+            "7": "Financialisation, including deregulation of financial markets and monetary policies, is discussed in the context of overall economic stability and growth, ensuring that financial policies support sustainable economic development [pp. 2, 4].",
+            "8": "Digitisation, including the adoption of AI and digital technologies, is a key area of focus, supporting economic innovation and competitiveness while ensuring that digital transitions are inclusive and beneficial for all sectors [pp. 2, 4].",
+            "9": "Governance and legal reforms are crucial for ensuring that institutional frameworks support economic stability and growth, with a focus on transparency, accountability, and effective implementation of policies [pp. 2, 4].",
+            "1.1": "Fiscal discipline is emphasized through measures to ensure long-term fiscal sustainability, including potential adjustments in defense spending and aging-related costs [pp. 2, 4].",
+            "1.2": "Public sector wages are managed carefully to balance fiscal constraints with the need to maintain effective public services, reflecting in discussions about fiscal sustainability and expenditure rationalization [pp. 2, 4].",
+            "1.3": "Subsidies, particularly in sectors like energy, are scrutinized under fiscal sustainability measures, with a focus on cost-effective public spending [pp. 2, 4].",
+            "1.4": "Privatisation and reform of public services are considered within the broader context of structural reforms aimed at enhancing efficiency and fiscal sustainability [pp. 2, 4].",
+            "1.5": "Labour market flexibilisation is discussed as part of structural reforms to enhance labor supply and income levels, which are crucial for fiscal sustainability and economic resilience [pp. 2, 4].",
+            "2.1": "Consumption taxes and VAT are maintained at high levels, reflecting the country's strategy to balance tax revenue with expenditure needs amid fiscal sustainability efforts [pp. 2, 4].",
+            "2.2": "Tax expenditures and efforts to combat tax avoidance are part of the fiscal discussions, aligning with broader fiscal sustainability and transparency initiatives [pp. 2, 4].",
+            "2.3": "Tax policies favoring financial capital are evaluated in the context of overall economic and fiscal health, ensuring that tax systems support broader economic stability [pp. 2, 4].",
+            "3.1": "Climate policies focus on adaptation strategies, including enhanced coastal and groundwater protection, reflecting Denmark's commitment to sustainable growth and resilience against climate risks [pp. 4].",
+            "3.2": "Land use and natural resource management are integral to Denmark's climate strategy, with policies aimed at sustainable land and resource use to support environmental and economic objectives [pp. 4].",
+            "4.1": "Gender policies are integrated into broader social considerations, ensuring that economic and fiscal policies consider impacts on women and gender-marginalized groups [pp. 2, 4].",
+            "4.2": "The care economy is recognized in discussions about social protection and labor market reforms, reflecting the importance of care work to the social and economic fabric [pp. 2, 4].",
+            "4.3": "Distributional and social impacts of policies are analyzed to ensure that economic reforms do not disproportionately affect vulnerable groups, maintaining focus on equity and social justice [pp. 2, 4].",
+            "5.1": "Social protection systems are scrutinized for efficiency and effectiveness, ensuring that fiscal constraints do not undermine support for vulnerable populations [pp. 2, 4].",
+            "5.2": "Pension and social security reforms are discussed as part of fiscal sustainability efforts, with considerations for long-term demographic changes and fiscal health [pp. 2, 4].",
+            "5.3": "Social security contributions are evaluated in the context of overall fiscal health and labor market policies, ensuring that contributions support fiscal sustainability and social welfare [pp. 2, 4].",
+            "5.4": "Fees for public services are considered in the context of fiscal sustainability and public service reform, ensuring that essential services remain accessible and affordable [pp. 2, 4].",
+            "5.5": "Cuts to health expenditure are discussed as part of broader public expenditure rationalization efforts, with a focus on maintaining healthcare quality and accessibility [pp. 2, 4].",
+            "5.6": "Cuts to education expenditure are evaluated in the context of fiscal sustainability and public service efficiency, ensuring that educational reforms support long-term economic and social goals [pp. 2, 4].",
+            "6.1": "External sector and business-friendly environments are emphasized to attract FDI and support private sector growth, crucial for economic resilience and fiscal health [pp. 2, 4].",
+            "6.2": "Public-private partnerships are scrutinized for their role in economic development and fiscal sustainability, ensuring that these partnerships deliver value and support public interests [pp. 2, 4].",
+            "6.3": "Foreign currency debt and external vulnerabilities are monitored as part of financial stability efforts, ensuring that Denmark's financial system remains resilient amid global uncertainties [pp. 2, 4].",
+            "7.1": "Deregulation of financial markets is considered within broader financial stability and regulatory frameworks, ensuring that deregulation does not undermine financial system integrity [pp. 2, 4].",
+            "7.2": "Monetary policies favoring financial sector growth are evaluated to ensure that they align with broader economic objectives and do not exacerbate financial vulnerabilities [pp. 2, 4].",
+            "7.3": "Corporate governance and shareholder value orientation are discussed in the context of corporate responsibility and economic stability, ensuring that corporate practices support broader economic goals [pp. 2, 4].",
+            "7.4": "Expansion of credit and debt markets is monitored as part of financial stability efforts, ensuring that credit growth supports economic development without creating unsustainable debt burdens [pp. 2, 4].",
+            "7.5": "Financial inclusion is promoted as a means to enhance access to financial services and support economic participation, particularly for marginalized groups, while monitoring risks associated with increased indebtedness [pp. 2, 4].",
+            "8.1": "Digitalisation and AI are integrated into economic and policy frameworks, enhancing Denmark's technological capabilities and supporting economic resilience and innovation [pp. 2, 4].",
+            "9.1": "Governance and legal reforms are emphasized to enhance institutional effectiveness and support economic and fiscal objectives, ensuring that governance structures are robust and responsive [pp. 2, 4].",
+            "9.2": "Political economy considerations are integrated into policy discussions, ensuring that economic reforms are socially acceptable and politically sustainable, supporting long-term economic stability [pp. 2, 4]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Austria: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -297,7 +649,93 @@
       "stock_no": "1AUTEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/02/Austria-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568230"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/02/Austria-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568230",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report highlights Austria's economic challenges, focusing on austerity measures like fiscal consolidation and public sector wage control, tax reforms including consumption taxes and environmental taxes, and climate policies aimed at decarbonization and carbon pricing.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with planned fiscal consolidation to manage the fiscal deficit and public debt, involving cuts in public sector wages and pension reforms [pp. 5, 11].",
+            "2": "Tax reforms are proposed, including increasing property, excise, inheritance, and gift taxes, as well as a national carbon price to generate fiscal resources [pp. 11].",
+            "3": "Climate policies are significant, with suggestions to increase the national carbon price to meet decarbonization goals efficiently [pp. 11].",
+            "4": "Social and gendered impacts are considered, with policies to expand childcare and eldercare facilities and undertake pension reforms to incentivize longer working lives [pp. 11].",
+            "5": "Social services are discussed, with emphasis on rationalizing spending and targeting social safety nets more effectively [pp. 11].",
+            "6": "Private and external sector policies include creating a business-friendly environment and reducing regulatory barriers [pp. 11].",
+            "7": "Financialisation is addressed with recommendations for prudent financial sector policies and maintaining strong capital positions in banks [pp. 11].",
+            "8": "Digitisation is highlighted as a key area for development, particularly in improving government services and regulatory processes [pp. 11].",
+            "9": "Governance reforms are emphasized, including legal and administrative reforms to support economic and fiscal policies [pp. 11].",
+            "1.1": "Fiscal consolidation is emphasized through measures like reducing pension replacement rates and limiting public-sector wage increases [pp. 11].",
+            "1.2": "Public sector wage control is discussed as part of austerity measures to reduce fiscal deficits [pp. 11].",
+            "1.4": "Privatisation and reform of public services are suggested, including increasing healthcare spending efficiency and cutting environmentally harmful subsidies [pp. 11].",
+            "1.5": "Labour flexibilisation is addressed through reforms aimed at increasing labor supply, particularly among females and the elderly [pp. 11].",
+            "2.1": "Consumption taxes are highlighted with suggestions to rely more on property and excise taxes [pp. 11].",
+            "3.1": "Specific climate policies include increasing carbon pricing and cutting environmental subsidies to support Austria's green transition [pp. 11].",
+            "4.1": "Gender policies include narrowing the gap in full-time work by females and labor force participation among elderly workers [pp. 11].",
+            "4.2": "The care economy is addressed through expanding childcare and eldercare facilities [pp. 11].",
+            "4.3": "Distributional impacts are considered in fiscal policies, aiming to protect the most vulnerable in case of downturns [pp. 11].",
+            "5.1": "Social protection measures are suggested to be targeted more effectively to protect the most vulnerable [pp. 11].",
+            "5.2": "Pension reforms are proposed to reduce costs and manage public finances more effectively [pp. 11].",
+            "5.4": "Fees for public services are mentioned in the context of increasing healthcare spending efficiency [pp. 11].",
+            "5.5": "Cuts to health expenditure are discussed as part of increasing efficiency in public spending [pp. 11].",
+            "5.6": "Education expenditure rationalization is suggested to manage fiscal pressures effectively [pp. 11].",
+            "6.1": "External sector strategies focus on deregulation and privatisation to attract foreign direct investment [pp. 11].",
+            "6.2": "Public-private partnerships are discussed as a means to foster private sector involvement in public services [pp. 11].",
+            "7.1": "Deregulation of financial markets is considered in the context of fostering a healthy financial sector [pp. 11].",
+            "7.2": "Monetary policies are suggested to support financial sector growth while ensuring stability [pp. 11].",
+            "8.1": "Digitalisation policies are suggested to enhance efficiency and access to services, supporting economic growth [pp. 11].",
+            "9.1": "Governance and legal reforms are proposed to improve the efficiency of public administration and support policy implementation [pp. 11].",
+            "9.2": "Political economy aspects are considered in ensuring the social acceptability of reforms and engaging with stakeholders [pp. 11]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Nigeria: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Nigeria",
@@ -315,7 +753,79 @@
       "stock_no": "1NGAEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/01/Nigeria-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568220"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/01/Nigeria-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568220",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report highlights Nigeria's economic reforms, focusing on austerity measures like subsidy cuts, tax reforms for enhanced revenue mobilization, and climate policies. These reforms aim to stabilize the economy and attract investments, amidst challenges like poverty and food insecurity.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.3",
+            "1.4",
+            "2",
+            "2.1",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "5",
+            "5.1",
+            "5.4",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2",
+            "8",
+            "8.1",
+            "9",
+            "9.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures have been a significant focus, with the removal of fuel subsidies and other fiscal adjustments aimed at enhancing economic resilience [pp. 1-2].",
+            "2": "Tax reforms have been crucial, with efforts to enhance revenue mobilization through better administration and potential adjustments in tax policy [pp. 1-2].",
+            "3": "Climate policies are being integrated into economic planning, with emphasis on adaptation and mitigation strategies to make the economy more resilient to climate events [pp. 1-2].",
+            "4": "Social and gendered impacts are considered, with ongoing challenges like high poverty and food insecurity despite economic gains [pp. 1-2].",
+            "5": "Social services reforms are highlighted, particularly in targeting social safety nets to support the most vulnerable [pp. 1-2].",
+            "6": "Private and external sector development is crucial, with reforms aimed at creating a more business-friendly environment and attracting foreign investment [pp. 1-2].",
+            "7": "Financialisation is addressed with policies to deregulate financial markets and promote financial inclusion [pp. 1-2].",
+            "8": "Digitisation is increasingly important, with initiatives to enhance digital infrastructure and transition to a more digital economy [pp. 1-2].",
+            "9": "Governance reforms are critical, with ongoing efforts to improve legal frameworks and administrative structures [pp. 1-2].",
+            "1.1": "Fiscal discipline is evident through efforts like ending monetary financing of deficits, which has helped stabilize the currency and reduce inflation [pp. 1-2].",
+            "1.3": "Subsidy cuts, particularly in fuel, have been implemented to reduce government expenditure and encourage efficiency in energy use [pp. 1].",
+            "1.4": "Privatisation and reform of state-owned enterprises are noted, particularly in sectors like oil, to increase efficiency and attract private investment [pp. 1-2].",
+            "2.1": "The focus on consumption taxes and broadening the tax base is part of the strategy to stabilize the economy and fund development spending [pp. 1-2].",
+            "3.1": "Efforts to address climate change include policies aimed at reducing dependency on fossil fuels and enhancing the country's resilience to environmental shocks [pp. 1-2].",
+            "4.1": "Gender policies need strengthening as economic reforms have yet to significantly benefit vulnerable groups, including women [pp. 1-2].",
+            "5.1": "Social protection measures are being recalibrated to better target the poorest and most vulnerable, amidst rising poverty rates [pp. 1-2].",
+            "5.4": "Public service fees, particularly in sectors like healthcare and education, remain a concern with ongoing reforms aimed at improving affordability and access [pp. 1-2].",
+            "6.1": "External sector improvements are noted, particularly in stabilizing the foreign exchange market and enhancing investor confidence [pp. 1-2].",
+            "6.2": "Public-private partnerships are being promoted to leverage private investment in infrastructure and other key sectors [pp. 1-2].",
+            "7.1": "Deregulation of financial markets is part of the broader economic reforms to stimulate growth and investment [pp. 1-2].",
+            "7.2": "Monetary policies favoring financial sector growth are implemented to support economic stability and growth [pp. 1-2].",
+            "8.1": "Digitalisation efforts are focused on improving government services and economic processes through technology [pp. 1-2].",
+            "9.1": "Legal and governance reforms are being implemented to support the effective implementation of economic policies and reforms [pp. 1-2]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Jamaica: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -333,7 +843,89 @@
       "stock_no": "1JAMEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Jamaica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567997"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Jamaica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567997",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "The report highlights Jamaica's macroeconomic stability, focusing on austerity measures, tax reforms, and climate resilience. Austerity is evident in fiscal discipline and public debt reduction. Tax discussions include enhancing tax administration and broadening the tax base. Climate resilience is addressed through investments in renewable energy and climate-focused fiscal frameworks.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "5.5",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2",
+            "8",
+            "8.1",
+            "9",
+            "9.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a primary focus, with Jamaica implementing fiscal discipline to reduce public debt and maintain economic stability [pp. 2, 4].",
+            "2": "Tax reforms focus on enhancing tax and customs administration and broadening the tax base to support revenue mobilization [pp. 4].",
+            "3": "Climate resilience is emphasized through investments in renewable energy and enhancing the climate focus in fiscal policy frameworks [pp. 4].",
+            "4": "Social and gendered impacts are considered in policy frameworks, focusing on gender policies and social impacts of economic reforms [pp. 4].",
+            "5": "Social services reforms include rationalizing social protection and enhancing efficiency in public service delivery [pp. 4].",
+            "6": "External sector and private sector developments are supported by creating a business-friendly environment and attracting FDI [pp. 4].",
+            "7": "Financialisation is addressed through regulatory reforms and support for financial market development [pp. 4].",
+            "8": "Digitisation efforts are noted in the context of improving government services and economic processes through digital technologies [pp. 4].",
+            "9": "Governance reforms include strengthening legal frameworks and improving public sector management to support effective policy implementation [pp. 4].",
+            "1.1": "Fiscal consolidation is evident through measures like maintaining primary fiscal surpluses and managing public debt towards a sustainable target [pp. 4].",
+            "1.2": "Public sector wage reforms have been implemented to retain skilled employees, improving transparency and competitiveness in public compensation [pp. 4].",
+            "1.4": "Privatisation and reform of public services are noted, particularly in financial institutions and infrastructure projects like the Kingston airport [pp. 6].",
+            "1.5": "Labour market reforms include enhancing financial oversight and improving frameworks for monetary and financial policies, supporting employment flexibility [pp. 4, 7].",
+            "2.1": "The report discusses improving the effectiveness of tax administration and broadening the tax base as part of fiscal reforms [pp. 4].",
+            "2.2": "Efforts to combat tax avoidance and improve the AML/CFT framework are highlighted, enhancing financial transparency and compliance [pp. 7].",
+            "3.1": "Climate policies include transitioning to renewables and strengthening management of climate risks by financial institutions [pp. 4].",
+            "4.1": "Gender policies are integrated into broader economic reforms, aiming to support gender equality and address gender-based disparities [pp. 4].",
+            "4.3": "Social impacts are assessed in the context of economic reforms, with considerations for how policies affect different social and income groups [pp. 4].",
+            "5.1": "Social protection systems are being rationalized to target the most vulnerable, aiming for efficient use of resources [pp. 4].",
+            "5.2": "Pension reforms are part of fiscal responsibility measures, adjusting benefits and eligibility to ensure sustainability [pp. 4].",
+            "5.4": "Public service fees are managed to maintain affordability and access, particularly in essential services like health and education [pp. 4].",
+            "5.5": "Health sector reforms focus on rationalizing expenditures and increasing efficiency, including through public-private partnerships [pp. 4].",
+            "6.1": "A business-friendly environment is fostered through regulatory reforms and support for private sector-led growth [pp. 4].",
+            "6.2": "Public-private partnerships are utilized to enhance infrastructure development and service delivery, despite noted challenges [pp. 4].",
+            "7.1": "Financial market deregulation includes implementing Basel III and enhancing financial oversight to support market stability [pp. 4].",
+            "7.2": "Monetary policies support financial sector growth, with a focus on maintaining inflation targets and stabilizing the financial environment [pp. 4].",
+            "8.1": "Digitalisation is promoted to enhance efficiency in public administration and support the transition to a digital economy [pp. 4].",
+            "9.1": "Legal and governance reforms are undertaken to enhance institutional capacity and support the effective implementation of economic policies [pp. 4]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Libya: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -351,7 +943,77 @@
       "stock_no": "1LBYEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Libya-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568035"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Libya-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568035",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            }
+          ],
+          "summary": "The report focuses on Libya's economic challenges, emphasizing austerity measures, private sector development, and tax reforms. Austerity is highlighted through fiscal discipline and subsidy cuts, while private sector growth is encouraged through FDI and business-friendly policies. Tax reforms, including consumption taxes and addressing tax expenditures, are also discussed.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.3",
+            "1.4",
+            "2",
+            "2.1",
+            "2.2",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "5",
+            "5.1",
+            "5.4",
+            "5.5",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "9",
+            "9.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with a focus on controlling public expenditure to ensure fiscal sustainability [pp. 1, 3, 10].",
+            "2": "Tax reforms are emphasized, including the need for broadening the tax base and improving tax compliance [pp. 10].",
+            "3": "Climate policies are briefly mentioned, relating to the impact of oil sector fluctuations on economic stability [pp. 1, 3].",
+            "4": "Gender policies are considered, particularly in enhancing economic opportunities for women through labor market reforms [pp. 14].",
+            "5": "Social services are discussed, with emphasis on maintaining social protection measures amidst austerity [pp. 10].",
+            "6": "Private sector development is a major theme, with a focus on creating a business-friendly environment and attracting FDI [pp. 13].",
+            "7": "Financial market reforms are advised to support economic stability and growth, including measures to enhance financial inclusion [pp. 13].",
+            "9": "Governance reforms are critical, with a focus on anti-corruption measures and enhancing the legal framework to support economic reforms [pp. 13].",
+            "1.1": "Fiscal discipline is urged to manage deficits, with recommendations for rationalizing current spending, particularly on wages and subsidies [pp. 10].",
+            "1.3": "Subsidy cuts, especially in energy, are advised to reduce fiscal pressures [pp. 10].",
+            "1.4": "Privatisation and commercialisation are suggested to reduce reliance on oil and diversify the economy [pp. 13].",
+            "2.1": "Consumption taxes are discussed, with a focus on increasing non-oil revenues through VAT and removing exemptions [pp. 10].",
+            "2.2": "Addressing tax expenditures and illicit financial flows is highlighted to enhance fiscal health [pp. 10].",
+            "3.1": "The report touches on the environmental impact of oil dependence and the need for transition management [pp. 3].",
+            "4.1": "Impact on women is noted in the context of labor market reforms and economic diversification efforts [pp. 14].",
+            "5.1": "Social protection needs to be targeted effectively to support the most vulnerable while managing fiscal constraints [pp. 10].",
+            "5.4": "Public service fees and their impact on access to essential services are acknowledged, with a call for careful policy design [pp. 10].",
+            "5.5": "Health expenditure cuts are a concern, with recommendations to ensure efficiency without compromising service quality [pp. 10].",
+            "6.1": "FDI and business environment improvements are discussed as crucial for economic growth and reducing oil dependency [pp. 13].",
+            "6.2": "Public-private partnerships are suggested to leverage private investment in infrastructure, despite noted risks [pp. 13].",
+            "7.1": "Deregulation of financial markets is mentioned as a way to stimulate economic activity and attract investments [pp. 13].",
+            "9.1": "Legal and governance reforms are emphasized to support the rule of law and economic diversification [pp. 13]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Iceland: 2025 Article IV Consultation-Press Release; Staff Report and Statement by the Executive Director for Iceland",
@@ -369,7 +1031,89 @@
       "stock_no": "1ISLEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/23/Iceland-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567916"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/23/Iceland-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567916",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report focuses on Iceland's economic strategies, highlighting austerity measures, tax reforms, and enhancements in the private and external sectors. It discusses fiscal consolidation, monetary policy adjustments, and structural reforms aimed at boosting productivity and economic diversification.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "5.5",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2",
+            "8",
+            "8.1",
+            "9",
+            "9.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a primary focus, with Iceland implementing fiscal consolidation to manage deficits and debt, aiming for a surplus by 2028 [pp. 1, 2].",
+            "2": "Tax reforms are highlighted, focusing on increasing transparency and credibility in fiscal measures [pp. 1, 2].",
+            "3": "Climate policies are indirectly referenced through discussions on diversifying the economy and increasing infrastructure investments [pp. 2, 5].",
+            "4": "Social and gendered impacts are considered through fiscal policies aimed at reducing vulnerabilities and supporting growth [pp. 1, 2].",
+            "5": "Social services are discussed in terms of fiscal consolidation and the need for efficient social spending [pp. 1, 2].",
+            "6": "Private and external sector enhancements are discussed, focusing on creating a business-friendly environment and attracting FDI [pp. 2, 5].",
+            "7": "Financialisation is indirectly referenced through discussions on financial policies and maintaining a robust financial system [pp. 2, 5].",
+            "8": "Digitisation is indirectly referenced through discussions on promoting AI and reducing skill mismatches [pp. 2, 5].",
+            "9": "Governance and legal reforms are implied through the need for credible fiscal frameworks and increased transparency [pp. 1, 2].",
+            "1.1": "Fiscal discipline is evident through planned austerity measures to achieve fiscal consolidation targets, enhancing credibility [pp. 1, 2].",
+            "1.2": "Wage bill adjustments are implied through discussions on public sector efficiencies and fiscal consolidation, affecting public wages [pp. 2, 5].",
+            "1.4": "Privatisation and reform of public services are suggested through increased infrastructure spending and private sector financing [pp. 2, 5].",
+            "1.5": "Labour flexibilisation is indicated by efforts to reduce skill mismatches and promote AI, affecting labour market policies [pp. 2, 5].",
+            "2.1": "Consumption taxes are discussed in the context of fiscal consolidation and the need for credible fiscal frameworks [pp. 1, 2].",
+            "2.2": "Tax expenditures and efforts to combat tax avoidance are mentioned in relation to fiscal consolidation and transparency [pp. 1, 2].",
+            "3.1": "Climate change mitigation is implied in the context of economic diversification and infrastructure enhancements [pp. 2, 5].",
+            "4.1": "Gender policies are indirectly addressed through broader discussions on economic resilience and diversification [pp. 2, 5].",
+            "4.3": "Distributional impacts are considered in fiscal consolidation discussions, focusing on reducing vulnerabilities [pp. 1, 2].",
+            "5.1": "Social protection adjustments are implied in the fiscal consolidation efforts and discussions on efficient social spending [pp. 1, 2].",
+            "5.2": "Pension reforms are suggested through fiscal consolidation discussions and the need for credible fiscal measures [pp. 1, 2].",
+            "5.4": "Fees for public services are implied in the context of infrastructure spending and public service reforms [pp. 2, 5].",
+            "5.5": "Cuts to health expenditure are implied through discussions on fiscal consolidation and public sector efficiencies [pp. 1, 2].",
+            "6.1": "External sector strategies are highlighted through efforts to attract foreign investment and promote private sector-led growth [pp. 2, 5].",
+            "6.2": "PPPs are suggested in the context of infrastructure spending and private sector financing [pp. 2, 5].",
+            "7.1": "Deregulation of financial markets is implied through the need for robust financial policies and sector stability [pp. 2, 5].",
+            "7.2": "Monetary policies favouring financial sector growth are discussed in terms of monetary policy adjustments and inflation targeting [pp. 2, 5].",
+            "8.1": "Digitalisation and AI are highlighted in the context of structural policies to boost productivity and economic diversification [pp. 2, 5].",
+            "9.1": "Governance/legal reforms are discussed in terms of enhancing fiscal council strength and fiscal data frequency [pp. 2, 5]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Republic of Uzbekistan: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -387,7 +1131,111 @@
       "stock_no": "1UZBEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/23/Republic-of-Uzbekistan-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567977"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/23/Republic-of-Uzbekistan-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567977",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report on Uzbekistan's economy highlights ongoing austerity measures, tax reforms, and efforts to enhance the private and external sectors. Austerity is evident in fiscal consolidation and public sector adjustments. Tax reforms focus on efficiency and broadening the tax base. The private sector is being bolstered through structural reforms and privatization efforts.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are evident through fiscal consolidation and public sector adjustments aimed at reducing the state's footprint and enhancing private sector-led growth [pp. 1-3].",
+            "2": "Tax reforms focus on enhancing efficiency, broadening the tax base, and improving tax administration to support fiscal sustainability [pp. 2-3].",
+            "3": "Climate and environmental policies are integrated into economic planning, with initiatives to manage climate risks and promote sustainable practices [pp. 3].",
+            "4": "Social and gendered impacts are considered in policy making, with measures to address gender inequality and support vulnerable groups [pp. 3].",
+            "5": "Social services are adjusted to improve efficiency and target support to the most vulnerable, while managing fiscal constraints [pp. 3].",
+            "6": "Private and external sector policies are designed to enhance competitiveness and attract foreign investment, with reforms to improve the business environment [pp. 3].",
+            "7": "Financialisation is addressed through policies to regulate financial markets and ensure stability, while supporting economic growth [pp. 3].",
+            "8": "Digitisation is advanced to leverage technology in economic development, with policies to support digital infrastructure and innovation [pp. 3].",
+            "9": "Governance and legal reforms are undertaken to improve institutional efficiency and transparency, supporting effective policy implementation [pp. 3].",
+            "1.1": "Fiscal discipline is highlighted by efforts to reduce the consolidated fiscal deficit and manage public sector spending efficiently [pp. 2-3].",
+            "1.2": "Public sector wage adjustments are part of the broader austerity measures, with efforts to control the wage bill and enhance public sector efficiency [pp. 2-3].",
+            "1.3": "Subsidy reforms are noted, particularly in the energy sector, to align with market prices and reduce fiscal burdens [pp. 2].",
+            "1.4": "Privatization efforts are ongoing, particularly in state-owned enterprises, to reduce state involvement and encourage private sector activity [pp. 3].",
+            "1.5": "Labour market reforms include measures to increase flexibility and reduce labour costs, aligning with broader economic reforms [pp. 3].",
+            "2.1": "Consumption taxes and efforts to broaden the tax base are discussed, with a focus on improving tax revenue efficiency and compliance [pp. 2].",
+            "2.2": "Efforts to address tax expenditures and illicit financial flows are part of broader fiscal reforms to enhance revenue collection and reduce leakages [pp. 2].",
+            "2.3": "Tax policies are being adjusted to favour financial capital, with reforms aimed at improving the investment climate and attracting foreign investment [pp. 3].",
+            "3.1": "Climate policies focus on adaptation, mitigation, and transition management to address environmental challenges and align with global climate goals [pp. 3].",
+            "3.2": "Land use and natural resource management are part of the environmental agenda, with policies aimed at sustainable land and resource use [pp. 3].",
+            "4.1": "Gender policies aim to enhance women's economic participation and address gender-based disparities in the labour market [pp. 3].",
+            "4.2": "The care economy is recognized, with policies to support unpaid and paid care work, reflecting its importance to social and economic stability [pp. 3].",
+            "4.3": "Social impacts of economic policies are assessed, with efforts to mitigate adverse effects on income distribution and reduce inequality [pp. 3].",
+            "5.1": "Social protection measures are rationalized to target the poorest and most vulnerable, with reforms to enhance the efficiency of social safety nets [pp. 3].",
+            "5.2": "Pension reforms include measures to ensure sustainability and adequacy of benefits, reflecting demographic changes and fiscal pressures [pp. 3].",
+            "5.3": "Social security contributions are discussed in the context of fiscal sustainability and labour market impacts [pp. 3].",
+            "5.4": "Fees for public services are adjusted to ensure affordability and access, particularly for essential services like healthcare and education [pp. 3].",
+            "5.5": "Health expenditure is rationalized to improve efficiency and ensure sustainability of health services amid fiscal constraints [pp. 3].",
+            "5.6": "Education expenditure is similarly rationalized, with efforts to improve efficiency and outcomes in the education sector [pp. 3].",
+            "6.1": "External sector and FDI policies focus on creating a business-friendly environment to attract and retain foreign investment [pp. 3].",
+            "6.2": "Public-private partnerships are utilized to leverage private investment in infrastructure and services, despite challenges and risks [pp. 3].",
+            "6.3": "Foreign currency debt and external vulnerabilities are managed to mitigate risks associated with external shocks and financial volatility [pp. 3].",
+            "7.1": "Deregulation of financial markets is pursued to encourage financial innovation and expand access to financial services [pp. 3].",
+            "7.2": "Monetary policies favouring financial sector growth are implemented to stimulate investment and manage inflation [pp. 3].",
+            "7.3": "Corporate governance and shareholder value orientation are emphasized to improve business practices and enhance investor confidence [pp. 3].",
+            "7.4": "Expansion of credit and debt markets is facilitated to support economic activity, with measures to manage associated risks [pp. 3].",
+            "7.5": "Financial inclusion initiatives are promoted to expand access to financial services and support economic empowerment [pp. 3].",
+            "8.1": "Digitalisation and AI are integrated into economic strategies to enhance productivity and competitiveness in the digital economy [pp. 3].",
+            "9.1": "Governance and legal reforms are focused on enhancing institutional capacity and legal frameworks to support economic and social objectives [pp. 3].",
+            "9.2": "Political economy considerations are integrated into policy making to ensure public acceptance and effective implementation of reforms [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Fiji: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -405,7 +1253,111 @@
       "stock_no": "1FJIEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/20/Fiji-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567891"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/20/Fiji-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567891",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "The report on Fiji's economic situation discusses austerity measures, tax policies, and climate-related challenges. Austerity is evident in fiscal tightening and public debt management. Tax discussions focus on VAT increases and the need for progressive tax reforms. Climate issues highlight the vulnerability to natural disasters and the need for increased resilience.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are highlighted through fiscal tightening and efforts to manage public debt, aiming to reduce the deficit and public debt-to-GDP ratio [pp. 2, 5].",
+            "2": "Tax discussions include the impact of VAT increases and the need for more progressive tax reforms [pp. 5].",
+            "3": "Climate and environment issues are highlighted by Fiji's vulnerability to natural disasters and the need for increased resilience and climate financing [pp. 9].",
+            "4": "Social and gendered impacts are considered through the need for targeted social protection measures to shield vulnerable populations [pp. 2].",
+            "5": "Social services are discussed in terms of social protection measures and the need for efficient targeting to protect vulnerable populations [pp. 2].",
+            "6": "Private and external sector issues are discussed in terms of improving the business environment and addressing external imbalances [pp. 9].",
+            "7": "Financialisation issues are indirectly referenced through discussions on financial policies, credit risks, and the need for a stable financial environment [pp. 9].",
+            "8": "Digitisation is implied in the need for modernizing infrastructure and enhancing digital connectivity as part of structural reforms [pp. 9].",
+            "9": "Governance issues are highlighted through the emphasis on good governance, reducing corruption, and enhancing legal and institutional frameworks [pp. 9].",
+            "1.1": "Fiscal discipline is evident in the reduction of the fiscal deficit and the management of public debt levels [pp. 5].",
+            "1.2": "Public sector wages are indirectly referenced through discussions on fiscal tightening and budget management, affecting public sector employment and wage bills [pp. 5].",
+            "1.3": "Subsidies are not directly mentioned, but fiscal tightening could imply rationalization in this area [pp. 5].",
+            "1.4": "Privatisation and reform of public services are suggested through the need for structural reforms and enhancing the business environment [pp. 9].",
+            "1.5": "Labour flexibilisation is implied in the context of addressing labour shortages and enhancing the business environment [pp. 5].",
+            "2.1": "Consumption taxes are directly mentioned with the 2023 VAT hike and its impact on inflation [pp. 5].",
+            "2.2": "Tax expenditures and illicit financial flows are indirectly referenced through discussions on improving tax compliance and broadening the tax base [pp. 5].",
+            "2.3": "Tax policies favouring financial capital are not explicitly discussed, but the focus on tax reforms suggests a broader evaluation of tax policies [pp. 5].",
+            "3.1": "Climate policies are discussed in terms of Fiji's vulnerability to natural disasters and the emphasis on building resilience through capital spending [pp. 9].",
+            "3.2": "Land use and natural resource management are implied in the context of vulnerability to natural disasters and the need for sustainable environmental practices [pp. 9].",
+            "4.1": "Gender policies are indirectly referenced through the emphasis on social protection measures that could include considerations for gender-specific impacts [pp. 2].",
+            "4.2": "The care economy is not directly mentioned, but social protection measures could encompass support for care services [pp. 2].",
+            "4.3": "Distributional impacts are considered in the context of fiscal policies and their social implications, particularly on vulnerable groups [pp. 2].",
+            "5.1": "Social protection measures are highlighted as a priority in fiscal policies to protect vulnerable groups during economic downturns [pp. 2].",
+            "5.2": "Pension and social security reforms are not explicitly mentioned, but are relevant to discussions on fiscal measures and social protection [pp. 2].",
+            "5.3": "Social security contributions are not directly discussed, but fiscal policies could impact these areas [pp. 2].",
+            "5.4": "Fees for public services are implied in the need for efficient public service delivery and potential reforms in this sector [pp. 9].",
+            "5.5": "Cuts to health expenditure are indirectly referenced through the need for efficient public spending and potential impacts on public health services [pp. 9].",
+            "5.6": "Cuts to education expenditure are implied in discussions on public spending efficiency and potential impacts on public education services [pp. 9].",
+            "6.1": "External sector and FDI are highlighted in the context of enhancing the business environment and attracting foreign investment [pp. 9].",
+            "6.2": "PPPs are not directly mentioned, but the emphasis on structural reforms and business environment improvements could involve public-private partnerships [pp. 9].",
+            "6.3": "Foreign currency debt and external vulnerabilities are discussed in terms of external imbalances and the need for careful management of foreign exchange policies [pp. 9].",
+            "7.1": "Deregulation of financial markets is implied in the need for financial sector reforms and addressing credit risks [pp. 9].",
+            "7.2": "Monetary policies favouring financial sector growth are discussed in terms of adjusting monetary policies to manage inflation and support economic stability [pp. 9].",
+            "7.3": "Corporate governance and shareholder value orientation are not directly mentioned, but are relevant to discussions on financial sector stability and reforms [pp. 9].",
+            "7.4": "Expansion of credit and debt markets is evident in the growth of private sector credit and the focus on managing emerging credit risks [pp. 6].",
+            "7.5": "Financial inclusion is not directly discussed, but is relevant to the broader financial policy framework and efforts to enhance financial services [pp. 9].",
+            "8.1": "Digitalisation and AI are discussed in terms of improving digital infrastructure and connectivity to support economic growth and resilience [pp. 9].",
+            "9.1": "Governance and legal reforms are discussed in terms of the government's commitment to institutional reform, rule of law, and reducing corruption [pp. 9].",
+            "9.2": "Political economy considerations are evident in the need for sustained political consensus and effective implementation of reforms [pp. 9]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Mauritius: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -423,7 +1375,111 @@
       "stock_no": "1MUSEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/18/Mauritius-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567835"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/18/Mauritius-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567835",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report on Mauritius highlights austerity measures, tax policies, and private sector development. Austerity is evident in fiscal consolidation efforts and public debt management. Tax discussions focus on revenue mobilization and fiscal challenges, while private sector growth is tied to structural reforms and competitiveness.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with the government focusing on fiscal consolidation to manage public debt and enhance fiscal sustainability [pp. 1, 2, 3].",
+            "2": "Tax policies are crucial, with a focus on mobilizing revenue through tax reforms to support fiscal consolidation and sustainability [pp. 1, 2].",
+            "3": "Climate and environmental policies are indirectly referenced through the need for public investment in climate resilience and adaptation efforts [pp. 3].",
+            "4": "Social and gendered impacts are considered in the context of fiscal policies and social spending, with a focus on protecting vulnerable groups during fiscal consolidation [pp. 2, 3].",
+            "5": "Social services are central to discussions on fiscal consolidation, with a focus on rationalizing social spending while protecting essential services [pp. 2, 3].",
+            "6": "Private and external sector development is emphasized, with a focus on enhancing external competitiveness and fostering private sector-led growth through structural reforms [pp. 3].",
+            "7": "Financialisation is indirectly referenced through discussions on financial sector risks and the need to monitor and manage these risks effectively [pp. 3].",
+            "8": "Digitisation is indirectly referenced through discussions on structural reforms and the need to embrace new technologies and innovation for competitiveness [pp. 3].",
+            "9": "Governance reforms are a key focus, with an emphasis on enhancing transparency, good governance, and legal reforms to support economic development [pp. 3].",
+            "1.1": "Fiscal discipline is emphasized through efforts to rebuild fiscal space and reduce public debt, involving austerity measures like spending containment and revenue mobilization [pp. 1, 2].",
+            "1.2": "Public sector wages are under scrutiny, with discussions on fiscal challenges impacting compensation and benefits, reflecting austerity measures [pp. 2, 3].",
+            "1.3": "Subsidy reforms are implied through fiscal consolidation efforts that include rationalizing expenditures, likely affecting subsidies indirectly [pp. 2].",
+            "1.4": "Privatization and reform of public services are suggested in the context of enhancing competitiveness and fostering private sector-led growth [pp. 3].",
+            "1.5": "Labour market reforms are indicated by the need for structural reforms to address productivity and competitiveness, potentially involving labour flexibilisation [pp. 3].",
+            "2.1": "Consumption taxes and other forms of taxation are discussed as part of the strategies to increase tax revenue and manage fiscal deficits [pp. 2].",
+            "2.2": "Tax expenditures and efforts to combat tax avoidance are part of the fiscal strategy to enhance revenue mobilization and address fiscal challenges [pp. 2].",
+            "2.3": "Financial capital favoring tax policies are implied in the discussions on fiscal management and revenue mobilization strategies [pp. 2].",
+            "3.1": "Climate policies are highlighted in the context of significant public investment needs for climate, which includes adaptation and resilience measures [pp. 3].",
+            "3.2": "Land use and resource management are indirectly addressed through discussions on structural reforms aimed at boosting investment and productivity, which may involve natural resource management [pp. 3].",
+            "4.1": "Gender policies are indirectly referenced through the emphasis on narrowing gender gaps and enhancing social protection measures [pp. 3].",
+            "4.2": "The care economy is touched upon through discussions on social protection and the need to safeguard critical social spending amidst austerity measures [pp. 2].",
+            "4.3": "Distributional impacts are considered in the assessment of fiscal policies and their social implications, particularly on different income groups [pp. 2].",
+            "5.1": "Social protection measures are discussed in the context of fiscal challenges, with efforts to target and rationalize social assistance to manage fiscal pressures [pp. 2].",
+            "5.2": "Pension reforms are highlighted as key to fiscal sustainability, with discussions on reforming the pension system to address fiscal and demographic challenges [pp. 2].",
+            "5.3": "Social security contributions are part of the fiscal discussions, with implications for social security systems in the context of fiscal consolidation [pp. 2].",
+            "5.4": "Fees for public services are implied in the discussions on fiscal consolidation and the need to manage public finances, which may involve adjustments to service fees [pp. 2].",
+            "5.5": "Cuts to health expenditure are considered within the broader context of fiscal consolidation and the need to rationalize public spending, including in the health sector [pp. 2].",
+            "5.6": "Cuts to education expenditure are discussed in terms of fiscal consolidation efforts and the implications for public education spending [pp. 2].",
+            "6.1": "External sector and FDI are central to discussions on boosting competitiveness and attracting investment, with a focus on creating a business-friendly environment [pp. 3].",
+            "6.2": "PPPs are implied in the context of fostering private sector-led growth and enhancing infrastructure development through potential public-private partnerships [pp. 3].",
+            "6.3": "Foreign currency debt and external vulnerabilities are considered in the discussions on fiscal and external imbalances, with implications for managing external debt [pp. 3].",
+            "7.1": "Deregulation of financial markets is implied in the context of enhancing competitiveness and fostering a business-friendly environment [pp. 3].",
+            "7.2": "Monetary policies favoring financial sector growth are discussed in terms of strengthening the monetary policy framework and managing inflationary pressures [pp. 3].",
+            "7.3": "Corporate governance and shareholder value orientation are indirectly addressed through discussions on enhancing transparency and good governance [pp. 3].",
+            "7.4": "Expansion of credit and debt markets is considered in the context of financial sector developments and the need to manage credit growth and financial risks [pp. 3].",
+            "7.5": "Financial inclusion is touched upon through discussions on enhancing the financial sector's role in economic growth and development [pp. 3].",
+            "8.1": "Digitalisation and AI are implied in the context of advancing structural reforms and enhancing productivity through technological advancements [pp. 3].",
+            "9.1": "Governance and legal reforms are discussed in terms of enhancing transparency and accountability in public sector management [pp. 3].",
+            "9.2": "Political economy considerations are evident in the discussions on public acceptance of reforms and the need for stakeholder engagement and consultation [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Namibia: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Namibia",
@@ -441,7 +1497,65 @@
       "stock_no": "1NAMEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/16/Namibia-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567703"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/16/Namibia-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567703",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report highlights Namibia's economic challenges and the IMF's recommendations focusing on austerity measures, tax reforms, and climate resilience. Austerity is emphasized through fiscal consolidation and public sector reforms. Tax reforms are suggested to enhance fiscal space and manage expenditures effectively. The focus on climate policies reflects the need for sustainable environmental management amidst economic diversification.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "2",
+            "2.1",
+            "3",
+            "3.1",
+            "5",
+            "5.1",
+            "5.2",
+            "6",
+            "6.1",
+            "7",
+            "7.1",
+            "7.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with recommendations for fiscal consolidation and public sector reforms aimed at reducing the wage bill and enhancing fiscal discipline [pp. 2, 3].",
+            "2": "Tax reforms are highlighted as necessary for creating fiscal space and managing public expenditures more effectively [pp. 2, 3].",
+            "3": "Climate and environmental policies are emphasized, particularly in the context of recent weather shocks and the need for sustainable management of natural resources [pp. 2, 3].",
+            "5": "Social services are discussed with an emphasis on enhancing social protection systems and investing in public health and education to support vulnerable populations [pp. 2, 3].",
+            "6": "External sector and investment policies are recommended to improve the business environment and attract foreign direct investment, particularly in the context of economic diversification [pp. 2, 3].",
+            "7": "Financial sector policies are highlighted, with a focus on deregulation and encouraging financial market development to support economic growth [pp. 2, 3].",
+            "1.1": "Fiscal consolidation is advised to manage public debt and support economic stability, with specific calls for civil service reform to contain the wage bill [pp. 2, 3].",
+            "1.2": "Public sector wage constraints are discussed as part of broader fiscal reforms to manage expenditures and reduce fiscal deficits [pp. 2, 3].",
+            "1.4": "Privatisation and reform of state-owned enterprises are recommended to improve efficiency and financial management within the public sector [pp. 2, 3].",
+            "2.1": "Enhancements in tax administration and broadening the tax base are suggested to increase domestic revenue mobilisation and support sustainable fiscal policies [pp. 2, 3].",
+            "3.1": "Climate resilience is underlined with a focus on developing frameworks for managing the impacts of climate change and integrating these into broader economic planning [pp. 2, 3].",
+            "5.1": "Social protection measures are advised to be strengthened to address vulnerabilities and provide safety nets for the poor and disadvantaged [pp. 2, 3].",
+            "5.2": "Pension reforms are suggested to ensure the sustainability of social security systems and manage public expenditures on pensions [pp. 2, 3].",
+            "6.1": "Creating a business-friendly environment is emphasized to stimulate private sector-led growth and enhance external competitiveness [pp. 2, 3].",
+            "7.1": "Deregulation of financial markets is discussed as a means to stimulate financial sector growth and support broader economic objectives [pp. 2, 3].",
+            "7.2": "Monetary policies are advised to be aligned with those of the South African Reserve Bank to maintain currency stability and manage inflation [pp. 2, 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Dominica: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -459,7 +1573,111 @@
       "stock_no": "1DMAEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/12/Dominica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567677"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/12/Dominica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567677",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report on Dominica's economic conditions discusses austerity measures, tax policies, and private sector development. Austerity is highlighted by fiscal consolidation efforts and public debt management. Tax discussions focus on broadening the revenue base and optimizing expenditures. The private sector's role is underscored in terms of investment and financial sector reforms.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, focusing on fiscal consolidation to manage public debt and enhance economic resilience [pp. 2, 3].",
+            "2": "Tax reforms are discussed with a focus on broadening the revenue base and optimizing expenditures to support fiscal consolidation [pp. 3].",
+            "3": "Climate and environmental policies are not explicitly addressed but are relevant to discussions on sustainable growth and infrastructure projects [pp. 4].",
+            "4": "Social and gendered impacts are considered in policy discussions, particularly in terms of improving public service access and economic participation [pp. 4].",
+            "5": "Social services reforms are highlighted in the context of optimizing expenditures and enhancing the efficiency of public programs [pp. 3].",
+            "6": "Private sector development is emphasized, particularly in terms of investment, financial sector reform, and enhancing external sector performance [pp. 2, 4].",
+            "7": "Financialisation is relevant to discussions on financial sector reforms and enhancing economic resilience through better financial intermediation [pp. 4].",
+            "8": "Digitisation is addressed through initiatives to modernize tax administration and regulatory processes, enhancing efficiency and economic resilience [pp. 4].",
+            "9": "Governance and legal reforms are central to discussions on institutional strengthening and enhancing policy formulation and execution [pp. 4].",
+            "1.1": "Fiscal discipline is emphasized through efforts to achieve a primary surplus and manage expenditures, aligning with austerity policies [pp. 3].",
+            "1.2": "Public sector wage adjustments are part of fiscal consolidation efforts, reflecting austerity measures impacting civil service [pp. 3].",
+            "1.3": "Subsidy reforms are not explicitly mentioned but are implied in the broader context of fiscal consolidation and expenditure rationalization [pp. 3].",
+            "1.4": "Privatisation and reform of public services are suggested through the modernization of financial sector oversight and public financial management [pp. 3, 4].",
+            "1.5": "Labour market reforms are indicated by efforts to improve employment outcomes and address skills gaps, aligning with labour flexibilisation [pp. 4].",
+            "2.1": "Consumption taxes and broadening the tax base are central themes, aiming to enhance fiscal sustainability [pp. 3].",
+            "2.2": "Tax expenditures and efforts to manage financial flows are implied in discussions on improving tax administration and compliance [pp. 3].",
+            "2.3": "Policies favouring financial capital are not directly mentioned but relate to broader financial sector reforms [pp. 4].",
+            "3.1": "Climate policies are indirectly referenced through infrastructure projects aimed at enhancing economic resilience and sustainability [pp. 4].",
+            "3.2": "Land use and resource management are implied in the context of sustainable infrastructure development [pp. 4].",
+            "4.1": "Gender policies are indirectly addressed through initiatives aimed at improving labor market outcomes and access to services [pp. 4].",
+            "4.2": "Care economy considerations are reflected in discussions on social protection programs and public financial management reforms [pp. 3].",
+            "4.3": "Distributional impacts are considered in fiscal consolidation efforts, aiming to optimize social spending and enhance economic equity [pp. 3].",
+            "5.1": "Social protection programs are discussed with a focus on targeting and sustainability as part of broader fiscal consolidation efforts [pp. 3].",
+            "5.2": "Pension reforms are not explicitly mentioned but are relevant to discussions on fiscal sustainability and social security [pp. 3].",
+            "5.3": "Social security contributions are considered in the broader context of fiscal reforms and managing public expenditures [pp. 3].",
+            "5.4": "Fees for public services are implied in discussions on optimizing public financial management and service delivery [pp. 3].",
+            "5.5": "Cuts to health expenditure are part of broader austerity measures, aiming to rationalize spending and enhance fiscal discipline [pp. 3].",
+            "5.6": "Education expenditure rationalization is discussed in the context of fiscal consolidation and optimizing public investment in human capital [pp. 3].",
+            "6.1": "External sector and FDI are central to discussions on economic modernization and development, aiming to attract investment and boost growth [pp. 2].",
+            "6.2": "PPPs are implied in the context of infrastructure development and financial sector modernization [pp. 4].",
+            "6.3": "Foreign currency debt and external vulnerabilities are addressed in discussions on economic resilience and managing external shocks [pp. 2].",
+            "7.1": "Deregulation of financial markets is implied in efforts to modernize financial sector oversight and regulatory frameworks [pp. 4].",
+            "7.2": "Monetary policies favouring financial sector growth are indirectly addressed through discussions on financial sector reforms [pp. 4].",
+            "7.3": "Corporate governance and shareholder value orientation are relevant to financial sector discussions, particularly in terms of regulatory reforms [pp. 4].",
+            "7.4": "Expansion of credit and debt markets is discussed in the context of financial sector stability and credit union developments [pp. 4].",
+            "7.5": "Financial inclusion is implied in efforts to enhance financial intermediation and sector oversight [pp. 4].",
+            "8.1": "Digitalisation and AI are discussed in terms of modernizing administrative processes and improving economic efficiency [pp. 4].",
+            "9.1": "Governance and legal reforms are emphasized in efforts to strengthen institutional frameworks and improve public financial management [pp. 4].",
+            "9.2": "Political economy considerations are addressed in terms of enhancing public engagement and improving the social acceptability of reforms [pp. 4]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Ireland: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Ireland",
@@ -477,7 +1695,45 @@
       "stock_no": "1IRLEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/10/Ireland-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567588"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/10/Ireland-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567588",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report on Ireland's economy highlights austerity measures, tax policies, and the private and external sector's role. Austerity is evident in fiscal prudence and public investment, while tax discussions focus on broadening the tax base and reducing reliance on corporate tax revenue. The private and external sector is emphasized through Ireland's engagement with multinational enterprises and the need for a business-friendly environment.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "2",
+            "2.1",
+            "6",
+            "6.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a key theme, with Ireland maintaining fiscal prudence and focusing on building financial buffers. This includes managing public finances through careful expenditure and investment to support economic stability and growth [pp. 2, 12].",
+            "2": "Tax policies are crucial, with a focus on broadening the tax base to mitigate the volatility of corporate tax revenues. This includes potential reforms to make the tax system more robust against economic fluctuations [pp. 12].",
+            "6": "The private and external sector's importance is underscored by Ireland's reliance on multinational enterprises and foreign direct investment. Policies aim to create a business-friendly environment that supports economic growth and resilience amid global uncertainties [pp. 2, 12].",
+            "1.1": "Fiscal discipline is highlighted by Ireland's efforts to enhance public spending efficiency and reduce revenue uncertainty. The emphasis is on maintaining a neutral fiscal stance while increasing capital expenditure to manage economic demands efficiently [pp. 12].",
+            "2.1": "The report discusses increasing and expanding VAT rates or sales taxes as part of broader tax base reforms. These measures aim to reduce the dependency on fluctuating corporate tax revenues, ensuring more stable public finances [pp. 12].",
+            "6.1": "External sector strategies are noted, focusing on maintaining a favorable business climate to attract investments. This includes regulatory reforms and fostering a competitive market environment to support Ireland's economic model [pp. 12]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Peru: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -495,7 +1751,89 @@
       "stock_no": "1PEREA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/10/Peru-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567572"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/10/Peru-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567572",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report highlights the need for fiscal consolidation and austerity measures, including spending restraint and revenue-raising efforts, to meet fiscal targets. Tax reforms, particularly streamlining tax expenditures and enhancing tax administration, are emphasized. The private sector's role is underlined, with calls for increased private investment and structural reforms to boost growth.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "3",
+            "3.1",
+            "4",
+            "4.1",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.4",
+            "5.5",
+            "6",
+            "6.1",
+            "6.2",
+            "7",
+            "7.1",
+            "7.2",
+            "8",
+            "8.1",
+            "9",
+            "9.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are crucial in the report, with a focus on fiscal consolidation to meet deficit targets and debt ceilings, involving spending cuts and revenue measures [pp. 2, 3].",
+            "2": "Tax reforms are highlighted, including efforts to streamline tax expenditures and enhance tax administration to support fiscal consolidation [pp. 2, 3].",
+            "3": "Climate policies are indirectly referenced through the need for resilience against natural disasters and embracing opportunities in digital technologies [pp. 3].",
+            "4": "Social and gendered impacts are considered, with emphasis on policies that affect social stability and public investment [pp. 2, 3].",
+            "5": "Social services are discussed in terms of fiscal pressures and the need for efficient public spending [pp. 2, 3].",
+            "6": "The role of the private sector is emphasized, particularly in terms of increasing private investment and involvement in public projects to stimulate growth [pp. 2, 3].",
+            "7": "Financial sector policies are discussed, with a focus on enhancing financial resilience and addressing vulnerabilities [pp. 2, 3].",
+            "8": "Digitisation is highlighted as a key area for structural reform, particularly in terms of embracing digital technologies and artificial intelligence [pp. 3].",
+            "9": "Governance and legal reforms are discussed, particularly in terms of enhancing the business climate and reducing informality [pp. 3].",
+            "1.1": "Fiscal discipline is emphasized, with the need for spending control and revenue-raising measures to achieve a balanced fiscal consolidation [pp. 2, 3].",
+            "1.2": "The report discusses controlling public sector wages as part of fiscal consolidation efforts [pp. 2, 3].",
+            "1.4": "Privatisation and increased private sector involvement in public investments are advocated to boost economic efficiency and growth [pp. 2, 3].",
+            "1.5": "Labour market reforms are suggested, including making it easier to formalize businesses and reduce the costs associated with business growth [pp. 3].",
+            "2.1": "The need for a balanced approach to fiscal consolidation through both revenue-raising measures and spending cuts is discussed, with a focus on tax reforms [pp. 2, 3].",
+            "2.2": "The report touches on reducing tax expenditures as part of broader fiscal consolidation efforts [pp. 2, 3].",
+            "3.1": "Building resilience to natural disasters is mentioned as part of broader structural reforms needed to boost economic growth [pp. 3].",
+            "4.1": "Gender policies are indirectly addressed through broader discussions on social impacts and reforms [pp. 3].",
+            "4.3": "Social impacts of fiscal policies are considered, particularly how they affect different income groups [pp. 2, 3].",
+            "5.1": "Social protection measures are part of the fiscal consolidation discussion, particularly in terms of targeting and efficiency [pp. 2, 3].",
+            "5.2": "Pension reforms are mentioned as part of fiscal consolidation efforts to control public expenditure [pp. 2, 3].",
+            "5.4": "Public service fees and the affordability of essential services like health and education are highlighted in the context of fiscal consolidation [pp. 2, 3].",
+            "5.5": "Health expenditure cuts are discussed as part of broader fiscal consolidation measures [pp. 2, 3].",
+            "6.1": "Creating a business-friendly environment and attracting foreign direct investment are discussed as strategies to boost the external sector and private investment [pp. 2, 3].",
+            "6.2": "Public-private partnerships are mentioned as a means to involve the private sector more in public investment projects [pp. 2, 3].",
+            "7.1": "Deregulation of financial markets is indirectly referenced through discussions on enhancing financial sector resilience [pp. 2, 3].",
+            "7.2": "Monetary policies favoring financial sector growth are discussed in terms of maintaining a neutral monetary policy stance and enhancing financial resilience [pp. 2, 3].",
+            "8.1": "The opportunities of digital technologies and artificial intelligence are emphasized as part of the structural reforms needed to boost potential growth [pp. 3].",
+            "9.1": "Legal reforms are mentioned as part of the broader governance improvements needed to support economic growth and structural reforms [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Spain: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -513,7 +1851,86 @@
       "stock_no": "1ESPEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/05/Spain-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567439"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/05/Spain-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567439",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report highlights Spain's strong economic performance, driven by services exports and labor force growth, including immigration. Key themes include austerity measures, with a focus on fiscal consolidation and pension reforms, tax reforms aimed at increasing efficiency and reducing distortions, and strengthening the private and external sectors through financial and employment reforms.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are emphasized, with a focus on fiscal consolidation and pension reforms to address future fiscal pressures [pp. 2, 3].",
+            "2": "Tax reforms are advised to increase efficiency and reduce distortions, including harmonizing VAT and enhancing environmental taxation [pp. 2].",
+            "6": "Private and external sector enhancements are recommended, including fostering a business-friendly environment and supporting external sector strategies [pp. 3].",
+            "1.1": "Fiscal discipline is highlighted as Spain is advised to rebuild fiscal space and reduce sovereign debt risks through tax increases and spending reductions [pp. 2].",
+            "1.2": "Public sector wages are discussed in the context of fiscal consolidation, with recommendations for pension system reforms [pp. 3].",
+            "1.3": "Subsidies are not explicitly mentioned, but fiscal consolidation could imply adjustments in this area [pp. 2].",
+            "1.4": "Privatisation and reform of public services are suggested to enhance efficiency, particularly in the financial sector [pp. 3].",
+            "1.5": "Labour flexibilisation is implied through recommendations for reforms to boost employment and productivity [pp. 3].",
+            "2.1": "Consumption taxes like VAT are discussed as part of the fiscal consolidation strategy to increase revenue [pp. 2].",
+            "2.2": "Tax expenditures and efforts to combat tax avoidance are implied in the context of fiscal consolidation and enhancing tax system efficiency [pp. 2].",
+            "2.3": "Tax policies favouring financial capital are not explicitly mentioned, but financial sector reforms suggest alignment [pp. 3].",
+            "6.1": "External sector and business-friendly environment strategies are discussed, with a focus on regulatory reforms and promoting private sector-led growth [pp. 3].",
+            "6.2": "Public-private partnerships are suggested to bolster financial sector resilience and infrastructure development [pp. 3].",
+            "6.3": "Foreign currency debt and external vulnerabilities are acknowledged as risks, with recommendations for careful monitoring and management [pp. 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Luxembourg: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -531,7 +1948,47 @@
       "stock_no": "1LUXEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/04/Luxembourg-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567449"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/04/Luxembourg-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567449",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The report on Luxembourg's economy highlights austerity measures, tax reforms, and strategies to enhance the private and external sectors. Austerity is evident in fiscal policy adjustments and wage bill containment. Tax reforms focus on diversifying revenue sources to reduce volatility. The private sector is encouraged through structural reforms aimed at increasing competitiveness and productivity.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "2",
+            "2.1",
+            "6",
+            "6.1"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a significant theme, with Luxembourg's fiscal policies focusing on more efficient use of fiscal space and containing the growth of the wage bill to accommodate future spending pressures [pp. 2, 3].",
+            "2": "Tax reforms are highlighted, focusing on diversifying revenue sources to reduce volatility and uncertainty of fiscal receipts, which is crucial for Luxembourg's economic stability [pp. 2, 3].",
+            "6": "The private and external sector's enhancement is a key focus, with structural reforms aimed at boosting private sector-led growth and sustaining living standards through increased competitiveness and productivity [pp. 2, 3].",
+            "1.1": "Fiscal discipline is evident as the report discusses the need for a more efficient use of fiscal space and measures to contain the wage bill, enhancing spending efficiency and avoiding further erosion of the tax base [pp. 2, 3].",
+            "1.2": "Public sector wages are under scrutiny, with discussions on containing the wage bill to manage fiscal pressures effectively [pp. 2, 3].",
+            "2.1": "The report discusses the importance of diversifying revenue sources through tax reforms, aiming to reduce the volatility and uncertainty of fiscal receipts [pp. 2, 3].",
+            "6.1": "Strategies to enhance the business-friendly environment and attract foreign direct investment are discussed, focusing on deregulation, privatization, and labor flexibilization to strengthen the external sector [pp. 2, 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Kyrgyz Republic: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -549,7 +2006,55 @@
       "stock_no": "1KGZEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/04/Kyrgyz-Republic-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567394"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/04/Kyrgyz-Republic-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567394",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            }
+          ],
+          "summary": "The IMF report on the Kyrgyz Republic highlights austerity measures, tax reforms, and private sector development as key themes. Austerity is evident in fiscal sustainability efforts, public wage bill control, and subsidy rationalization. Tax reforms focus on enhancing tax policy and administration, particularly through increased progressivity and reduced exemptions. The emphasis on private sector development is seen in structural reforms aimed at improving the business climate and attracting foreign direct investment.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "2",
+            "2.1",
+            "2.2",
+            "6",
+            "6.1",
+            "6.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity is a central theme, with the Kyrgyz Republic implementing measures to enhance fiscal sustainability. This includes managing the public wage bill and rationalizing subsidies, particularly in the energy sector, to contain public debt and create fiscal space for development needs [pp. 2, 3].",
+            "2": "Tax reforms are emphasized, with efforts to enhance tax policy by reducing exemptions, increasing the progressivity of personal income taxes, and strengthening revenue administration [pp. 2].",
+            "6": "Private sector development is a key focus, with structural reforms aimed at improving the business climate and attracting foreign direct investment highlighted as priorities for sustaining high growth rates and supporting inclusive economic growth [pp. 2, 3].",
+            "1.1": "Fiscal sustainability is pursued through prudent fiscal policies and robust GDP growth, aiming to contain public debt below 42% of GDP despite large-scale public investments [pp. 2].",
+            "1.2": "The public wage bill is managed through measures such as rationalization, which has contributed to a reduction in expenditure and helped maintain fiscal discipline [pp. 2].",
+            "1.3": "Subsidy rationalization, particularly in the energy sector, is highlighted as a measure to enhance fiscal sustainability and allocate resources more efficiently [pp. 2].",
+            "1.4": "Privatization efforts are noted, particularly the privatization of nonstrategic commercial SOEs, aimed at improving fiscal sustainability and reducing the public sector's footprint [pp. 2].",
+            "2.1": "The report discusses enhancing the progressivity of the Personal Income Tax and reducing tax exemptions as part of efforts to strengthen fiscal sustainability and create space for priority investments [pp. 2].",
+            "2.2": "Efforts to streamline tax exemptions and special tax regimes are mentioned as strategies to enhance fiscal sustainability and support development needs [pp. 2].",
+            "6.1": "The report emphasizes the importance of creating a business-friendly environment and attracting FDI through regulatory reforms and improvements in the business climate [pp. 2].",
+            "6.2": "Public Private Partnerships are discussed as a tool for infrastructure development, with a focus on their role in fostering private investment and managing fiscal risks [pp. 2]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Cyprus: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -567,7 +2072,111 @@
       "stock_no": "1CYPEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/02/Cyprus-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567389"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/02/Cyprus-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567389",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report discusses Cyprus's economic resilience, with a focus on austerity measures, tax policies, and climate and environmental strategies. Austerity is highlighted by fiscal surpluses and debt reduction, while tax discussions revolve around revenue-neutral reforms. Climate and environment are addressed through energy projects and green taxation.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are evident with Cyprus's fiscal surplus and debt reduction strategies, aiming to build buffers against potential shocks [pp. 2, 4].",
+            "2": "Tax discussions include revenue-neutral reforms and the avoidance of regressive tax measures to support sustainable growth [pp. 2, 4].",
+            "3": "Climate and environmental strategies are highlighted through major energy projects and the introduction of green taxation [pp. 2, 4].",
+            "4": "Social and gendered impacts are considered in fiscal and labour policies, aiming to protect vulnerable groups and promote gender equality [pp. 2, 4].",
+            "5": "Social services are discussed with a focus on maintaining robust social safety nets and rationalizing public service expenditures [pp. 2, 4].",
+            "6": "Private and external sector policies are designed to attract FDI and support a business-friendly environment, crucial for economic resilience [pp. 2, 4].",
+            "7": "Financialisation is addressed through regulatory reforms and policies supporting financial market stability and growth [pp. 2, 4].",
+            "8": "Digitisation is leveraged to enhance economic efficiency and competitiveness, reflecting the evolving technological landscape [pp. 2, 4].",
+            "9": "Governance reforms are pursued to strengthen institutions and legal frameworks, supporting effective policy implementation and economic resilience [pp. 2, 4].",
+            "1.1": "Fiscal discipline is maintained through prioritizing debt reduction and avoiding discretionary fiscal loosening [pp. 2, 4].",
+            "1.2": "Public sector wages are controlled, with recommendations against ad-hoc salary increases to manage the wage bill effectively [pp. 2, 4].",
+            "1.3": "Subsidies are managed carefully, with a focus on avoiding broad subsidy expansions to maintain fiscal health [pp. 2, 4].",
+            "1.4": "Privatisation and commercialization are discussed in the context of financial sector resilience and public sector efficiency [pp. 2, 4].",
+            "1.5": "Labour market policies are aimed at addressing skill gaps and mismatches, crucial for supporting austerity measures by enhancing productivity [pp. 2, 4].",
+            "2.1": "Consumption taxes are managed to avoid regressive impacts, with emphasis on revenue-neutral tax reforms [pp. 2, 4].",
+            "2.2": "Efforts to manage tax expenditures and address illicit financial flows are noted, supporting fiscal sustainability [pp. 2, 4].",
+            "2.3": "Tax policies are designed to favour investment and economic growth without exacerbating financial inequalities [pp. 2, 4].",
+            "3.1": "Climate policies focus on reducing energy costs and enhancing energy security, aligning with broader environmental goals [pp. 2, 4].",
+            "3.2": "Land use and resource management are considered in the context of economic diversification and environmental sustainability [pp. 2, 4].",
+            "4.1": "Gender policies are integrated into broader economic and social strategies, ensuring inclusivity and addressing gender disparities [pp. 2, 4].",
+            "4.2": "The care economy is recognized in the context of social protection and labour policies, reflecting its importance to economic resilience [pp. 2, 4].",
+            "4.3": "Social impacts are assessed in policy formulations, particularly in fiscal and economic reforms, to ensure equitable outcomes [pp. 2, 4].",
+            "5.1": "Social protection strategies are aligned with fiscal sustainability, emphasizing targeted support and efficient use of resources [pp. 2, 4].",
+            "5.2": "Pension reforms are considered within the broader context of fiscal discipline and demographic changes [pp. 2, 4].",
+            "5.3": "Social security contributions are managed to balance support for businesses with the need to maintain adequate social protections [pp. 2, 4].",
+            "5.4": "Fees for public services are calibrated to ensure accessibility while managing fiscal constraints [pp. 2, 4].",
+            "5.5": "Health expenditure is rationalized to ensure efficiency without compromising service quality, reflecting austerity measures [pp. 2, 4].",
+            "5.6": "Education expenditure is managed to balance cost-efficiency with the need to invest in human capital for long-term growth [pp. 2, 4].",
+            "6.1": "External sector strategies focus on regulatory reforms and creating an attractive investment climate [pp. 2, 4].",
+            "6.2": "Public-private partnerships are utilized to leverage private investment in infrastructure, aligning with fiscal and economic objectives [pp. 2, 4].",
+            "6.3": "Management of foreign currency debt and external vulnerabilities is crucial for maintaining financial stability and attracting investment [pp. 2, 4].",
+            "7.1": "Deregulation of financial markets is pursued cautiously to enhance competitiveness without compromising financial stability [pp. 2, 4].",
+            "7.2": "Monetary policies are calibrated to support financial sector growth while managing inflation and economic stability [pp. 2, 4].",
+            "7.3": "Corporate governance and shareholder value orientation are emphasized to align corporate practices with broader economic goals [pp. 2, 4].",
+            "7.4": "Expansion of credit and debt markets is managed to support economic activity while preventing financial excesses [pp. 2, 4].",
+            "7.5": "Financial inclusion is promoted as a strategy to broaden access to financial services and support economic participation [pp. 2, 4].",
+            "8.1": "Digitalisation and AI are integrated into economic and administrative processes to improve efficiency and adapt to global trends [pp. 2, 4].",
+            "9.1": "Governance and legal reforms are emphasized to enhance administrative efficiency and regulatory quality [pp. 2, 4].",
+            "9.2": "Political economy considerations are integrated into policy discussions to ensure social acceptability and sustainability of reforms [pp. 2, 4]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Bolivia: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Bolivia",
@@ -585,7 +2194,111 @@
       "stock_no": "1BOLEA2025002",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/02/Bolivia-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567384"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/02/Bolivia-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567384",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and Environment"
+            }
+          ],
+          "summary": "The report on Bolivia's economic situation highlights austerity measures, tax reforms, and climate-related policies. Austerity is evident in fiscal consolidation efforts, including public wage bill rationalization and subsidy cuts. Tax reforms focus on enhancing revenue through rationalization and addressing tax expenditures. Environmental discussions relate to the impact of climate phenomena on agriculture and economic stability.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, focusing on fiscal consolidation through public wage bill rationalization, subsidy cuts, and enhanced public investment management [pp. 2, 3, 11].",
+            "2": "Tax reforms are emphasized, focusing on broadening the tax base and enhancing revenue through rationalization of tax expenditures and combating illicit financial flows [pp. 2, 11].",
+            "3": "Climate and environmental issues are noted, particularly the impact of climate phenomena on agriculture and economic stability [pp. 2, 3].",
+            "4": "Social and gendered impacts are considered, with emphasis on policies affecting women and vulnerable populations [pp. 11].",
+            "5": "Social services reforms are discussed, particularly in terms of social protection and targeting efficiency [pp. 11].",
+            "6": "Private and external sector issues are addressed, focusing on creating a business-friendly environment and managing external vulnerabilities [pp. 11].",
+            "7": "Financialisation issues are explored, with discussions on deregulation of financial markets and monetary policies favouring financial sector growth [pp. 11].",
+            "8": "Digitisation and its impact on the economy are considered, with a focus on the platform economy and digital transitions [pp. 11].",
+            "9": "Governance and political economy issues are explored, with emphasis on legal reforms and the political acceptance of economic policies [pp. 11].",
+            "1.1": "Fiscal discipline is urged with recommendations for a credible fiscal framework and consolidation to manage the fiscal deficit and public debt [pp. 2, 11].",
+            "1.2": "Public sector wages are targeted for cuts as part of fiscal consolidation efforts, aiming to reduce the wage bill [pp. 11].",
+            "1.3": "Subsidy cuts, especially fuel subsidies, are recommended to alleviate fiscal pressures and target spending more effectively [pp. 11, 16].",
+            "1.4": "Privatisation and reform of public services are suggested to enhance efficiency and reduce public sector burdens [pp. 11].",
+            "1.5": "Labour market reforms are proposed to increase flexibility and reduce costs, including through wage restraint and decentralising bargaining processes [pp. 11].",
+            "2.1": "Consumption taxes and VAT reforms are discussed to increase domestic revenue mobilisation and address fiscal imbalances [pp. 11].",
+            "2.2": "Efforts to reduce tax expenditures and address illicit financial flows are highlighted as part of fiscal consolidation strategies [pp. 11].",
+            "2.3": "Tax policies are critiqued for favouring financial capital, with recommendations for more equitable tax systems [pp. 11].",
+            "3.1": "Climate policies are discussed in the context of adaptation and mitigation strategies to address ongoing and future climate-related challenges [pp. 3].",
+            "3.2": "Land use and natural resource management are considered important for environmental sustainability and economic resilience [pp. 3].",
+            "4.1": "Gender policies are advocated to address inequalities and support women's economic participation [pp. 11].",
+            "4.2": "The care economy is highlighted, with suggestions for better recognition and support for unpaid care work [pp. 11].",
+            "4.3": "Social impacts of economic policies are assessed, with a focus on distributional effects and poverty alleviation [pp. 11].",
+            "5.1": "Social protection systems are advised to be more effectively targeted to support the most vulnerable [pp. 11].",
+            "5.2": "Pension reforms are suggested to ensure sustainability and fairness [pp. 11].",
+            "5.3": "Social security contributions are debated, with recommendations for balancing employer and employee contributions [pp. 11].",
+            "5.4": "Fees for public services are critiqued, with concerns over accessibility and affordability [pp. 11].",
+            "5.5": "Health expenditure cuts are discussed in the context of fiscal consolidation, with an emphasis on efficiency and sustainability [pp. 11].",
+            "5.6": "Education expenditure rationalization is recommended to manage fiscal pressures while maintaining service quality [pp. 11].",
+            "6.1": "External sector strategies are discussed to attract foreign direct investment and support economic growth [pp. 11].",
+            "6.2": "Public-private partnerships are critiqued for their financial implications and impact on public resources [pp. 11].",
+            "6.3": "Foreign currency debt and external vulnerabilities are highlighted as areas of concern for economic stability [pp. 11].",
+            "7.1": "Deregulation of financial markets is debated in terms of its impact on economic stability and growth [pp. 11].",
+            "7.2": "Monetary policies are discussed in the context of supporting financial sector growth while managing inflation and stability [pp. 11].",
+            "7.3": "Corporate governance and shareholder value orientation are considered in terms of their impact on economic priorities and corporate behaviour [pp. 11].",
+            "7.4": "Expansion of credit and debt markets is critiqued for its role in economic cycles and potential risks [pp. 11].",
+            "7.5": "Financial inclusion strategies are discussed as a means to improve access to financial services and support economic participation [pp. 11].",
+            "8.1": "Digitalisation and AI are discussed in terms of their potential to transform economic activities and labour markets [pp. 11].",
+            "9.1": "Governance and legal reforms are suggested to improve institutional effectiveness and policy implementation [pp. 11].",
+            "9.2": "Political economy considerations are discussed in terms of stakeholder engagement and public sentiment towards reforms [pp. 11]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "New Zealand: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for New Zealand",
@@ -603,7 +2316,51 @@
       "stock_no": "1NZLEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/23/New-Zealand-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567168"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/23/New-Zealand-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-567168",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "6",
+              "name": "Private and external sector"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            }
+          ],
+          "summary": "The report on New Zealand's economy highlights the impact of austerity measures, private and external sector adjustments, and tax reforms. Austerity is evident in fiscal consolidation efforts, while the private sector is influenced by foreign investment and regulatory adjustments. Tax reforms focus on efficiency and long-term investment incentives.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "6",
+            "6.1",
+            "6.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are evident in New Zealand's fiscal consolidation efforts, aimed at narrowing the primary deficit and achieving medium-term sustainability. The government's approach includes expenditure reforms and pension system adjustments, reflecting a broader austerity agenda [pp. 2, 3].",
+            "2": "Tax reforms in New Zealand focus on enhancing efficiency and incentivizing long-term investments. Comprehensive revenue reforms are suggested to improve the tax system's efficiency and effectiveness [pp. 2, 3].",
+            "6": "The private and external sectors in New Zealand are influenced by policies aimed at attracting foreign investment and improving the business environment. This includes regulatory reforms and efforts to enhance the external sector's performance [pp. 2, 3].",
+            "1.1": "Fiscal discipline is a key theme, with New Zealand implementing modest fiscal consolidation to manage its primary deficit. This is part of broader efforts to ensure fiscal sustainability amid economic challenges [pp. 2, 3].",
+            "1.4": "Privatisation and reform of public services are part of New Zealand's structural reform agenda, aimed at enhancing productivity and economic efficiency. This includes efforts to improve competition and reduce regulatory burdens [pp. 2, 3].",
+            "1.5": "Labour flexibilisation is indirectly addressed through structural reforms that include enhancing competition and reducing regulatory burdens, which may affect labour market dynamics and employment conditions [pp. 2, 3].",
+            "2.1": "Consumption taxes and other forms of taxation are part of the fiscal policy adjustments, with an emphasis on efficiency and supporting long-term investment. This aligns with broader tax reforms aimed at improving the fiscal framework [pp. 2, 3].",
+            "6.1": "External sector adjustments and a business-friendly environment are highlighted, with New Zealand implementing reforms to attract foreign direct investment and improve the regulatory framework for businesses [pp. 2, 3].",
+            "6.2": "Public-private partnerships and related financial arrangements are part of New Zealand's approach to enhancing infrastructure and public service delivery, reflecting an emphasis on involving the private sector in public projects [pp. 2, 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "St. Kitts and Nevis: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for St. Kitts and Nevis",
