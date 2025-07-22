@@ -2378,7 +2378,89 @@
       "stock_no": "1KNAEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/12/St-Kitts-and-Nevis-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-566921"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/12/St-Kitts-and-Nevis-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-566921",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "5",
+              "name": "Social Services"
+            }
+          ],
+          "summary": "The report highlights significant fiscal challenges for St. Kitts and Nevis, with a focus on austerity measures, tax reforms, and social services adjustments. Austerity is evident in fiscal consolidation efforts and public sector management, while tax discussions revolve around revenue mobilization and CBI program adjustments. Social services are impacted by financial adjustments and reforms aimed at long-term sustainability.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ],
+          "theme_summaries": {
+            "1": "Austerity measures are central, with fiscal consolidation driven by tax revenue mobilization and expenditure cuts, including public sector wages and subsidies [pp. 2, 3].",
+            "2": "Tax reforms focus on mobilizing revenue through adjustments in the CBI program and managing tax expenditures [pp. 2, 3].",
+            "5": "Social services adjustments are evident in the discussions on pension reforms and the need to manage social security funds sustainably [pp. 2, 3].",
+            "1.1": "Fiscal discipline is emphasized through consolidation efforts aimed at reducing the fiscal deficit and managing public debt [pp. 2, 3].",
+            "1.2": "Public sector wage adjustments are noted, with efforts to contain wage bills despite fiscal pressures [pp. 2, 3].",
+            "1.3": "Subsidy reforms are implied in the context of fiscal consolidation, though specific subsidy cuts are not detailed [pp. 2, 3].",
+            "1.4": "Privatisation and reform efforts are suggested in the management of state-owned enterprises and public banks to improve efficiency [pp. 2, 3].",
+            "1.5": "Labour market reforms are indicated by the need to align labour skills with market demands, suggesting flexibility and adjustments in employment policies [pp. 2, 3].",
+            "2.1": "Consumption taxes and VAT adjustments are discussed as part of fiscal strategies to manage the deficit [pp. 2, 3].",
+            "2.2": "Efforts to manage tax expenditures and improve the CBI program are highlighted as part of broader fiscal reforms [pp. 2, 3].",
+            "2.3": "Policies favouring financial capital are not explicitly mentioned, but financial sector reforms suggest a focus on improving fiscal and financial stability [pp. 2, 3].",
+            "5.1": "Social protection measures are under review, with plans to establish a Sovereign Wealth Fund to manage CBI revenues and support social funds [pp. 2, 3].",
+            "5.2": "Pension reforms are planned to address long-term fiscal risks associated with underfunded liabilities [pp. 2, 3].",
+            "5.3": "Discussions on social security contributions focus on financial sustainability and managing employer contributions [pp. 2, 3].",
+            "5.4": "Fees for public services are implicated in the broader fiscal management strategies, though specific fee adjustments are not detailed [pp. 2, 3].",
+            "5.5": "Health expenditure cuts are part of the fiscal consolidation efforts, with an emphasis on efficiency and managing public health budgets [pp. 2, 3].",
+            "5.6": "Education expenditure rationalization is discussed as part of public sector efficiency improvements [pp. 2, 3]."
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Costa Rica: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Costa Rica",
@@ -2396,7 +2478,66 @@
       "stock_no": "1CRIEA2025001",
       "issn": "1934-7685"
     },
-    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/13/Costa-Rica-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-566938"
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/05/13/Costa-Rica-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-566938",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "Costa Rica's Article IV consultation highlights austerity with ongoing fiscal consolidation and public debt management. Tax reforms aim to enhance revenue efficiency and equity. Climate considerations are integrated into public investments, enhancing resilience against natural disasters.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ]
+        }
+      }
+    ]
   },
   {
     "title": "Guyana: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Guyana",
