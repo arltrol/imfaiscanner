@@ -344,10 +344,8 @@
     }
 
     function toggleTheme(theme) {
-      console.log('Toggling theme:', theme);
       if (selectedThemes.has(theme)) selectedThemes.delete(theme);
       else selectedThemes.add(theme);
-      console.log('Selected themes:', [...selectedThemes]);
       currentPage = 1;
       renderPage();
     }
@@ -358,28 +356,22 @@
     }
 
     function toggleSubtheme(sub) {
-      console.log('Toggling subtheme:', sub);
       if (selectedSubthemes.has(sub)) selectedSubthemes.delete(sub);
       else selectedSubthemes.add(sub);
-      console.log('Selected subthemes:', [...selectedSubthemes]);
       currentPage = 1;
       renderPage();
     }
 
     function toggleRegion(region) {
-      console.log('Toggling region:', region);
       if (selectedRegions.has(region)) selectedRegions.delete(region);
       else selectedRegions.add(region);
-      console.log('Selected regions:', [...selectedRegions]);
       currentPage = 1;
       renderPage();
     }
 
     function toggleYear(year) {
-      console.log('Toggling year:', year);
       if (selectedYears.has(year)) selectedYears.delete(year);
       else selectedYears.add(year);
-      console.log('Selected years:', [...selectedYears]);
       currentPage = 1;
       renderPage();
     }
