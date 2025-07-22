@@ -159,6 +159,9 @@
     <aside id="sidebar">
       <div class="filter-group">
         <h3>By theme</h3>
+        <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-bottom: 8px;">
+        <input type="checkbox" onchange="toggleAllSubthemes(this)"> Show all subtopics
+        </label>
         <div id="themeList"></div>
       </div>
       <div class="filter-group">
@@ -301,7 +304,7 @@
         div.innerHTML = `
           <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
           <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
-          <div style="cursor: pointer; color: #003366; font-size: 0.85em; margin-left: 4px;" onclick="toggleSub('${id}')">+ Show subthemes</div>
+          <div class="toggle-subtheme-link" style="cursor: pointer; color: #003366; font-size: 0.85em; margin-left: 4px;" onclick="toggleSub('${id}')">+ Show subthemes</div>
         `;
         themeList.appendChild(div);
         const subContainer = document.getElementById(`sub_${id}`);
@@ -349,6 +352,17 @@
       currentPage = 1;
       renderPage();
     }
+
+    function toggleAllSubthemes(checkbox) {
+  const show = checkbox.checked;
+  document.querySelectorAll('[id^="sub_"]').forEach(el => {
+    el.style.display = show ? 'block' : 'none';
+  });
+  document.querySelectorAll('.toggle-subtheme-link').forEach(el => {
+    el.style.display = show ? 'none' : 'inline';
+  });
+}
+
 
     function toggleSub(id) {
       const el = document.getElementById(`sub_${id}`);
