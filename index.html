@@ -272,10 +272,16 @@ function renderFilters() {
   const themeList = document.getElementById('themeList');
   themeList.innerHTML = '';
   Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
-    const themeCount = reports.filter(r => {
-      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-      return ai?.content?.top_themes?.some(t => t.name === theme);
-    }).length;
+   const subCodes = subthemes.map(getSubthemeCode);
+const themeCount = reports.filter(r => {
+  const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+  const tops = ai?.content?.top_themes?.map(t => t.name) || [];
+  const all = ai?.content?.all_themes || [];
+  const matchesTop = tops.includes(theme);
+  const matchesSub = subCodes.some(code => all.includes(code));
+  return matchesTop || matchesSub;
+}).length;
+
     const div = document.createElement('div');
     const id = theme.replace(/\s+/g, '_');
     div.className = 'filter-item';
