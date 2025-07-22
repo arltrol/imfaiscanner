@@ -225,7 +225,49 @@ fetch('reports_scrapev2.json')
     renderFilters();
     renderPage();
   });
+function getSubthemeCode(sub) {
+  const mapping = {
+    "Fiscal consolidation": "1.1",
+    "Wage bill cuts": "1.2",
+    "Subsidy reform": "1.3",
+    "Privatisation": "1.4",
+    "Labour flexibilisation": "1.5",
+    "VAT": "2.1",
+    "Income tax": "2.2",
+    "Corporate tax": "2.3",
+    "Informal sector": "2.3", // mapped roughly
+    "Property tax": "2.3", // grouped here
+    "Climate finance": "3.1",
+    "Carbon pricing": "3.1",
+    "Environmental policy": "3.2",
+    "Gender impacts": "4.1",
+    "Poverty and inequality": "4.3",
+    "Labor markets": "4.3",
+    "Social unrest": "4.3",
+    "Health": "5.5",
+    "Education": "5.6",
+    "Social protection": "5.1",
+    "FDI": "6.1",
+    "Exports": "6.1",
+    "Remittances": "6.1",
+    "Debt restructuring": "6.3",
+    "Trade policy": "6.3",
+    "Financial inclusion": "7.5",
+    "Banking sector": "7.1",
+    "Capital markets": "7.4",
+    "Monetary policy": "7.2",
+    "Digital taxation": "8.1",
+    "Digital infrastructure": "8.1",
+    "Digital finance": "8.1",
+    "Transparency": "9.1",
+    "Corruption": "9.1",
+    "Policy credibility": "9.1",
+    "Political economy": "9.2"
+  };
+  return mapping[sub] || '';
+}
 
+   
 function renderFilters() {
   const themeList = document.getElementById('themeList');
   themeList.innerHTML = '';
@@ -247,7 +289,7 @@ function renderFilters() {
     subthemes.forEach(sub => {
       const subCount = reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        return ai?.content?.tags?.includes(sub);
+        return ai?.content?.all_themes?.includes(getSubthemeCode(sub));
       }).length;
       const subDiv = document.createElement('div');
       subDiv.className = 'filter-item';
@@ -331,7 +373,7 @@ function filterReports() {
   return reports.filter(r => {
     const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
     const top = ai?.content?.top_themes?.map(t => t.name) || [];
-    const tags = ai?.content?.tags || [];
+  const tags = ai?.content?.all_themes || [];
     const matchesThemes = [...selectedThemes].every(sel => top.includes(sel));
     const matchesSubs = [...selectedSubthemes].every(st => tags.includes(st));
     const regionVal = (r.region || '').trim().toLowerCase();
