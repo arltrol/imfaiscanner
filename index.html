@@ -290,7 +290,7 @@
           const matchesTop = tops.includes(theme);
           const matchesSub = subCodes.some(code => all.includes(code));
           const matchesNum = all.includes(themeNum);
-          return matchesTop || matchesSub || matchesNum;
+          return matchesTop || matchesSub || matchesNum || !ai; // Include entries without AI analysis
         }).length;
 
         const div = document.createElement('div');
@@ -306,7 +306,7 @@
         subthemes.forEach(sub => {
           const subCount = reports.filter(r => {
             const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-            return ai?.content?.all_themes?.includes(getSubthemeCode(sub));
+            return ai?.content?.all_themes?.includes(getSubthemeCode(sub)) || !ai;
           }).length;
           const subDiv = document.createElement('div');
           subDiv.className = 'filter-item';
@@ -389,7 +389,8 @@
     function filterReports() {
       return reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        if (!ai || !ai.content) return false;
+        if (!ai && selectedThemes.size === 0 && selectedSubthemes.size === 0) return true; // Show all if no theme/subtheme filters
+        if (!ai) return false; // Exclude if no AI and filters are applied
         const top = ai.content.top_themes.map(t => t.name) || [];
         const all = ai.content.all_themes || [];
         const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].every(theme => {
@@ -409,10 +410,10 @@
       const visible = filterReports();
       const start = (currentPage - 1) * perPage;
       const end = start + perPage;
-      updateResultsCount(visible.length, start, end);
+      updateResultsCount(reports.length, start, end); // Use total reports length
       const list = document.getElementById('reportList');
       list.innerHTML = '';
-      visible.slice(start, end).forEach(r => {
+      reports.slice(start, end).forEach(r => { // Use all reports, not just visible
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         const content = ai?.content || {};
         const el = document.createElement('div');
@@ -423,8 +424,8 @@
           </div>
           <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
           <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
-          <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ')}</div>
-          <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+          <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
+          <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
           <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
           <div class="publication-details">
             Pages: ${r.publication_details?.pages || 'N/A'}<br/>
@@ -439,7 +440,7 @@
         `;
         list.appendChild(el);
       });
-      updatePagination(visible.length);
+      updatePagination(reports.length); // Use total reports length
     }
 
     function toggleDetails(el) {
