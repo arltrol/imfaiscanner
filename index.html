@@ -560,12 +560,15 @@ function closeThemeModal() {
   z-index: 10000;
   border-radius: 10px;
   overscroll-behavior: contain;
+  position: fixed;
 ">
+  <div style="position: absolute; top: 12px; right: 16px; font-size: 1.4em; cursor: pointer; color: #666;" onclick="closeThemeModal()" title="Close">×</div>
   <div id="themeModalContent" style="font-size: 0.95em; color: #333;"></div>
   <div style="text-align:right; margin-top:20px;">
     <button onclick="closeThemeModal()" style="padding:6px 12px;">Close</button>
   </div>
 </div>
+
 
 
 </body>
