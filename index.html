@@ -398,25 +398,33 @@
     }
 
     function filterReports() {
-      console.log('Filtering with:', { themes: [...selectedThemes], subthemes: [...selectedSubthemes], regions: [...selectedRegions], years: [...selectedYears] });
-      if (selectedThemes.size === 0 && selectedSubthemes.size === 0 && selectedRegions.size === 0 && selectedYears.size === 0) return reports; // Show all by default
-      return reports.filter(r => {
-        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        if (!ai || !ai.content) return false; // Exclude unanalyzed if any filter is applied
-        const top = ai.content.top_themes.map(t => t.name) || [];
-        const all = ai.content.all_themes || [];
-        const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
-          const themeNum = getThemeNumber(theme);
-          return top.includes(theme) || all.includes(themeNum);
-        });
-        const matchesSubs = selectedSubthemes.size === 0 || [...selectedSubthemes].some(sub => all.includes(getSubthemeCode(sub)));
-        const regionVal = (r.region || '').trim().toLowerCase();
-        const matchesRegion = selectedRegions.size === 0 || [...selectedRegions].some(sel => sel.toLowerCase() === regionVal);
-        const reportYear = r.publication_date?.substring(0, 4);
-        const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
-        return matchesThemes && matchesSubs && matchesRegion && matchesYear;
-      });
-    }
+  const isFilteringThemes = selectedThemes.size > 0 || selectedSubthemes.size > 0;
+
+  return reports.filter(r => {
+    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const top = ai?.content?.top_themes?.map(t => t.name) || [];
+    const all = ai?.content?.all_themes || [];
+
+    const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
+      const themeNum = getThemeNumber(theme);
+      return top.includes(theme) || all.includes(themeNum);
+    });
+
+    const matchesSubs = selectedSubthemes.size === 0 || [...selectedSubthemes].some(sub => all.includes(getSubthemeCode(sub)));
+
+    const regionVal = (r.region || '').trim().toLowerCase();
+    const matchesRegion = selectedRegions.size === 0 || [...selectedRegions].some(sel => sel.toLowerCase() === regionVal);
+
+    const reportYear = r.publication_date?.substring(0, 4);
+    const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
+
+    // Only require AI analysis when filtering by themes or subthemes
+    if (isFilteringThemes && (!ai || !ai.content)) return false;
+
+    return matchesThemes && matchesSubs && matchesRegion && matchesYear;
+  });
+}
+
 
     
     function renderPage() {
