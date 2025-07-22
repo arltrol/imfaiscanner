@@ -285,12 +285,13 @@
         const themeNum = getThemeNumber(theme);
         const themeCount = reports.filter(r => {
           const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-          const tops = ai?.content?.top_themes?.map(t => t.name) || [];
-          const all = ai?.content?.all_themes || [];
+          if (!ai || !ai.content) return false;
+          const tops = ai.content.top_themes?.map(t => t.name) || [];
+          const all = ai.content.all_themes || [];
           const matchesTop = tops.includes(theme);
           const matchesSub = subCodes.some(code => all.includes(code));
           const matchesNum = all.includes(themeNum);
-          return matchesTop || matchesSub || matchesNum || !ai; // Include entries without AI analysis
+          return matchesTop || matchesSub || matchesNum;
         }).length;
 
         const div = document.createElement('div');
@@ -306,7 +307,8 @@
         subthemes.forEach(sub => {
           const subCount = reports.filter(r => {
             const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-            return ai?.content?.all_themes?.includes(getSubthemeCode(sub)) || !ai;
+            if (!ai || !ai.content) return false;
+            return ai.content.all_themes?.includes(getSubthemeCode(sub));
           }).length;
           const subDiv = document.createElement('div');
           subDiv.className = 'filter-item';
@@ -387,10 +389,10 @@
     }
 
     function filterReports() {
+      if (selectedThemes.size === 0 && selectedSubthemes.size === 0) return reports; // Show all by default
       return reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        if (!ai && selectedThemes.size === 0 && selectedSubthemes.size === 0) return true; // Show all if no theme/subtheme filters
-        if (!ai) return false; // Exclude if no AI and filters are applied
+        if (!ai || !ai.content) return false; // Exclude unanalyzed if filters applied
         const top = ai.content.top_themes.map(t => t.name) || [];
         const all = ai.content.all_themes || [];
         const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].every(theme => {
@@ -413,7 +415,7 @@
       updateResultsCount(reports.length, start, end); // Use total reports length
       const list = document.getElementById('reportList');
       list.innerHTML = '';
-      reports.slice(start, end).forEach(r => { // Use all reports, not just visible
+      reports.slice(start, end).forEach(r => { // Use all reports for display
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         const content = ai?.content || {};
         const el = document.createElement('div');
@@ -440,7 +442,7 @@
         `;
         list.appendChild(el);
       });
-      updatePagination(reports.length); // Use total reports length
+      updatePagination(reports.length);
     }
 
     function toggleDetails(el) {
