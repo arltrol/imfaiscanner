@@ -344,9 +344,10 @@
     }
 
     function toggleTheme(theme) {
-      console.log('Toggling theme:', theme); // Debug
+      console.log('Toggling theme:', theme);
       if (selectedThemes.has(theme)) selectedThemes.delete(theme);
       else selectedThemes.add(theme);
+      console.log('Selected themes:', [...selectedThemes]);
       currentPage = 1;
       renderPage();
     }
@@ -357,25 +358,28 @@
     }
 
     function toggleSubtheme(sub) {
-      console.log('Toggling subtheme:', sub); // Debug
+      console.log('Toggling subtheme:', sub);
       if (selectedSubthemes.has(sub)) selectedSubthemes.delete(sub);
       else selectedSubthemes.add(sub);
+      console.log('Selected subthemes:', [...selectedSubthemes]);
       currentPage = 1;
       renderPage();
     }
 
     function toggleRegion(region) {
-      console.log('Toggling region:', region); // Debug
+      console.log('Toggling region:', region);
       if (selectedRegions.has(region)) selectedRegions.delete(region);
       else selectedRegions.add(region);
+      console.log('Selected regions:', [...selectedRegions]);
       currentPage = 1;
       renderPage();
     }
 
     function toggleYear(year) {
-      console.log('Toggling year:', year); // Debug
+      console.log('Toggling year:', year);
       if (selectedYears.has(year)) selectedYears.delete(year);
       else selectedYears.add(year);
+      console.log('Selected years:', [...selectedYears]);
       currentPage = 1;
       renderPage();
     }
@@ -394,13 +398,14 @@
     }
 
     function filterReports() {
+      console.log('Filtering with:', { themes: [...selectedThemes], subthemes: [...selectedSubthemes], regions: [...selectedRegions], years: [...selectedYears] });
       if (selectedThemes.size === 0 && selectedSubthemes.size === 0 && selectedRegions.size === 0 && selectedYears.size === 0) return reports; // Show all by default
       return reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         if (!ai || !ai.content) return false; // Exclude unanalyzed if any filter is applied
         const top = ai.content.top_themes.map(t => t.name) || [];
         const all = ai.content.all_themes || [];
-        const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].every(theme => {
+        const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
           const themeNum = getThemeNumber(theme);
           return top.includes(theme) || all.includes(themeNum);
         });
@@ -417,10 +422,10 @@
       const visible = filterReports();
       const start = (currentPage - 1) * perPage;
       const end = start + perPage;
-      updateResultsCount(reports.length, start, end); // Use total reports length
+      updateResultsCount(reports.length, start, end); // Use total reports length for pagination
       const list = document.getElementById('reportList');
       list.innerHTML = '';
-      reports.slice(start, end).forEach(r => { // Use all reports for display
+      visible.slice(start, end).forEach(r => { // Use visible for display
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         const content = ai?.content || {};
         const el = document.createElement('div');
@@ -447,7 +452,7 @@
         `;
         list.appendChild(el);
       });
-      updatePagination(reports.length);
+      updatePagination(reports.length); // Use total reports length for pagination
     }
 
     function toggleDetails(el) {
