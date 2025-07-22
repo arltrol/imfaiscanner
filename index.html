@@ -289,7 +289,7 @@
           const all = ai?.content?.all_themes || [];
           const matchesTop = tops.includes(theme);
           const matchesSub = subCodes.some(code => all.includes(code));
-          const matchesNum = all.includes(themeNum); // Check top-level number
+          const matchesNum = all.includes(themeNum);
           return matchesTop || matchesSub || matchesNum;
         }).length;
 
@@ -389,9 +389,10 @@
     function filterReports() {
       return reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        const top = ai?.content?.top_themes?.map(t => t.name) || [];
-        const all = ai?.content?.all_themes || [];
-        const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
+        if (!ai || !ai.content) return false;
+        const top = ai.content.top_themes.map(t => t.name) || [];
+        const all = ai.content.all_themes || [];
+        const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].every(theme => {
           const themeNum = getThemeNumber(theme);
           return top.includes(theme) || all.includes(themeNum);
         });
