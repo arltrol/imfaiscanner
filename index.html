@@ -167,7 +167,8 @@
         <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-bottom: 8px;">
         <input type="checkbox" onchange="toggleAllSubthemes(this)"> Show all subtopics
         </label>
-        <div id="themeList"></div>
+       
+
       </div>
       <div class="filter-group">
         <h3>By region</h3>
@@ -497,7 +498,7 @@
         container.appendChild(btn);
       }
     }
-    function showThemeSummaries(stockNo) {
+   function showThemeSummaries(stockNo) {
   const report = reports.find(r => r.publication_details?.stock_no === stockNo);
   const summaries = report?.ai_analysis?.find(a => a.model === 'gpt-4-turbo')?.content?.theme_summaries;
 
@@ -506,19 +507,30 @@
     return;
   }
 
-  let html = '';
+  let html = `<h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Theme Summaries</h2>`;
+
   for (const key of Object.keys(summaries).sort()) {
-    const isMain = /^[1-9]$/.test(key); // main themes like "1", "2"
-    html += `<div style="margin-bottom:10px;">
-      <strong style="font-size:${isMain ? '1.1em' : '1em'};">${key}:</strong>
-      <div style="margin-top:2px; padding-left:8px;">${summaries[key]}</div>
+    const isMain = /^[1-9]$/.test(key);
+    const isSub = key.includes('.');
+    html += `<div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">
+      <strong style="font-size: ${isMain ? '1.05em' : '0.98em'};">${key}</strong>
+      <div style="margin-top: 4px;">${summaries[key]}</div>
     </div>`;
   }
 
-  document.getElementById('themeModalContent').innerHTML = html;
-  document.getElementById('themeModal').style.display = 'block';
+  const modal = document.getElementById('themeModal');
+  const content = document.getElementById('themeModalContent');
+  content.innerHTML = html;
+  modal.style.display = 'block';
+  modal.scrollTop = 0;
+  document.body.style.overflow = 'hidden'; // prevent background scroll
 }
 
+
+function closeThemeModal() {
+  document.getElementById('themeModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
 
 
   </script>
@@ -529,14 +541,30 @@
     <p style="margin: 0;">Taxonomy and funding by the <a href="https://www.brettonwoodsproject.org/" target="_blank" style="color: #003366; text-decoration: underline;">Bretton Woods Project</a>.</p>
     <p style="margin: 12px 0 0; font-size: 0.85em; color: #666;"><strong>Disclaimer:</strong> AI-generated content may contain errors or omissions. Always refer to the original IMF reports for authoritative information.</p>
   </footer>
-  <div id="themeModal" style="display:none; position:fixed; top:5%; left:50%; transform:translateX(-50%);
-  width: 90%; height: 90%; overflow-y: auto; background:#fff; border:1px solid #ccc; padding:20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index:10000; border-radius: 6px;">
-  <div id="themeModalContent" style="white-space: pre-wrap; font-size: 0.95em; color: #333;"></div>
+<div id="themeModal" style="
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  max-width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 10000;
+  border-radius: 10px;
+  overscroll-behavior: contain;
+">
+  <div id="themeModalContent" style="font-size: 0.95em; color: #333;"></div>
   <div style="text-align:right; margin-top:20px;">
-    <button onclick="document.getElementById('themeModal').style.display='none'" style="padding:6px 12px;">Close</button>
+    <button onclick="closeThemeModal()" style="padding:6px 12px;">Close</button>
   </div>
 </div>
+
 
 </body>
 </html>
