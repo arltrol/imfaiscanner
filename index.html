@@ -136,6 +136,11 @@
       color: white;
       border-color: #003366;
     }
+    #themeList .filter-item div label {
+  margin-left: 12px;
+  font-size: 0.9em;
+  color: #444;
+}
     @media (max-width: 768px) {
       #container {
         flex-direction: column;
@@ -304,7 +309,6 @@
         div.innerHTML = `
           <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
           <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
-          <div class="toggle-subtheme-link" style="cursor: pointer; color: #003366; font-size: 0.85em; margin-left: 4px;" onclick="toggleSub('${id}')">+ Show subthemes</div>
         `;
         themeList.appendChild(div);
         const subContainer = document.getElementById(`sub_${id}`);
@@ -363,11 +367,6 @@
   });
 }
 
-
-    function toggleSub(id) {
-      const el = document.getElementById(`sub_${id}`);
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
 
     function toggleSubtheme(sub) {
       if (selectedSubthemes.has(sub)) selectedSubthemes.delete(sub);
