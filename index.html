@@ -475,7 +475,7 @@ countryList.forEach(country => {
     // Only require AI analysis when filtering by themes or subthemes
     if (isFilteringThemes && (!ai || !ai.content)) return false;
 
-    return matchesThemes && matchesSubs && matchesRegion && matchesYear;
+    return matchesThemes && matchesSubs && matchesRegion && matchesYear && matchesCountry;
   });
 }
 
