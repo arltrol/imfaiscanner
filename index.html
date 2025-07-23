@@ -510,8 +510,8 @@ countryList.forEach(country => {
         Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
         Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
         Subtopics: ${(content.all_themes || []).filter(t => t.includes('.')).join(', ') || 'N/A'}<br/>
-        📄 PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
-        🌐 Original Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
+        📄 Original IMF PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
+        🌐 Original IMF Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
         ${content.theme_summaries ? `<a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a>` : ''}
       </div>
     `;
