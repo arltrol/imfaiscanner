@@ -216,65 +216,60 @@
     let selectedYears = new Set();
     let selectedSubthemes = new Set();
     let selectedCountry = "";
+    
 
 
     const THEME_MAP = {
   "Austerity": [
-    "1.1 Fiscal discipline / Fiscal consolidation / Fiscal sustainability",
-    "1.2 Wage Bill / Public Sector Wages / Civil Service",
+    "1.1 Fiscal discipline/Fiscal consolidation/Fiscal sustainability/Credible fiscal frameworks/Fiscal constraint/adjustment/cuts",
+    "1.2 Wage Bill/Public Sector Wages/Civil Service",
     "1.3 Subsidies",
-    "1.4 Privatisation",
+    "1.4 Privatisation, Commercialization, Reform of Public Services and State Owned Enterprises (SOEs), Public Divestiture",
     "1.5 Labour flexibilisation"
   ],
   "Tax": [
-    "2.1 Regressive taxes / VAT / Indirect tax",
-    "2.2 Corporate income tax",
-    "2.3 Personal income tax",
-    "2.4 Progressive tax measures",
-    "2.5 Property and wealth taxes",
-    "2.6 Tax exemptions / loopholes / evasion / informal sector"
+    "2.1 Consumption taxes/VAT/Income tax/Wealth tax/Corporate tax",
+    "2.2 Tax Expenditures and Illicit Financial Flows (IFFs)",
+    "2.3 Tax Policies Favouring Financial Capital"
   ],
   "Climate and Environment": [
-    "3.1 Climate finance",
-    "3.2 Carbon pricing",
-    "3.3 Environmental policy"
+    "3.1 Climate policies",
+    "3.2 Land use, forests and natural resource management"
   ],
   "Social and Gendered Impacts": [
-    "4.1 Gender impacts",
-    "4.2 Poverty and inequality",
-    "4.3 Labour markets",
-    "4.4 Social unrest"
+    "4.1 Gender policies/impact on women, girls, gender marginalised people",
+    "4.2 Care Economy / Unpaid and Paid Care Work",
+    "4.3 Distributional impacts/social impacts"
   ],
   "Social Services": [
-    "5.1 Health",
-    "5.2 Education",
-    "5.3 Social protection"
+    "5.1 Social protection/Social safety net/ targeting/ targeted/ registry/ies",
+    "5.2 Pension/Social Security Reforms",
+    "5.3 Social Security Contributions/Tax Wedge",
+    "5.4 Fees for Public Services",
+    "5.5 Cuts to Health Expenditure/Rationalization/Efficiency",
+    "5.6 Cuts to Education Expenditure/Rationalization/Efficiency"
   ],
   "Private and External Sector": [
-    "6.1 FDI",
-    "6.2 Exports",
-    "6.3 Remittances",
-    "6.4 Debt restructuring",
-    "6.5 Trade policy"
+    "6.1 External sector/business-friendly environment and FDI (Foreign Direct Investment)",
+    "6.2 PPPs - Public Private Partnerships/Power Purchase Agreements",
+    "6.3 Foreign Currency Debt and External Vulnerabilities"
   ],
   "Financialisation": [
-    "7.1 Financial inclusion",
-    "7.2 Banking sector",
-    "7.3 Capital markets"
+    "7.1 Deregulation of Financial Markets",
+    "7.2 Monetary Policies Favouring Financial Sector Growth",
+    "7.3 Corporate Governance and Shareholder Value Orientation",
+    "7.4 Expansion of Credit and Debt Markets",
+    "7.5 Financial inclusion"
   ],
-  "Monetary Policy and Digitisation": [
-    "8.1 Monetary policy",
-    "8.2 Digital taxation",
-    "8.3 Digital infrastructure",
-    "8.4 Digital finance"
+  "Digitisation": [
+    "8.1 Digitalisation/AI/platform economies"
   ],
   "Governance and Political Economy": [
-    "9.1 Transparency",
-    "9.2 Corruption",
-    "9.3 Policy credibility",
-    "9.4 Political economy"
+    "9.1 Governance/legal reforms",
+    "9.2 Political economy"
   ]
 };
+
 
 
     const ALL_REGIONS = [
