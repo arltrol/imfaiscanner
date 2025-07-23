@@ -208,16 +208,63 @@
     let selectedSubthemes = new Set();
 
     const THEME_MAP = {
-      "Austerity": ["Fiscal consolidation", "Wage bill cuts", "Subsidy reform"],
-      "Tax": ["VAT", "Income tax", "Corporate tax", "Informal sector", "Property tax"],
-      "Climate and environment": ["Climate finance", "Carbon pricing", "Environmental policy"],
-      "Social and Gendered impacts": ["Gender impacts", "Poverty and inequality", "Labor markets", "Social unrest"],
-      "Social Services": ["Health", "Education", "Social protection"],
-      "Private and external sector": ["FDI", "Exports", "Remittances", "Debt restructuring", "Trade policy"],
-      "Financialisation": ["Financial inclusion", "Banking sector", "Capital markets", "Monetary policy"],
-      "Digitisation": ["Digital taxation", "Digital infrastructure", "Digital finance"],
-      "Governance": ["Transparency", "Corruption", "Policy credibility", "Political economy"]
-    };
+  "Austerity": [
+    "1.1 Fiscal discipline / Fiscal consolidation / Fiscal sustainability",
+    "1.2 Wage Bill / Public Sector Wages / Civil Service",
+    "1.3 Subsidies",
+    "1.4 Privatisation",
+    "1.5 Labour flexibilisation"
+  ],
+  "Tax": [
+    "2.1 Regressive taxes / VAT / Indirect tax",
+    "2.2 Corporate income tax",
+    "2.3 Personal income tax",
+    "2.4 Progressive tax measures",
+    "2.5 Property and wealth taxes",
+    "2.6 Tax exemptions / loopholes / evasion / informal sector"
+  ],
+  "Climate and Environment": [
+    "3.1 Climate finance",
+    "3.2 Carbon pricing",
+    "3.3 Environmental policy"
+  ],
+  "Social and Gendered Impacts": [
+    "4.1 Gender impacts",
+    "4.2 Poverty and inequality",
+    "4.3 Labour markets",
+    "4.4 Social unrest"
+  ],
+  "Social Services": [
+    "5.1 Health",
+    "5.2 Education",
+    "5.3 Social protection"
+  ],
+  "Private and External Sector": [
+    "6.1 FDI",
+    "6.2 Exports",
+    "6.3 Remittances",
+    "6.4 Debt restructuring",
+    "6.5 Trade policy"
+  ],
+  "Financialisation": [
+    "7.1 Financial inclusion",
+    "7.2 Banking sector",
+    "7.3 Capital markets"
+  ],
+  "Monetary Policy and Digitisation": [
+    "8.1 Monetary policy",
+    "8.2 Digital taxation",
+    "8.3 Digital infrastructure",
+    "8.4 Digital finance"
+  ],
+  "Governance and Political Economy": [
+    "9.1 Transparency",
+    "9.2 Corruption",
+    "9.3 Policy credibility",
+    "9.4 Political economy"
+  ]
+};
+
 
     const ALL_REGIONS = [
       "Africa", "Asia", "Europe", "Latin America", "North America", "Oceania"
@@ -233,61 +280,26 @@
       .catch(error => console.error('Error fetching data:', error));
 
     function getSubthemeCode(sub) {
-      const mapping = {
-        "Fiscal consolidation": "1.1",
-        "Wage bill cuts": "1.2",
-        "Subsidy reform": "1.3",
-        "Privatisation": "1.4",
-        "Labour flexibilisation": "1.5",
-        "VAT": "2.1",
-        "Income tax": "2.2",
-        "Corporate tax": "2.3",
-        "Informal sector": "2.3",
-        "Property tax": "2.3",
-        "Climate finance": "3.1",
-        "Carbon pricing": "3.1",
-        "Environmental policy": "3.2",
-        "Gender impacts": "4.1",
-        "Poverty and inequality": "4.3",
-        "Labor markets": "4.3",
-        "Social unrest": "4.3",
-        "Health": "5.5",
-        "Education": "5.6",
-        "Social protection": "5.1",
-        "FDI": "6.1",
-        "Exports": "6.1",
-        "Remittances": "6.1",
-        "Debt restructuring": "6.3",
-        "Trade policy": "6.3",
-        "Financial inclusion": "7.5",
-        "Banking sector": "7.1",
-        "Capital markets": "7.4",
-        "Monetary policy": "7.2",
-        "Digital taxation": "8.1",
-        "Digital infrastructure": "8.1",
-        "Digital finance": "8.1",
-        "Transparency": "9.1",
-        "Corruption": "9.1",
-        "Policy credibility": "9.1",
-        "Political economy": "9.2"
-      };
-      return mapping[sub] || '';
-    }
+  const match = sub.match(/^(\d+\.\d+)/);
+  return match ? match[1] : '';
+}
+
 
     function getThemeNumber(theme) {
-      const map = {
-        "Austerity": "1",
-        "Tax": "2",
-        "Climate and environment": "3",
-        "Social and Gendered impacts": "4",
-        "Social Services": "5",
-        "Private and external sector": "6",
-        "Financialisation": "7",
-        "Digitisation": "8",
-        "Governance": "9"
-      };
-      return map[theme] || '';
-    }
+  const map = {
+    "Austerity": "1",
+    "Tax": "2",
+    "Climate and Environment": "3",
+    "Social and Gendered Impacts": "4",
+    "Social Services": "5",
+    "Private and External Sector": "6",
+    "Financialisation": "7",
+    "Monetary Policy and Digitisation": "8",
+    "Governance and Political Economy": "9"
+  };
+  return map[theme] || '';
+}
+
 
     function renderFilters() {
       const themeList = document.getElementById('themeList');
