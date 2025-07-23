@@ -176,6 +176,15 @@
         <h3>By region</h3>
         <div id="regionList"></div>
       </div>
+      
+<div class="filter-group">
+  <h3>By country</h3>
+  <select id="countrySelect" onchange="toggleCountry(this.value)" style="width: 100%; padding: 6px; font-size: 0.95em;">
+    <option value="">-- All Countries --</option>
+  </select>
+</div>
+
+      
       <div class="filter-group">
         <h3>By year</h3>
         <div id="yearList"></div>
@@ -206,6 +215,8 @@
     let selectedRegions = new Set();
     let selectedYears = new Set();
     let selectedSubthemes = new Set();
+    let selectedCountry = "";
+
 
     const THEME_MAP = {
   "Austerity": [
@@ -337,7 +348,9 @@
           subDiv.className = 'filter-item';
           subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
           subContainer.appendChild(subDiv);
+          
         });
+        
       });
 
       const regionList = document.getElementById('regionList');
@@ -363,7 +376,25 @@
         div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
         yearList.appendChild(div);
       });
+      // Country dropdown
+const countrySet = new Set(reports.map(r => r.country?.trim()).filter(Boolean));
+const countryList = Array.from(countrySet).sort();
+const countrySelect = document.getElementById('countrySelect');
+countryList.forEach(country => {
+  const count = reports.filter(r => r.country?.trim() === country).length;
+  const option = document.createElement('option');
+  option.value = country;
+  option.textContent = `${country} (${count})`;
+  countrySelect.appendChild(option);
+});
+
     }
+
+    function toggleCountry(country) {
+  selectedCountry = country;
+  currentPage = 1;
+  renderPage();
+}
 
     function toggleTheme(theme) {
       if (selectedThemes.has(theme)) selectedThemes.delete(theme);
@@ -418,6 +449,7 @@
     }
 
     function filterReports() {
+
   const isFilteringThemes = selectedThemes.size > 0 || selectedSubthemes.size > 0;
 
   return reports.filter(r => {
@@ -437,7 +469,9 @@
 
     const reportYear = r.publication_date?.substring(0, 4);
     const matchesYear = selectedYears.size === 0 || selectedYears.has(reportYear);
+    const matchesCountry = !selectedCountry || (r.country || '').trim() === selectedCountry;
 
+    
     // Only require AI analysis when filtering by themes or subthemes
     if (isFilteringThemes && (!ai || !ai.content)) return false;
 
