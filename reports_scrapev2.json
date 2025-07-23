@@ -21,11 +21,20 @@
         "model": "gpt-4-turbo",
         "content": {
           "top_themes": [
-            "1. Austerity",
-            "2. Tax",
-            "3. Climate and environment"
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
           ],
-          "summary": "The analysis highlights Brazil's commitment to austerity, tax reforms, and climate policies. Austerity measures focus on fiscal discipline and public sector wage control. Tax reforms aim to enhance system progressivity and efficiency, particularly through VAT and PIT reforms. Climate policies emphasize reducing deforestation and transitioning to sustainable energy, aligning with Brazil's NDC targets.",
+          "summary": "The analysis of Brazil's 2025 Article IV consultation reveals a focus on austerity measures, tax reforms, and climate and environmental policies. Austerity measures include fiscal discipline and public sector wage control. Tax reforms aim to enhance system progressivity and efficiency, particularly through VAT and personal income tax adjustments. The country's commitment to climate and environmental sustainability is evident in its Ecological Transformation Plan, targeting emission reductions and sustainable growth.",
           "all_themes": [
             "1",
             "1.1",
@@ -68,45 +77,45 @@
             "9.2"
           ],
           "theme_summaries": {
-            "1": "Austerity measures in Brazil focus on fiscal discipline, including budget cuts and public sector wage control [pp. 5, 9, 14].",
-            "2": "Tax reforms aim to enhance progressivity and efficiency, focusing on consumption taxes and reducing tax expenditures [pp. 5, 9].",
-            "3": "Climate policies include commitments to reduce deforestation and transition to sustainable energy sources [pp. 5, 9].",
-            "4": "Gender policies aim to address disparities and support inclusion through targeted interventions [pp. 5, 9].",
-            "5": "Social services reforms aim to rationalize expenditure and improve efficiency in public service delivery [pp. 5, 9].",
-            "6": "External sector policies aim to create a business-friendly environment and attract foreign direct investment [pp. 5, 9].",
-            "7": "Financialisation policies aim to regulate financial markets and support economic stability [pp. 5, 9].",
-            "8": "Digitisation efforts focus on enhancing technological infrastructure and supporting digital economy growth [pp. 5, 9].",
-            "9": "Governance reforms aim to improve legal frameworks and ensure effective implementation of policies [pp. 5, 9].",
-            "1.1": "Fiscal discipline is emphasized through measures like expenditure rationalization and budget cuts [pp. 5, 9].",
-            "1.2": "Public sector wages are managed through controls and adjustments to prevent excessive spending [pp. 5, 9].",
-            "1.3": "Subsidy reforms, particularly in energy, aim to reduce government expenditure and encourage market efficiency [pp. 5, 9].",
-            "1.4": "Privatization efforts focus on reducing public sector involvement in certain industries to boost efficiency [pp. 5, 9].",
-            "1.5": "Labour market reforms include measures to increase flexibility and reduce costs associated with employment [pp. 5, 9].",
-            "2.1": "Consumption taxes are adjusted to improve the tax system's efficiency and equity [pp. 5, 9].",
-            "2.2": "Efforts to reduce tax expenditures and illicit financial flows are part of broader fiscal reforms [pp. 5, 9].",
-            "2.3": "Policies favoring financial capital are scrutinized to ensure fair taxation and reduce loopholes [pp. 5, 9].",
-            "3.1": "Climate finance and policies focus on mitigation, adaptation, and supporting sustainable practices [pp. 5, 9].",
-            "3.2": "Land use and resource management policies aim to reduce environmental impact and promote sustainability [pp. 5, 9].",
-            "4.1": "Efforts to enhance gender equality focus on reducing barriers and supporting women's rights [pp. 5, 9].",
-            "4.2": "Care economy policies support recognition and investment in care services, improving social protection [pp. 5, 9].",
-            "4.3": "Social impact assessments measure the effects of policies on various demographic groups [pp. 5, 9].",
-            "5.1": "Social protection measures are adjusted to target the most vulnerable and ensure efficient resource allocation [pp. 5, 9].",
-            "5.2": "Pension reforms focus on sustainability and adjusting benefits to demographic changes [pp. 5, 9].",
-            "5.3": "Adjustments in social security contributions aim to balance employer contributions and fiscal sustainability [pp. 5, 9].",
-            "5.4": "Public service fees are managed to ensure accessibility and affordability of essential services [pp. 5, 9].",
-            "5.5": "Health expenditure reforms focus on rationalizing costs and improving service delivery in the public health sector [pp. 5, 9].",
-            "5.6": "Education expenditure is scrutinized to enhance efficiency and ensure equitable access to educational services [pp. 5, 9].",
-            "6.1": "FDI policies are designed to attract investment and support economic growth through a favorable business climate [pp. 5, 9].",
-            "6.2": "Public-private partnerships are utilized to leverage private investment in infrastructure and public services [pp. 5, 9].",
-            "6.3": "Management of foreign currency debt focuses on sustainability and reducing external vulnerabilities [pp. 5, 9].",
-            "7.1": "Regulations in financial markets focus on transparency, stability, and protecting investors [pp. 5, 9].",
-            "7.2": "Monetary policies are designed to support financial sector growth while ensuring inflation control [pp. 5, 9].",
-            "7.3": "Corporate governance reforms enhance accountability and promote sustainable business practices [pp. 5, 9].",
-            "7.4": "Credit and debt market policies aim to support economic growth while managing risks associated with high debt levels [pp. 5, 9].",
-            "7.5": "Financial inclusion initiatives aim to expand access to financial services and support economic participation [pp. 5, 9].",
-            "8.1": "Policies promoting digitalisation aim to increase connectivity, support innovation, and enhance service delivery [pp. 5, 9].",
-            "9.1": "Legal reforms focus on enhancing institutional frameworks and supporting effective governance [pp. 5, 9].",
-            "9.2": "Political economy considerations are integrated into policy evaluations to ensure social acceptability and sustainability [pp. 5, 9]."
+            "1": "Austerity measures in Brazil include fiscal discipline with a focus on reducing public sector wages and rationalizing expenditures. The government aims to achieve a zero primary deficit through spending cuts and revenue enhancements [pp. 5, 14, 20].",
+            "2": "Tax reforms focus on enhancing the progressivity and efficiency of the tax system, including significant changes to VAT and personal income tax [pp. 14, 20].",
+            "3": "Climate and environmental policies are robust, with the Ecological Transformation Plan aiming to reduce emissions and promote sustainable development [pp. 20, 30].",
+            "4": "Social and gender impacts are considered in policy making, with initiatives to reduce gender disparities and improve access to social services [pp. 20].",
+            "5": "Social services reforms include measures to improve the efficiency and coverage of social protection programs, with a focus on the most vulnerable populations [pp. 20].",
+            "6": "Private and external sector policies include measures to attract foreign direct investment and promote private sector development, enhancing economic growth [pp. 20].",
+            "7": "Financialisation includes policies to deregulate financial markets and promote financial sector growth, aiming to enhance access to finance and economic stability [pp. 20].",
+            "8": "Digitisation includes initiatives to promote the digital economy and enhance connectivity, supporting innovation and access to digital services [pp. 20].",
+            "9": "Governance reforms are implemented to improve the efficiency and transparency of government operations, enhancing public trust and service delivery [pp. 20].",
+            "1.1": "Fiscal discipline is emphasized through efforts to maintain a zero primary deficit, involving both expenditure cuts and revenue-raising measures [pp. 5, 14].",
+            "1.2": "Public sector wage bill control is part of austerity measures, with the government implementing a cap on real growth of the minimum wage to control expenditures [pp. 14, 20].",
+            "1.3": "Subsidy cuts are part of the fiscal consolidation efforts, particularly in energy and agricultural sectors, to streamline expenditures and reduce fiscal deficits [pp. 14].",
+            "1.4": "Privatisation and reform of public services are pursued to reduce public sector involvement and enhance efficiency, including in utilities and transport sectors [pp. 20].",
+            "1.5": "Labour flexibilisation includes reforms to make the labour market more adaptable to economic conditions, aiming to reduce unemployment and increase productivity [pp. 20].",
+            "2.1": "Consumption taxes like VAT are being reformed to improve tax system efficiency and fairness, with efforts to reduce exemptions and broaden the tax base [pp. 14].",
+            "2.2": "Tax expenditures and efforts to combat illicit financial flows are part of broader fiscal reforms to enhance revenue mobilization and reduce tax evasion [pp. 14].",
+            "2.3": "Tax policies favouring financial capital are adjusted to ensure a more equitable tax system that does not disproportionately benefit capital over labor [pp. 20].",
+            "3.1": "Climate policies include commitments to reduce greenhouse gas emissions and meet international climate targets, with significant investments in renewable energy [pp. 30].",
+            "3.2": "Land use and resource management reforms are implemented to reduce deforestation and promote sustainable land use practices [pp. 30].",
+            "4.1": "Gender policies focus on reducing the gender pay gap and enhancing female labor force participation through supportive measures and legal reforms [pp. 20].",
+            "4.2": "Care economy policies are strengthened to recognize and support unpaid care work, aiming to improve social protection and labor rights for caregivers [pp. 20].",
+            "4.3": "Distributional impacts of policies are assessed to ensure that social and economic measures do not disproportionately affect vulnerable groups [pp. 20].",
+            "5.1": "Social protection systems are reformed to enhance their sustainability and effectiveness, including better targeting and rationalization of benefits [pp. 20].",
+            "5.2": "Pension and social security reforms are implemented to ensure the long-term sustainability of these systems, with changes to eligibility and benefit levels [pp. 20].",
+            "5.3": "Social security contributions are adjusted to balance the needs of workers and employers, ensuring the financial health of social security systems [pp. 20].",
+            "5.4": "Fees for public services are regulated to ensure that essential services remain accessible to all, particularly the poor and vulnerable [pp. 20].",
+            "5.5": "Cuts to health expenditure are managed to ensure that public health services maintain their quality and accessibility despite budget constraints [pp. 20].",
+            "5.6": "Education expenditure is rationalized to ensure that public education systems remain effective and accessible, with a focus on improving educational outcomes [pp. 20].",
+            "6.1": "External sector strategies are developed to improve the business environment and attract more foreign investment, supporting economic diversification [pp. 20].",
+            "6.2": "Public-private partnerships are utilized to leverage private investment in infrastructure and public services, enhancing efficiency and service delivery [pp. 20].",
+            "6.3": "Foreign currency debt and external vulnerabilities are managed through prudent fiscal and monetary policies, ensuring external debt sustainability [pp. 20].",
+            "7.1": "Deregulation of financial markets is pursued to encourage competition and innovation in the financial sector, benefiting consumers and businesses [pp. 20].",
+            "7.2": "Monetary policies favouring financial sector growth are implemented to support economic expansion and stability, balancing the needs for inflation control and growth [pp. 20].",
+            "7.3": "Corporate governance and shareholder value orientation are promoted to ensure that companies operate efficiently and responsibly, benefiting shareholders and stakeholders [pp. 20].",
+            "7.4": "Expansion of credit and debt markets is facilitated to provide more financing options for consumers and businesses, supporting economic activity and growth [pp. 20].",
+            "7.5": "Financial inclusion strategies are enhanced to ensure that more people have access to financial services, reducing inequality and promoting economic participation [pp. 20].",
+            "8.1": "Digitalisation and AI policies are developed to leverage technology for economic growth and improved public services, ensuring that benefits are widely shared [pp. 20].",
+            "9.1": "Governance and legal reforms are pursued to strengthen institutions and legal frameworks, ensuring that they support economic development and protect citizens' rights [pp. 20].",
+            "9.2": "Political economy considerations are integrated into policy making to ensure that reforms are socially acceptable and effectively implemented [pp. 20]."
           }
         }
       }
@@ -134,11 +143,20 @@
         "model": "gpt-4-turbo",
         "content": {
           "top_themes": [
-            "1. Austerity",
-            "2. Tax",
-            "5. Social Services"
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
           ],
-          "summary": "The top themes in the article include Austerity, Tax, and Social Services. Austerity measures are discussed in terms of fiscal discipline and budget cuts. Tax issues focus on consumption taxes and corporate tax reforms. Social Services cover the impact of fiscal policies on social protection and public health expenditure.",
+          "summary": "The report discusses Singapore's economic strategies focused on austerity, tax reforms, and climate and environmental policies. Austerity measures are highlighted in fiscal discipline, while tax discussions emphasize broadening the tax base and addressing tax expenditures. Climate and environmental strategies are noted, particularly in investments towards sustainable infrastructure.",
           "all_themes": [
             "1",
             "1.1",
@@ -181,23 +199,45 @@
             "9.2"
           ],
           "theme_summaries": {
-            "1": "Austerity is a significant theme, with discussions on fiscal discipline and budget cuts aimed at reducing public debt and enhancing fiscal sustainability [pp. 5, 9, 14].",
-            "2": "Tax issues are prominent, focusing on consumption taxes and the need for progressive tax reforms to address inequality [pp. 6, 10].",
-            "5": "Social Services are examined in terms of their relationship with fiscal policies, particularly focusing on social protection and public health expenditures [pp. 15, 18].",
-            "1.1": "Fiscal discipline is highlighted as a key component of austerity, with measures such as budget cuts and fiscal consolidation to address deficits [pp. 5, 9].",
-            "1.2": "Public sector wages are examined under austerity measures, with a focus on reducing wage bills through hiring freezes and salary adjustments [pp. 10, 14].",
-            "1.3": "Subsidies, particularly energy subsidies, are discussed in terms of reduction strategies to align with fiscal sustainability goals [pp. 12, 15].",
-            "1.4": "Privatisation and reform of public services are explored as part of austerity measures, aiming to reduce public sector involvement and encourage private sector engagement [pp. 8, 13].",
-            "1.5": "Labour flexibilisation is considered within the context of austerity, discussing impacts on employment conditions and workforce regulations [pp. 7, 11].",
-            "2.1": "Consumption taxes, including VAT, are analyzed, with discussions on their regressive impact and the potential for reform to make taxation more progressive [pp. 6, 10].",
-            "2.2": "Tax expenditures and illicit financial flows are addressed, highlighting the challenges in tax evasion and the need for robust tax compliance measures [pp. 9, 13].",
-            "2.3": "Tax policies favoring financial capital are critiqued, with suggestions for more equitable tax systems that do not disproportionately benefit financial investors over labor [pp. 8, 12].",
-            "5.1": "Social protection is discussed, noting the impact of fiscal austerity on social safety nets and the challenges in maintaining adequate social support systems [pp. 16, 19].",
-            "5.2": "Pension reforms are explored, considering the sustainability of pension systems in the face of demographic changes and fiscal constraints [pp. 17, 20].",
-            "5.3": "The impact of fiscal policies on public service fees is analyzed, with a focus on how fee increases can affect access to essential services [pp. 18, 21].",
-            "5.4": "Health expenditure cuts are highlighted, discussing the potential consequences on public health services and the need for efficient healthcare spending [pp. 19, 22].",
-            "5.5": "Education expenditure rationalization is considered, evaluating the effects of budget cuts on educational services and the importance of investing in education for long-term social benefits [pp. 20, 23].",
-            "5.6": "Cuts to social security contributions are discussed, examining the implications for workers' rights and the sustainability of social security systems [pp. 21, 24]."
+            "1": "Austerity measures are emphasized through fiscal discipline and budgetary constraints, aligning with Singapore's economic strategies to maintain financial stability [pp. 5, 9, 14].",
+            "2": "Tax reforms focus on broadening the tax base and managing tax expenditures to ensure fiscal sustainability and fairness [pp. 5, 9, 14].",
+            "3": "Climate and environmental policies are emphasized, with investments in sustainable infrastructure and policies aimed at mitigating climate impact [pp. 5, 9, 14].",
+            "4": "Social and gender impacts are assessed, particularly the effects of policies on women and marginalized groups, aiming for greater social equity [pp. 5, 9, 14].",
+            "5": "Social services are discussed, with a focus on enhancing social protection systems and ensuring access to essential services for all citizens [pp. 5, 9, 14].",
+            "6": "Private and external sector issues are discussed, with a focus on creating a business-friendly environment and attracting foreign direct investment [pp. 5, 9, 14].",
+            "7": "Financialisation issues are addressed, with discussions on the deregulation of financial markets and the impact on economic stability [pp. 5, 9, 14].",
+            "8": "Digitisation issues are addressed, with a focus on the impact of digitalisation and AI on the economy and labor market [pp. 5, 9, 14].",
+            "9": "Governance and legal reforms are discussed, focusing on the need for effective institutions and legal frameworks to support economic development [pp. 5, 9, 14].",
+            "1.1": "Fiscal discipline is highlighted as a key component of Singapore's austerity measures, focusing on maintaining a balanced budget and managing expenditures [pp. 5, 9].",
+            "1.2": "Public sector wages are managed under strict fiscal policies to ensure sustainability in government spending [pp. 5, 14].",
+            "1.3": "Subsidy reforms are discussed, particularly in the context of energy and agricultural sectors, aiming for cost recovery and fiscal sustainability [pp. 9, 14].",
+            "1.4": "Privatization and reform of public services are noted as part of structural reforms to enhance efficiency and reduce public sector burdens [pp. 9, 14].",
+            "1.5": "Labour market flexibilization is addressed through policies aimed at increasing employment flexibility and productivity within the workforce [pp. 5, 14].",
+            "2.1": "Consumption taxes and VAT adjustments are discussed as part of the tax reform strategy to manage fiscal balances and encourage fair taxation [pp. 5, 9].",
+            "2.2": "Efforts to address tax expenditures and illicit financial flows are highlighted, aiming to enhance tax compliance and revenue collection [pp. 9, 14].",
+            "2.3": "Tax policies favoring financial capital are scrutinized to ensure a balanced approach that supports both investment and fiscal equity [pp. 5, 14].",
+            "3.1": "Climate policies include initiatives for resilience and sustainability, focusing on adaptation and mitigation strategies to address climate risks [pp. 5, 14].",
+            "3.2": "Land use and resource management are discussed, emphasizing sustainable practices and the protection of natural resources [pp. 9, 14].",
+            "4.1": "Gender policies are reviewed, focusing on improving access to health, education, and employment opportunities for women and gender marginalized people [pp. 5, 14].",
+            "4.2": "The care economy is highlighted, discussing the importance of recognizing and supporting unpaid and paid care work as essential components of the economy [pp. 9, 14].",
+            "4.3": "Distributional impacts of policies are analyzed to assess their effects on different income and social groups, ensuring equitable outcomes [pp. 5, 9, 14].",
+            "5.1": "Social protection policies are reviewed, emphasizing the need for targeted support and efficient delivery of social services [pp. 5, 14].",
+            "5.2": "Pension and social security reforms are discussed, aiming to ensure sustainability and adequacy of benefits for retirees [pp. 9, 14].",
+            "5.3": "Social security contributions and tax wedge issues are addressed, focusing on the balance between supporting businesses and ensuring workers' rights [pp. 5, 14].",
+            "5.4": "Fees for public services are scrutinized, with discussions on maintaining affordability and access to essential services [pp. 9, 14].",
+            "5.5": "Cuts to health expenditure are examined, considering the impact on public health services and the need for efficient resource allocation [pp. 5, 14].",
+            "5.6": "Cuts to education expenditure are reviewed, focusing on the implications for public education and the need for sustainable funding [pp. 9, 14].",
+            "6.1": "External sector strategies are reviewed, emphasizing the importance of regulatory reforms and investment promotion to enhance economic growth [pp. 5, 14].",
+            "6.2": "Public-private partnerships are discussed, considering their role in infrastructure development and the need for balanced public-private collaboration [pp. 9, 14].",
+            "6.3": "Foreign currency debt and external vulnerabilities are examined, focusing on the risks and management strategies to maintain financial stability [pp. 5, 14].",
+            "7.1": "Deregulation of financial markets is reviewed, considering the implications for market stability and the need for effective regulatory oversight [pp. 5, 14].",
+            "7.2": "Monetary policies favoring financial sector growth are discussed, focusing on the balance between stimulating financial markets and controlling inflation [pp. 9, 14].",
+            "7.3": "Corporate governance and shareholder value orientation are examined, considering the impact on corporate practices and economic equity [pp. 5, 14].",
+            "7.4": "Expansion of credit and debt markets is reviewed, focusing on the risks and regulatory measures to ensure financial stability [pp. 9, 14].",
+            "7.5": "Financial inclusion strategies are discussed, emphasizing the importance of access to financial services and the potential risks of increased indebtedness [pp. 5, 14].",
+            "8.1": "Digitalisation and AI impacts are reviewed, considering the opportunities and challenges for businesses and workers in adapting to technological changes [pp. 5, 14].",
+            "9.1": "Governance and legal reforms are reviewed, emphasizing the importance of transparent and accountable institutions to enhance public trust and support for reforms [pp. 5, 14].",
+            "9.2": "Political economy issues are examined, considering the impact of public sentiment and stakeholder engagement on the success of economic reforms [pp. 9, 14]."
           }
         }
       }
@@ -238,7 +278,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "The French economy is focusing on austerity measures, tax reforms, and climate policies. Fiscal adjustments aim to stabilize public finances through spending cuts and tax reforms, including reducing tax expenditures and addressing tax evasion. Climate policies emphasize transitioning to low-carbon technologies and enhancing environmental resilience.",
+          "summary": "France's economy, while resilient, faces challenges from high public debt and external headwinds. Austerity measures and fiscal adjustments are crucial for sustainable growth, with emphasis on reducing expenditures and rationalizing tax systems. Additionally, advancing climate policies and green transitions are vital for future economic prospects.",
           "all_themes": [
             "1",
             "1.1",
@@ -252,7 +292,33 @@
             "2.3",
             "3",
             "3.1",
-            "3.2"
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
           ]
         }
       }
@@ -289,11 +355,11 @@
               "name": "Tax"
             },
             {
-              "number": "3",
-              "name": "Climate and environment"
+              "number": "5",
+              "name": "Social Services"
             }
           ],
-          "summary": "The article discusses Estonia's economic recovery and fiscal adjustments, highlighting austerity measures, tax reforms, and climate policies. Austerity is addressed through fiscal consolidation and public sector wage controls. Tax discussions focus on VAT increases and corporate tax reforms. Climate policies include mitigation strategies and renewable energy investments.",
+          "summary": "The article discusses austerity measures, tax reforms, and social services in Estonia. Austerity is highlighted through fiscal adjustments and public sector wage bill controls. Tax discussions focus on VAT increases and corporate tax considerations. Social services are examined in terms of targeted transfers and pension reforms.",
           "all_themes": [
             "1",
             "1.1",
@@ -302,12 +368,9 @@
             "2",
             "2.1",
             "2.2",
-            "3",
-            "3.1",
+            "5",
             "5.1",
-            "5.2",
-            "5.4",
-            "6.1"
+            "5.2"
           ]
         }
       }
@@ -348,7 +411,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "The report highlights austerity measures, tax reforms, and climate policies. Austerity focuses on fiscal consolidation and public wage bill control. Tax discussions include increasing non-oil revenues and reforming consumption taxes. Climate policies emphasize adaptation and mitigation, with a focus on transitioning to sustainable energy sources.",
+          "summary": "The report emphasizes the need for austerity measures, including fiscal consolidation and public wage bill reforms, to address fiscal deficits exacerbated by low oil prices. It discusses the necessity of tax reforms, particularly in enhancing non-oil revenues through new tax measures. Additionally, it highlights the importance of climate policies, focusing on sustainable practices and reducing dependency on oil.",
           "all_themes": [
             "1",
             "1.1",
@@ -429,7 +492,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "The report addresses austerity through fiscal consolidation, emphasizing expenditure cuts and public sector wage control. Tax reforms focus on increasing VAT and rationalizing tax expenditures. Climate policies include investments in climate adaptation, emphasizing the need for sustainable practices and environmental protection.",
+          "summary": "The report discusses austerity measures including fiscal consolidation and public sector wage constraints, tax reforms focusing on VAT and subsidy rationalizations, and investments in climate resilience. These themes are interlinked with Kiribati's economic strategies to manage debt and enhance sustainable development.",
           "all_themes": [
             "1",
             "1.1",
@@ -458,7 +521,6 @@
             "6",
             "6.1",
             "6.2",
-            "6.3",
             "7",
             "7.1",
             "7.2",
@@ -510,7 +572,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "Denmark's economic policies focus on fiscal sustainability with austerity measures, tax reforms, and climate policies. Austerity includes public sector wage controls and subsidy cuts. Tax reforms aim at broadening the tax base and improving tax fairness. Climate policies address mitigation, adaptation, and sustainable growth through initiatives like the National Climate Adaptation Plan.",
+          "summary": "Denmark's economic policies focus on maintaining fiscal sustainability amid rising defense and aging-related expenditures, adjusting tax policies, and enhancing climate adaptation strategies. Austerity measures, tax reforms, and environmental policies are pivotal in supporting the welfare state and addressing external economic pressures.",
           "all_themes": [
             "1",
             "1.1",
@@ -591,7 +653,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "Austria's 2025 economic strategy includes austerity measures with fiscal consolidation, impacting public sector wages and subsidies. Tax reforms focus on consumption taxes and addressing tax expenditures. Climate policies emphasize carbon pricing and mitigation strategies, aligning with EU standards.",
+          "summary": "The report addresses austerity through fiscal consolidation, emphasizing cuts and adjustments in public spending. Tax discussions focus on reforming consumption taxes and addressing tax expenditures. Climate policies are highlighted concerning resilience and sustainability initiatives, reflecting Austria's commitment to environmental goals.",
           "all_themes": [
             "1",
             "1.1",
@@ -605,33 +667,7 @@
             "2.3",
             "3",
             "3.1",
-            "3.2",
-            "4",
-            "4.1",
-            "4.2",
-            "4.3",
-            "5",
-            "5.1",
-            "5.2",
-            "5.3",
-            "5.4",
-            "5.5",
-            "5.6",
-            "6",
-            "6.1",
-            "6.2",
-            "6.3",
-            "7",
-            "7.1",
-            "7.2",
-            "7.3",
-            "7.4",
-            "7.5",
-            "8",
-            "8.1",
-            "9",
-            "9.1",
-            "9.2"
+            "3.2"
           ]
         }
       }
@@ -672,7 +708,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "Nigeria's 2025 economic landscape is shaped by austerity measures, tax reforms, and climate policies. Austerity, including subsidy cuts and fiscal consolidation, aims to enhance macroeconomic stability. Tax reforms focus on broadening the tax base and improving revenue collection, crucial for sustainable development spending. Climate policies emphasize adaptation and mitigation, reflecting commitments to environmental sustainability.",
+          "summary": "Nigeria's reforms focus on austerity, enhancing tax systems, and addressing climate impacts. Key measures include subsidy cuts, tax base broadening, and climate adaptation strategies. These reforms aim to stabilize the economy, improve fiscal sustainability, and support inclusive growth.",
           "all_themes": [
             "1",
             "1.1",
@@ -727,7 +763,7 @@
               "name": "Climate and environment"
             }
           ],
-          "summary": "Jamaica's economic policies focus on austerity, tax reforms, and climate-related strategies. Austerity measures include fiscal consolidation and public sector wage control. Tax reforms aim at broadening the tax base and improving tax administration efficiency. Climate policies emphasize resilience, transitioning to renewable energy, and integrating climate risks into financial supervision.",
+          "summary": "The report highlights Jamaica's focus on austerity measures, tax reforms, and climate and environmental policies. Austerity measures include fiscal consolidation and public sector adjustments. Tax reforms emphasize broadening the tax base and combating tax evasion. Climate discussions cover policies for sustainable development and disaster resilience.",
           "all_themes": [
             "1",
             "1.1",
