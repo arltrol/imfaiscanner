@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI IMF Article IV Scanner</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -329,16 +330,24 @@
       Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
         const subCodes = subthemes.map(getSubthemeCode);
         const themeNum = getThemeNumber(theme);
-        const themeCount = reports.filter(r => {
-          const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-          if (!ai || !ai.content) return false;
-          const tops = ai.content.top_themes?.map(t => t.name) || [];
-          const all = ai.content.all_themes || [];
-          const matchesTop = tops.includes(theme);
-          const matchesSub = subCodes.some(code => all.includes(code));
-          const matchesNum = all.includes(themeNum);
-          return matchesTop || matchesSub || matchesNum;
-        }).length;
+       const themeCount = new Set(
+  reports
+    .filter(r => {
+      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      if (!ai || !ai.content) return false;
+
+      const tops = ai.content.top_themes?.map(t => t.name) || [];
+      const all = ai.content.all_themes || [];
+
+      const themeNum = getThemeNumber(theme);
+      const subMatch = subCodes.some(code => all.includes(code));
+      const themeMatch = tops.includes(theme) || all.includes(themeNum);
+
+      return subMatch || themeMatch;
+    })
+    .map(r => r.title) // or stock_no for uniqueness
+).size;
+
 
         const div = document.createElement('div');
         const id = theme.replace(/\s+/g, '_');
