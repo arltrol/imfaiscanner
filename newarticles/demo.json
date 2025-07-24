@@ -1,0 +1,187 @@
+[
+  {
+    "title": "Brazil: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Brazil",
+    "publication_date": "2025-07-17",
+    "country": "Brazil",
+    "region": "Latin America",
+    "pdf_link": "https://www.imf.org/-/media/Files/Publications/CR/2025/English/1braea2025001-source-pdf.ashx",
+    "publication_details": {
+      "pages": "118",
+      "doi": "https://doi.org/10.5089/9798229017602.002",
+      "series": "Country Report No. 2025/194",
+      "isbn": "9798229017602",
+      "volume": "2025",
+      "issue": "194",
+      "stock_no": "1BRAEA2025001",
+      "issn": "1934-7685"
+    },
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/16/Brazil-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568678",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "The report highlights Brazil's economic resilience with strong growth and inflation management through austerity measures, including fiscal adjustments and VAT reforms aimed at enhancing tax system efficiency and productivity. It also discusses Brazil's commitment to environmental sustainability through its Ecological Transformation Plan, addressing climate policies and deforestation reduction.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2",
+            "4",
+            "4.1",
+            "4.2",
+            "4.3",
+            "5",
+            "5.1",
+            "5.2",
+            "5.3",
+            "5.4",
+            "5.5",
+            "5.6",
+            "6",
+            "6.1",
+            "6.2",
+            "6.3",
+            "7",
+            "7.1",
+            "7.2",
+            "7.3",
+            "7.4",
+            "7.5",
+            "8",
+            "8.1",
+            "9",
+            "9.1",
+            "9.2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": "Singapore: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Singapore",
+    "publication_date": "2025-07-16",
+    "country": "Singapore",
+    "region": "Asia",
+    "pdf_link": "https://www.imf.org/-/media/Files/Publications/CR/2025/English/1sgpea2025001-source-pdf.ashx",
+    "publication_details": {
+      "pages": "80",
+      "doi": "https://doi.org/10.5089/9798229017930.002",
+      "series": "Country Report No. 2025/192",
+      "isbn": "9798229017930",
+      "volume": "2025",
+      "issue": "192",
+      "stock_no": "1SGPEA2025001",
+      "issn": "1934-7685"
+    },
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/16/Singapore-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568643",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "5",
+              "name": "Social Services"
+            }
+          ],
+          "summary": "The report highlights Singapore's economic slowdown due to trade tensions, with a focus on austerity measures like fiscal consolidation and public sector wage controls. Tax reforms, particularly in consumption taxes and corporate taxes, are noted. Social services discussions include fiscal space for targeted support and social safety nets, reflecting a focus on maintaining macroeconomic stability and financial resilience.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "2",
+            "2.1",
+            "5",
+            "5.1"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "title": "France: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for France",
+    "publication_date": "2025-07-14",
+    "country": "France",
+    "region": "Europe",
+    "pdf_link": "https://www.imf.org/-/media/Files/Publications/CR/2025/English/1FRAEA2025001-source-pdf.ashx",
+    "publication_details": {
+      "pages": "77",
+      "doi": "https://doi.org/10.5089/9798229016780.002",
+      "series": "Country Report No. 2025/179",
+      "isbn": "9798229016780",
+      "volume": "2025",
+      "issue": "179",
+      "stock_no": "1FRAEA2025001",
+      "issn": "1934-7685"
+    },
+    "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/11/France-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568520",
+    "ai_analysis": [
+      {
+        "model": "gpt-4-turbo",
+        "content": {
+          "top_themes": [
+            {
+              "number": "1",
+              "name": "Austerity"
+            },
+            {
+              "number": "2",
+              "name": "Tax"
+            },
+            {
+              "number": "3",
+              "name": "Climate and environment"
+            }
+          ],
+          "summary": "The report highlights France's economic resilience and the need for fiscal consolidation through austerity measures, including spending rationalization and tax reforms. It also emphasizes the importance of addressing climate change through policies supporting the green transition.",
+          "all_themes": [
+            "1",
+            "1.1",
+            "1.2",
+            "1.3",
+            "1.4",
+            "1.5",
+            "2",
+            "2.1",
+            "2.2",
+            "2.3",
+            "3",
+            "3.1",
+            "3.2"
+          ]
+        }
+      }
+    ]
+  }
+]
