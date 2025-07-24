@@ -583,6 +583,32 @@ function closeThemeModal() {
   document.body.style.overflow = 'auto';
 }
 
+    document.getElementById("clear-filters").addEventListener("click", () => {
+    // Clear theme checkboxes
+    document.querySelectorAll('#themeList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    selectedThemes.clear();
+    selectedSubthemes.clear();
+
+    // Clear region checkboxes
+    document.querySelectorAll('#regionList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    selectedRegions.clear();
+
+    // Clear year checkboxes
+    document.querySelectorAll('#yearList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    selectedYears.clear();
+
+    // Reset country dropdown
+    document.getElementById('countrySelect').value = '';
+    selectedCountry = '';
+
+    // Reset subtheme visibility
+    document.querySelectorAll('[id^="sub_"]').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.toggle-subtheme-link').forEach(el => el.style.display = 'inline');
+
+    // Refresh the results
+    currentPage = 1;
+    renderPage();
+  });
 
   </script>
 
