@@ -615,7 +615,7 @@ function closeThemeModal() {
     renderPage();
   });
 function showTaxonomy() {
-  fetch('Article IV Scanner Taxonomy.txt')
+  fetch('taxonomy_web.txt')
     .then(res => res.text())
     .then(text => {
       const content = document.getElementById('taxonomyModalContent');
