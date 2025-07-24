@@ -1,82 +1,110 @@
-<!-- backend.html: Backend Article Update System -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backend Article Maintenance</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>Backend Article Update System</title>
   <style>
-    body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #fff; color: #111; }
-    header { background: #003366; color: #fff; padding: 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 2em; }
-    #main { padding: 20px; max-width: 800px; margin: 0 auto; }
-    .button { padding: 10px 20px; background: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-size: 1em; margin: 10px 0; }
-    .button:hover { background: #0056b3; }
-    .report-card { border: 1px solid #ddd; padding: 15px; margin: 15px 0; background: #f9f9f9; }
-    .summary { margin-top: 8px; font-size: 0.95em; color: #444; }
-    .hidden { display: none; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #222;
+    }
+    h1 {
+      font-size: 1.6em;
+      color: #003366;
+    }
+    .article {
+      background: white;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+    }
+    .expand {
+      cursor: pointer;
+      color: #0077cc;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+    .details {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.9em;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .button {
+      padding: 8px 14px;
+      background: #003366;
+      color: white;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Backend Article Update System</h1>
-  </header>
-  <main id="main">
-    <button class="button" onclick="simulateScan()">📡 Simulate 'Scan for IMF Article Updates'</button>
-    <div id="scanStatus"></div>
-    <div id="results"></div>
-    <button id="saveBtn" class="button hidden" onclick="saveUpdates()">💾 Prepare and Save These Articles</button>
-  </main>
+  <h1>Backend Article Update System</h1>
+
+  <label>
+    <input type="checkbox" id="simulateT30"> 🔄 Simulate "T-30 Days" (Live IMF Fetch)
+  </label>
+
+  <button class="button" onclick="scanForUpdates()">🚀 Run GitHub Action: Scan for New Articles</button>
+
+  <div id="newArticlesContainer"></div>
 
   <script>
-    let newArticles = [];
+    const mockArticles = [
+      {
+        title: "Brazil: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Brazil",
+        country: "Brazil",
+        publication_date: "2025-07-17",
+        summary: "The report highlights Brazil's economic resilience with strong growth and inflation management through austerity measures, including fiscal adjustments and VAT reforms aimed at enhancing tax system efficiency and productivity. It also discusses Brazil's commitment to environmental sustainability through its Ecological Transformation Plan, addressing climate policies and deforestation reduction.",
+        region: "Western Hemisphere",
+        top_themes: ["Austerity", "Tax", "Climate and Environment"],
+        tags: ["VAT", "fiscal adjustment", "climate policy"]
+      }
+    ];
 
-    function simulateScan() {
-      document.getElementById('scanStatus').textContent = '🔄 Scanning for new articles...';
+    function scanForUpdates() {
+      const simulate = document.getElementById('simulateT30').checked;
+      const container = document.getElementById('newArticlesContainer');
+      container.innerHTML = '<p>⏳ Scanning for updates...</p>';
+
       setTimeout(() => {
-        fetch('newarticles/demo.json')
-          .then(res => res.json())
-          .then(data => {
-            newArticles = data;
-            if (newArticles.length === 0) {
-              document.getElementById('scanStatus').textContent = '✅ No new articles found.';
-              document.getElementById('results').innerHTML = '';
-              document.getElementById('saveBtn').classList.add('hidden');
-            } else {
-              document.getElementById('scanStatus').textContent = `✅ Found ${newArticles.length} new article(s)`;
-              renderArticles();
-              document.getElementById('saveBtn').classList.remove('hidden');
-            }
-          })
-          .catch(err => {
-            document.getElementById('scanStatus').textContent = '❌ Failed to scan for updates';
-            console.error(err);
-          });
-    }, 1000);
-  }
+        container.innerHTML = '';
+        renderNewArticles(mockArticles);
+      }, 1000);
+    }
 
-  function renderArticles() {
-    const container = document.getElementById('results');
-    container.innerHTML = '';
-    newArticles.forEach(r => {
-      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-      const summary = ai?.content?.summary || 'No summary available';
-      const div = document.createElement('div');
-      div.className = 'report-card';
-      div.innerHTML = `
-        <strong>${r.title}</strong><br/>
-        <em>${r.country || 'Unknown'}, ${r.publication_date}</em>
-        <div class="summary">${summary}</div>
-      `;
-      container.appendChild(div);
-    });
-  }
+    function renderNewArticles(articles) {
+      const container = document.getElementById('newArticlesContainer');
+      container.innerHTML = articles.map((a, i) => `
+        <div class="article">
+          <strong>${a.title}</strong><br>
+          <em>${a.country}, ${a.publication_date}</em>
+          <p>${a.summary}</p>
+          <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
+          <div class="details">
+            <b>Region:</b> ${a.region}<br>
+            <b>Top Themes:</b> ${a.top_themes.join(", ")}<br>
+            <b>Tags:</b> ${a.tags.join(", ")}
+          </div>
+        </div>
+      `).join('');
+    }
 
-  function saveUpdates() {
-    alert('✅ Articles will now be prepared for AI and saved (simulated).');
-    // Future: Trigger GitHub Action / API call
-  }
+    function toggleDetails(elem) {
+      const details = elem.nextElementSibling;
+      const isVisible = details.style.display === 'block';
+      details.style.display = isVisible ? 'none' : 'block';
+      elem.innerText = isVisible ? '+ Expand Details' : '− Hide Details';
+    }
   </script>
 </body>
 </html>
