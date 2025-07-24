@@ -330,23 +330,21 @@
       Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
         const subCodes = subthemes.map(getSubthemeCode);
         const themeNum = getThemeNumber(theme);
-       const themeCount = new Set(
+      const themeCount = new Set(
   reports
     .filter(r => {
       const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
       if (!ai || !ai.content) return false;
 
-      const tops = ai.content.top_themes?.map(t => t.name) || [];
       const all = ai.content.all_themes || [];
-
-      const themeNum = getThemeNumber(theme);
       const subMatch = subCodes.some(code => all.includes(code));
-      const themeMatch = tops.includes(theme) || all.includes(themeNum);
+      const themeMatch = all.includes(themeNum);
 
       return subMatch || themeMatch;
     })
-    .map(r => r.title) // or stock_no for uniqueness
+    .map(r => r.publication_details?.stock_no || r.title)
 ).size;
+
 
 
         const div = document.createElement('div');
