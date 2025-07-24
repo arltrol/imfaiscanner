@@ -331,17 +331,19 @@
       Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
         const subCodes = subthemes.map(getSubthemeCode);
         const themeNum = getThemeNumber(theme);
-    const themeCount = new Set(
+   const themeCount = new Set(
   reports
     .filter(r => {
       const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
       if (!ai || !ai.content) return false;
 
       const all = ai.content.all_themes || [];
-      return subCodes.some(code => all.includes(code)); // ✅ Only subthemes
+      // FIXED: only count if it includes any subtheme codes
+      return subCodes.some(code => all.includes(code));
     })
     .map(r => r.publication_details?.stock_no || r.title)
 ).size;
+
 
 
 
