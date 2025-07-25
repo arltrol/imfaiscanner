@@ -1,72 +1,82 @@
+<!-- backend.html: Backend Article Update System -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Backend Article Update System</title>
+  <title>Backend Article Maintenance</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fc;
-      color: #111;
-    }
-    header {
-      background: #72a4fc;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.2em;
-    }
-    #main {
-      padding: 30px;
-      text-align: center;
-    }
-    button {
-      background: #3478f6;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1em;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    pre {
-      background: #eee;
-      text-align: left;
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 6px;
-      white-space: pre-wrap;
-    }
+    body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #fff; color: #111; }
+    header { background: #003366; color: #fff; padding: 20px; text-align: center; }
+    header h1 { margin: 0; font-size: 2em; }
+    #main { padding: 20px; max-width: 800px; margin: 0 auto; }
+    .button { padding: 10px 20px; background: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 4px; font-size: 1em; margin: 10px 0; }
+    .button:hover { background: #0056b3; }
+    .report-card { border: 1px solid #ddd; padding: 15px; margin: 15px 0; background: #f9f9f9; }
+    .summary { margin-top: 8px; font-size: 0.95em; color: #444; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
   <header>
     <h1>Backend Article Update System</h1>
   </header>
-  <div id="main">
-    <button onclick="fetchDemoData()">Fetch Demo Data</button>
-    <pre id="output">Click the button to fetch demo.json...</pre>
-  </div>
+  <main id="main">
+    <button class="button" onclick="simulateScan()">📡 Simulate 'Scan for IMF Article Updates'</button>
+    <div id="scanStatus"></div>
+    <div id="results"></div>
+    <button id="saveBtn" class="button hidden" onclick="saveUpdates()">💾 Prepare and Save These Articles</button>
+  </main>
+
   <script>
-    async function fetchDemoData() {
-      const output = document.getElementById("output");
-      output.textContent = "Fetching demo.json...";
-      try {
-        const res = await fetch("demo.json");
-        if (!res.ok) throw new Error("Request failed");
-        const data = await res.json();
-        output.textContent = JSON.stringify(data, null, 2);
-      } catch (err) {
-        output.textContent = "Error fetching data: " + err.message;
-      }
-    }
+    let newArticles = [];
+
+    function simulateScan() {
+      document.getElementById('scanStatus').textContent = '🔄 Scanning for new articles...';
+      setTimeout(() => {
+        fetch('newarticles/demo.json')
+          .then(res => res.json())
+          .then(data => {
+            newArticles = data;
+            if (newArticles.length === 0) {
+              document.getElementById('scanStatus').textContent = '✅ No new articles found.';
+              document.getElementById('results').innerHTML = '';
+              document.getElementById('saveBtn').classList.add('hidden');
+            } else {
+              document.getElementById('scanStatus').textContent = `✅ Found ${newArticles.length} new article(s)`;
+              renderArticles();
+              document.getElementById('saveBtn').classList.remove('hidden');
+            }
+          })
+          .catch(err => {
+            document.getElementById('scanStatus').textContent = '❌ Failed to scan for updates';
+            console.error(err);
+          });
+    }, 1000);
+  }
+
+  function renderArticles() {
+    const container = document.getElementById('results');
+    container.innerHTML = '';
+    newArticles.forEach(r => {
+      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      const summary = ai?.content?.summary || 'No summary available';
+      const div = document.createElement('div');
+      div.className = 'report-card';
+      div.innerHTML = `
+        <strong>${r.title}</strong><br/>
+        <em>${r.country || 'Unknown'}, ${r.publication_date}</em>
+        <div class="summary">${summary}</div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function saveUpdates() {
+    alert('✅ Articles will now be prepared for AI and saved (simulated).');
+    // Future: Trigger GitHub Action / API call
+  }
   </script>
 </body>
 </html>
