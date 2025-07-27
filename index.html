@@ -483,7 +483,7 @@
 
     
     // Only require AI analysis when filtering by themes or subthemes
-    if (isFilteringThemes && (!ai || !ai.content)) return false;
+if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
 
     return matchesThemes && matchesSubs && matchesRegion && matchesYear && matchesCountry;
   });
