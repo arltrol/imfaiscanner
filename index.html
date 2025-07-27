@@ -467,10 +467,11 @@
     const top = ai?.content?.top_themes?.map(t => t.name) || [];
     const all = ai?.content?.all_themes || [];
 
-    const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
-      const themeNum = getThemeNumber(theme);
-      return top.includes(theme) || all.includes(themeNum);
-    });
+   const matchesThemes = selectedThemes.size === 0 || [...selectedThemes].some(theme => {
+  const subCodes = THEME_MAP[theme].map(getSubthemeCode);
+  return subCodes.some(code => all.includes(code));
+});
+
 
     const matchesSubs = selectedSubthemes.size === 0 || [...selectedSubthemes].some(sub => all.includes(getSubthemeCode(sub)));
 
