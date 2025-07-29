@@ -652,7 +652,38 @@ function showTaxonomy() {
       console.error(err);
     });
 }
+function renderMapData() {
+  if (!mapInitialized) return;
 
+  // Clear previous circles
+  map.eachLayer(layer => {
+    if (layer instanceof L.Circle) {
+      map.removeLayer(layer);
+    }
+  });
+
+  const visibleReports = filterReports();
+  const countryCounts = {};
+    for (const r of visibleReports) {
+    const country = r.country?.trim();
+    if (country) {
+      countryCounts[country] = (countryCounts[country] || 0) + 1;
+    }
+  }
+
+  for (const [country, count] of Object.entries(countryCounts)) {
+    const coords = getCountryCoords(country);
+    if (coords) {
+      L.circle(coords, {
+        radius: 30000 + count * 30000,
+        fillColor: "#4477aa",
+        fillOpacity: 0.6,
+        color: "#2255aa",
+        weight: 1
+      }).addTo(map).bindPopup(`<b>${country}</b><br/>${count} report${count > 1 ? 's' : ''}`);
+    }
+  }
+}
 function closeTaxonomyModal() {
   document.getElementById('taxonomyModal').style.display = 'none';
   document.body.style.overflow = 'auto';
@@ -690,38 +721,7 @@ function toggleMapVisibility() {
 
 
 
-function renderMapData() {
-  if (!mapInitialized) return;
 
-  // Clear previous circles
-  map.eachLayer(layer => {
-    if (layer instanceof L.Circle) {
-      map.removeLayer(layer);
-    }
-  });
-
-  const visibleReports = filterReports();
-  const countryCounts = {};
-    for (const r of visibleReports) {
-    const country = r.country?.trim();
-    if (country) {
-      countryCounts[country] = (countryCounts[country] || 0) + 1;
-    }
-  }
-
-  for (const [country, count] of Object.entries(countryCounts)) {
-    const coords = getCountryCoords(country);
-    if (coords) {
-      L.circle(coords, {
-        radius: 30000 + count * 30000,
-        fillColor: "#4477aa",
-        fillOpacity: 0.6,
-        color: "#2255aa",
-        weight: 1
-      }).addTo(map).bindPopup(`<b>${country}</b><br/>${count} report${count > 1 ? 's' : ''}`);
-    }
-  }
-}
 
 function getCountryCoords(name) {
   const centroids = {
