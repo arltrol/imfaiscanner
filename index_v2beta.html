@@ -664,9 +664,11 @@ function toggleMapVisibility() {
   const container = document.getElementById("mapContainer");
   const checkbox = document.getElementById("toggleMap");
   container.style.display = checkbox.checked ? "block" : "none";
+  console.log("Show map toggled:", checkbox.checked);
 
   if (checkbox.checked && !mapInitialized) {
     setTimeout(() => {
+      console.log("Initializing map now...");
       map = L.map('map').setView([20, 0], 2);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 5,
@@ -679,11 +681,13 @@ function toggleMapVisibility() {
 
   if (checkbox.checked && mapInitialized) {
     setTimeout(() => {
-      map.invalidateSize();  // 👈 This forces Leaflet to correctly draw the map
-      renderMapData();       // 👈 Ensure circles are refreshed after toggle
+      console.log("Map already initialized — refreshing size & data");
+      map.invalidateSize();
+      renderMapData();
     }, 100);
   }
 }
+
 
 
 function renderMapData() {
