@@ -667,7 +667,7 @@ function toggleMapVisibility() {
 
   if (checkbox.checked && !mapInitialized) {
     setTimeout(() => {
-      map = L.map('map').setView([20, 0], 2); // World view
+      map = L.map('map').setView([20, 0], 2);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 5,
         attribution: '&copy; OpenStreetMap contributors'
@@ -677,10 +677,14 @@ function toggleMapVisibility() {
     }, 100);
   }
 
-  if (checkbox.checked) {
-    renderMapData();
+  if (checkbox.checked && mapInitialized) {
+    setTimeout(() => {
+      map.invalidateSize();  // 👈 This forces Leaflet to correctly draw the map
+      renderMapData();       // 👈 Ensure circles are refreshed after toggle
+    }, 100);
   }
 }
+
 
 function renderMapData() {
   if (!mapInitialized) return;
