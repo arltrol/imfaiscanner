@@ -361,7 +361,7 @@
     const subthemeSelect = document.getElementById("subtheme-select"); // ✅ move here
 
 
-   fetch("reports_scrapev2_oldJuly27_1829.json")
+fetch("reports_scrapev2_oldJuly27_1829.json")
   .then(res => {
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
     return res.json();
@@ -402,8 +402,16 @@
 
     let heatLayer = null;
     let heatmapEnabled = false;
+    let currentYear = 2025;
+    let playing = false;
+    let playInterval = null;
 
     const subthemeSelect = document.getElementById("subtheme-select");
+    const yearSlider = document.getElementById("year-slider");
+    const yearLabel = document.getElementById("year-label");
+    const playButton = document.getElementById("play-timeline");
+    const toggleTimeline = document.getElementById("toggle-timeline");
+    const timelineControls = document.getElementById("timeline-controls");
 
     document.getElementById("toggle-heatmap").addEventListener("click", () => {
       heatmapEnabled = !heatmapEnabled;
@@ -543,7 +551,37 @@
       }
     }
 
-    // ✅ Now safe to call
+    // 👇 All event listeners inside the scope where updateMap() is defined
+    yearSlider.addEventListener("input", () => {
+      currentYear = parseInt(yearSlider.value);
+      yearLabel.textContent = currentYear;
+      updateMap();
+    });
+
+    playButton.addEventListener("click", () => {
+      playing = !playing;
+      playButton.textContent = playing ? "⏸️" : "▶️";
+
+      if (playing) {
+        playInterval = setInterval(() => {
+          currentYear++;
+          if (currentYear > 2025) currentYear = 2015;
+          yearSlider.value = currentYear;
+          yearLabel.textContent = currentYear;
+          updateMap();
+        }, 1000);
+      } else {
+        clearInterval(playInterval);
+      }
+    });
+
+    toggleTimeline.addEventListener("click", () => {
+      const isVisible = timelineControls.style.display !== "none";
+      timelineControls.style.display = isVisible ? "none" : "flex";
+      toggleTimeline.textContent = isVisible ? "Show" : "Hide";
+    });
+
+    // ✅ Initialize
     populateSubthemeDropdown();
     updateMap();
     subthemeSelect.addEventListener("change", updateMap);
@@ -562,45 +600,7 @@
     legend.style.display = "none";
   }
 }
-// Timeline slider logic
-let currentYear = 2025;
-let playing = false;
-let playInterval = null;
 
-const yearSlider = document.getElementById("year-slider");
-const yearLabel = document.getElementById("year-label");
-const playButton = document.getElementById("play-timeline");
-const toggleTimeline = document.getElementById("toggle-timeline");
-const timelineControls = document.getElementById("timeline-controls");
-
-yearSlider.addEventListener("input", () => {
-  currentYear = parseInt(yearSlider.value);
-  yearLabel.textContent = currentYear;
-  updateMap();
-});
-
-playButton.addEventListener("click", () => {
-  playing = !playing;
-  playButton.textContent = playing ? "⏸️" : "▶️";
-
-  if (playing) {
-    playInterval = setInterval(() => {
-      currentYear++;
-      if (currentYear > 2025) currentYear = 2015;
-      yearSlider.value = currentYear;
-      yearLabel.textContent = currentYear;
-      updateMap();
-    }, 1000);
-  } else {
-    clearInterval(playInterval);
-  }
-});
-
-toggleTimeline.addEventListener("click", () => {
-  const isVisible = timelineControls.style.display !== "none";
-  timelineControls.style.display = isVisible ? "none" : "flex";
-  toggleTimeline.textContent = isVisible ? "Show" : "Hide";
-});
 
     
   </script>
