@@ -422,11 +422,14 @@ updateMap();
           "Timor Leste": "Timor-Leste"
         };
         country = countryMappings[country] || country;
+        
 
         if (!countryCoords[country]) continue;
 
-        const subthemes = report.subthemes || [];
-        const showThis = selected.length === 0 || subthemes.some(tag => selected.includes(tag));
+        const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
+        const allThemes = ai?.content?.all_themes || [];
+        const showThis = selected.length === 0 || allThemes.some(code => selected.includes(code));
+
         if (!showThis) continue;
 
         countryCounts[country] = (countryCounts[country] || 0) + 1;
