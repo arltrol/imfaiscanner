@@ -79,10 +79,53 @@
   max-height: 140px; /* Or more if screen allows */
   overflow-y: auto;
 }
+#timeline-box {
+  position: absolute;
+  top: 300px;
+  left: 12px;
+  width: 240px;
+  background: white;
+  z-index: 1003;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  font-size: 13px;
+}
+#timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#timeline-controls {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#year-slider {
+  flex-grow: 1;
+}
+#year-label {
+  font-weight: bold;
+  font-size: 13px;
+  min-width: 36px;
+}
 
   </style>
 </head>
 <body>
+  <div id="timeline-box">
+  <div id="timeline-header">
+    <strong>📆 Timeline:</strong>
+    <button id="toggle-timeline">Hide</button>
+  </div>
+  <div id="timeline-controls">
+    <input type="range" id="year-slider" min="2015" max="2025" step="1" value="2025" />
+    <span id="year-label">2025</span>
+    <button id="play-timeline">▶️</button>
+  </div>
+</div>
+
 <!-- INSERT THIS LINE JUST BELOW <body> -->
 <div id="subtheme-filter">
   <label><strong>Filter by Sub-theme:</strong></label><br/>
@@ -400,7 +443,7 @@ function populateSubthemeDropdown() {
 updateMap();
 
     
-   function updateMap() {
+  function updateMap() {
   const selected = Array.from(subthemeSelect.selectedOptions).map(opt => opt.value);
   const countryCounts = {};
   const heatPoints = [];
@@ -454,41 +497,43 @@ updateMap();
 
     const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
     const allThemes = ai?.content?.all_themes || [];
-    const showThis = selected.length === 0 || allThemes.some(code => selected.includes(code));
+  let reportYear = parseInt(report.year);
+if (isNaN(reportYear)) reportYear = 2025;
+
+
+    const showThis =
+      (selected.length === 0 || allThemes.some(code => selected.includes(code))) &&
+      (reportYear <= currentYear);
+
     if (!showThis) continue;
 
     const [lat, lon] = countryCoords[country];
     heatPoints.push([lat, lon, 1]); // 3rd arg = intensity
-
     countryCounts[country] = (countryCounts[country] || 0) + 1;
   }
 
-  // Remove previous heat layer if it exists
   if (heatLayer) {
     map.removeLayer(heatLayer);
     heatLayer = null;
   }
 
-  // Clear old circle markers
   map.eachLayer(layer => {
     if (layer instanceof L.Circle) map.removeLayer(layer);
   });
 
-  // Show either heatmap or circle markers
   if (heatmapEnabled) {
     heatLayer = L.heatLayer(heatPoints, {
       radius: 30,
       blur: 20,
-      max: 5,  // or whatever is a realistic max count
+      max: 5,
       maxZoom: 5,
       gradient: {
-  0.2: "#00bfff",  // light blue
-  0.4: "#7fff00",  // greenish
-  0.6: "#ffff00",  // yellow
-  0.8: "#ff4500",  // orange
-  1.0: "#ff0000"   // red
-}
-
+        0.2: "#00bfff",
+        0.4: "#7fff00",
+        0.6: "#ffff00",
+        0.8: "#ff4500",
+        1.0: "#ff0000"
+      }
     }).addTo(map);
   } else {
     for (const [country, count] of Object.entries(countryCounts)) {
@@ -499,11 +544,12 @@ updateMap();
         fillOpacity: 0.6,
         radius: 20000 + count * 15000
       })
-        .bindTooltip(`${country}: ${count} report${count > 1 ? "s" : ""}`)
-        .addTo(map);
+      .bindTooltip(`${country}: ${count} report${count > 1 ? "s" : ""}`)
+      .addTo(map);
     }
   }
 }
+
 
 
     // initial render
@@ -525,6 +571,45 @@ updateMap();
     legend.style.display = "none";
   }
 }
+// Timeline slider logic
+let currentYear = 2025;
+let playing = false;
+let playInterval = null;
+
+const yearSlider = document.getElementById("year-slider");
+const yearLabel = document.getElementById("year-label");
+const playButton = document.getElementById("play-timeline");
+const toggleTimeline = document.getElementById("toggle-timeline");
+const timelineControls = document.getElementById("timeline-controls");
+
+yearSlider.addEventListener("input", () => {
+  currentYear = parseInt(yearSlider.value);
+  yearLabel.textContent = currentYear;
+  updateMap();
+});
+
+playButton.addEventListener("click", () => {
+  playing = !playing;
+  playButton.textContent = playing ? "⏸️" : "▶️";
+
+  if (playing) {
+    playInterval = setInterval(() => {
+      currentYear++;
+      if (currentYear > 2025) currentYear = 2015;
+      yearSlider.value = currentYear;
+      yearLabel.textContent = currentYear;
+      updateMap();
+    }, 1000);
+  } else {
+    clearInterval(playInterval);
+  }
+});
+
+toggleTimeline.addEventListener("click", () => {
+  const isVisible = timelineControls.style.display !== "none";
+  timelineControls.style.display = isVisible ? "none" : "flex";
+  toggleTimeline.textContent = isVisible ? "Show" : "Hide";
+});
 
     
   </script>
