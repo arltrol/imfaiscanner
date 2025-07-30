@@ -60,10 +60,10 @@
       "China": [35.8617, 104.1954],
       "Colombia": [4.5709, -74.2973],
       "Comoros": [-11.6455, 43.3333],
-      "Congo (Brazzaville)": [-0.228, 15.8277], // Added
-      "Congo (Kinshasa)": [-4.0383, 21.7587], // Added
+      "Congo (Brazzaville)": [-0.228, 15.8277],
+      "Congo (Kinshasa)": [-4.0383, 21.7587],
       "Costa Rica": [9.7489, -83.7534],
-      "Cote d'Ivoire": [7.54, -5.54], // Added for Côte d’Ivoire
+      "Cote d'Ivoire": [7.54, -5.54],
       "Croatia": [45.1, 15.2],
       "Cuba": [21.5218, -77.7812],
       "Cyprus": [35.1264, 33.4299],
@@ -144,7 +144,7 @@
       "Namibia": [-22.9576, 18.4904],
       "Nauru": [-0.5228, 166.9315],
       "Nepal": [28.3949, 84.1240],
-      "Netherlands": [52.3676, 4.9041], // Added for Kingdom of the Netherlands
+      "Netherlands": [52.3676, 4.9041],
       "New Zealand": [-40.9006, 174.8860],
       "Nicaragua": [12.8654, -85.2072],
       "Niger": [17.6078, 8.0817],
@@ -219,8 +219,8 @@
       "Yemen": [15.5527, 48.5164],
       "Zambia": [-13.1339, 27.8493],
       "Zimbabwe": [-19.0154, 29.1549],
-      "Aruba": [12.5211, -69.9683], // Added for Kingdom of the Netherlands - Aruba
-      "Netherlands": [52.3676, 4.9041] // Added for Kingdom of the Netherlands-Netherlands
+      "Aruba": [12.5211, -69.9683],
+      "Netherlands": [52.3676, 4.9041]
     };
 
     // Initialize the map
@@ -254,14 +254,18 @@
             .replace(/Principality of /, "")
             .replace(/Union of /, "")
             .replace(/Islamic Republic of /, "")
-            .replace(/Darussalam/, "");    // Handle Brunei Darussalam
+            .replace(/Darussalam/, "")    // Handle Brunei Darussalam
+            .replace(/2018 Staff Report/, "") // Handle Japan 2018 Staff Report
+            .replace(/-/, " ")            // Handle Netherlands-Aruba to Netherlands Aruba
+            .replace(/\s+/, " ")          // Normalize multiple spaces
+            .replace(/^Netherlands /, ""); // Handle Netherlands-Aruba to Aruba
 
           // Special mappings for inconsistent names
           const countryMappings = {
             "Korea": "South Korea",
             "Türkiye": "Turkey",
             "Lao People's Democratic Republic": "Laos",
-            "Lao Democratic Republic": "Laos", // Fixed typo from previous mapping
+            "Lao Democratic Republic": "Laos",
             "Congo": "Congo (Brazzaville)",
             "the Congo": "Congo (Kinshasa)",
             "Republic of China": "China",
@@ -275,15 +279,16 @@
             "St. Vincent and the Grenadines": "Saint Vincent and the Grenadines",
             "Kyrgyz Republic": "Kyrgyzstan",
             "Côte d’Ivoire": "Cote d'Ivoire",
-            "Netherlands - Aruba": "Aruba",
-            "Netherlands-Netherlands": "Netherlands",
+            "Netherlands Aruba": "Aruba",
+            "Netherlands Netherlands": "Netherlands",
             "the Netherlands": "Netherlands",
             "Swaziland": "Eswatini",
-            "Comoros": "Comoros"
+            "Comoros": "Comoros",
+            "Russia": "Russia" // Added for Russian Federation
           };
           country = countryMappings[country] || country;
 
-          // Skip non-country entries
+          // Skip non-country entries or those without coordinates
           const validCountries = new Set(Object.keys(countryCoords));
           if (!validCountries.has(country)) {
             console.warn(`Skipping non-country or missing coordinates for: ${rawCountry} (normalized to ${country})`);
