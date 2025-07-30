@@ -129,13 +129,20 @@
       document.getElementById('themeModal').style.display = 'none';
     }
 
-    function resetThemes() {
+   function resetThemes() {
   customThemes = null;
-  document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
-  compare();
-      updateSelectedThemesText();
 
+  // Clear old charts and container
+  charts.forEach(c => c.destroy());
+  charts = [];
+  document.getElementById('chartGrid').innerHTML = '';
+
+  document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
+  
+  compare();
+  updateSelectedThemesText();
 }
+
 
 
     function renderThemeOptions() {
