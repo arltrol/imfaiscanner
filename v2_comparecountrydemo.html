@@ -27,27 +27,34 @@
     }
     main {
       padding: 20px;
+      max-width: 960px;
+      margin: auto;
     }
-   .select-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.select-group label {
-  flex-basis: 100%;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-.select-group select, .select-group button {
-  min-width: 150px;
-}
-
+    .select-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .select-group label {
+      flex-basis: 100%;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .select-group select, .select-group button {
+      min-width: 150px;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
     select, button {
-      margin: 0 5px;
       font-size: 1em;
       padding: 6px;
     }
@@ -80,6 +87,14 @@
       <select id="country2"></select>
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
+    </div>
+    <div class="controls">
+      <label for="gridSize">Select grid view:</label>
+      <select id="gridSize" onchange="updateGridView()">
+        <option value="1">1x1</option>
+        <option value="2">2x2</option>
+        <option value="3" selected>3x3</option>
+      </select>
     </div>
     <div class="grid" id="chartGrid"></div>
   </main>
@@ -127,6 +142,12 @@
       return THEMES.map(t => counts[t.code]);
     }
 
+    function updateGridView() {
+      const grid = document.getElementById('chartGrid');
+      const size = parseInt(document.getElementById('gridSize').value);
+      grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    }
+
     function compare() {
       const selected = [
         document.getElementById('country1').value,
@@ -136,12 +157,12 @@
 
       if (selected.length < 1) return alert('Select at least one country.');
 
-      // Destroy previous charts
       charts.forEach(c => c.destroy());
       charts = [];
 
       const grid = document.getElementById('chartGrid');
       grid.innerHTML = '';
+      updateGridView();
 
       THEMES.forEach(theme => {
         const counts = selected.map(c => countThemesByCountry(c)[THEMES.findIndex(t => t.id === theme.id)]);
@@ -154,50 +175,49 @@
 
         const ctx = document.getElementById(chartId);
         charts.push(new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: selected,
-    datasets: [{
-      label: theme.label,
-      data: counts,
-      backgroundColor: COLORS.slice(0, selected.length)
-    }]
-  },
-  options: {
-    responsive: true,
-    animation: {
-      duration: 300,
-      onComplete: () => {
-        setTimeout(() => {
-          Chart.helpers.each(Chart.instances, i => i.resize());
-        }, 0);
-      }
-    },
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true }
-    },
-    onClick: (event, elements) => {
-      if (elements.length > 0) {
-        const chart = elements[0].element.$context.chart;
-        const index = elements[0].index;
-        const datasetIndex = elements[0].datasetIndex;
-        const theme = chart.data.datasets[datasetIndex].label;
-        const country = chart.data.labels[index];
-        const value = chart.data.datasets[datasetIndex].data[index];
-        alert(`${theme} in ${country}: ${value} mentions`);
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: { stepSize: 10 },
-        title: { display: true, text: 'Mentions across reports' }
-    }
-    }
-    }
+          type: 'bar',
+          data: {
+            labels: selected,
+            datasets: [{
+              label: theme.label,
+              data: counts,
+              backgroundColor: COLORS.slice(0, selected.length)
+            }]
+          },
+          options: {
+            responsive: true,
+            animation: {
+              duration: 300,
+              onComplete: () => {
+                setTimeout(() => {
+                  Chart.helpers.each(Chart.instances, i => i.resize());
+                }, 0);
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: true }
+            },
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const chart = elements[0].element.$context.chart;
+                const index = elements[0].index;
+                const datasetIndex = elements[0].datasetIndex;
+                const theme = chart.data.datasets[datasetIndex].label;
+                const country = chart.data.labels[index];
+                const value = chart.data.datasets[datasetIndex].data[index];
+                alert(`${theme} in ${country}: ${value} mentions`);
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 10 },
+                title: { display: true, text: 'Mentions across reports' }
+              }
+            }
+          }
         }));
-
       });
     }
   </script>
