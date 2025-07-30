@@ -72,8 +72,21 @@
     let animationInterval = null;
     let currentChartIndex = 0;
 
-    const TAXONOMY = JSON.parse(`REPLACE_ME_TAXONOMY_JSON`); // <-- We'll replace this later
-    const THEME_NAMES = JSON.parse(`REPLACE_ME_THEME_NAMES_JSON`);
+const TAXONOMY = {
+  '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
+  '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
+  '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
+  '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
+  '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
+  '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
+  '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
+  '8': ["8.1 Digitalisation, AI and platform economies"],
+  '9': ["9.1 Governance", "9.2 Political economy"]
+};
+  const THEME_NAMES = {
+      '1': 'Austerity', '2': 'Tax', '3': 'Climate and Environment', '4': 'Social and Gendered Impacts',
+      '5': 'Social Services', '6': 'Private and External Sector', '7': 'Financialisation', '8': 'Digitisation', '9': 'Governance and Political Economy'
+    };    
     const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
     const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
