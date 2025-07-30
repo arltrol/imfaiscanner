@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compare Countries powered by AI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       margin: 0;
-      background: #ffffff;
-      color: #111;
+      background: #f9f9f9;
     }
     header {
       background: #72a4fc;
@@ -23,29 +21,36 @@
       font-size: 2.2em;
       margin: 0;
     }
+    header p {
+      margin-top: 5px;
+      font-size: 1.1em;
+    }
     main {
       padding: 20px;
     }
-    label, select {
-      font-size: 1em;
-    }
     .select-group {
+      text-align: center;
       margin-bottom: 20px;
+    }
+    select, button {
+      margin: 0 5px;
+      font-size: 1em;
+      padding: 6px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .chart-container {
-      background: #f7f7f7;
-      border: 1px solid #ddd;
-      padding: 20px;
+    .chart-card {
+      background: #fff;
       border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 16px;
     }
-    .chart-container canvas {
+    canvas {
       width: 100% !important;
-      height: 300px !important;
+      height: 200px !important;
     }
   </style>
 </head>
@@ -56,27 +61,32 @@
   </header>
   <main>
     <div class="select-group">
-      <label>Select up to 3 countries:</label><br>
+      <label>Select up to 3 countries:</label>
       <select id="country1"></select>
       <select id="country2"></select>
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
-    <div class="grid" id="chartsGrid"></div>
+    <div class="grid" id="chartGrid"></div>
   </main>
   <script>
     let data = [];
     let countries = new Set();
+    let charts = [];
 
-    const THEME_LABELS = [
-      "Austerity", "Tax", "Climate and Environment",
-      "Social and Gendered Impacts", "Social Services",
-      "Private and External Sector", "Financialisation",
-      "Digitisation", "Governance and Political Economy"
+    const THEMES = [
+      { id: 'austerity', label: 'Austerity', code: '1' },
+      { id: 'tax', label: 'Tax', code: '2' },
+      { id: 'climate', label: 'Climate and Environment', code: '3' },
+      { id: 'social', label: 'Social and Gendered Impacts', code: '4' },
+      { id: 'services', label: 'Social Services', code: '5' },
+      { id: 'private', label: 'Private and External Sector', code: '6' },
+      { id: 'finance', label: 'Financialisation', code: '7' },
+      { id: 'digital', label: 'Digitisation', code: '8' },
+      { id: 'governance', label: 'Governance and Political Economy', code: '9' }
     ];
 
-    const THEME_CODES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    const chartInstances = [];
+    const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
     fetch('reports_scrapev2_oldJuly27_1829.json')
       .then(res => res.json())
@@ -90,7 +100,7 @@
       });
 
     function countThemesByCountry(country) {
-      const counts = Object.fromEntries(THEME_CODES.map(code => [code, 0]));
+      const counts = Object.fromEntries(THEMES.map(t => [t.code, 0]));
       data.filter(d => d.country === country).forEach(report => {
         const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         if (ai?.content?.all_themes) {
@@ -100,7 +110,7 @@
           });
         }
       });
-      return THEME_CODES.map(code => counts[code]);
+      return THEMES.map(t => counts[t.code]);
     }
 
     function compare() {
@@ -112,46 +122,41 @@
 
       if (selected.length < 1) return alert('Select at least one country.');
 
-      // Clear previous charts
-      chartInstances.forEach(chart => chart.destroy());
-      chartInstances.length = 0;
-      document.getElementById('chartsGrid').innerHTML = '';
+      // Destroy previous charts
+      charts.forEach(c => c.destroy());
+      charts = [];
 
-      THEME_CODES.forEach((code, i) => {
-        const container = document.createElement('div');
-        container.className = 'chart-container';
-        const canvas = document.createElement('canvas');
-        container.appendChild(canvas);
-        document.getElementById('chartsGrid').appendChild(container);
+      const grid = document.getElementById('chartGrid');
+      grid.innerHTML = '';
 
-        const datasets = selected.map((country, idx) => ({
-          label: country,
-          data: [countThemesByCountry(country)[i]],
-          backgroundColor: `hsl(${idx * 120}, 70%, 60%)`,
-          borderRadius: 6
-        }));
+      THEMES.forEach(theme => {
+        const counts = selected.map(c => countThemesByCountry(c)[THEMES.findIndex(t => t.id === theme.id)]);
+        const chartId = 'chart-' + theme.id;
 
-        const chart = new Chart(canvas.getContext('2d'), {
+        const card = document.createElement('div');
+        card.className = 'chart-card';
+        card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
+        grid.appendChild(card);
+
+        const ctx = document.getElementById(chartId);
+        charts.push(new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: [THEME_LABELS[i]],
-            datasets
+            labels: selected,
+            datasets: [{
+              label: theme.label,
+              data: counts,
+              backgroundColor: COLORS.slice(0, selected.length)
+            }]
           },
           options: {
             responsive: true,
-            plugins: {
-              legend: { position: 'top' },
-              title: { display: true, text: THEME_LABELS[i] }
-            },
+            plugins: { legend: { display: false } },
             scales: {
-              y: {
-                beginAtZero: true,
-                title: { display: true, text: 'Mentions across reports' }
-              }
+              y: { beginAtZero: true, ticks: { stepSize: 10 }, title: { display: true, text: 'Mentions across reports' } }
             }
           }
-        });
-        chartInstances.push(chart);
+        }));
       });
     }
   </script>
