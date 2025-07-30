@@ -28,10 +28,24 @@
     main {
       padding: 20px;
     }
-    .select-group {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+   .select-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.select-group label {
+  flex-basis: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.select-group select, .select-group button {
+  min-width: 150px;
+}
+
     select, button {
       margin: 0 5px;
       font-size: 1em;
