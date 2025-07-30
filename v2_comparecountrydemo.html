@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compare Countries powered by AI</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
   <style>
     body { font-family: sans-serif; margin: 0; background: #f9f9f9; }
     header { background: #72a4fc; color: #000; padding: 30px 20px; text-align: center; }
@@ -14,7 +14,11 @@
     .select-group { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; text-align: center; }
     .select-group label { flex-basis: 100%; margin-bottom: 5px; font-weight: bold; }
     .select-group select, .select-group button { min-width: 150px; font-size: 1em; padding: 6px; }
-    .options-row { text-align: center; margin-bottom: 30px; font-size: 0.95em; }
+.options-row {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 0.95em;
+}
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .chart-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 16px; }
     canvas { width: 100% !important; height: 200px !important; }
@@ -24,7 +28,6 @@
     .theme-group label { font-weight: bold; display: block; margin-top: 10px; }
     .subtheme-checkbox { margin-left: 20px; display: block; }
     .modal-footer { margin-top: 20px; text-align: right; }
-    #animationControls { display: none; text-align: center; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -40,19 +43,18 @@
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
-    <div class="options-row">
-      <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span><br />
-      <a href="#" onclick="openThemeModal()">Customize themes</a> |
-      <a href="#" onclick="resetThemes()">Reset to default</a>
-    </div>
+ <div class="options-row">
+  <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span>
+  <br />
+  <a href="#" onclick="openThemeModal()">Customize themes</a> |
+  <a href="#" onclick="resetThemes()">Reset to default</a>
+</div>
+
+
     <div class="grid" id="chartGrid"></div>
-    <div id="animationControls">
-      <button onclick="toggleAnimation()" id="animBtn">▶ Play Animation</button><br>
-      <input type="range" id="chartSlider" min="0" value="0" step="1" oninput="highlightChart(this.value)">
-      <div id="chartName" style="margin-top: 5px; font-size: 0.9em;"></div>
-    </div>
   </main>
 
+  <!-- Modal -->
   <div id="themeModal">
     <div id="themeModalContent">
       <h3>Select up to 9 subthemes or themes</h3>
@@ -69,25 +71,26 @@
     let countries = new Set();
     let charts = [];
     let customThemes = null;
-    let animationInterval = null;
-    let currentChartIndex = 0;
 
-const TAXONOMY = {
-  '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
-  '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
-  '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
-  '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
-  '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
-  '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
-  '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
-  '8': ["8.1 Digitalisation, AI and platform economies"],
-  '9': ["9.1 Governance", "9.2 Political economy"]
-};
-  const THEME_NAMES = {
+    const TAXONOMY = {
+      '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
+      '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
+      '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
+      '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
+      '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
+      '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
+      '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
+      '8': ["8.1 Digitalisation, AI and platform economies"],
+      '9': ["9.1 Governance", "9.2 Political economy"]
+    };
+
+    const THEME_NAMES = {
       '1': 'Austerity', '2': 'Tax', '3': 'Climate and Environment', '4': 'Social and Gendered Impacts',
       '5': 'Social Services', '6': 'Private and External Sector', '7': 'Financialisation', '8': 'Digitisation', '9': 'Governance and Political Economy'
-    };    
+    };
+
     const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
+
     const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
     fetch('reports_scrapev2_oldJuly27_1829.json')
@@ -101,19 +104,24 @@ const TAXONOMY = {
         });
         renderThemeOptions();
         updateSelectedThemesText();
+
       });
 
-    function openThemeModal() { document.getElementById('themeModal').style.display = 'flex'; }
-    function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
+    function openThemeModal() {
+      document.getElementById('themeModal').style.display = 'flex';
+    }
+    function closeThemeModal() {
+      document.getElementById('themeModal').style.display = 'none';
+    }
 
     function resetThemes() {
-      customThemes = null;
-      document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
-      stopAnimation();
-      document.getElementById('animationControls').style.display = 'none';
-      compare();
+  customThemes = null;
+  document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
+  compare();
       updateSelectedThemesText();
-    }
+
+}
+
 
     function renderThemeOptions() {
       const container = document.getElementById('themeOptions');
@@ -133,16 +141,21 @@ const TAXONOMY = {
 
     function saveThemes() {
       const checkboxes = document.querySelectorAll('#themeOptions input[type=checkbox]:checked');
-      if (checkboxes.length > 9) return alert('Please select no more than 9 subthemes.');
+      if (checkboxes.length > 9) {
+        alert('Please select no more than 9 subthemes.');
+        return;
+      }
       customThemes = Array.from(checkboxes).map(cb => cb.value);
       closeThemeModal();
       compare();
       updateSelectedThemesText();
+
     }
 
     function getChartLabels() {
       if (!customThemes) return DEFAULT_THEMES;
       return customThemes.map(code => {
+        const theme = code.split('.')[0];
         const label = Object.values(TAXONOMY).flat().find(t => t.startsWith(code));
         return { code, label };
       });
@@ -163,72 +176,76 @@ const TAXONOMY = {
     }
 
     function compare() {
-      const selected = [country1.value, country2.value, country3.value].filter(Boolean);
+      const selected = [document.getElementById('country1').value, document.getElementById('country2').value, document.getElementById('country3').value].filter(Boolean);
       if (selected.length < 1) return alert('Select at least one country.');
 
       charts.forEach(c => c.destroy());
       charts = [];
-      chartGrid.innerHTML = '';
+      const grid = document.getElementById('chartGrid');
+      grid.innerHTML = '';
 
       const selectedThemes = getChartLabels();
-      selectedThemes.forEach((theme, index) => {
+
+      selectedThemes.forEach(theme => {
         const counts = selected.map(c => countThemesByCountry(c)[theme.code] || 0);
-        const chartId = `chart-${theme.code.replace('.', '-')}`;
+        const chartId = 'chart-' + theme.code.replace('.', '-');
         const card = document.createElement('div');
         card.className = 'chart-card';
         card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
-        chartGrid.appendChild(card);
+        grid.appendChild(card);
 
         const ctx = document.getElementById(chartId);
         charts.push(new Chart(ctx, {
           type: 'bar',
-          data: { labels: selected, datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS }] },
-          options: { responsive: true, plugins: { legend: { display: false } } }
+          data: {
+            labels: selected,
+            datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS.slice(0, selected.length) }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: true }
+            },
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const chart = elements[0].element.$context.chart;
+                const index = elements[0].index;
+                const datasetIndex = elements[0].datasetIndex;
+                const label = chart.data.datasets[datasetIndex].label;
+                const country = chart.data.labels[index];
+                const value = chart.data.datasets[datasetIndex].data[index];
+                alert(`${label} in ${country}: ${value} mentions`);
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 10 },
+                title: { display: true, text: 'Mentions across reports' }
+              }
+            }
+          }
         }));
       });
-
-      document.getElementById('chartSlider').max = selectedThemes.length - 1;
-      document.getElementById('animationControls').style.display = 'block';
-      highlightChart(0);
     }
-
     function updateSelectedThemesText() {
-      const span = document.getElementById('selectedThemesText');
-      const labels = !customThemes
-        ? DEFAULT_THEMES.map(t => t.label)
-        : customThemes.map(code => Object.values(TAXONOMY).flat().find(t => t.startsWith(code)));
-      span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
-    }
+  const span = document.getElementById('selectedThemesText');
+  let labels;
 
-    function toggleAnimation() {
-      const btn = document.getElementById('animBtn');
-      if (animationInterval) {
-        stopAnimation();
-        btn.textContent = '▶ Play Animation';
-      } else {
-        animationInterval = setInterval(() => {
-          currentChartIndex = (currentChartIndex + 1) % charts.length;
-          highlightChart(currentChartIndex);
-          document.getElementById('chartSlider').value = currentChartIndex;
-        }, 1500);
-        btn.textContent = '⏸ Pause';
-      }
-    }
+  if (!customThemes) {
+    // Default: Top-level themes
+    labels = DEFAULT_THEMES.map(t => t.label);
+  } else {
+    // Custom: Subthemes
+    labels = customThemes.map(code =>
+      Object.values(TAXONOMY).flat().find(t => t.startsWith(code))
+    );
+  }
 
-    function stopAnimation() {
-      clearInterval(animationInterval);
-      animationInterval = null;
-      document.getElementById('animBtn').textContent = '▶ Play Animation';
-    }
+  span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
+}
 
-    function highlightChart(i) {
-      const cards = document.querySelectorAll('.chart-card');
-      cards.forEach((card, idx) => {
-        card.style.opacity = idx == i ? '1' : '0.3';
-      });
-      document.getElementById('chartName').textContent = `Theme ${parseInt(i)+1} of ${charts.length}`;
-      currentChartIndex = parseInt(i);
-    }
   </script>
 </body>
 </html>
