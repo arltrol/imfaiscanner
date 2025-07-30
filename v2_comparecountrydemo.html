@@ -1,75 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compare Countries powered by AI</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-    }
-    header {
-      background: #72a4fc;
-      color: #000;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.2em;
-      margin: 0;
-    }
-    header p {
-      margin-top: 5px;
-      font-size: 1.1em;
-    }
-    main {
-      padding: 20px;
-    }
-    .select-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .select-group label {
-      flex-basis: 100%;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    .select-group select, .select-group button {
-      min-width: 150px;
-    }
-    .customize-link {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .customize-link a {
-      font-size: 0.95em;
-      color: #0077cc;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .chart-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      padding: 16px;
-    }
-    canvas {
-      width: 100% !important;
-      height: 200px !important;
-    }
+    body { font-family: sans-serif; margin: 0; background: #f9f9f9; }
+    header { background: #72a4fc; color: #000; padding: 30px 20px; text-align: center; }
+    header h1 { font-size: 2.2em; margin: 0; }
+    header p { margin-top: 5px; font-size: 1.1em; }
+    main { padding: 20px; }
+    .select-group { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; text-align: center; }
+    .select-group label { flex-basis: 100%; margin-bottom: 5px; font-weight: bold; }
+    .select-group select, .select-group button { min-width: 150px; font-size: 1em; padding: 6px; }
+    .options-row { text-align: center; margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .chart-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 16px; }
+    canvas { width: 100% !important; height: 200px !important; }
+    #themeModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+    #themeModalContent { background: white; padding: 20px; border-radius: 10px; max-height: 80%; overflow-y: auto; width: 80%; max-width: 600px; }
+    .theme-group { margin-bottom: 10px; }
+    .theme-group label { font-weight: bold; display: block; margin-top: 10px; }
+    .subtheme-checkbox { margin-left: 20px; display: block; }
+    .modal-footer { margin-top: 20px; text-align: right; }
   </style>
 </head>
 <body>
@@ -85,27 +39,48 @@
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
-    <div class="customize-link">
-      <a onclick="alert('Coming soon: Choose up to 9 subthemes to customize your chart view.')">Customize themes</a>
+    <div class="options-row">
+      <button onclick="openThemeModal()">Customize themes</button>
     </div>
     <div class="grid" id="chartGrid"></div>
   </main>
+
+  <!-- Modal -->
+  <div id="themeModal">
+    <div id="themeModalContent">
+      <h3>Select up to 9 subthemes or themes</h3>
+      <div id="themeOptions"></div>
+      <div class="modal-footer">
+        <button onclick="saveThemes()">Save</button>
+        <button onclick="closeThemeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let data = [];
     let countries = new Set();
     let charts = [];
+    let customThemes = null;
 
-    const THEMES = [
-      { id: 'austerity', label: 'Austerity', code: '1' },
-      { id: 'tax', label: 'Tax', code: '2' },
-      { id: 'climate', label: 'Climate and Environment', code: '3' },
-      { id: 'social', label: 'Social and Gendered Impacts', code: '4' },
-      { id: 'services', label: 'Social Services', code: '5' },
-      { id: 'private', label: 'Private and External Sector', code: '6' },
-      { id: 'finance', label: 'Financialisation', code: '7' },
-      { id: 'digital', label: 'Digitisation', code: '8' },
-      { id: 'governance', label: 'Governance and Political Economy', code: '9' }
-    ];
+    const TAXONOMY = {
+      '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
+      '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
+      '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
+      '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
+      '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
+      '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
+      '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
+      '8': ["8.1 Digitalisation, AI and platform economies"],
+      '9': ["9.1 Governance", "9.2 Political economy"]
+    };
+
+    const THEME_NAMES = {
+      '1': 'Austerity', '2': 'Tax', '3': 'Climate and Environment', '4': 'Social and Gendered Impacts',
+      '5': 'Social Services', '6': 'Private and External Sector', '7': 'Financialisation', '8': 'Digitisation', '9': 'Governance and Political Economy'
+    };
+
+    const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
 
     const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
@@ -118,41 +93,80 @@
           const sel = document.getElementById(id);
           sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
         });
+        renderThemeOptions();
       });
 
+    function openThemeModal() {
+      document.getElementById('themeModal').style.display = 'flex';
+    }
+    function closeThemeModal() {
+      document.getElementById('themeModal').style.display = 'none';
+    }
+
+    function renderThemeOptions() {
+      const container = document.getElementById('themeOptions');
+      container.innerHTML = '';
+      Object.entries(TAXONOMY).forEach(([themeCode, subthemes]) => {
+        const label = THEME_NAMES[themeCode];
+        const group = document.createElement('div');
+        group.className = 'theme-group';
+        group.innerHTML = `<label>${label}</label>`;
+        subthemes.forEach(st => {
+          const id = st.split(' ')[0];
+          group.innerHTML += `<label class="subtheme-checkbox"><input type="checkbox" value="${id}"> ${st}</label>`;
+        });
+        container.appendChild(group);
+      });
+    }
+
+    function saveThemes() {
+      const checkboxes = document.querySelectorAll('#themeOptions input[type=checkbox]:checked');
+      if (checkboxes.length > 9) {
+        alert('Please select no more than 9 subthemes.');
+        return;
+      }
+      customThemes = Array.from(checkboxes).map(cb => cb.value);
+      closeThemeModal();
+      compare();
+    }
+
+    function getChartLabels() {
+      if (!customThemes) return DEFAULT_THEMES;
+      return customThemes.map(code => {
+        const theme = code.split('.')[0];
+        const label = Object.values(TAXONOMY).flat().find(t => t.startsWith(code));
+        return { code, label };
+      });
+    }
+
     function countThemesByCountry(country) {
-      const counts = Object.fromEntries(THEMES.map(t => [t.code, 0]));
+      const result = {};
       data.filter(d => d.country === country).forEach(report => {
         const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
         if (ai?.content?.all_themes) {
           ai.content.all_themes.forEach(code => {
-            const top = code.split('.')[0];
-            if (counts[top] !== undefined) counts[top]++;
+            if (!result[code]) result[code] = 0;
+            result[code]++;
           });
         }
       });
-      return THEMES.map(t => counts[t.code]);
+      return result;
     }
 
     function compare() {
-      const selected = [
-        document.getElementById('country1').value,
-        document.getElementById('country2').value,
-        document.getElementById('country3').value
-      ].filter(Boolean);
-
+      const selected = [document.getElementById('country1').value, document.getElementById('country2').value, document.getElementById('country3').value].filter(Boolean);
       if (selected.length < 1) return alert('Select at least one country.');
 
       charts.forEach(c => c.destroy());
       charts = [];
-
       const grid = document.getElementById('chartGrid');
       grid.innerHTML = '';
 
-      THEMES.forEach(theme => {
-        const counts = selected.map(c => countThemesByCountry(c)[THEMES.findIndex(t => t.id === theme.id)]);
-        const chartId = 'chart-' + theme.id;
+      const selectedThemes = getChartLabels();
 
+      selectedThemes.forEach(theme => {
+        const counts = selected.map(c => countThemesByCountry(c)[theme.code] || 0);
+        const chartId = 'chart-' + theme.code.replace('.', '-');
         const card = document.createElement('div');
         card.className = 'chart-card';
         card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
@@ -163,22 +177,10 @@
           type: 'bar',
           data: {
             labels: selected,
-            datasets: [{
-              label: theme.label,
-              data: counts,
-              backgroundColor: COLORS.slice(0, selected.length)
-            }]
+            datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS.slice(0, selected.length) }]
           },
           options: {
             responsive: true,
-            animation: {
-              duration: 300,
-              onComplete: () => {
-                setTimeout(() => {
-                  Chart.helpers.each(Chart.instances, i => i.resize());
-                }, 0);
-              }
-            },
             plugins: {
               legend: { display: false },
               tooltip: { enabled: true }
@@ -188,10 +190,10 @@
                 const chart = elements[0].element.$context.chart;
                 const index = elements[0].index;
                 const datasetIndex = elements[0].datasetIndex;
-                const theme = chart.data.datasets[datasetIndex].label;
+                const label = chart.data.datasets[datasetIndex].label;
                 const country = chart.data.labels[index];
                 const value = chart.data.datasets[datasetIndex].data[index];
-                alert(`${theme} in ${country}: ${value} mentions`);
+                alert(`${label} in ${country}: ${value} mentions`);
               }
             },
             scales: {
