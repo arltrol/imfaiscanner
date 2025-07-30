@@ -477,15 +477,18 @@ updateMap();
   // Show either heatmap or circle markers
   if (heatmapEnabled) {
     heatLayer = L.heatLayer(heatPoints, {
-      radius: 25,
-      blur: 15,
+      radius: 30,
+      blur: 20,
+      max: 5,  // or whatever is a realistic max count
       maxZoom: 5,
       gradient: {
-        0.2: "#aad3fc",
-        0.4: "#72a4fc",
-        0.6: "#447ff5",
-        0.8: "#3366cc"
-      }
+  0.2: "#00bfff",  // light blue
+  0.4: "#7fff00",  // greenish
+  0.6: "#ffff00",  // yellow
+  0.8: "#ff4500",  // orange
+  1.0: "#ff0000"   // red
+}
+
     }).addTo(map);
   } else {
     for (const [country, count] of Object.entries(countryCounts)) {
