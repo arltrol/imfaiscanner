@@ -388,6 +388,7 @@
     }).addTo(map);
     const subthemeSelect = document.getElementById("subtheme-select"); // ✅ move here
 
+    let heatmapEnabled = false;
 
 fetch("reports_scrapev2_oldJuly27_1829.json")
   .then(res => {
@@ -429,7 +430,6 @@ fetch("reports_scrapev2_oldJuly27_1829.json")
     };
 
     let heatLayer = null;
-    let heatmapEnabled = false;
     let currentYear = 2025;
     let playing = false;
     let playInterval = null;
