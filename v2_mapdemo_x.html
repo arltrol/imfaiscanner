@@ -499,8 +499,12 @@ fetch("reports_scrapev2_oldJuly27_1829.json")
 
         const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
         const allThemes = ai?.content?.all_themes || [];
-        let reportYear = parseInt(report.year);
-        if (isNaN(reportYear)) reportYear = 2025;
+       let reportYear = 2025;
+if (report.publication_date) {
+  const match = report.publication_date.match(/^(\d{4})/);
+  if (match) reportYear = parseInt(match[1]);
+}
+
 
         const showThis =
           (selected.length === 0 || allThemes.some(code => selected.includes(code))) &&
