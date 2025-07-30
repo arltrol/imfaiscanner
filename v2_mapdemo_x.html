@@ -111,6 +111,27 @@
   min-width: 36px;
 }
 
+    #subtheme-box {
+  position: absolute;
+  top: 130px;
+  left: 12px;
+  width: 240px;
+  background: white;
+  z-index: 1002;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  font-size: 13px;
+}
+#subtheme-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#subtheme-controls {
+  margin-top: 8px;
+}
+
   </style>
 </head>
 <body>
@@ -127,12 +148,19 @@
 </div>
 
 <!-- INSERT THIS LINE JUST BELOW <body> -->
-<div id="subtheme-filter">
-  <label><strong>Filter by Sub-theme:</strong></label><br/>
-<select id="subtheme-select" multiple size="5"></select>
-  <br/><br/>
+<div id="subtheme-box">
+  <div id="subtheme-header">
+    <strong>🎯 Filter by Sub-theme:</strong>
+    <button id="toggle-subthemes">Hide</button>
+  </div>
+  <div id="subtheme-controls">
+    <select id="subtheme-select" multiple size="6"></select>
+    <br/><br/>
     <button id="toggle-heatmap">Enable Heatmap</button>
+    <span id="heatmap-status" style="font-size: 13px; margin-left: 10px;"></span>
+  </div>
 </div>
+
 
 
   <div id="map"></div>
@@ -413,11 +441,7 @@ fetch("reports_scrapev2_oldJuly27_1829.json")
     const toggleTimeline = document.getElementById("toggle-timeline");
     const timelineControls = document.getElementById("timeline-controls");
 
-    document.getElementById("toggle-heatmap").addEventListener("click", () => {
-      heatmapEnabled = !heatmapEnabled;
-      document.getElementById("toggle-heatmap").textContent = heatmapEnabled ? "Disable Heatmap" : "Enable Heatmap";
-      updateMap();
-    });
+   
 
     function populateSubthemeDropdown() {
       const dropdown = subthemeSelect;
@@ -594,7 +618,24 @@ if (report.publication_date) {
     console.error("JSON load failed:", err);
   });
 
+// 👇 INSERT HERE
+const toggleHeatmapBtn = document.getElementById("toggle-heatmap");
+const heatmapStatus = document.getElementById("heatmap-status");
+const toggleSubthemes = document.getElementById("toggle-subthemes");
+const subthemeControls = document.getElementById("subtheme-controls");
 
+toggleHeatmapBtn.addEventListener("click", () => {
+  heatmapEnabled = !heatmapEnabled;
+  toggleHeatmapBtn.textContent = heatmapEnabled ? "Disable Heatmap" : "Enable Heatmap";
+  heatmapStatus.textContent = heatmapEnabled ? "🔥 On" : "❌ Off";
+  updateMap();
+});
+
+toggleSubthemes.addEventListener("click", () => {
+  const isVisible = subthemeControls.style.display !== "none";
+  subthemeControls.style.display = isVisible ? "none" : "block";
+  toggleSubthemes.textContent = isVisible ? "Show" : "Hide";
+});
 
     function toggleLegend() {
   const legend = document.getElementById("legend");
