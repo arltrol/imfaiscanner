@@ -103,6 +103,8 @@
           sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
         });
         renderThemeOptions();
+        updateSelectedThemesText();
+
       });
 
     function openThemeModal() {
