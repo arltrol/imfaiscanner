@@ -258,7 +258,8 @@
             .replace(/2018 Staff Report/, "") // Handle Japan 2018 Staff Report
             .replace(/-/, " ")            // Handle Netherlands-Aruba to Netherlands Aruba
             .replace(/\s+/, " ")          // Normalize multiple spaces
-            .replace(/^Netherlands /, ""); // Handle Netherlands-Aruba to Aruba
+            .replace(/^Netherlands /, "") // Handle Netherlands-Aruba to Aruba
+            .replace(/’/, "'");           // Handle special apostrophes
 
           // Special mappings for inconsistent names
           const countryMappings = {
@@ -284,7 +285,8 @@
             "the Netherlands": "Netherlands",
             "Swaziland": "Eswatini",
             "Comoros": "Comoros",
-            "Russia": "Russia" // Added for Russian Federation
+            "Russia": "Russia",
+            "Timor Leste": "Timor-Leste" // Added for Democratic Republic of Timor-Leste
           };
           country = countryMappings[country] || country;
 
