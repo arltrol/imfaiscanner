@@ -43,12 +43,13 @@
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
-   <div class="options-row">
-  <span><strong>Default Themes:</strong> Austerity, Tax, Climate and Environment, Social and Gendered Impacts, Social Services, Private and External Sector, Financialisation, Digitisation, Governance and Political Economy</span>
+ <div class="options-row">
+  <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span>
   <br />
   <a href="#" onclick="openThemeModal()">Customize themes</a> |
   <a href="#" onclick="resetThemes()">Reset to default</a>
 </div>
+
 
     <div class="grid" id="chartGrid"></div>
   </main>
@@ -115,6 +116,8 @@
   customThemes = null;
   document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
   compare();
+      updateSelectedThemesText();
+
 }
 
 
@@ -143,6 +146,8 @@
       customThemes = Array.from(checkboxes).map(cb => cb.value);
       closeThemeModal();
       compare();
+      updateSelectedThemesText();
+
     }
 
     function getChartLabels() {
@@ -222,6 +227,23 @@
         }));
       });
     }
+    function updateSelectedThemesText() {
+  const span = document.getElementById('selectedThemesText');
+  let labels;
+
+  if (!customThemes) {
+    // Default: Top-level themes
+    labels = DEFAULT_THEMES.map(t => t.label);
+  } else {
+    // Custom: Subthemes
+    labels = customThemes.map(code =>
+      Object.values(TAXONOMY).flat().find(t => t.startsWith(code))
+    );
+  }
+
+  span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
+}
+
   </script>
 </body>
 </html>
