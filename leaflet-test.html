@@ -38,11 +38,19 @@
         const countryCounts = {};
 
         for (const report of data) {
-          const country = report.country?.trim();
-          if (!countryCoords[country]) {
-            console.warn("Missing coordinates for:", country);
-            continue;
-          }
+        const rawCountry = report.country || "";
+const country = rawCountry.trim()
+  .replace(/^Republic of /, "")   // e.g., "Republic of Estonia" → "Estonia"
+  .replace(/^United Republic of /, "")
+  .replace(/^Democratic Republic of /, "")
+  .replace(/^Kingdom of /, "")
+  .replace(/ \(.*\)/, "");        // remove things like "Country (East)"
+
+if (!countryCoords[country]) {
+  console.warn("Missing coordinates for:", rawCountry);
+  continue;
+}
+
           countryCounts[country] = (countryCounts[country] || 0) + 1;
         }
 
