@@ -140,36 +140,50 @@
 
         const ctx = document.getElementById(chartId);
         charts.push(new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: selected,
-            datasets: [{
-              label: theme.label,
-              data: counts,
-              backgroundColor: COLORS.slice(0, selected.length)
-            }]
-          },
-         options: {
-  responsive: true,
-  animation: {
-    duration: 300,
-    onComplete: () => {
-      setTimeout(() => {
-        Chart.helpers.each(Chart.instances, i => i.resize());
-      }, 0);
-    }
+  type: 'bar',
+  data: {
+    labels: selected,
+    datasets: [{
+      label: theme.label,
+      data: counts,
+      backgroundColor: COLORS.slice(0, selected.length)
+    }]
   },
-  plugins: { legend: { display: false } },
-  scales: {
-    y: {
-      beginAtZero: true,
-      ticks: { stepSize: 10 },
-      title: { display: true, text: 'Mentions across reports' }
+  options: {
+    responsive: true,
+    animation: {
+      duration: 300,
+      onComplete: () => {
+        setTimeout(() => {
+          Chart.helpers.each(Chart.instances, i => i.resize());
+        }, 0);
+      }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true }
+    },
+    onClick: (event, elements) => {
+      if (elements.length > 0) {
+        const chart = elements[0].element.$context.chart;
+        const index = elements[0].index;
+        const datasetIndex = elements[0].datasetIndex;
+        const theme = chart.data.datasets[datasetIndex].label;
+        const country = chart.data.labels[index];
+        const value = chart.data.datasets[datasetIndex].data[index];
+        alert(`${theme} in ${country}: ${value} mentions`);
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { stepSize: 10 },
+        title: { display: true, text: 'Mentions across reports' }
     }
-  }
-}
-
+    }
+    }
         }));
+
       });
     }
   </script>
