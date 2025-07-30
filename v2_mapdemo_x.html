@@ -13,10 +13,68 @@
     #map {
       height: 100vh;
     }
+    #legend {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  padding: 10px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  line-height: 1.4;
+  z-index: 1000;
+}
+#legend h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+#legend .circle {
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: #72a4fc;
+}
+#legend .small {
+  width: 10px;
+  height: 10px;
+}
+#legend .medium {
+  width: 14px;
+  height: 14px;
+}
+#legend .large {
+  width: 18px;
+  height: 18px;
+}
+    #toggle-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1001;
+  padding: 6px 10px;
+  font-size: 13px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
 <body>
+
+
   <div id="map"></div>
+  <button onclick="toggleLegend()" id="toggle-btn">Toggle Legend</button>
+
+    <div id="legend">
+  <h4>Legend</h4>
+  <div><span class="circle small"></span> 1–5 reports</div>
+  <div><span class="circle medium"></span> 6–15 reports</div>
+  <div><span class="circle large"></span> 16+ reports</div>
+</div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -316,6 +374,17 @@
       .catch(err => {
         console.error("JSON load failed:", err);
       });
+
+    function toggleLegend() {
+  const legend = document.getElementById("legend");
+  if (legend.style.display === "none") {
+    legend.style.display = "block";
+  } else {
+    legend.style.display = "none";
+  }
+}
+
+    
   </script>
 </body>
 </html>
