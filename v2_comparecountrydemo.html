@@ -129,19 +129,10 @@
       document.getElementById('themeModal').style.display = 'none';
     }
 
-   function resetThemes() {
-  customThemes = null;
-
-  // Clear old charts and container
-  charts.forEach(c => c.destroy());
-  charts = [];
-  document.getElementById('chartGrid').innerHTML = '';
-
-  document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
-  
-  compare();
-  updateSelectedThemesText();
+  function resetThemes() {
+  location.reload(); // Full page reload
 }
+
 
 
 
