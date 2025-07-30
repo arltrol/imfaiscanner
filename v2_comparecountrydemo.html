@@ -149,13 +149,26 @@
               backgroundColor: COLORS.slice(0, selected.length)
             }]
           },
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              y: { beginAtZero: true, ticks: { stepSize: 10 }, title: { display: true, text: 'Mentions across reports' } }
-            }
-          }
+         options: {
+  responsive: true,
+  animation: {
+    duration: 300,
+    onComplete: () => {
+      setTimeout(() => {
+        Chart.helpers.each(Chart.instances, i => i.resize());
+      }, 0);
+    }
+  },
+  plugins: { legend: { display: false } },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: { stepSize: 10 },
+      title: { display: true, text: 'Mentions across reports' }
+    }
+  }
+}
+
         }));
       });
     }
