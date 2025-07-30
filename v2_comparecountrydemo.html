@@ -246,17 +246,7 @@ const countFunc = compareMode === 'country' ? countThemesByCountry : countThemes
               legend: { display: false },
               tooltip: { enabled: true }
             },
-            onClick: (event, elements) => {
-              if (elements.length > 0) {
-                const chart = elements[0].element.$context.chart;
-                const index = elements[0].index;
-                const datasetIndex = elements[0].datasetIndex;
-                const label = chart.data.datasets[datasetIndex].label;
-                const country = chart.data.labels[index];
-                const value = chart.data.datasets[datasetIndex].data[index];
-                alert(`${label} in ${country}: ${value} mentions`);
-              }
-            },
+           
             scales: {
               y: {
                 beginAtZero: true,
