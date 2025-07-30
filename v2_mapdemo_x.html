@@ -356,16 +356,29 @@ function populateSubthemeDropdown() {
   const dropdown = document.getElementById("subtheme-select");
   dropdown.innerHTML = ""; // clear existing
 
+  // First, calculate the counts
+  const themeCounts = {}; // e.g. { "1.1": 997 }
+
+  for (const report of data) {
+    const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
+    const tags = ai?.content?.all_themes || [];
+    for (const tag of tags) {
+      themeCounts[tag] = (themeCounts[tag] || 0) + 1;
+    }
+  }
+
   for (const [theme, subthemes] of Object.entries(THEME_MAP)) {
     for (const sub of subthemes) {
       const code = sub.match(/^(\d+\.\d+)/)?.[1] || sub;
+      const count = themeCounts[code] || 0;
       const option = document.createElement("option");
       option.value = code;
-      option.textContent = sub;
+      option.textContent = `${sub} (${count})`;
       dropdown.appendChild(option);
     }
   }
 }
+
 
     populateSubthemeDropdown();
 updateMap();
