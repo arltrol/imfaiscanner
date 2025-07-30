@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Compare Countries powered by AI</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
   <style>
     body { font-family: sans-serif; margin: 0; background: #f9f9f9; }
     header { background: #72a4fc; color: #000; padding: 30px 20px; text-align: center; }
@@ -14,11 +14,7 @@
     .select-group { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; text-align: center; }
     .select-group label { flex-basis: 100%; margin-bottom: 5px; font-weight: bold; }
     .select-group select, .select-group button { min-width: 150px; font-size: 1em; padding: 6px; }
-.options-row {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 0.95em;
-}
+    .options-row { text-align: center; margin-bottom: 30px; font-size: 0.95em; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .chart-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 16px; }
     canvas { width: 100% !important; height: 200px !important; }
@@ -28,6 +24,7 @@
     .theme-group label { font-weight: bold; display: block; margin-top: 10px; }
     .subtheme-checkbox { margin-left: 20px; display: block; }
     .modal-footer { margin-top: 20px; text-align: right; }
+    #yearControls { display: none; text-align: center; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -43,18 +40,19 @@
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
- <div class="options-row">
-  <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span>
-  <br />
-  <a href="#" onclick="openThemeModal()">Customize themes</a> |
-  <a href="#" onclick="resetThemes()">Reset to default</a>
-</div>
-
-
+    <div class="options-row">
+      <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span><br />
+      <a href="#" onclick="openThemeModal()">Customize themes</a> |
+      <a href="#" onclick="resetThemes()">Reset to default</a>
+    </div>
     <div class="grid" id="chartGrid"></div>
+    <div id="yearControls">
+      <button onclick="toggleTimeline()" id="playBtn">▶ Play</button><br>
+      <input type="range" id="yearSlider" min="0" value="0" oninput="renderChartsByYear(this.value)">
+      <div id="yearDisplay"></div>
+    </div>
   </main>
 
-  <!-- Modal -->
   <div id="themeModal">
     <div id="themeModalContent">
       <h3>Select up to 9 subthemes or themes</h3>
@@ -66,186 +64,155 @@
     </div>
   </div>
 
-  <script>
-    let data = [];
-    let countries = new Set();
-    let charts = [];
-    let customThemes = null;
+<script>
+let data = [], charts = [], countries = new Set(), customThemes = null;
+let years = [], selectedYear = null, yearInterval = null;
+const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
-    const TAXONOMY = {
-      '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
-      '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
-      '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
-      '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
-      '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
-      '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
-      '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
-      '8': ["8.1 Digitalisation, AI and platform economies"],
-      '9': ["9.1 Governance", "9.2 Political economy"]
-    };
+const TAXONOMY = {
+  '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
+  '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
+  '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
+  '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
+  '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
+  '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
+  '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
+  '8': ["8.1 Digitalisation, AI and platform economies"],
+  '9': ["9.1 Governance", "9.2 Political economy"]
+};
+const THEME_NAMES = {
+  '1': 'Austerity', '2': 'Tax', '3': 'Climate and Environment', '4': 'Social and Gendered Impacts',
+  '5': 'Social Services', '6': 'Private and External Sector', '7': 'Financialisation', '8': 'Digitisation', '9': 'Governance and Political Economy'
+};
+const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
 
-    const THEME_NAMES = {
-      '1': 'Austerity', '2': 'Tax', '3': 'Climate and Environment', '4': 'Social and Gendered Impacts',
-      '5': 'Social Services', '6': 'Private and External Sector', '7': 'Financialisation', '8': 'Digitisation', '9': 'Governance and Political Economy'
-    };
+fetch('reports_scrapev2_oldJuly27_1829.json')
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+    years = [...new Set(data.map(d => d.publication_date?.substring(0, 4)).filter(y => y))].sort();
+    countries = new Set(data.map(d => d.country).filter(Boolean).sort());
+    ['country1','country2','country3'].forEach(id => {
+      const sel = document.getElementById(id);
+      sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
+    });
+    renderThemeOptions();
+    updateSelectedThemesText();
+  });
 
-    const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
-
-    const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
-
-    fetch('reports_scrapev2_oldJuly27_1829.json')
-      .then(res => res.json())
-      .then(json => {
-        data = json;
-        countries = new Set(data.map(d => d.country).filter(Boolean).sort());
-        ['country1','country2','country3'].forEach(id => {
-          const sel = document.getElementById(id);
-          sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
-        });
-        renderThemeOptions();
-        updateSelectedThemesText();
-
-      });
-
-    function openThemeModal() {
-      document.getElementById('themeModal').style.display = 'flex';
-    }
-    function closeThemeModal() {
-      document.getElementById('themeModal').style.display = 'none';
-    }
-
-    function resetThemes() {
+function openThemeModal() { document.getElementById('themeModal').style.display = 'flex'; }
+function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
+function resetThemes() {
   customThemes = null;
   document.querySelectorAll('#themeOptions input[type=checkbox]').forEach(cb => cb.checked = false);
   compare();
-      updateSelectedThemesText();
-
+  updateSelectedThemesText();
 }
-
-
-    function renderThemeOptions() {
-      const container = document.getElementById('themeOptions');
-      container.innerHTML = '';
-      Object.entries(TAXONOMY).forEach(([themeCode, subthemes]) => {
-        const label = THEME_NAMES[themeCode];
-        const group = document.createElement('div');
-        group.className = 'theme-group';
-        group.innerHTML = `<label>${label}</label>`;
-        subthemes.forEach(st => {
-          const id = st.split(' ')[0];
-          group.innerHTML += `<label class="subtheme-checkbox"><input type="checkbox" value="${id}"> ${st}</label>`;
-        });
-        container.appendChild(group);
+function renderThemeOptions() {
+  const container = document.getElementById('themeOptions');
+  container.innerHTML = '';
+  Object.entries(TAXONOMY).forEach(([themeCode, subthemes]) => {
+    const label = THEME_NAMES[themeCode];
+    const group = document.createElement('div');
+    group.className = 'theme-group';
+    group.innerHTML = `<label>${label}</label>`;
+    subthemes.forEach(st => {
+      const id = st.split(' ')[0];
+      group.innerHTML += `<label class="subtheme-checkbox"><input type="checkbox" value="${id}"> ${st}</label>`;
+    });
+    container.appendChild(group);
+  });
+}
+function saveThemes() {
+  const checkboxes = document.querySelectorAll('#themeOptions input[type=checkbox]:checked');
+  if (checkboxes.length > 9) return alert('Please select no more than 9 subthemes.');
+  customThemes = Array.from(checkboxes).map(cb => cb.value);
+  closeThemeModal();
+  compare();
+  updateSelectedThemesText();
+}
+function getChartLabels() {
+  if (!customThemes) return DEFAULT_THEMES;
+  return customThemes.map(code => {
+    const label = Object.values(TAXONOMY).flat().find(t => t.startsWith(code));
+    return { code, label };
+  });
+}
+function countThemesByCountry(country, year) {
+  const result = {};
+  data.filter(d => d.country === country && (!year || d.publication_date?.startsWith(year))).forEach(report => {
+    const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    if (ai?.content?.all_themes) {
+      ai.content.all_themes.forEach(code => {
+        if (!result[code]) result[code] = 0;
+        result[code]++;
       });
     }
-
-    function saveThemes() {
-      const checkboxes = document.querySelectorAll('#themeOptions input[type=checkbox]:checked');
-      if (checkboxes.length > 9) {
-        alert('Please select no more than 9 subthemes.');
-        return;
-      }
-      customThemes = Array.from(checkboxes).map(cb => cb.value);
-      closeThemeModal();
-      compare();
-      updateSelectedThemesText();
-
-    }
-
-    function getChartLabels() {
-      if (!customThemes) return DEFAULT_THEMES;
-      return customThemes.map(code => {
-        const theme = code.split('.')[0];
-        const label = Object.values(TAXONOMY).flat().find(t => t.startsWith(code));
-        return { code, label };
-      });
-    }
-
-    function countThemesByCountry(country) {
-      const result = {};
-      data.filter(d => d.country === country).forEach(report => {
-        const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        if (ai?.content?.all_themes) {
-          ai.content.all_themes.forEach(code => {
-            if (!result[code]) result[code] = 0;
-            result[code]++;
-          });
+  });
+  return result;
+}
+function compare() {
+  selectedYear = null;
+  document.getElementById('yearControls').style.display = 'block';
+  document.getElementById('yearSlider').max = years.length - 1;
+  renderChartsByYear(0);
+}
+function renderChartsByYear(index) {
+  selectedYear = years[index];
+  document.getElementById('yearDisplay').textContent = `Showing data for ${selectedYear}`;
+  charts.forEach(c => c.destroy());
+  charts = [];
+  const selected = [country1.value, country2.value, country3.value].filter(Boolean);
+  const selectedThemes = getChartLabels();
+  const grid = document.getElementById('chartGrid');
+  grid.innerHTML = '';
+  selectedThemes.forEach(theme => {
+    const counts = selected.map(c => countThemesByCountry(c, selectedYear)[theme.code] || 0);
+    const chartId = 'chart-' + theme.code.replace('.', '-') + '-' + selectedYear;
+    const card = document.createElement('div');
+    card.className = 'chart-card';
+    card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
+    grid.appendChild(card);
+    const ctx = document.getElementById(chartId);
+    charts.push(new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: selected,
+        datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS.slice(0, selected.length) }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Mentions across reports' } }
         }
-      });
-      return result;
-    }
-
-    function compare() {
-      const selected = [document.getElementById('country1').value, document.getElementById('country2').value, document.getElementById('country3').value].filter(Boolean);
-      if (selected.length < 1) return alert('Select at least one country.');
-
-      charts.forEach(c => c.destroy());
-      charts = [];
-      const grid = document.getElementById('chartGrid');
-      grid.innerHTML = '';
-
-      const selectedThemes = getChartLabels();
-
-      selectedThemes.forEach(theme => {
-        const counts = selected.map(c => countThemesByCountry(c)[theme.code] || 0);
-        const chartId = 'chart-' + theme.code.replace('.', '-');
-        const card = document.createElement('div');
-        card.className = 'chart-card';
-        card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
-        grid.appendChild(card);
-
-        const ctx = document.getElementById(chartId);
-        charts.push(new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: selected,
-            datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS.slice(0, selected.length) }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { display: false },
-              tooltip: { enabled: true }
-            },
-            onClick: (event, elements) => {
-              if (elements.length > 0) {
-                const chart = elements[0].element.$context.chart;
-                const index = elements[0].index;
-                const datasetIndex = elements[0].datasetIndex;
-                const label = chart.data.datasets[datasetIndex].label;
-                const country = chart.data.labels[index];
-                const value = chart.data.datasets[datasetIndex].data[index];
-                alert(`${label} in ${country}: ${value} mentions`);
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: { stepSize: 10 },
-                title: { display: true, text: 'Mentions across reports' }
-              }
-            }
-          }
-        }));
-      });
-    }
-    function updateSelectedThemesText() {
-  const span = document.getElementById('selectedThemesText');
-  let labels;
-
-  if (!customThemes) {
-    // Default: Top-level themes
-    labels = DEFAULT_THEMES.map(t => t.label);
+      }
+    }));
+  });
+}
+function toggleTimeline() {
+  const btn = document.getElementById('playBtn');
+  if (yearInterval) {
+    clearInterval(yearInterval);
+    yearInterval = null;
+    btn.textContent = '▶ Play';
   } else {
-    // Custom: Subthemes
-    labels = customThemes.map(code =>
-      Object.values(TAXONOMY).flat().find(t => t.startsWith(code))
-    );
+    let i = parseInt(document.getElementById('yearSlider').value);
+    yearInterval = setInterval(() => {
+      i = (i + 1) % years.length;
+      document.getElementById('yearSlider').value = i;
+      renderChartsByYear(i);
+    }, 2000);
+    btn.textContent = '⏸ Pause';
   }
-
+}
+function updateSelectedThemesText() {
+  const span = document.getElementById('selectedThemesText');
+  let labels = customThemes
+    ? customThemes.map(code => Object.values(TAXONOMY).flat().find(t => t.startsWith(code)))
+    : DEFAULT_THEMES.map(t => t.label);
   span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
 }
-
-  </script>
+</script>
 </body>
 </html>
