@@ -613,12 +613,7 @@ if (report.publication_date) {
     populateSubthemeDropdown();
     updateMap();
     subthemeSelect.addEventListener("change", updateMap);
-  })
-  .catch(err => {
-    console.error("JSON load failed:", err);
-  });
-
-// 👇 INSERT HERE
+    // Move inside .then
 const toggleHeatmapBtn = document.getElementById("toggle-heatmap");
 const heatmapStatus = document.getElementById("heatmap-status");
 const toggleSubthemes = document.getElementById("toggle-subthemes");
@@ -636,6 +631,15 @@ toggleSubthemes.addEventListener("click", () => {
   subthemeControls.style.display = isVisible ? "none" : "block";
   toggleSubthemes.textContent = isVisible ? "Show" : "Hide";
 });
+
+  })
+  .catch(err => {
+    console.error("JSON load failed:", err);
+  });
+
+
+
+
 
     function toggleLegend() {
   const legend = document.getElementById("legend");
