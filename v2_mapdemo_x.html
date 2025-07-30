@@ -362,7 +362,8 @@ let heatmapEnabled = false;
 document.getElementById("toggle-heatmap").addEventListener("click", () => {
   heatmapEnabled = !heatmapEnabled;
   document.getElementById("toggle-heatmap").textContent = heatmapEnabled ? "Disable Heatmap" : "Enable Heatmap";
- 
+   updateMap(); // <-- 🧠 add this line to trigger re-render
+
 });
 
 
