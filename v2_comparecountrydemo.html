@@ -30,17 +30,22 @@
       font-size: 1em;
     }
     .select-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      gap: 30px;
     }
-    canvas {
+    .chart-container {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .chart-container canvas {
       width: 100% !important;
-      height: auto !important;
+      height: 300px !important;
     }
   </style>
 </head>
@@ -57,11 +62,21 @@
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
-    <div class="grid" id="chartGrid"></div>
+    <div class="grid" id="chartsGrid"></div>
   </main>
   <script>
     let data = [];
     let countries = new Set();
+
+    const THEME_LABELS = [
+      "Austerity", "Tax", "Climate and Environment",
+      "Social and Gendered Impacts", "Social Services",
+      "Private and External Sector", "Financialisation",
+      "Digitisation", "Governance and Political Economy"
+    ];
+
+    const THEME_CODES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const chartInstances = [];
 
     fetch('reports_scrapev2_oldJuly27_1829.json')
       .then(res => res.json())
@@ -73,15 +88,6 @@
           sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
         });
       });
-
-    const THEME_LABELS = [
-      "Austerity", "Tax", "Climate and Environment",
-      "Social and Gendered Impacts", "Social Services",
-      "Private and External Sector", "Financialisation",
-      "Digitisation", "Governance and Political Economy"
-    ];
-
-    const THEME_CODES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
     function countThemesByCountry(country) {
       const counts = Object.fromEntries(THEME_CODES.map(code => [code, 0]));
@@ -106,42 +112,46 @@
 
       if (selected.length < 1) return alert('Select at least one country.');
 
-      const grid = document.getElementById('chartGrid');
-      grid.innerHTML = '';
+      // Clear previous charts
+      chartInstances.forEach(chart => chart.destroy());
+      chartInstances.length = 0;
+      document.getElementById('chartsGrid').innerHTML = '';
 
-      THEME_CODES.forEach((themeCode, i) => {
+      THEME_CODES.forEach((code, i) => {
+        const container = document.createElement('div');
+        container.className = 'chart-container';
         const canvas = document.createElement('canvas');
-        grid.appendChild(canvas);
+        container.appendChild(canvas);
+        document.getElementById('chartsGrid').appendChild(container);
 
         const datasets = selected.map((country, idx) => ({
           label: country,
           data: [countThemesByCountry(country)[i]],
-          backgroundColor: `hsl(${idx * 120}, 70%, 60%)`
+          backgroundColor: `hsl(${idx * 120}, 70%, 60%)`,
+          borderRadius: 6
         }));
 
-        new Chart(canvas, {
+        const chart = new Chart(canvas.getContext('2d'), {
           type: 'bar',
           data: {
             labels: [THEME_LABELS[i]],
             datasets
           },
           options: {
+            responsive: true,
             plugins: {
               legend: { position: 'top' },
-              title: {
-                display: true,
-                text: THEME_LABELS[i],
-                font: { size: 16 }
-              }
+              title: { display: true, text: THEME_LABELS[i] }
             },
             scales: {
               y: {
                 beginAtZero: true,
-                ticks: { stepSize: 1 }
+                title: { display: true, text: 'Mentions across reports' }
               }
             }
           }
         });
+        chartInstances.push(chart);
       });
     }
   </script>
