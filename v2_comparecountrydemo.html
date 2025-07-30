@@ -3,131 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Countries powered by AI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>IMF Theme Comparison Grid</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       margin: 0;
-      background: #ffffff;
-      color: #111;
+      padding: 20px;
+      background: #f9f9f9;
     }
-    header {
-      background: #72a4fc;
-      color: #000;
-      padding: 30px 20px;
+    h2 {
       text-align: center;
     }
-    header h1 {
-      font-size: 2.2em;
-      margin: 0;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    main {
-      padding: 20px;
-    }
-    label, select {
-      font-size: 1em;
-    }
-    .select-group {
-      margin-bottom: 15px;
+    .chart-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 16px;
     }
     canvas {
-      margin-top: 40px;
-      max-width: 100%;
+      width: 100% !important;
+      height: 200px !important;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Compare Countries powered by AI</h1>
-    <p>Explore IMF themes across nations</p>
-  </header>
-  <main>
-    <div class="select-group">
-      <label>Select up to 3 countries:</label><br>
-      <select id="country1"></select>
-      <select id="country2"></select>
-      <select id="country3"></select>
-      <button onclick="compare()">Compare</button>
+  <h2>AI-detected Themes in IMF Reports</h2>
+  <div class="grid">
+    <!-- One card per theme -->
+    <div class="chart-card">
+      <h4>Austerity</h4>
+      <canvas id="chart-austerity"></canvas>
     </div>
-    <canvas id="compareChart" height="140"></canvas>
-  </main>
+    <div class="chart-card">
+      <h4>Tax</h4>
+      <canvas id="chart-tax"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Climate and Environment</h4>
+      <canvas id="chart-climate"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Social and Gendered Impacts</h4>
+      <canvas id="chart-social"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Social Services</h4>
+      <canvas id="chart-services"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Private and External Sector</h4>
+      <canvas id="chart-private"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Financialisation</h4>
+      <canvas id="chart-finance"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Digitisation</h4>
+      <canvas id="chart-digital"></canvas>
+    </div>
+    <div class="chart-card">
+      <h4>Governance and Political Economy</h4>
+      <canvas id="chart-governance"></canvas>
+    </div>
+  </div>
+
   <script>
-    let data = [];
-    let countries = new Set();
-    let chartInstance;
+    const countries = ['Botswana', 'Belize', 'Portugal'];
+    const colors = ['#e74c3c', '#2ecc71', '#3498db'];
 
-    fetch('reports_scrapev2_oldJuly27_1829.json')
-      .then(res => res.json())
-      .then(json => {
-        data = json;
-        countries = new Set(data.map(d => d.country).filter(Boolean).sort());
-        ['country1','country2','country3'].forEach(id => {
-          const sel = document.getElementById(id);
-          sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
-        });
-      });
+    const themeData = {
+      austerity: [41, 49, 40],
+      tax: [30, 34, 27],
+      climate: [12, 20, 14],
+      social: [13, 20, 8],
+      services: [24, 56, 27],
+      private: [26, 24, 27],
+      finance: [20, 35, 12],
+      digital: [6, 12, 4],
+      governance: [10, 18, 6]
+    };
 
-    const THEME_LABELS = [
-      "Austerity", "Tax", "Climate and Environment",
-      "Social and Gendered Impacts", "Social Services",
-      "Private and External Sector", "Financialisation",
-      "Digitisation", "Governance and Political Economy"
-    ];
-
-    const THEME_CODES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-    function countThemesByCountry(country) {
-      const counts = Object.fromEntries(THEME_CODES.map(code => [code, 0]));
-      data.filter(d => d.country === country).forEach(report => {
-        const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
-        if (ai?.content?.all_themes) {
-          ai.content.all_themes.forEach(code => {
-            const top = code.split('.')[0];
-            if (counts[top] !== undefined) counts[top]++;
-          });
-        }
-      });
-      return THEME_CODES.map(code => counts[code]);
-    }
-
-    function compare() {
-      const selected = [
-        document.getElementById('country1').value,
-        document.getElementById('country2').value,
-        document.getElementById('country3').value
-      ].filter(Boolean);
-
-      if (selected.length < 1) return alert('Select at least one country.');
-
-      const datasets = selected.map((country, idx) => ({
-        label: country,
-        data: countThemesByCountry(country),
-        backgroundColor: `hsl(${idx * 120}, 70%, 60%)`,
-        borderRadius: 6
-      }));
-
-      if (chartInstance) chartInstance.destroy();
-
-      chartInstance = new Chart(document.getElementById('compareChart'), {
+    function makeChart(canvasId, label, data) {
+      new Chart(document.getElementById(canvasId), {
         type: 'bar',
         data: {
-          labels: THEME_LABELS,
-          datasets
+          labels: countries,
+          datasets: [{
+            label: label,
+            data: data,
+            backgroundColor: colors
+          }]
         },
         options: {
           responsive: true,
-          plugins: {
-            legend: { position: 'top' },
-            title: { display: true, text: 'AI-detected Themes in IMF Reports by Country' }
-          },
+          plugins: { legend: { display: false } },
           scales: {
-            y: { beginAtZero: true, title: { display: true, text: 'Mentions across reports' } }
+            y: {
+              beginAtZero: true,
+              ticks: { stepSize: 10 }
+            }
           }
         }
       });
     }
+
+    makeChart('chart-austerity', 'Austerity', themeData.austerity);
+    makeChart('chart-tax', 'Tax', themeData.tax);
+    makeChart('chart-climate', 'Climate and Environment', themeData.climate);
+    makeChart('chart-social', 'Social and Gendered Impacts', themeData.social);
+    makeChart('chart-services', 'Social Services', themeData.services);
+    makeChart('chart-private', 'Private and External Sector', themeData.private);
+    makeChart('chart-finance', 'Financialisation', themeData.finance);
+    makeChart('chart-digital', 'Digitisation', themeData.digital);
+    makeChart('chart-governance', 'Governance and Political Economy', themeData.governance);
   </script>
 </body>
 </html>
