@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Countries powered by AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #111;
+    }
+    header {
+      background: #72a4fc;
+      color: #000;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2em;
+      margin: 0;
+    }
+    main {
+      padding: 20px;
+    }
+    label, select {
+      font-size: 1em;
+    }
+    .select-group {
+      margin-bottom: 15px;
+    }
+    canvas {
+      margin-top: 40px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Compare Countries powered by AI</h1>
+    <p>Explore IMF themes across nations</p>
+  </header>
+  <main>
+    <div class="select-group">
+      <label>Select up to 3 countries:</label><br>
+      <select id="country1"></select>
+      <select id="country2"></select>
+      <select id="country3"></select>
+      <button onclick="compare()">Compare</button>
+    </div>
+    <canvas id="compareChart" height="140"></canvas>
+  </main>
+  <script>
+    let data = [];
+    let countries = new Set();
+    let chartInstance;
+
+    fetch('reports_scrapev2_oldJuly27_1829.json')
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        countries = new Set(data.map(d => d.country).filter(Boolean).sort());
+        ['country1','country2','country3'].forEach(id => {
+          const sel = document.getElementById(id);
+          sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
+        });
+      });
+
+    const THEME_LABELS = [
+      "Austerity", "Tax", "Climate and Environment",
+      "Social and Gendered Impacts", "Social Services",
+      "Private and External Sector", "Financialisation",
+      "Digitisation", "Governance and Political Economy"
+    ];
+
+    const THEME_CODES = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+    function countThemesByCountry(country) {
+      const counts = Object.fromEntries(THEME_CODES.map(code => [code, 0]));
+      data.filter(d => d.country === country).forEach(report => {
+        const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+        if (ai?.content?.all_themes) {
+          ai.content.all_themes.forEach(code => {
+            const top = code.split('.')[0];
+            if (counts[top] !== undefined) counts[top]++;
+          });
+        }
+      });
+      return THEME_CODES.map(code => counts[code]);
+    }
+
+    function compare() {
+      const selected = [
+        document.getElementById('country1').value,
+        document.getElementById('country2').value,
+        document.getElementById('country3').value
+      ].filter(Boolean);
+
+      if (selected.length < 1) return alert('Select at least one country.');
+
+      const datasets = selected.map((country, idx) => ({
+        label: country,
+        data: countThemesByCountry(country),
+        backgroundColor: `hsl(${idx * 120}, 70%, 60%)`,
+        borderRadius: 6
+      }));
+
+      if (chartInstance) chartInstance.destroy();
+
+      chartInstance = new Chart(document.getElementById('compareChart'), {
+        type: 'bar',
+        data: {
+          labels: THEME_LABELS,
+          datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'AI-detected Themes in IMF Reports by Country' }
+          },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Mentions across reports' } }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
