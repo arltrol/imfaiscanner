@@ -361,206 +361,197 @@
     const subthemeSelect = document.getElementById("subtheme-select"); // ✅ move here
 
 
-    fetch("reports_scrapev2_oldJuly27_1829.json")
+   fetch("reports_scrapev2_oldJuly27_1829.json")
   .then(res => {
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
     return res.json();
   })
   .then(data => {
     console.log(`Loaded ${data.length} reports`);
-const THEME_MAP = {
-  "Austerity": [
-    "1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"
-  ],
-  "Tax": [
-    "2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"
-  ],
-  "Climate and Environment": [
-    "3.1 Climate policies", "3.2 Land use, forests and natural resource management"
-  ],
-  "Social and Gendered Impacts": [
-    "4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"
-  ],
-  "Social Services": [
-    "5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions",
-    "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"
-  ],
-  "Private and External Sector": [
-    "6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"
-  ],
-  "Financialisation": [
-    "7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"
-  ],
-  "Digitisation": [
-    "8.1 Digitalisation, AI and platform economies"
-  ],
-  "Governance and Political Economy": [
-    "9.1 Governance", "9.2 Political economy"
-  ]
-};
 
-let heatLayer = null;
-let heatmapEnabled = false;
-
-document.getElementById("toggle-heatmap").addEventListener("click", () => {
-  heatmapEnabled = !heatmapEnabled;
-  document.getElementById("toggle-heatmap").textContent = heatmapEnabled ? "Disable Heatmap" : "Enable Heatmap";
-   updateMap(); // <-- 🧠 add this line to trigger re-render
-
-});
-
-
-    
-function populateSubthemeDropdown() {
-  const dropdown = document.getElementById("subtheme-select");
-  dropdown.innerHTML = ""; // clear existing
-
-  // First, calculate the counts
-  const themeCounts = {}; // e.g. { "1.1": 997 }
-
-  for (const report of data) {
-    const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
-    const tags = ai?.content?.all_themes || [];
-    for (const tag of tags) {
-      themeCounts[tag] = (themeCounts[tag] || 0) + 1;
-    }
-  }
-
-  for (const [theme, subthemes] of Object.entries(THEME_MAP)) {
-    for (const sub of subthemes) {
-      const code = sub.match(/^(\d+\.\d+)/)?.[1] || sub;
-      const count = themeCounts[code] || 0;
-      const option = document.createElement("option");
-      option.value = code;
-      option.textContent = `${sub} (${count})`;
-      dropdown.appendChild(option);
-    }
-  }
-}
-
-
-    populateSubthemeDropdown();
-updateMap();
-
-    
-  function updateMap() {
-  const selected = Array.from(subthemeSelect.selectedOptions).map(opt => opt.value);
-  const countryCounts = {};
-  const heatPoints = [];
-
-  for (const report of data) {
-    const rawCountry = report.country || "";
-    let country = rawCountry.trim()
-      .replace(/^Republic of /, "")
-      .replace(/^United Republic of /, "")
-      .replace(/^Democratic Republic of /, "")
-      .replace(/^Kingdom of /, "")
-      .replace(/ \(.*\)/, "")
-      .replace(/People’s /, "")
-      .replace(/The /, "")
-      .replace(/Principality of /, "")
-      .replace(/Union of /, "")
-      .replace(/Islamic Republic of /, "")
-      .replace(/Darussalam/, "")
-      .replace(/2018 Staff Report/, "")
-      .replace(/-/, " ")
-      .replace(/\s+/, " ")
-      .replace(/^Netherlands /, "")
-      .replace(/’/, "'");
-
-    const countryMappings = {
-      "Korea": "South Korea",
-      "Türkiye": "Turkey",
-      "Lao People's Democratic Republic": "Laos",
-      "Lao Democratic Republic": "Laos",
-      "Congo": "Congo (Brazzaville)",
-      "the Congo": "Congo (Kinshasa)",
-      "Republic of China": "China",
-      "People's Republic of China": "China",
-      "Federated States of Micronesia": "Micronesia",
-      "the Marshall Islands": "Marshall Islands",
-      "Slovak Republic": "Slovakia",
-      "St. Kitts and Nevis": "Saint Kitts and Nevis",
-      "St. Lucia": "Saint Lucia",
-      "St. Vincent and the Grenadines": "Saint Vincent and the Grenadines",
-      "Kyrgyz Republic": "Kyrgyzstan",
-      "Côte d’Ivoire": "Cote d'Ivoire",
-      "Netherlands Aruba": "Aruba",
-      "Netherlands Netherlands": "Netherlands",
-      "the Netherlands": "Netherlands",
-      "Swaziland": "Eswatini",
-      "Timor Leste": "Timor-Leste"
+    const THEME_MAP = {
+      "Austerity": [
+        "1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"
+      ],
+      "Tax": [
+        "2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"
+      ],
+      "Climate and Environment": [
+        "3.1 Climate policies", "3.2 Land use, forests and natural resource management"
+      ],
+      "Social and Gendered Impacts": [
+        "4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"
+      ],
+      "Social Services": [
+        "5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions",
+        "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"
+      ],
+      "Private and External Sector": [
+        "6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"
+      ],
+      "Financialisation": [
+        "7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"
+      ],
+      "Digitisation": [
+        "8.1 Digitalisation, AI and platform economies"
+      ],
+      "Governance and Political Economy": [
+        "9.1 Governance", "9.2 Political economy"
+      ]
     };
-    country = countryMappings[country] || country;
 
-    if (!countryCoords[country]) continue;
+    let heatLayer = null;
+    let heatmapEnabled = false;
 
-    const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
-    const allThemes = ai?.content?.all_themes || [];
-  let reportYear = parseInt(report.year);
-if (isNaN(reportYear)) reportYear = 2025;
+    const subthemeSelect = document.getElementById("subtheme-select");
 
+    document.getElementById("toggle-heatmap").addEventListener("click", () => {
+      heatmapEnabled = !heatmapEnabled;
+      document.getElementById("toggle-heatmap").textContent = heatmapEnabled ? "Disable Heatmap" : "Enable Heatmap";
+      updateMap();
+    });
 
-    const showThis =
-      (selected.length === 0 || allThemes.some(code => selected.includes(code))) &&
-      (reportYear <= currentYear);
+    function populateSubthemeDropdown() {
+      const dropdown = subthemeSelect;
+      dropdown.innerHTML = "";
 
-    if (!showThis) continue;
+      const themeCounts = {};
 
-    const [lat, lon] = countryCoords[country];
-    heatPoints.push([lat, lon, 1]); // 3rd arg = intensity
-    countryCounts[country] = (countryCounts[country] || 0) + 1;
-  }
-
-  if (heatLayer) {
-    map.removeLayer(heatLayer);
-    heatLayer = null;
-  }
-
-  map.eachLayer(layer => {
-    if (layer instanceof L.Circle) map.removeLayer(layer);
-  });
-
-  if (heatmapEnabled) {
-    heatLayer = L.heatLayer(heatPoints, {
-      radius: 30,
-      blur: 20,
-      max: 5,
-      maxZoom: 5,
-      gradient: {
-        0.2: "#00bfff",
-        0.4: "#7fff00",
-        0.6: "#ffff00",
-        0.8: "#ff4500",
-        1.0: "#ff0000"
+      for (const report of data) {
+        const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
+        const tags = ai?.content?.all_themes || [];
+        for (const tag of tags) {
+          themeCounts[tag] = (themeCounts[tag] || 0) + 1;
+        }
       }
-    }).addTo(map);
-  } else {
-    for (const [country, count] of Object.entries(countryCounts)) {
-      const [lat, lon] = countryCoords[country];
-      L.circle([lat, lon], {
-        color: "#3366cc",
-        fillColor: "#72a4fc",
-        fillOpacity: 0.6,
-        radius: 20000 + count * 15000
-      })
-      .bindTooltip(`${country}: ${count} report${count > 1 ? "s" : ""}`)
-      .addTo(map);
+
+      for (const [theme, subthemes] of Object.entries(THEME_MAP)) {
+        for (const sub of subthemes) {
+          const code = sub.match(/^(\d+\.\d+)/)?.[1] || sub;
+          const count = themeCounts[code] || 0;
+          const option = document.createElement("option");
+          option.value = code;
+          option.textContent = `${sub} (${count})`;
+          dropdown.appendChild(option);
+        }
+      }
     }
-  }
-}
 
+    function updateMap() {
+      const selected = Array.from(subthemeSelect.selectedOptions).map(opt => opt.value);
+      const countryCounts = {};
+      const heatPoints = [];
 
+      for (const report of data) {
+        const rawCountry = report.country || "";
+        let country = rawCountry.trim()
+          .replace(/^Republic of /, "")
+          .replace(/^United Republic of /, "")
+          .replace(/^Democratic Republic of /, "")
+          .replace(/^Kingdom of /, "")
+          .replace(/ \(.*\)/, "")
+          .replace(/People’s /, "")
+          .replace(/The /, "")
+          .replace(/Principality of /, "")
+          .replace(/Union of /, "")
+          .replace(/Islamic Republic of /, "")
+          .replace(/Darussalam/, "")
+          .replace(/2018 Staff Report/, "")
+          .replace(/-/, " ")
+          .replace(/\s+/, " ")
+          .replace(/^Netherlands /, "")
+          .replace(/’/, "'");
 
-    // initial render
+        const countryMappings = {
+          "Korea": "South Korea",
+          "Türkiye": "Turkey",
+          "Lao People's Democratic Republic": "Laos",
+          "Lao Democratic Republic": "Laos",
+          "Congo": "Congo (Brazzaville)",
+          "the Congo": "Congo (Kinshasa)",
+          "Republic of China": "China",
+          "People's Republic of China": "China",
+          "Federated States of Micronesia": "Micronesia",
+          "the Marshall Islands": "Marshall Islands",
+          "Slovak Republic": "Slovakia",
+          "St. Kitts and Nevis": "Saint Kitts and Nevis",
+          "St. Lucia": "Saint Lucia",
+          "St. Vincent and the Grenadines": "Saint Vincent and the Grenadines",
+          "Kyrgyz Republic": "Kyrgyzstan",
+          "Côte d’Ivoire": "Cote d'Ivoire",
+          "Netherlands Aruba": "Aruba",
+          "Netherlands Netherlands": "Netherlands",
+          "the Netherlands": "Netherlands",
+          "Swaziland": "Eswatini",
+          "Timor Leste": "Timor-Leste"
+        };
+        country = countryMappings[country] || country;
+
+        if (!countryCoords[country]) continue;
+
+        const ai = report.ai_analysis?.find(a => a.model === "gpt-4-turbo");
+        const allThemes = ai?.content?.all_themes || [];
+        let reportYear = parseInt(report.year);
+        if (isNaN(reportYear)) reportYear = 2025;
+
+        const showThis =
+          (selected.length === 0 || allThemes.some(code => selected.includes(code))) &&
+          (reportYear <= currentYear);
+
+        if (!showThis) continue;
+
+        const [lat, lon] = countryCoords[country];
+        heatPoints.push([lat, lon, 1]);
+        countryCounts[country] = (countryCounts[country] || 0) + 1;
+      }
+
+      if (heatLayer) {
+        map.removeLayer(heatLayer);
+        heatLayer = null;
+      }
+
+      map.eachLayer(layer => {
+        if (layer instanceof L.Circle) map.removeLayer(layer);
+      });
+
+      if (heatmapEnabled) {
+        heatLayer = L.heatLayer(heatPoints, {
+          radius: 30,
+          blur: 20,
+          max: 5,
+          maxZoom: 5,
+          gradient: {
+            0.2: "#00bfff",
+            0.4: "#7fff00",
+            0.6: "#ffff00",
+            0.8: "#ff4500",
+            1.0: "#ff0000"
+          }
+        }).addTo(map);
+      } else {
+        for (const [country, count] of Object.entries(countryCounts)) {
+          const [lat, lon] = countryCoords[country];
+          L.circle([lat, lon], {
+            color: "#3366cc",
+            fillColor: "#72a4fc",
+            fillOpacity: 0.6,
+            radius: 20000 + count * 15000
+          })
+            .bindTooltip(`${country}: ${count} report${count > 1 ? "s" : ""}`)
+            .addTo(map);
+        }
+      }
+    }
+
+    // ✅ Now safe to call
+    populateSubthemeDropdown();
     updateMap();
-
-    // re-render on filter
     subthemeSelect.addEventListener("change", updateMap);
   })
   .catch(err => {
     console.error("JSON load failed:", err);
   });
+
 
 
     function toggleLegend() {
