@@ -28,6 +28,11 @@
     .theme-group label { font-weight: bold; display: block; margin-top: 10px; }
     .subtheme-checkbox { margin-left: 20px; display: block; }
     .modal-footer { margin-top: 20px; text-align: right; }
+    .chart-card.single {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
   </style>
 </head>
 <body>
@@ -218,11 +223,13 @@ const countFunc = compareMode === 'country' ? countThemesByCountry : countThemes
 
       const selectedThemes = getChartLabels();
 
+      const isSingle = selectedThemes.length === 1;
       selectedThemes.forEach(theme => {
       const counts = selected.map(c => countFunc(c)[theme.code] || 0);
         const chartId = 'chart-' + theme.code.replace('.', '-');
         const card = document.createElement('div');
-        card.className = 'chart-card';
+        card.className = 'chart-card' + (isSingle ? ' single' : '');
+
         card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
         grid.appendChild(card);
 
