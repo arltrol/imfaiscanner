@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leaflet Map Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const countryCoords = {
+      "Brazil": [-10, -55],
+      "Grenada": [12.1165, -61.679],
+      "Iraq": [33.2232, 43.6793],
+      "Denmark": [56, 10],
+      "Albania": [41.1533, 20.1683],
+      "Australia": [-25.2744, 133.7751],
+      "Nicaragua": [13.1939, -85.1094],
+      "Egypt": [26.8206, 30.8025],
+      "Jordan": [31.24, 36.51]
+      // Add more as needed
+    };
+
+    const map = L.map('map').setView([10, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 5,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    fetch("reports_scrapev2_oldJuly27_1829.json")
+      .then(res => res.json())
+      .then(data => {
+        console.log(`Loaded ${data.length} reports`);
+
+        const countryCounts = {};
+
+        for (const report of data) {
+          const country = report.country?.trim();
+          if (!countryCoords[country]) {
+            console.warn("Missing coordinates for:", country);
+            continue;
+          }
+          countryCounts[country] = (countryCounts[country] || 0) + 1;
+        }
+
+        for (const [country, count] of Object.entries(countryCounts)) {
+          const [lat, lon] = countryCoords[country];
+          L.circle([lat, lon], {
+            color: "#3366cc",
+            fillColor: "#72a4fc",
+            fillOpacity: 0.6,
+            radius: 20000 + count * 15000
+          })
+          .bindTooltip(`${country}: ${count} report${count > 1 ? "s" : ""}`)
+          .addTo(map);
+        }
+      })
+      .catch(err => {
+        console.error("JSON load failed:", err);
+      });
+  </script>
+</body>
+</html>
