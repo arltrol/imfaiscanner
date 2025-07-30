@@ -36,13 +36,19 @@
     <p>Explore IMF themes across nations</p>
   </header>
   <main>
+    <div style="text-align: center; margin-bottom: 10px;">
+  <label><input type="radio" name="mode" value="country" checked onchange="switchMode()"> Compare Countries</label>
+  <label style="margin-left: 20px;"><input type="radio" name="mode" value="region" onchange="switchMode()"> Compare Regions</label>
+</div>
+
     <div class="select-group">
-      <label>Select up to 3 countries:</label>
+      <label id="dropdownLabel">Select up to 3 countries:</label>
       <select id="country1"></select>
       <select id="country2"></select>
       <select id="country3"></select>
       <button onclick="compare()">Compare</button>
     </div>
+    
  <div class="options-row">
   <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span>
   <br />
@@ -67,6 +73,7 @@
   </div>
 
   <script>
+    let compareMode = 'country'; // 'country' or 'region'
     let data = [];
     let countries = new Set();
     let charts = [];
@@ -92,12 +99,15 @@
     const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
 
     const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
-
+     let regions = new Set();
+    
     fetch('reports_scrapev2_oldJuly27_1829.json')
+     
       .then(res => res.json())
       .then(json => {
         data = json;
-        countries = new Set(data.map(d => d.country).filter(Boolean).sort());
+      countries = new Set(data.map(d => d.country).filter(Boolean).sort());
+      regions = new Set(data.map(d => d.region).filter(Boolean).sort());
         ['country1','country2','country3'].forEach(id => {
           const sel = document.getElementById(id);
           sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
@@ -174,10 +184,32 @@
       });
       return result;
     }
+    function countThemesByRegion(region) {
+  const result = {};
+  data.filter(d => d.region === region).forEach(report => {
+    const ai = report.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    if (ai?.content?.all_themes) {
+      ai.content.all_themes.forEach(code => {
+        if (!result[code]) result[code] = 0;
+        result[code]++;
+      });
+    }
+  });
+  return result;
+}
+
 
     function compare() {
-      const selected = [document.getElementById('country1').value, document.getElementById('country2').value, document.getElementById('country3').value].filter(Boolean);
-      if (selected.length < 1) return alert('Select at least one country.');
+      const selected = [
+  document.getElementById('country1').value,
+  document.getElementById('country2').value,
+  document.getElementById('country3').value
+].filter(Boolean);
+
+if (selected.length < 1) return alert(`Select at least one ${compareMode}.`);
+
+const countFunc = compareMode === 'country' ? countThemesByCountry : countThemesByRegion;
+
 
       charts.forEach(c => c.destroy());
       charts = [];
@@ -187,7 +219,7 @@
       const selectedThemes = getChartLabels();
 
       selectedThemes.forEach(theme => {
-        const counts = selected.map(c => countThemesByCountry(c)[theme.code] || 0);
+      const counts = selected.map(c => countFunc(c)[theme.code] || 0);
         const chartId = 'chart-' + theme.code.replace('.', '-');
         const card = document.createElement('div');
         card.className = 'chart-card';
@@ -245,6 +277,25 @@
 
   span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
 }
+    function switchMode() {
+  compareMode = document.querySelector('input[name="mode"]:checked').value;
+
+  const entries = compareMode === 'country'
+    ? [...countries]
+    : [...regions];
+
+  ['country1', 'country2', 'country3'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = '<option value="">-- Select --</option>' + entries.map(e => `<option>${e}</option>`).join('');
+  });
+      
+document.getElementById('dropdownLabel').textContent =
+  `Select up to 3 ${compareMode === 'country' ? 'countries' : 'regions'}:`;
+
+      
+  compare(); // auto-update charts
+}
+
 
   </script>
 </body>
