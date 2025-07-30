@@ -24,7 +24,7 @@
     .theme-group label { font-weight: bold; display: block; margin-top: 10px; }
     .subtheme-checkbox { margin-left: 20px; display: block; }
     .modal-footer { margin-top: 20px; text-align: right; }
-    #animationControls { text-align: center; margin-top: 20px; display: none; }
+    #animationControls { display: none; text-align: center; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -41,21 +41,18 @@
       <button onclick="compare()">Compare</button>
     </div>
     <div class="options-row">
-      <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span>
-      <br />
+      <span id="selectedThemesText"><strong>Selected Themes:</strong> Loading...</span><br />
       <a href="#" onclick="openThemeModal()">Customize themes</a> |
       <a href="#" onclick="resetThemes()">Reset to default</a>
     </div>
-
     <div class="grid" id="chartGrid"></div>
-
     <div id="animationControls">
       <button onclick="toggleAnimation()" id="animBtn">▶ Play Animation</button><br>
-      <input type="range" id="chartSlider" min="0" max="0" value="0" oninput="showChartAtIndex(this.value)" style="width: 300px;">
+      <input type="range" id="chartSlider" min="0" value="0" step="1" oninput="highlightChart(this.value)">
+      <div id="chartName" style="margin-top: 5px; font-size: 0.9em;"></div>
     </div>
   </main>
 
-  <!-- Modal -->
   <div id="themeModal">
     <div id="themeModalContent">
       <h3>Select up to 9 subthemes or themes</h3>
@@ -75,30 +72,8 @@
     let animationInterval = null;
     let currentChartIndex = 0;
 
-    const TAXONOMY = {
-      '1': ["1.1 Fiscal consolidation", "1.2 Wage Bill", "1.3 Subsidies", "1.4 Privatisation", "1.5 Labour flexibilization"],
-      '2': ["2.1 Regressive tax measures", "2.2 Progressive tax measures", "2.3 Tax Expenditures and Illicit Financial Flows"],
-      '3': ["3.1 Climate policies", "3.2 Land use, forests and natural resource management"],
-      '4': ["4.1 Gender policies", "4.2 Care Economy", "4.3 Distributional and social impacts"],
-      '5': ["5.1 Social protection", "5.2 Pension and social security reforms", "5.3 Social Security Contributions", "5.4 Fees for Public Services", "5.5 Cuts to Health Expenditure", "5.6 Cuts to Education Expenditure"],
-      '6': ["6.1 External sector and FDI", "6.2 Public Private Partnerships", "6.3 Foreign Currency Debt and External Vulnerabilities"],
-      '7': ["7.1 Deregulation", "7.2 Monetary policies", "7.3 Corporate Governance", "7.4 Expansion of Credit and Debt Markets", "7.5 Financial inclusion"],
-      '8': ["8.1 Digitalisation, AI and platform economies"],
-      '9': ["9.1 Governance", "9.2 Political economy"]
-    };
-
-    const THEME_NAMES = {
-      '1': 'Austerity',
-      '2': 'Tax',
-      '3': 'Climate and Environment',
-      '4': 'Social and Gendered Impacts',
-      '5': 'Social Services',
-      '6': 'Private and External Sector',
-      '7': 'Financialisation',
-      '8': 'Digitisation',
-      '9': 'Governance and Political Economy'
-    };
-
+    const TAXONOMY = JSON.parse(`REPLACE_ME_TAXONOMY_JSON`); // <-- We'll replace this later
+    const THEME_NAMES = JSON.parse(`REPLACE_ME_THEME_NAMES_JSON`);
     const DEFAULT_THEMES = Object.entries(THEME_NAMES).map(([code, label]) => ({ code, label }));
     const COLORS = ['#e74c3c', '#2ecc71', '#3498db'];
 
@@ -145,10 +120,7 @@
 
     function saveThemes() {
       const checkboxes = document.querySelectorAll('#themeOptions input[type=checkbox]:checked');
-      if (checkboxes.length > 9) {
-        alert('Please select no more than 9 subthemes.');
-        return;
-      }
+      if (checkboxes.length > 9) return alert('Please select no more than 9 subthemes.');
       customThemes = Array.from(checkboxes).map(cb => cb.value);
       closeThemeModal();
       compare();
@@ -178,82 +150,40 @@
     }
 
     function compare() {
-      const selected = [document.getElementById('country1').value, document.getElementById('country2').value, document.getElementById('country3').value].filter(Boolean);
+      const selected = [country1.value, country2.value, country3.value].filter(Boolean);
       if (selected.length < 1) return alert('Select at least one country.');
 
-      stopAnimation();
       charts.forEach(c => c.destroy());
       charts = [];
-      const grid = document.getElementById('chartGrid');
-      grid.innerHTML = '';
+      chartGrid.innerHTML = '';
 
       const selectedThemes = getChartLabels();
-
-      selectedThemes.forEach(theme => {
+      selectedThemes.forEach((theme, index) => {
         const counts = selected.map(c => countThemesByCountry(c)[theme.code] || 0);
-        const chartId = 'chart-' + theme.code.replace('.', '-');
+        const chartId = `chart-${theme.code.replace('.', '-')}`;
         const card = document.createElement('div');
         card.className = 'chart-card';
         card.innerHTML = `<h4>${theme.label}</h4><canvas id="${chartId}"></canvas>`;
-        grid.appendChild(card);
+        chartGrid.appendChild(card);
 
         const ctx = document.getElementById(chartId);
         charts.push(new Chart(ctx, {
           type: 'bar',
-          data: {
-            labels: selected,
-            datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS.slice(0, selected.length) }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { display: false },
-              tooltip: { enabled: true }
-            },
-            onClick: (event, elements) => {
-              if (elements.length > 0) {
-                const chart = elements[0].element.$context.chart;
-                const index = elements[0].index;
-                const datasetIndex = elements[0].datasetIndex;
-                const label = chart.data.datasets[datasetIndex].label;
-                const country = chart.data.labels[index];
-                const value = chart.data.datasets[datasetIndex].data[index];
-                alert(`${label} in ${country}: ${value} mentions`);
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: { stepSize: 10 },
-                title: { display: true, text: 'Mentions across reports' }
-              }
-            }
-          }
+          data: { labels: selected, datasets: [{ label: theme.label, data: counts, backgroundColor: COLORS }] },
+          options: { responsive: true, plugins: { legend: { display: false } } }
         }));
       });
 
-      // Setup animation controls
-      if (charts.length > 0) {
-        document.getElementById('chartSlider').max = charts.length - 1;
-        document.getElementById('animationControls').style.display = 'block';
-        showChartAtIndex(0);
-      } else {
-        document.getElementById('animationControls').style.display = 'none';
-      }
+      document.getElementById('chartSlider').max = selectedThemes.length - 1;
+      document.getElementById('animationControls').style.display = 'block';
+      highlightChart(0);
     }
 
     function updateSelectedThemesText() {
       const span = document.getElementById('selectedThemesText');
-      let labels;
-
-      if (!customThemes) {
-        labels = DEFAULT_THEMES.map(t => t.label);
-      } else {
-        labels = customThemes.map(code =>
-          Object.values(TAXONOMY).flat().find(t => t.startsWith(code))
-        );
-      }
-
+      const labels = !customThemes
+        ? DEFAULT_THEMES.map(t => t.label)
+        : customThemes.map(code => Object.values(TAXONOMY).flat().find(t => t.startsWith(code)));
       span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
     }
 
@@ -265,7 +195,7 @@
       } else {
         animationInterval = setInterval(() => {
           currentChartIndex = (currentChartIndex + 1) % charts.length;
-          showChartAtIndex(currentChartIndex);
+          highlightChart(currentChartIndex);
           document.getElementById('chartSlider').value = currentChartIndex;
         }, 1500);
         btn.textContent = '⏸ Pause';
@@ -278,11 +208,12 @@
       document.getElementById('animBtn').textContent = '▶ Play Animation';
     }
 
-    function showChartAtIndex(i) {
+    function highlightChart(i) {
       const cards = document.querySelectorAll('.chart-card');
       cards.forEach((card, idx) => {
-        card.style.display = idx == i ? 'block' : 'none';
+        card.style.opacity = idx == i ? '1' : '0.3';
       });
+      document.getElementById('chartName').textContent = `Theme ${parseInt(i)+1} of ${charts.length}`;
       currentChartIndex = parseInt(i);
     }
   </script>
