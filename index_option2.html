@@ -207,17 +207,23 @@
 
     </aside>
     <main id="main">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
-        <div>
-          <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
-          <select id="perPage" onchange="changePerPage()" style="padding: 4px 8px; font-size: 0.95em;">
-            <option value="10">10</option>
-            <option value="20" selected>20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-      </div>
+     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+  <div>
+    <div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
+    <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-top: 4px;">
+      <input type="checkbox" id="toggleAdvancedTagInfo" onchange="renderPage()"> Show advanced tag info
+    </label>
+  </div>
+  <div>
+    <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
+    <select id="perPage" onchange="changePerPage()" style="padding: 4px 8px; font-size: 0.95em;">
+      <option value="10">10</option>
+      <option value="20" selected>20</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+</div>
+
       <div id="reportList"></div>
       <div class="pagination" id="pageControls"></div>
     </main>
