@@ -515,7 +515,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
       <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
       <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
-      <div class="themes"><strong>Top 3 Sub themes:</strong> ${(content.top_subthemes || []).join(', ') || 'Not available'}</div>
+      <div class="themes"><strong>Top 3 Subthemes:</strong> ${(content.top_subthemes || []).map(t => t.name).join(', ') || 'Not available'}</div>
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
