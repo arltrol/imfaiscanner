@@ -295,13 +295,14 @@
 fetch('001_aug2_master_nonAItags.json')
   .then(res => res.json())
   .then(data => {
-    data.forEach(entry => {
-      if (entry.stock_no) {
-        nonAiTagData[entry.stock_no] = entry;
+    (data.reports || []).forEach(entry => {
+      if (entry.publication_details?.stock_no) {
+        nonAiTagData[entry.publication_details.stock_no] = entry;
       }
     });
     console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
   })
+
   .catch(err => {
     console.error("❌ Failed to load non-AI tag data:", err);
   });
