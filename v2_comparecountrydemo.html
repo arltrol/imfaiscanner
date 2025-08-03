@@ -64,7 +64,7 @@
 </div>
 
     <div class="select-group">
-      <label id="dropdownLabel">Select up to 3 countries:</label>
+      <label id="dropdownLabel">Select up to 3 regions:</label>
       <select id="country1"></select>
       <select id="country2"></select>
       <select id="country3"></select>
@@ -132,10 +132,7 @@
       regions = new Set(data.map(d => d.region).filter(Boolean).sort());
         switchMode();  // ✅ set regions as default dropdowns
 
-        ['country1','country2','country3'].forEach(id => {
-          const sel = document.getElementById(id);
-          sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
-        });
+       
         renderThemeOptions();
         updateSelectedThemesText();
 
@@ -228,8 +225,9 @@
   document.getElementById('country3').value
 ].filter(Boolean);
 
-if (selected.length < 1) return alert(`Select at least one ${compareMode}.`);
-
+// Avoid running on first load before dropdowns populated
+  if (!selected.length) return;
+      
 const countFunc = compareMode === 'country' ? countThemesByCountry : countThemesByRegion;
 
 
@@ -291,7 +289,7 @@ const countFunc = compareMode === 'country' ? countThemesByCountry : countThemes
 
   span.innerHTML = `<strong>Selected Themes:</strong> ${labels.join(', ')}`;
 }
-    function switchMode() {
+   function switchMode() {
   compareMode = document.querySelector('input[name="mode"]:checked').value;
 
   const entries = compareMode === 'country'
@@ -302,13 +300,12 @@ const countFunc = compareMode === 'country' ? countThemesByCountry : countThemes
     const sel = document.getElementById(id);
     sel.innerHTML = '<option value="">-- Select --</option>' + entries.map(e => `<option>${e}</option>`).join('');
   });
-      
-document.getElementById('dropdownLabel').textContent =
-  `Select up to 3 ${compareMode === 'country' ? 'countries' : 'regions'}:`;
 
-      
-  compare(); // auto-update charts
+  document.getElementById('dropdownLabel').textContent =
+    `Select up to 3 ${compareMode === 'country' ? 'countries' : 'regions'}:`;
 }
+
+
 
 
   </script>
