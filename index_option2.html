@@ -765,20 +765,20 @@ function showTagModal(stockNo) {
   const sorted = [...report.non_ai_tags].sort((a, b) => b.count - a.count);
 
   // Tag cloud
-  const tagCloud = sorted.map(tag => {
-    const size = 90 + Math.min(tag.count * 3, 40); // Clamp size
-    return `<span style="font-size:${size}%; margin:6px; display:inline-block;">${tag.tag}</span>`;
-  }).join('');
+ const tagCloud = sorted.map(tag => {
+  const size = 90 + Math.min(tag.count * 3, 40); // font size
+  const weight = tag.count > 5 ? '600' : tag.count > 2 ? '500' : '400';
+  const color = tag.count > 5 ? '#003366' : tag.count > 2 ? '#336699' : '#666';
 
-  // Table
-  const rows = sorted.map(tag => `
-    <tr>
-      <td>${tag.tag}</td>
-      <td>${tag.subtheme}</td>
-      <td>${tag.count}</td>
-      <td>${tag.pages.join(', ')}</td>
-    </tr>
-  `).join('');
+  return `<span style="
+    font-size:${size}%;
+    font-weight:${weight};
+    color:${color};
+    margin:6px;
+    display:inline-block;
+  ">${tag.tag}</span>`;
+}).join('');
+
 
   const html = `
     <h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Detailed Tag Information</h2>
