@@ -142,12 +142,6 @@
   font-size: 0.9em;
   color: #444;
 }
-    .advanced-tags {
-  margin-top: 8px;
-  font-size: 0.95em;
-  color: #333;
-}
-
     @media (max-width: 768px) {
       #container {
         flex-direction: column;
@@ -216,6 +210,9 @@
      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
   <div>
     <div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
+    <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-top: 4px;">
+      <input type="checkbox" id="toggleAdvancedTagInfo" onchange="renderPage()"> Show advanced tag info
+    </label>
   </div>
   <div>
     <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
@@ -304,12 +301,11 @@
 fetch('001_aug2_master_nonAItags.json')
   .then(res => res.json())
   .then(data => {
-  (data.reports || []).forEach(entry => {
-  if (entry.publication_details?.stock_no) {
-    nonAiTagData[entry.publication_details.stock_no.toUpperCase()] = entry;
-  }
-});
-
+    (data.reports || []).forEach(entry => {
+      if (entry.publication_details?.stock_no) {
+        nonAiTagData[entry.publication_details.stock_no] = entry;
+      }
+    });
     console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
   })
 
@@ -369,13 +365,13 @@ fetch('v7_reports_versioncontrol.json')
     const div = document.createElement('div');
     const id = theme.replace(/\s+/g, '_');
     div.className = 'filter-item';
-    div.innerHTML = `
+    div.innerHTML = 
       <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
       <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
-    `;
+    ;
     themeList.appendChild(div);
 
-    const subContainer = document.getElementById(`sub_${id}`);
+    const subContainer = document.getElementById(sub_${id});
     subthemes.forEach(sub => {
       const subCount = reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
@@ -384,7 +380,7 @@ fetch('v7_reports_versioncontrol.json')
       }).length;
       const subDiv = document.createElement('div');
       subDiv.className = 'filter-item';
-      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
+      subDiv.innerHTML = <label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>;
       subContainer.appendChild(subDiv);
     });
   });
@@ -398,7 +394,7 @@ fetch('v7_reports_versioncontrol.json')
     }).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = `<label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>`;
+    div.innerHTML = <label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>;
     regionList.appendChild(div);
   });
 
@@ -409,7 +405,7 @@ fetch('v7_reports_versioncontrol.json')
     const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = `<label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>`;
+    div.innerHTML = <label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>;
     yearList.appendChild(div);
   });
 
@@ -417,12 +413,12 @@ fetch('v7_reports_versioncontrol.json')
   const countrySet = new Set(reports.map(r => r.country?.trim()).filter(Boolean));
   const countryList = Array.from(countrySet).sort();
   const countrySelect = document.getElementById('countrySelect');
-  countrySelect.innerHTML = `<option value="">-- All Countries --</option>`;
+  countrySelect.innerHTML = <option value="">-- All Countries --</option>;
   countryList.forEach(country => {
     const count = reports.filter(r => r.country?.trim() === country).length;
     const option = document.createElement('option');
     option.value = country;
-    option.textContent = `${country} (${count})`;
+    option.textContent = ${country} (${count});
     countrySelect.appendChild(option);
   });
 }
@@ -481,7 +477,7 @@ fetch('v7_reports_versioncontrol.json')
     }
 
     function updateResultsCount(total, start, end) {
-      const resultsText = `Showing ${start + 1}–${Math.min(end, total)} of ${total} results`;
+      const resultsText = Showing ${start + 1}–${Math.min(end, total)} of ${total} results;
       document.getElementById('resultsCount').innerText = resultsText;
       document.getElementById('resultsCount').style.display = 'block';
     }
@@ -528,24 +524,23 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   const list = document.getElementById('reportList');
   list.innerHTML = '';
 
-// TopTags line is handled dynamically via link toggle now, so omit static injection
-let topTagsLine = ''; // reserved if you want to fallback render something by default
+  const showAdvanced = document.getElementById('toggleAdvancedTagInfo')?.checked;
 
   visible.slice(start, end).forEach(r => {
     const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
     const content = ai?.content || {};
-    console.log("🔎 Trying lookup for:", r.publication_details?.stock_no);
-    const stock = r.publication_details?.stock_no?.toUpperCase();
-    const nonAi = nonAiTagData[stock];
-    console.log("✅ Loaded non-AI data keys:", Object.keys(nonAiTagData).slice(0, 3));
-
+    const nonAi = nonAiTagData[r.publication_details?.stock_no];
+    
     // Prepare the Top 3 Tags line
-  let topTagsLine = ''; // reserved for fallback if needed
-
+    let topTagsLine = '';
+    if (showAdvanced && nonAi?.top_tags?.length) {
+      const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag);
+      topTagsLine = <div class="themes"><strong>Top 3 Tags:</strong> ${tags.join(', ')}</div>;
+    }
 
     const el = document.createElement('div');
     el.className = 'report-card';
-    el.innerHTML = `
+    el.innerHTML = 
       <div class="report-title">
         <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
       </div>
@@ -554,7 +549,7 @@ let topTagsLine = ''; // reserved if you want to fallback render something by de
       <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
       <div class="themes"><strong>Top 3 Subthemes:</strong> ${(content.top_subthemes || []).map(t => t.name).join(', ') || 'Not available'}</div>
       ${topTagsLine}
-      <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
+      <div class="tags">${(content.tags || []).map(tag => <span class="tag">${tag}</span>).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
         Pages: ${r.publication_details?.pages || 'N/A'}<br/>
@@ -564,37 +559,15 @@ let topTagsLine = ''; // reserved if you want to fallback render something by de
         Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
         Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
         Subtopics: ${(content.all_themes || []).filter(t => t.includes('.')).join(', ') || 'N/A'}<br/>
-        ${nonAi?.top_tags?.length ? `<a href="#" onclick="toggleAdvancedInfo(this); return false;" style="font-size: 0.9em; color: #003366; text-decoration: underline;">📊 Show advanced tag information</a><br/>` : ''}
         📄 Original IMF PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
         🌐 Original IMF Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
-        ${content.theme_summaries ? `<a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a>` : ''}
+        ${content.theme_summaries ? <a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a> : ''}
       </div>
-    `;
+    ;
     list.appendChild(el);
   });
 
   updatePagination(visible.length);
-}
-
-    function toggleAdvancedInfo(linkEl) {
-  const container = linkEl.closest('.report-card');
-  const existing = container.querySelector('.advanced-tags');
-  if (existing) {
-    existing.remove();
-    linkEl.innerText = '📊 Show advanced tag information';
-  } else {
-   const stock = container.querySelector('.publication-details').innerHTML.match(/Stock No: ([^<]+)/)?.[1]?.toUpperCase();
-    const nonAi = nonAiTagData[stock];
-
-    if (!nonAi || !nonAi.top_tags?.length) return;
-    const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag).join(', ');
-    const div = document.createElement('div');
-    div.className = 'advanced-tags';
-    div.style.marginTop = '8px';
-    div.innerHTML = `<strong>Top 3 Tags:</strong> ${tags}`;
-    linkEl.parentNode.insertBefore(div, linkEl.nextSibling);
-    linkEl.innerText = '📊 Hide advanced tag information';
-  }
 }
 
 
@@ -633,15 +606,15 @@ let topTagsLine = ''; // reserved if you want to fallback render something by de
     return;
   }
 
-  let html = `<h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Theme Summaries</h2>`;
+  let html = <h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Theme Summaries</h2>;
 
   for (const key of Object.keys(summaries).sort()) {
     const isMain = /^[1-9]$/.test(key);
     const isSub = key.includes('.');
-    html += `<div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">
+    html += <div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">
       <strong style="font-size: ${isMain ? '1.05em' : '0.98em'};">${key}</strong>
       <div style="margin-top: 4px;">${summaries[key]}</div>
-    </div>`;
+    </div>;
   }
 
   const modal = document.getElementById('themeModal');
@@ -689,7 +662,7 @@ function showTaxonomy() {
     .then(res => res.text())
     .then(text => {
       const content = document.getElementById('taxonomyModalContent');
-      content.innerHTML = `<pre style="white-space: pre-wrap;">${text}</pre>`;
+      content.innerHTML = <pre style="white-space: pre-wrap;">${text}</pre>;
       document.getElementById('taxonomyModal').style.display = 'block';
       document.body.style.overflow = 'hidden';
     })
