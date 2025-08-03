@@ -779,6 +779,14 @@ function showTagModal(stockNo) {
   ">${tag.tag}</span>`;
 }).join('');
 
+const rows = sorted.map(tag => `
+  <tr>
+    <td style="padding:6px;">${tag.tag}</td>
+    <td style="padding:6px;">${tag.subtheme}</td>
+    <td style="padding:6px;">${tag.count}</td>
+    <td style="padding:6px;">${tag.pages.join(', ')}</td>
+  </tr>
+`).join('');
 
   const html = `
     <h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Detailed Tag Information</h2>
