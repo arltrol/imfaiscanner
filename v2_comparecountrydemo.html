@@ -55,6 +55,27 @@
   white-space: normal;
   margin: 0 auto;
 }
+.compare-button {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border: none;
+  color: white;
+  font-size: 1.1em;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.compare-button:hover {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  transform: scale(1.05);
+}
+
+.compare-button i {
+  margin-right: 8px;
+}
 
   </style>
 </head>
@@ -76,7 +97,9 @@
       <select id="country1"></select>
       <select id="country2"></select>
       <select id="country3"></select>
-      <button onclick="compare()">Compare</button>
+<button onclick="compare()" class="compare-button">
+  <i>🔍</i> Compare
+</button>
     </div>
     
  <div class="options-row">
