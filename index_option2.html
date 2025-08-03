@@ -310,8 +310,8 @@ fetch('001_aug2_master_nonAItags.json')
       }
     });
 
-    console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
-    console.log("🔑 Sample stock numbers:", Object.keys(nonAiTagData).slice(0, 5));
+   // console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
+   // console.log("🔑 Sample stock numbers:", Object.keys(nonAiTagData).slice(0, 5));
   })
   .catch(err => {
     console.error("❌ Failed to load non-AI tag data:", err);
@@ -332,8 +332,8 @@ fetch('v7_reports_versioncontrol.json')
 
       function toggleAdvancedTags(linkEl, stockNo) {
          console.log("🔍 Looking for stockNo:", stockNo);
-  console.log("🧩 nonAiTagData keys (sample):", Object.keys(nonAiTagData).slice(0, 5));
-  console.log("✅ Has match:", nonAiTagData.hasOwnProperty(stockNo.trim()));
+  //console.log("🧩 nonAiTagData keys (sample):", Object.keys(nonAiTagData).slice(0, 5));
+  //console.log("✅ Has match:", nonAiTagData.hasOwnProperty(stockNo.trim()));
 
   const report = nonAiTagData[stockNo];
   if (!report || !report.top_tags) return;
