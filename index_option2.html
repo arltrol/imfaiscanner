@@ -351,11 +351,13 @@ fetch('v7_reports_versioncontrol.json')
   const card = linkEl.closest('.report-card');
 
   // Remove block if already shown
-  const existing = card.querySelector('.advanced-tag-info');
-  if (existing) {
-    existing.remove();
-    return;
-  }
+const existing = card.querySelector('.advanced-tag-info');
+if (existing) {
+  existing.remove();
+  linkEl.innerHTML = "🔍 Show Advanced Tag Information";
+  return;
+}
+
 
   const topTags = (report.top_tags || []).slice(0, 3).map(tag => tag.tag).join(', ');
   const tagLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${topTags}</div>`;
@@ -405,6 +407,8 @@ fetch('v7_reports_versioncontrol.json')
     const themeBlock = card.querySelector('.themes');
     themeBlock?.insertAdjacentHTML('afterend', fullHTML);
   }
+      linkEl.innerHTML = "🔽 Hide Advanced Tag Information";
+
 }
 
 
