@@ -298,13 +298,15 @@
 fetch('001_aug2_master_nonAItags.json')
   .then(res => res.json())
   .then(data => {
-    console.log("📂 nonAI raw data", data);  // NEW: check top-level structure
+    if (!Array.isArray(data.reports)) {
+      console.error("❌ 'reports' key missing or not an array");
+      return;
+    }
 
-    const entries = (data.reports || data);  // fallback if not nested
-
-    entries.forEach(entry => {
-      if (entry.stock_no) {
-        nonAiTagData[entry.stock_no] = entry;
+    console.log("📂 nonAI raw data", data);
+    data.reports.forEach(entry => {
+      if (entry.publication_details?.stock_no) {
+        nonAiTagData[entry.publication_details.stock_no] = entry;
       }
     });
 
@@ -314,6 +316,7 @@ fetch('001_aug2_master_nonAItags.json')
   .catch(err => {
     console.error("❌ Failed to load non-AI tag data:", err);
   });
+
 
 
 
