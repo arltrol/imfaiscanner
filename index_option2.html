@@ -320,6 +320,34 @@ fetch('v7_reports_versioncontrol.json')
   })
   .catch(error => console.error('Error fetching data:', error));
 
+      function toggleAdvancedTags(linkEl, stockNo) {
+  const report = nonAiTagData[stockNo];
+  if (!report || !report.top_tags) return;
+
+  const tagNames = report.top_tags.slice(0, 3).map(tag => tag.tag);
+  const tagText = `<div class="themes top-tags"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
+
+  const card = linkEl.closest('.report-card');
+
+  // If already added, remove
+  const existing = card.querySelector('.top-tags');
+  if (existing) {
+    existing.remove();
+    return;
+  }
+
+  // 🔍 FIX: Better way to inject below subthemes
+  const subthemesBlock = Array.from(card.querySelectorAll('.themes'))
+    .find(div => div.textContent.startsWith('Top 3 Subthemes'));
+
+  if (subthemesBlock) {
+    subthemesBlock.insertAdjacentHTML('afterend', tagText);
+  } else {
+    // fallback: inject below top themes
+    const themeBlock = card.querySelector('.themes');
+    themeBlock?.insertAdjacentHTML('afterend', tagText);
+  }
+}
 
     function getSubthemeCode(sub) {
   const match = sub.match(/^(\d+\.\d+)/);
@@ -507,6 +535,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   });
 }
 
+  
 
     
     function renderPage() {
@@ -561,37 +590,6 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       }
     }
 
-function toggleAdvancedTags(linkEl, stockNo) {
-  const report = nonAiTagData[stockNo];
-  if (!report || !report.top_tags) return;
-
-  const tagNames = report.top_tags.slice(0, 3).map(tag => tag.tag);
-  const tagText = `<div class="themes top-tags"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
-
-  const card = linkEl.closest('.report-card');
-
-  // If already added, remove
-  const existing = card.querySelector('.top-tags');
-  if (existing) {
-    existing.remove();
-    return;
-  }
-
-  // 🔍 FIX: Better way to inject below subthemes
-  const subthemesBlock = Array.from(card.querySelectorAll('.themes'))
-    .find(div => div.textContent.startsWith('Top 3 Subthemes'));
-
-  if (subthemesBlock) {
-    subthemesBlock.insertAdjacentHTML('afterend', tagText);
-  } else {
-    // fallback: inject below top themes
-    const themeBlock = card.querySelector('.themes');
-    themeBlock?.insertAdjacentHTML('afterend', tagText);
-  }
-}
-
-
-    
     function updatePagination(total) {
       const pages = Math.ceil(total / perPage);
       const container = document.getElementById('pageControls');
