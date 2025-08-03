@@ -350,6 +350,11 @@ fetch('v7_reports_versioncontrol.json')
 
   const card = linkEl.closest('.report-card');
 
+      const ai = reports.find(r => r.publication_details?.stock_no === stockNo)
+           ?.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      const content = ai?.content || {};
+
+
   // Remove block if already shown
 const existing = card.querySelector('.advanced-tag-info');
 if (existing) {
@@ -386,6 +391,16 @@ if (existing) {
 
       const tagModalLink = `<div class="themes"><a href="#" onclick="showTagModal('${stockNo}'); return false;">📊 Show detailed tag information</a></div>`;
 
+      // 🔍 New AI sub-theme coverage metrics
+const nonAiSubs = new Set(Object.keys(report.subtheme_coverage || {}));
+const aiSubs = new Set(content.all_themes?.filter(s => s.includes('.')));
+const matching = [...aiSubs].filter(sub => nonAiSubs.has(sub));
+const unmatched = [...aiSubs].filter(sub => !nonAiSubs.has(sub));
+const coverage = nonAiSubs.size > 0 ? Math.round((matching.length / nonAiSubs.size) * 100) : 0;
+
+const coverageLine = `<div class="themes"><strong>AI sub-theme / tag coverage:</strong> ${coverage}%</div>`;
+const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matching sub-theme tag:</strong> ${unmatched.join(', ') || 'None'}</div>`;
+
       
   // Wrap all in one <div> with custom class for styling
   const fullHTML = `
@@ -398,6 +413,8 @@ if (existing) {
       ${pagesLine}
       ${themeDistLine}
       ${tagModalLink}
+      ${coverageLine}
+      ${unmatchedLine}
     </div>
     
   `;
