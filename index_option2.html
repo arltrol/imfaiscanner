@@ -521,30 +521,31 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     const content = ai?.content || {};
     const el = document.createElement('div');
     el.className = 'report-card';
-    el.innerHTML = `
-      <div class="report-title">
-        <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
-      </div>
-      <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
-      <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
-      <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
-      ${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${content.top_subthemes.map(s => s.name).join(', ')}</div>` : ''}
-      <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
-      <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
-      <div class="publication-details">
-        Pages: ${r.publication_details?.pages || 'N/A'}<br/>
-        DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
-        ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
-        ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
-        Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
-        Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
-        Subtopics: ${(content.all_themes || []).filter(t => t.includes('.')).join(', ') || 'N/A'}<br/>
-        <a href="#" onclick="toggleAdvancedTags(this, '${r.publication_details?.stock_no}'); return false;">🔍 Show Advanced Tag Information</a><br/>
-        📄 Original IMF PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
-        🌐 Original IMF Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
-        ${content.theme_summaries ? `<a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a>` : ''}
-      </div>
-    `;
+   el.innerHTML = `
+  <div class="report-title">
+    <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
+  </div>
+  <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
+  <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
+  <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
+  <div class="themes"><strong>Top 3 Subthemes:</strong> ${(content.top_subthemes || []).map(t => t.name).join(', ') || 'Not available'}</div>
+  <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
+  <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
+  <div class="publication-details">
+    Pages: ${r.publication_details?.pages || 'N/A'}<br/>
+    DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
+    ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
+    ISSN: ${r.publication_details?.issn || 'N/A'}<br/>
+    Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
+    Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
+    Subtopics: ${(content.all_themes || []).filter(t => t.includes('.')).join(', ') || 'N/A'}<br/>
+    <a href="#" onclick="toggleAdvancedTags(this, '${r.publication_details?.stock_no}'); return false;">🔍 Show Advanced Tag Information</a><br/>
+    📄 Original IMF PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
+    🌐 Original IMF Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
+    ${content.theme_summaries ? `<a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a>` : ''}
+  </div>
+`;
+
     list.appendChild(el);
   });
   updatePagination(visible.length); // ✅ use visible not reports
