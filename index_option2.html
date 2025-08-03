@@ -142,6 +142,12 @@
   font-size: 0.9em;
   color: #444;
 }
+    .advanced-tags {
+  margin-top: 8px;
+  font-size: 0.95em;
+  color: #333;
+}
+
     @media (max-width: 768px) {
       #container {
         flex-direction: column;
@@ -210,9 +216,6 @@
      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
   <div>
     <div id="resultsCount" style="display: none; font-size: 1em; color: #444;"></div>
-    <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-top: 4px;">
-      <input type="checkbox" id="toggleAdvancedTagInfo" onchange="renderPage()"> Show advanced tag info
-    </label>
   </div>
   <div>
     <label for="perPage" style="font-size: 0.95em; margin-right: 6px;">Results per page:</label>
@@ -524,7 +527,8 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   const list = document.getElementById('reportList');
   list.innerHTML = '';
 
-  const showAdvanced = document.getElementById('toggleAdvancedTagInfo')?.checked;
+// TopTags line is handled dynamically via link toggle now, so omit static injection
+let topTagsLine = ''; // reserved if you want to fallback render something by default
 
   visible.slice(start, end).forEach(r => {
     const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
@@ -532,11 +536,8 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     const nonAi = nonAiTagData[r.publication_details?.stock_no];
     
     // Prepare the Top 3 Tags line
-    let topTagsLine = '';
-    if (showAdvanced && nonAi?.top_tags?.length) {
-      const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag);
-      topTagsLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${tags.join(', ')}</div>`;
-    }
+  let topTagsLine = ''; // reserved for fallback if needed
+
 
     const el = document.createElement('div');
     el.className = 'report-card';
@@ -559,6 +560,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
         Stock No: ${r.publication_details?.stock_no || 'N/A'}<br/>
         Volume: ${r.publication_details?.volume || 'N/A'}, Issue: ${r.publication_details?.issue || 'N/A'}<br/>
         Subtopics: ${(content.all_themes || []).filter(t => t.includes('.')).join(', ') || 'N/A'}<br/>
+        ${nonAi?.top_tags?.length ? `<a href="#" onclick="toggleAdvancedInfo(this); return false;" style="font-size: 0.9em; color: #003366; text-decoration: underline;">📊 Show advanced tag information</a><br/>` : ''}
         📄 Original IMF PDF: <a href="${r.pdf_link}" target="_blank">Download</a><br/>
         🌐 Original IMF Report: <a href="${r.detail_page_url}" target="_blank">View on IMF site</a><br/>
         ${content.theme_summaries ? `<a href="#" onclick="showThemeSummaries('${r.publication_details?.stock_no}'); return false;">📘 Show Theme Summaries</a>` : ''}
@@ -568,6 +570,26 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   });
 
   updatePagination(visible.length);
+}
+
+    function toggleAdvancedInfo(linkEl) {
+  const container = linkEl.closest('.report-card');
+  const existing = container.querySelector('.advanced-tags');
+  if (existing) {
+    existing.remove();
+    linkEl.innerText = '📊 Show advanced tag information';
+  } else {
+    const stock = container.querySelector('.publication-details').innerHTML.match(/Stock No: ([^<]+)/)?.[1];
+    const nonAi = nonAiTagData[stock];
+    if (!nonAi || !nonAi.top_tags?.length) return;
+    const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag).join(', ');
+    const div = document.createElement('div');
+    div.className = 'advanced-tags';
+    div.style.marginTop = '8px';
+    div.innerHTML = `<strong>Top 3 Tags:</strong> ${tags}`;
+    linkEl.parentNode.insertBefore(div, linkEl.nextSibling);
+    linkEl.innerText = '📊 Hide advanced tag information';
+  }
 }
 
 
