@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI IMF Article IV Scanner</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -529,7 +527,8 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       </div>
       <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
       <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
-      <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
+      <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
+      ${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${content.top_subthemes.map(s => s.name).join(', ')}</div>` : ''}
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
