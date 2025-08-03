@@ -157,6 +157,19 @@
     #countryFilter {
   font-size: 1.05em;
 }
+    .advanced-tag-info {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f7f7f7;
+  border-left: 4px solid #999;
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #333;
+}
+.advanced-tag-info .themes {
+  margin-bottom: 6px;
+}
+
 
   </style>
 </head>
@@ -330,38 +343,70 @@ fetch('v7_reports_versioncontrol.json')
   })
   .catch(error => console.error('Error fetching data:', error));
 
-      function toggleAdvancedTags(linkEl, stockNo) {
-         console.log("🔍 Looking for stockNo:", stockNo);
-  //console.log("🧩 nonAiTagData keys (sample):", Object.keys(nonAiTagData).slice(0, 5));
-  //console.log("✅ Has match:", nonAiTagData.hasOwnProperty(stockNo.trim()));
-
+     
+    function toggleAdvancedTags(linkEl, stockNo) {
   const report = nonAiTagData[stockNo];
-  if (!report || !report.top_tags) return;
-
-  const tagNames = report.top_tags.slice(0, 3).map(tag => tag.tag);
-  const tagText = `<div class="themes top-tags"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
+  if (!report) return;
 
   const card = linkEl.closest('.report-card');
 
-  // If already added, remove
-  const existing = card.querySelector('.top-tags');
+  // Remove block if already shown
+  const existing = card.querySelector('.advanced-tag-info');
   if (existing) {
     existing.remove();
     return;
   }
 
-  // 🔍 FIX: Better way to inject below subthemes
+  const topTags = (report.top_tags || []).slice(0, 3).map(tag => tag.tag).join(', ');
+  const tagLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${topTags}</div>`;
+
+  const totalLine = `<div class="themes">Total Number of Tags: ${report.tag_count_total}</div>`;
+  const densityLine = `<div class="themes">Tag Density: ${report.tag_density}</div>`;
+
+  const subthemeCov = Object.entries(report.subtheme_coverage || {})
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `${k} (${v})`).join(', ');
+  const subthemeLine = `<div class="themes">Subtheme Coverage: ${subthemeCov}</div>`;
+
+  const uniqueLine = `<div class="themes">Unique Tags: ${report.unique_tags}</div>`;
+
+  const pagesLine = `<div class="themes">Pages with Most Tags: ${
+    (report.pages_with_most_tags || [])
+      .sort((a, b) => b.tag_count - a.tag_count)
+      .map(p => `Page ${p.page} (${p.tag_count})`).join(', ')
+  }</div>`;
+
+  const themeDistLine = `<div class="themes">Overall Theme Distribution (tags only): ${
+    Object.entries(report.theme_distribution || {})
+      .sort((a, b) => b[1] - a[1])
+      .map(([theme, count]) => `${theme} (${count})`).join(', ')
+  }</div>`;
+
+  // Wrap all in one <div> with custom class for styling
+  const fullHTML = `
+    <div class="advanced-tag-info">
+      ${tagLine}
+      ${totalLine}
+      ${densityLine}
+      ${subthemeLine}
+      ${uniqueLine}
+      ${pagesLine}
+      ${themeDistLine}
+    </div>
+  `;
+
+  // Insert under subthemes block or fallback under main theme block
   const subthemesBlock = Array.from(card.querySelectorAll('.themes'))
     .find(div => div.textContent.startsWith('Top 3 Subthemes'));
 
   if (subthemesBlock) {
-    subthemesBlock.insertAdjacentHTML('afterend', tagText);
+    subthemesBlock.insertAdjacentHTML('afterend', fullHTML);
   } else {
-    // fallback: inject below top themes
     const themeBlock = card.querySelector('.themes');
-    themeBlock?.insertAdjacentHTML('afterend', tagText);
+    themeBlock?.insertAdjacentHTML('afterend', fullHTML);
   }
 }
+
 
     function getSubthemeCode(sub) {
   const match = sub.match(/^(\d+\.\d+)/);
