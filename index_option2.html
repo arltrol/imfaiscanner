@@ -226,6 +226,7 @@
   </div>
 
   <script>
+    let nonAiTagData = {}; // ✅ Declared only once and globally at the top
     let reports = [];
     let currentPage = 1;
     let perPage = 20;
@@ -295,14 +296,31 @@
       "Africa", "Asia", "Europe", "Latin America", "North America", "Oceania"
     ];
 
-    fetch('v7_reports_versioncontrol.json')
-      .then(res => res.json())
-      .then(data => {
-       reports = data.reports || data;
-        renderFilters();
-        renderPage();
-      })
-      .catch(error => console.error('Error fetching data:', error));
+    // Load non-AI tags early, in parallel
+fetch('001_aug2_master_nonAItags.json')
+  .then(res => res.json())
+  .then(data => {
+    data.forEach(entry => {
+      if (entry.stock_no) {
+        nonAiTagData[entry.stock_no] = entry;
+      }
+    });
+    console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
+  })
+  .catch(err => {
+    console.error("❌ Failed to load non-AI tag data:", err);
+  });
+
+// Load reports
+fetch('v7_reports_versioncontrol.json')
+  .then(res => res.json())
+  .then(data => {
+    reports = data.reports || data;
+    renderFilters();
+    renderPage();
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
 
     function getSubthemeCode(sub) {
   const match = sub.match(/^(\d+\.\d+)/);
