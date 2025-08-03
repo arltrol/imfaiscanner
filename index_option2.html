@@ -561,6 +561,28 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       }
     }
 
+function toggleAdvancedTags(linkEl, stockNo) {
+  const report = nonAiTagData[stockNo];
+  if (!report || !report.top_tags) return;
+
+  const tagNames = report.top_tags.slice(0, 3).map(tag => tag.tag);
+  const tagText = `<div class="themes"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
+
+  const card = linkEl.closest('.report-card');
+  const existing = card.querySelector('.top-tags');
+
+  if (existing) {
+    existing.remove(); // toggle off
+  } else {
+    const div = document.createElement('div');
+    div.className = 'themes top-tags';
+    div.innerHTML = tagText;
+    const insertAfter = card.querySelector('.themes:nth-of-type(2)'); // after subthemes
+    insertAfter?.after(div);
+  }
+}
+
+    
     function updatePagination(total) {
       const pages = Math.ceil(total / perPage);
       const container = document.getElementById('pageControls');
