@@ -566,21 +566,30 @@ function toggleAdvancedTags(linkEl, stockNo) {
   if (!report || !report.top_tags) return;
 
   const tagNames = report.top_tags.slice(0, 3).map(tag => tag.tag);
-  const tagText = `<div class="themes"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
+  const tagText = `<div class="themes top-tags"><strong>Top 3 Tags:</strong> ${tagNames.join(', ')}</div>`;
 
   const card = linkEl.closest('.report-card');
-  const existing = card.querySelector('.top-tags');
 
+  // If already added, remove
+  const existing = card.querySelector('.top-tags');
   if (existing) {
-    existing.remove(); // toggle off
+    existing.remove();
+    return;
+  }
+
+  // 🔍 FIX: Better way to inject below subthemes
+  const subthemesBlock = Array.from(card.querySelectorAll('.themes'))
+    .find(div => div.textContent.startsWith('Top 3 Subthemes'));
+
+  if (subthemesBlock) {
+    subthemesBlock.insertAdjacentHTML('afterend', tagText);
   } else {
-    const div = document.createElement('div');
-    div.className = 'themes top-tags';
-    div.innerHTML = tagText;
-    const insertAfter = card.querySelector('.themes:nth-of-type(2)'); // after subthemes
-    insertAfter?.after(div);
+    // fallback: inject below top themes
+    const themeBlock = card.querySelector('.themes');
+    themeBlock?.insertAdjacentHTML('afterend', tagText);
   }
 }
+
 
     
     function updatePagination(total) {
