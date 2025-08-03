@@ -384,6 +384,9 @@ if (existing) {
       .map(([theme, count]) => `${theme} (${count})`).join(', ')
   }</div>`;
 
+      const tagModalLink = `<div class="themes"><a href="#" onclick="showTagModal('${stockNo}'); return false;">📊 Show detailed tag information</a></div>`;
+
+      
   // Wrap all in one <div> with custom class for styling
   const fullHTML = `
     <div class="advanced-tag-info">
@@ -394,7 +397,9 @@ if (existing) {
       ${uniqueLine}
       ${pagesLine}
       ${themeDistLine}
+      ${tagModalLink}
     </div>
+    
   `;
 
   // Insert under subthemes block or fallback under main theme block
@@ -748,7 +753,55 @@ function closeTaxonomyModal() {
   document.body.style.overflow = 'auto';
 }
 
-    
+    function closeTagModal() {
+  document.getElementById('tagModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function showTagModal(stockNo) {
+  const report = nonAiTagData[stockNo];
+  if (!report || !report.non_ai_tags) return;
+
+  const sorted = [...report.non_ai_tags].sort((a, b) => b.count - a.count);
+
+  // Tag cloud
+  const tagCloud = sorted.map(tag => {
+    const size = 90 + Math.min(tag.count * 3, 40); // Clamp size
+    return `<span style="font-size:${size}%; margin:6px; display:inline-block;">${tag.tag}</span>`;
+  }).join('');
+
+  // Table
+  const rows = sorted.map(tag => `
+    <tr>
+      <td>${tag.tag}</td>
+      <td>${tag.subtheme}</td>
+      <td>${tag.count}</td>
+      <td>${tag.pages.join(', ')}</td>
+    </tr>
+  `).join('');
+
+  const html = `
+    <h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Detailed Tag Information</h2>
+    <div style="margin: 12px 0 18px;">${tagCloud}</div>
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background:#f1f1f1;">
+          <th style="text-align: left; padding: 6px;">Tag</th>
+          <th style="text-align: left; padding: 6px;">Subtheme</th>
+          <th style="text-align: left; padding: 6px;">Count</th>
+          <th style="text-align: left; padding: 6px;">PDF Pages</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+
+  const content = document.getElementById('tagModalContent');
+  content.innerHTML = html;
+  document.getElementById('tagModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
   </script>
 
   <footer style="margin-top: 40px; padding: 25px 20px; background: #f7f7f7; color: #444; font-size: 0.9em; line-height: 1.5; text-align: center; border-top: 1px solid #ddd;">
@@ -808,6 +861,30 @@ function closeTaxonomyModal() {
   </div>
 </div>
 
+<div id="tagModal" style="
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  max-width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 10000;
+  border-radius: 10px;
+  overscroll-behavior: contain;
+">
+  <div style="position: absolute; top: 12px; right: 16px; font-size: 1.4em; cursor: pointer; color: #666;" onclick="closeTagModal()" title="Close">×</div>
+  <div id="tagModalContent" style="font-size: 0.95em; color: #333;"></div>
+  <div style="text-align:right; margin-top:20px;">
+    <button onclick="closeTagModal()" style="padding:6px 12px;">Close</button>
+  </div>
+</div>
 
 </body>
 </html>
