@@ -363,7 +363,7 @@ if (existing) {
   const tagLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${topTags}</div>`;
 
   const totalLine = `<div class="themes"><strong>Total Number of Tags:</strong>  ${report.tag_count_total}</div>`;
-  const densityLine = `<div class="themes"><strong>Tag Density: ${report.tag_density}</div>`;
+  const densityLine = `<div class="themes"><strong>Tag Density:</strong> ${report.tag_density}</div>`;
 
   const subthemeCov = Object.entries(report.subtheme_coverage || {})
     .sort((a, b) => b[1] - a[1])
