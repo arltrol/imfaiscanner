@@ -57,8 +57,10 @@
   </header>
   <main>
     <div style="text-align: center; margin-bottom: 10px;">
-  <label><input type="radio" name="mode" value="country" checked onchange="switchMode()"> Compare Countries</label>
-  <label style="margin-left: 20px;"><input type="radio" name="mode" value="region" onchange="switchMode()"> Compare Regions</label>
+      
+<label><input type="radio" name="mode" value="country" onchange="switchMode()"> Compare Countries</label>
+<label style="margin-left: 20px;"><input type="radio" name="mode" value="region" checked onchange="switchMode()"> Compare Regions</label>
+
 </div>
 
     <div class="select-group">
@@ -93,7 +95,7 @@
   </div>
 
   <script>
-    let compareMode = 'country'; // 'country' or 'region'
+    let compareMode = 'region'; // 'country' or 'region'
     let data = [];
     let countries = new Set();
     let charts = [];
@@ -128,6 +130,8 @@
         data = json;
       countries = new Set(data.map(d => d.country).filter(Boolean).sort());
       regions = new Set(data.map(d => d.region).filter(Boolean).sort());
+        switchMode();  // ✅ set regions as default dropdowns
+
         ['country1','country2','country3'].forEach(id => {
           const sel = document.getElementById(id);
           sel.innerHTML = '<option value="">-- Select --</option>' + [...countries].map(c => `<option>${c}</option>`).join('');
