@@ -366,7 +366,7 @@ fetch('v7_reports_versioncontrol.json')
     const id = theme.replace(/\s+/g, '_');
     div.className = 'filter-item';
     div.innerHTML = 
-      <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
+      `<label>`<input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
       <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
     ;
     themeList.appendChild(div);
@@ -380,7 +380,7 @@ fetch('v7_reports_versioncontrol.json')
       }).length;
       const subDiv = document.createElement('div');
       subDiv.className = 'filter-item';
-      subDiv.innerHTML = <label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>;
+      subDiv.innerHTML = `<label>`<input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>;
       subContainer.appendChild(subDiv);
     });
   });
@@ -394,7 +394,7 @@ fetch('v7_reports_versioncontrol.json')
     }).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = <label><input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>;
+    div.innerHTML = `<label>`<input type="checkbox" onchange="toggleRegion('${region}')"> <span>${region} (${count})</span></label>;
     regionList.appendChild(div);
   });
 
@@ -405,7 +405,7 @@ fetch('v7_reports_versioncontrol.json')
     const count = reports.filter(r => r.publication_date?.startsWith(year)).length;
     const div = document.createElement('div');
     div.className = 'filter-item';
-    div.innerHTML = <label><input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>;
+    div.innerHTML = `<label>`<input type="checkbox" onchange="toggleYear('${year}')"> <span>${year} (${count})</span></label>;
     yearList.appendChild(div);
   });
 
@@ -413,7 +413,7 @@ fetch('v7_reports_versioncontrol.json')
   const countrySet = new Set(reports.map(r => r.country?.trim()).filter(Boolean));
   const countryList = Array.from(countrySet).sort();
   const countrySelect = document.getElementById('countrySelect');
-  countrySelect.innerHTML = <option value="">-- All Countries --</option>;
+  countrySelect.innerHTML = `<option value="">`-- All Countries --</option>;
   countryList.forEach(country => {
     const count = reports.filter(r => r.country?.trim() === country).length;
     const option = document.createElement('option');
@@ -541,7 +541,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     const el = document.createElement('div');
     el.className = 'report-card';
     el.innerHTML = 
-      <div class="report-title">
+      `<div class="report-title">`
         <span style="color: #003366; font-weight: 700; font-size: 1.2em;">${r.title}</span>
       </div>
       <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
@@ -611,7 +611,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   for (const key of Object.keys(summaries).sort()) {
     const isMain = /^[1-9]$/.test(key);
     const isSub = key.includes('.');
-    html += <div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">
+    html += `<div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">`
       <strong style="font-size: ${isMain ? '1.05em' : '0.98em'};">${key}</strong>
       <div style="margin-top: 4px;">${summaries[key]}</div>
     </div>;
@@ -662,7 +662,7 @@ function showTaxonomy() {
     .then(res => res.text())
     .then(text => {
       const content = document.getElementById('taxonomyModalContent');
-      content.innerHTML = <pre style="white-space: pre-wrap;">${text}</pre>;
+      content.innerHTML = `<pre style="white-space: pre-wrap;">`${text}</pre>;
       document.getElementById('taxonomyModal').style.display = 'block';
       document.body.style.overflow = 'hidden';
     })
