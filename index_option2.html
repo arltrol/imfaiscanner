@@ -321,6 +321,10 @@ fetch('v7_reports_versioncontrol.json')
   .catch(error => console.error('Error fetching data:', error));
 
       function toggleAdvancedTags(linkEl, stockNo) {
+         console.log("🔍 Looking for stockNo:", stockNo);
+  console.log("🧩 nonAiTagData keys (sample):", Object.keys(nonAiTagData).slice(0, 5));
+  console.log("✅ Has match:", nonAiTagData.hasOwnProperty(stockNo.trim()));
+
   const report = nonAiTagData[stockNo];
   if (!report || !report.top_tags) return;
 
