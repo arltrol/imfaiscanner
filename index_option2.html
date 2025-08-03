@@ -362,23 +362,23 @@ if (existing) {
   const topTags = (report.top_tags || []).slice(0, 3).map(tag => tag.tag).join(', ');
   const tagLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${topTags}</div>`;
 
-  const totalLine = `<div class="themes">Total Number of Tags: ${report.tag_count_total}</div>`;
-  const densityLine = `<div class="themes">Tag Density: ${report.tag_density}</div>`;
+  const totalLine = `<div class="themes"><strong>Total Number of Tags:</strong>  ${report.tag_count_total}</div>`;
+  const densityLine = `<div class="themes"><strong>Tag Density: ${report.tag_density}</div>`;
 
   const subthemeCov = Object.entries(report.subtheme_coverage || {})
     .sort((a, b) => b[1] - a[1])
     .map(([k, v]) => `${k} (${v})`).join(', ');
-  const subthemeLine = `<div class="themes">Subtheme Coverage: ${subthemeCov}</div>`;
+  const subthemeLine = `<div class="themes"><strong>Subtheme Coverage:</strong>  ${subthemeCov}</div>`;
 
-  const uniqueLine = `<div class="themes">Unique Tags: ${report.unique_tags}</div>`;
+  const uniqueLine = `<div class="themes"><strong>Unique Tags:</strong>  ${report.unique_tags}</div>`;
 
-  const pagesLine = `<div class="themes">Pages with Most Tags: ${
+  const pagesLine = `<div class="themes"><strong>Pages with Most Tags:</strong>  ${
     (report.pages_with_most_tags || [])
       .sort((a, b) => b.tag_count - a.tag_count)
       .map(p => `Page ${p.page} (${p.tag_count})`).join(', ')
   }</div>`;
 
-  const themeDistLine = `<div class="themes">Overall Theme Distribution (tags only): ${
+  const themeDistLine = `<div class="themes">Overall <strong>Theme Distribution (tags only):</strong>  ${
     Object.entries(report.theme_distribution || {})
       .sort((a, b) => b[1] - a[1])
       .map(([theme, count]) => `${theme} (${count})`).join(', ')
