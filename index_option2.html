@@ -516,16 +516,28 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
 
 
     
-    function renderPage() {
+   function renderPage() {
   const visible = filterReports();
   const start = (currentPage - 1) * perPage;
   const end = start + perPage;
   updateResultsCount(visible.length, start, end);
   const list = document.getElementById('reportList');
   list.innerHTML = '';
+
+  const showAdvanced = document.getElementById('toggleAdvancedTagInfo')?.checked;
+
   visible.slice(start, end).forEach(r => {
     const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
     const content = ai?.content || {};
+    const nonAi = nonAiTagData[r.publication_details?.stock_no];
+    
+    // Prepare the Top 3 Tags line
+    let topTagsLine = '';
+    if (showAdvanced && nonAi?.top_tags?.length) {
+      const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag);
+      topTagsLine = `<div class="themes"><strong>Top 3 Tags:</strong> ${tags.join(', ')}</div>`;
+    }
+
     const el = document.createElement('div');
     el.className = 'report-card';
     el.innerHTML = `
@@ -536,6 +548,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
       <div class="themes"><strong>Top 3 Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
       <div class="themes"><strong>Top 3 Subthemes:</strong> ${(content.top_subthemes || []).map(t => t.name).join(', ') || 'Not available'}</div>
+      ${topTagsLine}
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
@@ -553,8 +566,10 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     `;
     list.appendChild(el);
   });
-  updatePagination(visible.length); // ✅ use visible not reports
+
+  updatePagination(visible.length);
 }
+
 
     function toggleDetails(el) {
       const box = el.nextElementSibling;
