@@ -351,7 +351,7 @@ fetch('v8_reports_versioncontrol_gemini.json')
   const card = linkEl.closest('.report-card');
 
       const ai = reports.find(r => r.publication_details?.stock_no === stockNo)
-           ?.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+           ?.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
       const content = ai?.content || {};
 
 
@@ -463,7 +463,7 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
   Object.entries(THEME_MAP).forEach(([theme, subthemes]) => {
     const themeCodeSet = new Set(subthemes.map(getSubthemeCode));
     const themeCount = reports.filter(r => {
-      const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+      const ai = r.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
       if (!ai || !ai.content?.all_themes) return false;
       return ai.content.all_themes.some(t => themeCodeSet.has(t));
     }).length;
@@ -480,7 +480,7 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
     const subContainer = document.getElementById(`sub_${id}`);
     subthemes.forEach(sub => {
       const subCount = reports.filter(r => {
-        const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+        const ai = r.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
         if (!ai || !ai.content) return false;
         return ai.content.all_themes?.includes(getSubthemeCode(sub));
       }).length;
@@ -593,7 +593,7 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
   const isFilteringThemes = selectedThemes.size > 0 || selectedSubthemes.size > 0;
 
   return reports.filter(r => {
-    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const ai = r.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
     const top = ai?.content?.top_themes?.map(t => t.name) || [];
     const all = ai?.content?.all_themes || [];
 
@@ -631,7 +631,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   const list = document.getElementById('reportList');
   list.innerHTML = '';
   visible.slice(start, end).forEach(r => {
-    const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
+    const ai = r.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
     const content = ai?.content || {};
     const el = document.createElement('div');
     el.className = 'report-card';
@@ -692,7 +692,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     }
    function showThemeSummaries(stockNo) {
   const report = reports.find(r => r.publication_details?.stock_no === stockNo);
-  const summaries = report?.ai_analysis?.find(a => a.model === 'gpt-4-turbo')?.content?.theme_summaries;
+  const summaries = report?.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo')?.content?.theme_summaries;
 
   if (!summaries) {
     alert("No theme summaries available.");
