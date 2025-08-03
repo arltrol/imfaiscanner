@@ -304,11 +304,12 @@
 fetch('001_aug2_master_nonAItags.json')
   .then(res => res.json())
   .then(data => {
-    (data.reports || []).forEach(entry => {
-      if (entry.publication_details?.stock_no) {
-        nonAiTagData[entry.publication_details.stock_no] = entry;
-      }
-    });
+  (data.reports || []).forEach(entry => {
+  if (entry.publication_details?.stock_no) {
+    nonAiTagData[entry.publication_details.stock_no.toUpperCase()] = entry;
+  }
+});
+
     console.log("✅ Advanced tag data loaded:", Object.keys(nonAiTagData).length, "entries.");
   })
 
@@ -533,8 +534,11 @@ let topTagsLine = ''; // reserved if you want to fallback render something by de
   visible.slice(start, end).forEach(r => {
     const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
     const content = ai?.content || {};
-    const nonAi = nonAiTagData[r.publication_details?.stock_no];
-    
+    console.log("🔎 Trying lookup for:", r.publication_details?.stock_no);
+    const stock = r.publication_details?.stock_no?.toUpperCase();
+    const nonAi = nonAiTagData[stock];
+    console.log("✅ Loaded non-AI data keys:", Object.keys(nonAiTagData).slice(0, 3));
+
     // Prepare the Top 3 Tags line
   let topTagsLine = ''; // reserved for fallback if needed
 
@@ -579,8 +583,9 @@ let topTagsLine = ''; // reserved if you want to fallback render something by de
     existing.remove();
     linkEl.innerText = '📊 Show advanced tag information';
   } else {
-    const stock = container.querySelector('.publication-details').innerHTML.match(/Stock No: ([^<]+)/)?.[1];
+   const stock = container.querySelector('.publication-details').innerHTML.match(/Stock No: ([^<]+)/)?.[1]?.toUpperCase();
     const nonAi = nonAiTagData[stock];
+
     if (!nonAi || !nonAi.top_tags?.length) return;
     const tags = nonAi.top_tags.slice(0, 3).map(t => t.tag).join(', ');
     const div = document.createElement('div');
