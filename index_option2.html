@@ -298,7 +298,7 @@
     fetch('v7_reports_versioncontrol.json')
       .then(res => res.json())
       .then(data => {
-        reports = data;
+       reports = data.reports || data;
         renderFilters();
         renderPage();
       })
