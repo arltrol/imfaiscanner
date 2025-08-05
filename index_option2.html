@@ -501,7 +501,7 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
       const subDiv = document.createElement('div');
       subDiv.className = 'filter-item';
       const code = getSubthemeCode(sub);
-      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${code} (${subCount})</span></label>`;      subContainer.appendChild(subDiv);
+      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
     });
   });
 
