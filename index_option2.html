@@ -483,15 +483,17 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
     }).length;
 
     const div = document.createElement('div');
-    const id = theme.replace(/\s+/g, '_');
-    div.className = 'filter-item';
-    div.innerHTML = `
-      <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
-      <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
-    `;
-    themeList.appendChild(div);
+const id = theme.replace(/\s+/g, '_');
+div.className = 'filter-item';
+div.innerHTML = `
+  <label><input type="checkbox" onchange="toggleTheme('${theme}')"> <span>${theme} (${themeCount})</span></label>
+  <div id="sub_${id}" style="margin-left: 12px; display: none;"></div>
+`;
+themeList.appendChild(div);
 
-    const subContainer = document.getElementById(`sub_${id}`);
+// ✅ Move this after appendChild
+const subContainer = document.getElementById(`sub_${id}`);
+
     subthemes.forEach(sub => {
       const subCount = reports.filter(r => {
         const ai = r.ai_analysis?.find(a => a.model === 'gpt-4-turbo');
@@ -502,6 +504,8 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
       subDiv.className = 'filter-item';
       const code = getSubthemeCode(sub);
       subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
+       // ✅ THIS LINE IS MISSING
+  subContainer?.appendChild(subDiv);
     });
   });
 
