@@ -692,21 +692,32 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     }
    function showThemeSummaries(stockNo) {
   const report = reports.find(r => r.publication_details?.stock_no === stockNo);
-  const summaries = report?.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo')?.content?.theme_summaries;
+  const ai = report?.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo');
+  const summaries = ai?.content?.theme_summaries;
 
   if (!summaries) {
     alert("No theme summaries available.");
     return;
   }
 
+  const allThemes = new Set(ai?.content?.all_themes || []);
+
+  // ✅ Filter out summaries that are not listed in all_themes
+  const filteredSummaries = {};
+  for (const key of Object.keys(summaries)) {
+    if (allThemes.has(key)) {
+      filteredSummaries[key] = summaries[key];
+    }
+  }
+
   let html = `<h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Theme Summaries</h2>`;
 
-  for (const key of Object.keys(summaries).sort()) {
+  for (const key of Object.keys(filteredSummaries).sort()) {
     const isMain = /^[1-9]$/.test(key);
     const isSub = key.includes('.');
     html += `<div style="margin-bottom: 14px; margin-left: ${isSub ? '20px' : '0'};">
       <strong style="font-size: ${isMain ? '1.05em' : '0.98em'};">${key}</strong>
-      <div style="margin-top: 4px;">${summaries[key]}</div>
+      <div style="margin-top: 4px;">${filteredSummaries[key]}</div>
     </div>`;
   }
 
@@ -717,6 +728,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   modal.scrollTop = 0;
   document.body.style.overflow = 'hidden'; // prevent background scroll
 }
+
 
 
 function closeThemeModal() {
