@@ -237,18 +237,18 @@
     
 
 
-   const THEME_MAP = {
+  const THEME_MAP = {
   "Austerity": [
     "1.1 Fiscal consolidation",
     "1.2 Wage Bill",
     "1.3 Subsidies",
     "1.4 Privatisation",
-    "1.5 Labour flexibilization"
+    "1.5 Labour Flexibilization"
   ],
   "Tax": [
-    "2.1 Regressive tax measures",
-    "2.2 Progressive tax measures",
-    "2.3 Tax Expenditures and Illicit Financial Flows",
+    "2.1 Consumption taxes/VAT/Income tax/Wealth tax/Corporate tax ",
+    "2.2 Tax Expenditures and Illicit Financial Flows (IFFs)",
+    "2.3 Tax Policies Favouring Financial Capital"
   ],
   "Climate and Environment": [
     "3.1 Climate policies",
@@ -256,37 +256,45 @@
   ],
   "Social and Gendered Impacts": [
     "4.1 Gender policies",
-    "4.2 Care Economy",
+    "4.2 Care Economy / Unpaid and Paid Care Work",
     "4.3 Distributional and social impacts"
   ],
   "Social Services": [
-    "5.1 Social protection",
+    "5.1 Social protection/Social safety net",
     "5.2 Pension and social security reforms",
-    "5.3 Social Security Contributions",
+    "5.3 Social Security Contributions/Tax Wedge",
     "5.4 Fees for Public Services",
-    "5.5 Cuts to Health Expenditure",
-    "5.6 Cuts to Education Expenditure"
+    "5.5 Cuts to Health Expenditure/Rationalization/Efficiency",
+    "5.6 Cuts to Education Expenditure/Rationalization/Efficiency"
   ],
   "Private and External Sector": [
-    "6.1 External sector and FDI",
-    "6.2 Public Private Partnerships",
+    "6.1 External sector/business-friendly environment and FDI (Foreign Direct Investment)",
+    "6.2 PPPs - Public Private Partnerships/Power Purchase Agreements",
     "6.3 Foreign Currency Debt and External Vulnerabilities"
   ],
   "Financialisation": [
-    "7.1 Deregulation",
-    "7.2 Monetary policies",
-    "7.3 Corporate Governance",
+    "7.1 Deregulation of Financial Markets",
+    "7.2 Monetary Policies Favouring Financial Sector Growth",
+    "7.3 Corporate Governance and Shareholder Value Orientation",
     "7.4 Expansion of Credit and Debt Markets",
     "7.5 Financial inclusion"
   ],
   "Digitisation": [
     "8.1 Digitalisation, AI and platform economies"
   ],
-  "Governance and Political Economy": [
-    "9.1 Governance",
+  "Governance": [
+    "9.1 Governance/legal reforms",
     "9.2 Political economy"
   ]
 };
+
+const SUBTHEME_LABELS = Object.fromEntries(
+  Object.values(THEME_MAP).flat().map(entry => {
+    const [code, ...labelParts] = entry.trim().split(' ');
+    return [code, labelParts.join(' ').trim()];
+  })
+);
+
 
 
 
@@ -319,8 +327,8 @@
     "Social Services": "5",
     "Private and External Sector": "6",
     "Financialisation": "7",
-    "Monetary Policy and Digitisation": "8",
-    "Governance and Political Economy": "9"
+    "Digitisation": "8",
+    "Governance": "9"
   };
   return map[theme] || '';
 }
