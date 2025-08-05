@@ -700,18 +700,20 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     return;
   }
 
- const verified = nonAiTagData[stockNo];
-const validSubthemes = new Set(Object.keys(verified?.subtheme_coverage || {}));
+const aiSubthemes = new Set(
+  (report?.ai_analysis?.find(a => a.model === 'gemini-pro' || a.model === 'gpt-4-turbo')?.content?.all_themes || [])
+    .filter(t => t.includes('.'))
+);
 
 
   // ✅ Filter out summaries that are not listed in all_themes
   const filteredSummaries = {};
-  for (const key of Object.keys(summaries)) {
-    if (validSubthemes.has(key)) {
-
-      filteredSummaries[key] = summaries[key];
-    }
+for (const key of Object.keys(summaries)) {
+  if (aiSubthemes.has(key)) {
+    filteredSummaries[key] = summaries[key];
   }
+}
+
 
   let html = `<h2 style="margin-top: 0; color: #003366; font-size: 1.2em;">Theme Summaries</h2>`;
 
@@ -904,6 +906,7 @@ font-weight: bold; cursor: pointer; " onclick="closeTaxonomyModal()" title="Clos
     <button onclick="closeTaxonomyModal()" style="padding:6px 12px;">Close</button>
   </div>
 </div>
+  
 
 <div id="tagModal" style="
   display: none;
