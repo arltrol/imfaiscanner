@@ -660,14 +660,16 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     .map(t => correctedThemeMap[t.number] || `Unknown (${t.number})`)
     .join(', ') || 'Not analyzed yet'
 }</div>
-${(content.top_subthemes || []).filter(s => s?.name).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${
+${(content.top_subthemes || []).filter(s => s?.number).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${
   content.top_subthemes
-    .filter(s => s?.name)
+    .filter(s => s?.number)
     .map(s => {
-      const code = getSubthemeCode(s.name);
-      return `<span title="${s.name}">${code}</span>`;
+      const label = s.name || '';
+      const code = s.number;
+      return `<span title="${label}">${code}</span>`;
     }).join(', ')
 }</div>` : ''}
+
 
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
