@@ -500,8 +500,8 @@ const unmatchedLine = `<div class="themes"><strong>AI sub-themes with no matchin
       }).length;
       const subDiv = document.createElement('div');
       subDiv.className = 'filter-item';
-      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${sub} (${subCount})</span></label>`;
-      subContainer.appendChild(subDiv);
+      const code = getSubthemeCode(sub);
+      subDiv.innerHTML = `<label><input type="checkbox" onchange="toggleSubtheme('${sub}')"> <span>${code} (${subCount})</span></label>`;      subContainer.appendChild(subDiv);
     });
   });
 
@@ -660,7 +660,12 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     .map(t => correctedThemeMap[t.number] || `Unknown (${t.number})`)
     .join(', ') || 'Not analyzed yet'
 }</div>
-      ${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${content.top_subthemes.map(s => s.name).join(', ')}</div>` : ''}
+${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${
+  content.top_subthemes.map(s => {
+    const code = getSubthemeCode(s.name);
+    return `<span title="${s.name}">${code}</span>`;
+  }).join(', ')
+}</div>` : ''}
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
