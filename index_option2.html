@@ -663,11 +663,12 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
 ${(content.top_subthemes || []).filter(s => s?.number).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${
   content.top_subthemes
     .filter(s => s?.number)
-    .map(s => {
-      const label = s.name || '';
-      const code = s.number;
-      return `<span title="${label}">${code}</span>`;
-    }).join(', ')
+   .map(s => {
+  const label = s.name || '';
+  const code = s.number;
+  return `<span${label ? ` title="${label}"` : ''}>${code}</span>`;
+}).join(', ')
+
 }</div>` : ''}
 
 
