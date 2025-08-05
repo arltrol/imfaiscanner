@@ -311,6 +311,12 @@ const correctedThemeMap = {
   ]
 };
 
+const SUBTHEME_LABELS = Object.fromEntries(
+  Object.values(THEME_MAP).flat().map(entry => {
+    const [code, ...labelParts] = entry.trim().split(' ');
+    return [code, labelParts.join(' ').trim()];
+  })
+);
 
 
     const ALL_REGIONS = [
@@ -631,7 +637,13 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
   });
 }
 
-  
+  function cleanTopSubthemes(subthemes) {
+  return (subthemes || []).map(s => ({
+    number: s.number,
+    name: SUBTHEME_LABELS[s.number] || s.name
+  }));
+}
+
 
     
     function renderPage() {
@@ -657,7 +669,7 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     .map(t => correctedThemeMap[t.number] || `Unknown (${t.number})`)
     .join(', ') || 'Not analyzed yet'
 }</div>
-      ${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${content.top_subthemes.map(s => s.name).join(', ')}</div>` : ''}
+      ${(content.top_subthemes || []).length ? `<div class="themes"><strong>Top 3 Subthemes:</strong> ${cleanTopSubthemes(content.top_subthemes).map(s => s.name).join(', ')}</div>` : ''}
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
