@@ -700,12 +700,15 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
     return;
   }
 
-  const allThemes = new Set(ai?.content?.all_themes || []);
+ const verified = nonAiTagData[stockNo];
+const validSubthemes = new Set(Object.keys(verified?.subtheme_coverage || {}));
+
 
   // ✅ Filter out summaries that are not listed in all_themes
   const filteredSummaries = {};
   for (const key of Object.keys(summaries)) {
-    if (allThemes.has(key)) {
+    if (validSubthemes.has(key)) {
+
       filteredSummaries[key] = summaries[key];
     }
   }
