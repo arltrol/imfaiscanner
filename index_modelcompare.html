@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
 
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI MODEL COMPARISON</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -541,8 +539,9 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
       <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
-      <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
-      <div class="publication-details">
+    <div class="expand" onclick="toggleDetails(this)">- Hide Details</div>
+<div class="publication-details" style="display: block;">
+
         Pages: ${r.publication_details?.pages || 'N/A'}<br/>
         DOI: <a href="${r.publication_details?.doi}" target="_blank">${r.publication_details?.doi}</a><br/>
         ISBN: ${r.publication_details?.isbn || 'N/A'}<br/>
