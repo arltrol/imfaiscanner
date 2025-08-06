@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-02T18:19:30.104Z",
+  "generated_at": "2025-08-06T12:09:22.025Z",
   "version": "v7",
   "reports": [
     {
@@ -51,7 +51,7 @@
                 "name": "Deforestation"
               }
             ],
-            "summary": "The article discusses austerity measures, tax reforms, and environmental policies in Brazil. Austerity is highlighted through fiscal consolidation efforts, emphasizing spending restraint and structural reforms to manage public debt. Tax discussions focus on VAT and income tax reforms aimed at enhancing productivity and revenue mobilization. Environmental actions are noted in the context of deforestation reduction and climate policies, aligning with Brazil's Ecological Transformation Plan. These policies, while aimed at economic stability and growth, could pose risks to social equity and environmental sustainability.",
+            "summary": "The article discusses austerity measures, tax reforms, and environmental policies in Brazil, highlighting the IMF's involvement in fiscal consolidation, VAT reform, and efforts to combat deforestation. It critically examines the social implications of these policies, noting potential risks such as increased vulnerability for marginalized groups due to austerity and regressive tax measures. The environmental initiatives, while positive, are juxtaposed against the backdrop of economic policies that may prioritize fiscal over social and environmental well-being.",
             "all_themes": [
               "1",
               "1.1",
@@ -64,7 +64,9 @@
               "3.2",
               "4.1",
               "4.3",
+              "5.1",
               "5.2",
+              "5.5",
               "5.6",
               "6.1",
               "6.2",
@@ -74,25 +76,27 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures in Brazil are discussed with a focus on fiscal consolidation and structural reforms aimed at managing public debt and improving fiscal sustainability [pp. 3, 7].",
-              "2": "Tax reforms are extensively discussed, particularly the implementation of VAT reform and proposals for income tax reforms to enhance the tax system's progressivity and boost domestic revenue mobilization [pp. 3, 7, 9].",
-              "3": "Environmental policies are discussed in the context of Brazil's Ecological Transformation Plan, with a focus on reducing deforestation and managing climate risks [pp. 3, 4].",
-              "1.1": "Fiscal consolidation is a key theme, with efforts to improve Brazil's fiscal position through spending restraint and structural reforms. These measures are intended to put public debt on a downward path and facilitate lower interest rates [pp. 3, 7].",
-              "1.5": "Labor market reforms are mentioned as part of broader structural reforms to increase productivity and support economic growth. These include measures to reduce informality and enhance labor force participation [pp. 7].",
-              "2.1": "VAT reform is highlighted as a measure to simplify the tax system and enhance productivity. Discussions also cover the need for income tax reforms to improve the progressivity of the tax system [pp. 3, 7].",
-              "2.2": "The article addresses the rationalization of tax expenditures and the implementation of CFT frameworks as part of efforts to tackle budget rigidities and mobilize revenues [pp. 3].",
-              "3.1": "Climate policies are mentioned in relation to Brazil's efforts to manage climate risks and implement the Ecological Transformation Plan, which includes the creation of a regulated carbon market [pp. 4].",
-              "3.2": "Deforestation is addressed as part of Brazil's environmental initiatives, with significant reductions noted in recent years. These efforts are linked to the broader Ecological Transformation Plan [pp. 4].",
-              "4.1": "Gender policies are discussed in terms of improving labor force participation, particularly for women, and addressing primary and secondary education challenges [pp. 5].",
-              "4.3": "Social impacts are considered in terms of poverty reduction and income distribution, with specific attention to vulnerable groups and the effects of economic policies on these populations [pp. 5].",
-              "5.2": "Pension reforms are briefly mentioned in the context of demographic pressures and the need for targeted policies to address challenges in the pension system [pp. 5].",
-              "5.6": "Education policies are discussed in terms of enrollment rates and the impact of fiscal policies on education expenditure, highlighting challenges in maintaining investment in education amid fiscal consolidation [pp. 5].",
-              "6.1": "Foreign direct investment is noted as part of Brazil's external sector strategy, with a focus on creating a business-friendly environment to attract investment [pp. 6].",
-              "6.2": "Fiscal risks are discussed in relation to perceptions of government debt sustainability and the impact of fiscal policy uncertainties on investment and economic growth [pp. 9].",
-              "7.5": "Financial inclusion and credit policies are highlighted in terms of their role in supporting economic growth and managing financial sector risks, including the oversight of household credit risks [pp. 4].",
-              "8.1": "Flexibility in labor market policies is discussed in the context of maintaining adaptability in monetary and exchange rate policies to address economic uncertainties [pp. 7].",
-              "9.1": "Governance and legal reforms are emphasized as crucial for supporting economic reforms, including tax and fiscal policies, to enhance overall governance and regulatory frameworks [pp. 7, 8].",
-              "9.2": "Political economy considerations are mentioned in relation to stakeholder consultations and the social acceptability of reforms, particularly in the context of the IMF's Article IV consultations with Brazil [pp. 1, 2]."
+              "1": "Austerity measures in Brazil are discussed in terms of fiscal consolidation and structural reforms aimed at fiscal sustainability. These include efforts to improve the fiscal position and reduce public debt, which are seen as necessary to secure economic stability but may have adverse effects on social welfare [pp. 3, 7].",
+              "2": "Tax reforms are a significant theme, with emphasis on implementing VAT reforms and adjusting income tax structures to improve tax system efficiency and fairness. However, the potential regressive impact of VAT increases on lower-income groups is a concern [pp. 3, 7].",
+              "3": "Environmental policies are discussed, particularly in relation to climate change and deforestation. The article notes efforts to align economic growth with environmental sustainability, including measures to reduce deforestation and manage natural resources more effectively [pp. 3, 4].",
+              "1.1": "Fiscal consolidation is a key focus, with discussions on the need for Brazil to maintain a tight fiscal regime to manage its public debt and budget deficits. This includes measures to enhance fiscal frameworks and spending restraint, which are intended to stabilize the economy but could restrict public investment in social programs [pp. 3, 7].",
+              "1.5": "Labor market reforms aimed at increasing productivity and reducing informality are mentioned. These reforms are part of broader structural adjustments intended to enhance economic efficiency but may also lead to precarious employment conditions [pp. 7].",
+              "2.1": "VAT reform is highlighted as a measure to simplify the tax system and enhance productivity. The discussion includes the potential benefits of such reforms for economic efficiency, although the impact on lower-income households remains a critical issue [pp. 3, 7].",
+              "2.2": "The article addresses the need to rationalize tax expenditures and improve anti-money laundering and counter-financing of terrorism frameworks. These reforms are intended to increase fiscal space and reduce illicit financial flows, contributing to a more robust fiscal environment [pp. 3].",
+              "3.1": "Climate policies in Brazil include initiatives to increase hydrocarbon production while also managing climate risks. The balance between economic benefits from resource extraction and environmental sustainability is a key point of discussion [pp. 3].",
+              "3.2": "Deforestation and its impact on climate and environmental goals are critically examined. Efforts to reduce deforestation are part of Brazil's broader ecological transformation plan, which seeks to align economic development with environmental preservation [pp. 4].",
+              "4.1": "Gender policies and impacts on women and girls are discussed in terms of labor market participation and primary and secondary education. The focus is on improving gender equality and reducing disparities, which are essential for inclusive growth [pp. 5].",
+              "4.3": "Social impacts of economic policies are analyzed, particularly in terms of poverty and vulnerable groups. The article discusses how economic reforms, while aimed at macroeconomic stability, need to consider their effects on poverty and income distribution [pp. 4, 5].",
+              "5.1": "Social security systems are briefly mentioned, with a focus on the need for reforms to address demographic pressures and ensure sustainability. The discussion reflects concerns about the adequacy of social protection measures in the context of fiscal austerity [pp. 5].",
+              "5.2": "Pension reforms are noted as part of broader social security adjustments. These reforms aim to make the pension system more sustainable but may also affect the benefits and security of older adults [pp. 5].",
+              "5.5": "Health sector policies are discussed in terms of rationalization and efficiency measures. The potential impact of these policies on access to healthcare services and the quality of care is a concern, especially in the context of budget cuts [pp. 5].",
+              "5.6": "Education policies include discussions on rationalization and efficiency in the education sector. Concerns about the impact of budget cuts on the quality of education and access to educational services are highlighted [pp. 5].",
+              "6.1": "External sector and business-friendly environment discussions focus on attracting foreign direct investment and creating a conducive business climate. These policies are intended to stimulate economic growth but may also involve trade-offs in terms of labor rights and environmental standards [pp. 6].",
+              "6.2": "Fiscal risks associated with government debt and budget management are discussed. The article highlights concerns about the sustainability of fiscal policies and the potential impact on economic stability [pp. 9].",
+              "7.5": "Financial sector policies, including financial inclusion and credit risks, are examined. The role of banks in supporting economic activity is noted, along with the need to manage risks associated with increased credit provision [pp. 4].",
+              "8.1": "Digitalisation and its impact on the labor market are discussed, with a focus on flexibility and the challenges of ensuring fair work conditions in the digital economy. The potential for digital transformation to improve efficiency but also to introduce new vulnerabilities is noted [pp. 7].",
+              "9.1": "Governance and legal reforms are emphasized as crucial for supporting economic and social reforms. The article discusses the importance of robust governance structures to implement and sustain policy changes effectively [pp. 7].",
+              "9.2": "Political economy and public sentiment are considered in the context of IMF consultations with Brazil. The article highlights the importance of understanding and addressing public perceptions and concerns about economic reforms [pp. 1, 2]."
             }
           }
         }
@@ -130,7 +134,7 @@
               },
               {
                 "number": "9",
-                "name": "Governance and Political Economy"
+                "name": "Governance and Legal Reforms"
               }
             ],
             "top_subthemes": [
@@ -147,7 +151,7 @@
                 "name": "Political economy"
               }
             ],
-            "summary": "The article discusses the impact of IMF policies on Singapore's financial sector, technology and innovation, and governance. Financial sector policies (Theme 7) focus on the resilience and capital adequacy of banks, emphasizing the need for vigilance against interconnectedness and foreign exchange exposures. Technology and innovation (Theme 8) are highlighted through the adoption of AI technologies and the influence of the global technology cycle on economic performance. Governance and political economy (Theme 9) are scrutinized in terms of policy implementation and stakeholder engagement, with a critical view on the transparency and inclusiveness of these processes.",
+            "summary": "The article discusses the resilience of Singapore's financial sector, emphasizing well-capitalized banks and strong regulatory frameworks [TAG: 7.5 banks]. It highlights the role of technology, particularly AI, in boosting productivity and adapting to global economic shifts [TAG: 8.1 AI]. Governance and legal reforms are noted, focusing on the IMF's consultation processes and the importance of stakeholder engagement in policy acceptance [TAG: 9.2 consultation]. The analysis critically views these reforms, considering potential risks and the need for inclusive policies that consider vulnerable groups.",
             "all_themes": [
               "1",
               "1.1",
@@ -166,21 +170,21 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures are discussed in terms of structural reforms and productivity enhancements within the Singaporean economy [pp. 8].",
-              "1.1": "Structural reforms are mentioned as part of Singapore's policy implementation to promote inclusive growth and enhance productivity [pp. 8].",
-              "1.5": "Productivity improvements are noted, particularly in the context of adopting AI technologies and the impact of the global technology cycle on Singapore's manufacturing sector [pp. 6, 9].",
-              "2.1": "Income tax is referenced in the context of fiscal policies, highlighting its role in shaping Singapore's fiscal surplus through enhanced revenue collection [pp. 7].",
-              "3.1": "Climate resilient infrastructure investments are discussed as part of Singapore's efforts to address climate change and enhance sustainability [pp. 3].",
-              "3.2": "The impact of oil prices on inflation and trade is analyzed, with a focus on non-oil domestic exports and their contribution to economic growth [pp. 6, 11].",
-              "4.1": "Primary education and its fiscal implications are briefly mentioned in the context of Singapore's fiscal policies and budgetary considerations [pp. 4].",
-              "4.3": "Vulnerable groups are considered in policy discussions, particularly in relation to the distributional impacts of economic policies and reforms [pp. 8].",
-              "5.1": "Social security schemes, specifically the Central Provident Fund, are discussed in terms of their role in supporting healthcare expenditures and fiscal policies [pp. 7].",
-              "5.5": "Healthcare sector developments are linked to disinflation trends, with a focus on administered prices and their impact on inflation [pp. 7].",
-              "5.6": "Education sector developments are tied to fiscal policies, with a focus on budgetary allocations and their impact on public education services [pp. 7].",
-              "7.5": "Financial inclusion is emphasized through the discussion of the banking sector's capital adequacy, profitability, and liquidity, highlighting the resilience of financial institutions [pp. 2, 3, 10].",
-              "8.1": "Digitalisation and AI are highlighted as key factors influencing Singapore's economic strategies, particularly in terms of technology adoption and its impact on productivity [pp. 3, 6].",
-              "9.1": "Governance reforms are discussed in terms of institutional resilience and the role of financial institutions in maintaining economic stability [pp. 2, 3].",
-              "9.2": "Political economy aspects are explored through stakeholder consultations and the engagement processes during the IMF's Article IV consultations with Singapore [pp. 1, 5]."
+              "1": "Austerity measures are discussed in terms of structural reforms aimed at promoting inclusive growth, with a focus on maintaining financial stability and supporting vulnerable groups [pp. 8].",
+              "1.1": "Structural reforms under the Forward Singapore initiative are highlighted, aiming to promote inclusive growth and support vulnerable groups [pp. 8].",
+              "1.5": "Productivity improvements are noted, particularly through the adoption of AI technologies, which are part of broader structural reforms to enhance economic efficiency and competitiveness [pp. 5].",
+              "2.1": "Income tax is mentioned in the context of fiscal policies, where stronger-than-anticipated economic activity helped boost revenue, contributing to a fiscal surplus [pp. 7].",
+              "3.1": "Climate resilient infrastructure investments are discussed as part of efforts to promote a stronger and more inclusive economy, highlighting the importance of sustainable development in financial planning [pp. 3].",
+              "3.2": "The impact of oil prices on inflation and trade is analyzed, showing how changes in oil prices affect the broader economic indicators and trade balances [pp. 11].",
+              "4.1": "Primary balance discussions reflect on fiscal policies, particularly the cyclically-adjusted primary balance, which indicates a tightening fiscal stance and its implications for public financial management [pp. 7].",
+              "4.3": "Vulnerable groups are specifically mentioned in the context of policy recommendations, where the focus is on supporting these groups through targeted reforms and social safety measures [pp. 8].",
+              "5.1": "Social security schemes like the Central Provident Fund are discussed, highlighting their role in providing healthcare expenditure support and reflecting on the broader social safety net framework [pp. 7].",
+              "5.5": "Healthcare expenditure is part of fiscal discussions, where special transfers included enhanced top-ups to citizens' healthcare accounts, reflecting on the government's approach to managing healthcare costs and social welfare [pp. 7].",
+              "5.6": "Education expenditure is briefly mentioned in the context of fiscal management, where rationalization and efficiency measures are implied in the broader discussion of public spending and budget management [pp. 7].",
+              "7.5": "The financial sector's resilience is emphasized, with a focus on the capital adequacy and profitability of banks, and the regulatory measures ensuring financial stability [pp. 3, 10].",
+              "8.1": "Digitalisation and AI are highlighted as key factors in enhancing productivity and economic resilience, reflecting on the strategic importance of technology in economic planning and global competitiveness [pp. 3, 5].",
+              "9.1": "Governance structures within the financial sector are discussed, particularly the role of institutions in maintaining financial stability and regulatory compliance [pp. 3].",
+              "9.2": "Political economy aspects are covered through the IMF's consultation processes, emphasizing the importance of stakeholder engagement and public sentiment in the acceptance and implementation of reforms [pp. 1, 5]."
             }
           }
         }
@@ -235,7 +239,7 @@
                 "name": "Institutions"
               }
             ],
-            "summary": "The article discusses the IMF's engagement with France, focusing on austerity measures, governance/legal reforms, and financial sector policies. It highlights the emphasis on fiscal consolidation to manage public debt and enhance economic resilience, amidst high uncertainty and external pressures. The narrative also covers the need for structural reforms to boost productivity and the integration of climate and cyber risks into financial governance. The analysis critically views these reforms, noting potential risks such as social discontent and the impact on vulnerable groups, underscoring the importance of equitable and sustainable growth.",
+            "summary": "The article discusses the IMF's engagement with France, focusing on austerity measures, governance/legal reforms, and financial sector policies. It highlights the emphasis on fiscal consolidation to manage public debt and enhance economic resilience, amidst high uncertainty and external pressures. The analysis criticizes the potential social impacts of austerity, such as reduced public spending and its effects on social services, which could exacerbate inequality and social tension. Governance reforms aim to improve institutional frameworks, but there's a risk they may not fully address the needs of vulnerable populations. Financial sector resilience is noted, yet the broader implications of financial stability on economic equity are not deeply explored.",
             "all_themes": [
               "1",
               "1.1",
@@ -250,17 +254,17 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures are central to the IMF's recommendations for France, focusing on fiscal consolidation and structural reforms to manage public debt and enhance economic resilience [pp. 2-7].",
-              "1.1": "Fiscal consolidation is repeatedly emphasized as a necessary step for France to manage its public finances, with calls for credible and well-designed measures to support this adjustment [pp. 2-7].",
-              "1.5": "Productivity enhancements are discussed as crucial for sustainable growth, with structural reforms aimed at boosting productivity through better targeting of state aid and reducing regulatory burdens [pp. 2, 7].",
-              "3.1": "Climate risks are integrated into financial governance, with financial institutions encouraged to consider these factors in their strategies and risk management processes [pp. 3, 7].",
-              "4.1": "Primary balance discussions reflect concerns about fiscal sustainability, with a focus on managing the fiscal deficit and debt levels [pp. 5, 6].",
-              "5.1": "Social security systems are highlighted as areas needing oversight and reform, particularly in the context of fiscal consolidation efforts [pp. 2, 6].",
-              "5.2": "Pension reforms are noted as part of the broader social security adjustments, aimed at managing public finances and responding to demographic changes [pp. 6].",
-              "7.5": "Banking sector resilience is affirmed, with financial stability risks deemed contained despite high uncertainty and potential geopolitical and recessionary stressors [pp. 2, 7].",
-              "8.1": "Digital and green transitions are identified as areas where structural reforms can promote job quality and support economic growth [pp. 3, 8].",
-              "9.1": "Governance reforms are crucial, with financial institutions required to integrate governance improvements to manage climate and cyber risks effectively [pp. 3, 7].",
-              "9.2": "Political economy considerations are evident in the discussions about public acceptance and the social implications of reforms, with emphasis on consultation and engagement processes [pp. 1, 2, 4, 6]."
+              "1": "Austerity measures are central to the IMF's discussions with France, focusing on fiscal consolidation and structural reforms to manage public debt and enhance economic resilience [pp. 2, 3, 6, 7, 10].",
+              "1.1": "Fiscal consolidation is repeatedly emphasized as a necessary step for France to manage its public finances, with calls for credible and well-designed measures to support economic stability and growth [pp. 2, 3, 6, 7, 10].",
+              "1.5": "Productivity improvements are highlighted as crucial for sustainable economic growth, with structural reforms aimed at enhancing efficiency across various sectors [pp. 2, 7, 10].",
+              "3.1": "Climate risks are acknowledged in the context of financial sector resilience and the need for institutions to integrate these risks into their strategies and governance [pp. 3, 7].",
+              "4.1": "Primary balance discussions reflect concerns about fiscal sustainability, with a focus on managing deficits and debt levels to prevent economic instability [pp. 4].",
+              "5.1": "Social security systems are noted as areas of concern, particularly in the context of fiscal consolidation and the need for robust social safety nets amidst austerity measures [pp. 2, 6].",
+              "5.2": "Pension reforms are briefly mentioned, reflecting ongoing adjustments to the pension system as part of broader fiscal and social security reforms [pp. 6].",
+              "7.5": "Financial sector policies, particularly banking resilience, are discussed in light of recent economic shocks and the need for strong regulatory frameworks to maintain stability [pp. 2, 7].",
+              "8.1": "Digital and work-related reforms are considered within the broader context of structural adjustments and the need to enhance labor market flexibility and productivity [pp. 3, 8].",
+              "9.1": "Governance and institutional reforms are emphasized as key to ensuring effective implementation of economic policies and legal frameworks, with a focus on integrating financial and climate risks into institutional strategies [pp. 3, 7, 8, 10].",
+              "9.2": "Political economy and consultation processes are mentioned in relation to the IMF's engagement with France, highlighting the importance of stakeholder engagement in reform processes [pp. 1, 2, 3, 4, 6]."
             }
           }
         }
@@ -298,7 +302,7 @@
               },
               {
                 "number": "9",
-                "name": "Governance/legal reforms"
+                "name": "Governance/Legal Reforms"
               }
             ],
             "top_subthemes": [
@@ -307,15 +311,15 @@
                 "name": "Fiscal adjustment"
               },
               {
-                "number": "7.4",
-                "name": "Credit growth"
-              },
-              {
                 "number": "7.5",
                 "name": "Financial inclusion"
+              },
+              {
+                "number": "9.2",
+                "name": "Political economy"
               }
             ],
-            "summary": "The article discusses Estonia's economic situation under IMF scrutiny, focusing on austerity measures, financial sector dynamics, and governance reforms. Austerity is highlighted by the need for fiscal adjustment to manage debt and defense spending, raising concerns about the social impact of reduced public spending. The financial sector is examined through the lens of credit growth and banking stability, with an emphasis on the risks of rapid credit expansion and the need for prudent financial practices. Governance reforms are noted in the context of consultations, indicating a focus on institutional frameworks to support economic policies. These themes collectively raise issues about the balance between economic stability and social equity, particularly how austerity measures and financial sector policies might affect vulnerable populations.",
+            "summary": "The article discusses austerity measures in Estonia, emphasizing the need for fiscal adjustment to stabilize debt ratios and manage defense spending, reflecting a broader austerity agenda. Financial sector stability is also a focal point, with concerns about credit growth and bank resilience underpinning discussions on financial policies. Governance and legal reforms are highlighted through repeated consultations, indicating a focus on aligning national policies with broader economic and financial stability goals. These themes collectively underscore the trade-offs between economic stability and social impacts, particularly the risks austerity poses to public services and equity.",
             "all_themes": [
               "1",
               "1.1",
@@ -325,6 +329,7 @@
               "3.1",
               "3.2",
               "4.1",
+              "4.3",
               "5.1",
               "5.5",
               "5.6",
@@ -335,22 +340,23 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures are central to the IMF's recommendations for Estonia, focusing on fiscal adjustment to manage increasing defense spending and stabilize the debt ratio. The emphasis on austerity raises concerns about potential negative impacts on public services and social welfare [pp. 2, 6].",
-              "1.1": "Fiscal adjustment is advised to address Estonia's economic challenges, including managing debt and defense expenditures. The IMF suggests a targeted adjustment to achieve a sustainable structural deficit, highlighting the trade-offs between fiscal prudence and economic growth [pp. 2, 6].",
-              "1.5": "Productivity enhancement is a key focus, with the IMF noting the need for structural reforms to improve business dynamism and allocative efficiency. This is seen as crucial for long-term economic stability and growth, despite the potential short-term social impacts of such reforms [pp. 4, 6].",
-              "2.1": "Tax policies, including VAT and income tax reforms, are discussed as part of Estonia's fiscal strategy. The potential regressive impact of VAT increases on inflation and consumer spending is noted, alongside the need for balanced tax reforms to support economic recovery [pp. 3, 8].",
-              "2.2": "Anti-money laundering measures are briefly mentioned, reflecting ongoing efforts to strengthen financial oversight and compliance within the banking sector. This aligns with broader financial sector reforms aimed at ensuring stability and integrity [pp. 9].",
-              "3.1": "Climate change mitigation is acknowledged in the context of Estonia's economic adjustments, with specific reference to the impact of environmental policies on the economy. The IMF's support for sustainable practices underscores the importance of integrating environmental considerations into fiscal planning [pp. 11].",
-              "3.2": "Land use and natural resource management are implicated in discussions on economic and environmental policies, highlighting the challenges of balancing economic development with environmental sustainability. The focus is on the implications of agricultural and mining activities on land use [pp. 11].",
-              "4.1": "Gender inequality issues are not directly addressed in the article, but the broader implications of economic policies on social equity, including impacts on women and marginalized groups, are implicit in discussions of austerity and financial reforms [pp. 10].",
-              "5.1": "Social security frameworks are mentioned in the context of fiscal adjustments, with a focus on the need to rationalize social spending. This raises concerns about the potential narrowing of social safety nets and the impact on vulnerable populations [pp. 14].",
-              "5.5": "Healthcare spending is scrutinized under fiscal rationalization measures, with potential implications for public health services and access. The emphasis on efficiency may lead to reduced healthcare provision, affecting public health outcomes [pp. 8].",
-              "5.6": "Education expenditure cuts are noted as part of broader austerity measures, with potential negative impacts on public education services. This aligns with the IMF's emphasis on fiscal efficiency, which may compromise education quality and accessibility [pp. 8].",
-              "7.4": "Credit growth is highlighted as a significant aspect of Estonia's financial sector, with rapid increases in lending, particularly in real estate, posing risks to financial stability. The IMF recommends careful monitoring and regulation to manage these risks [pp. 7, 14].",
-              "7.5": "Financial inclusion is discussed in terms of banking stability and access to credit. The IMF's focus on maintaining robust banking practices is intended to support economic stability while ensuring that credit expansion does not lead to financial vulnerabilities [pp. 4, 7].",
-              "8.1": "Digitalisation and technology are acknowledged in the context of economic reforms, with implications for the labor market and productivity. The integration of digital technologies is seen as a key factor in enhancing economic efficiency and competitiveness [pp. 9].",
-              "9.1": "Governance reforms are emphasized through the consultation process with institutions, reflecting the IMF's focus on strengthening institutional frameworks to support effective policy implementation and economic management [pp. 2].",
-              "9.2": "Political economy considerations are evident in the IMF's consultation processes, highlighting the importance of stakeholder engagement and public sentiment in shaping economic policies. This reflects an awareness of the need for broad-based support for reform initiatives [pp. 1, 2, 6]."
+              "1": "Austerity measures are central to the IMF's recommendations for Estonia, focusing on fiscal adjustments to manage debt and defense spending. The need for structural reforms to enhance productivity and economic resilience is also emphasized, reflecting the broader austerity impacts on public services and social equity [pp. 2, 6].",
+              "1.1": "Fiscal adjustment is advised to stabilize Estonia's debt ratio, with recommendations for both revenue-based measures and specific spending cuts. This is part of broader austerity measures aimed at managing increased defense spending and economic recovery [pp. 2, 6].",
+              "1.5": "Productivity enhancement is a recurring theme, with structural reforms suggested to address skill shortages and foster innovation. This subtheme is linked to austerity through its focus on economic efficiency and resilience [pp. 4, 6].",
+              "2.1": "Tax policies, including VAT and income tax reforms, are discussed as mechanisms to manage fiscal imbalances and support economic recovery. The impact of tax changes on inflation and consumer behavior is also noted [pp. 8, 10].",
+              "2.2": "Anti-money laundering measures are briefly mentioned, reflecting ongoing efforts to strengthen financial oversight and compliance within the banking sector [pp. 9].",
+              "3.1": "Climate change mitigation is acknowledged in the context of fiscal pressures from energy security and environmental policies. The need for sustainable practices in response to global and regional ecological challenges is highlighted [pp. 11].",
+              "3.2": "Land use and natural resource management are implicated in discussions on economic resilience and environmental sustainability, with a focus on agriculture and forestry sectors [pp. 9].",
+              "4.1": "Gender policies are not explicitly discussed, but the broader economic policies could have implications for gender equity and social inclusion [pp. 10].",
+              "4.3": "Distributional impacts of economic policies are considered, particularly in relation to austerity measures and their effects on different social groups [pp. 10].",
+              "5.1": "Social security reforms are suggested, including means-testing and reviewing indexation mechanisms for pensions to manage fiscal pressures [pp. 4].",
+              "5.5": "Healthcare spending and policies are evaluated, with recommendations for cost containment and efficiency improvements in the health sector [pp. 8].",
+              "5.6": "Education expenditure and its rationalization are noted, with implications for public education funding and policy efficiency [pp. 8].",
+              "7.4": "Credit growth in the financial sector is a concern, with rapid increases in lending, particularly for real estate, necessitating careful monitoring and regulatory measures [pp. 7, 14].",
+              "7.5": "Financial inclusion and stability are emphasized, with discussions on banking sector resilience, credit risks, and the adequacy of capital buffers [pp. 4, 7].",
+              "8.1": "Digitalisation and technology are acknowledged in the context of economic modernization and efficiency, particularly in the banking and ICT sectors [pp. 9].",
+              "9.1": "Governance and institutional frameworks are discussed, particularly in relation to regional economic policies and the role of institutions in managing economic challenges [pp. 2].",
+              "9.2": "Political economy and stakeholder consultations are highlighted, reflecting the importance of governance and legal reforms in aligning national policies with broader economic stability objectives [pp. 1, 2, 6]."
             }
           }
         }
@@ -405,40 +411,42 @@
                 "name": "Governance/legal reforms"
               }
             ],
-            "summary": "The article discusses the IMF's engagement with Iraq, focusing on austerity measures, environmental impacts, and governance reforms. It highlights the need for fiscal consolidation to address macro-fiscal risks and stabilize debt, emphasizing austerity's potential negative impacts on public services and vulnerable populations. The environmental discussion centers on oil dependency and its fiscal implications, raising concerns about sustainable development and land use. Governance reforms are suggested to enhance transparency and efficiency, but the article also points out the risks of these reforms being superficial and not addressing deeper systemic issues.",
+            "summary": "The article discusses the need for austerity measures in Iraq, emphasizing fiscal consolidation to address macro-fiscal risks and stabilize debt. It highlights the environmental impact of oil dependency and the need for governance reforms to enhance economic stability and legal frameworks. The analysis criticizes the potential social impacts of austerity, such as increased vulnerability and reduced public sector capabilities, while stressing the importance of governance reforms in combating corruption and improving data accuracy for policy effectiveness.",
             "all_themes": [
               "1",
               "1.1",
+              "1.5",
               "2.1",
-              "3",
               "3.1",
               "3.2",
+              "4.1",
+              "4.3",
               "5.2",
               "5.4",
               "5.6",
               "6.1",
               "7.5",
               "8.1",
-              "9",
               "9.1",
               "9.2"
             ],
             "theme_summaries": {
-              "1": "The theme of austerity is addressed through discussions on fiscal consolidation and the need for Iraq to undertake significant fiscal adjustments to stabilize its economy. The article emphasizes the importance of managing the public wage bill and enhancing non-oil revenues as part of austerity measures [pp. 2-3, 6-12].",
-              "3": "Environmental concerns are highlighted in relation to Iraq's dependency on oil, which affects fiscal stability and economic diversification. The article discusses the need for structural reforms to reduce reliance on oil and transition to sustainable energy sources [pp. 2-3, 5-6].",
-              "9": "Governance and legal reforms are extensively discussed as crucial for enhancing transparency, accountability, and efficiency in public administration and financial management. The article calls for comprehensive reforms to tackle corruption and improve legal frameworks [pp. 3-4, 6-12].",
-              "1.1": "Fiscal consolidation is a key focus, with recommendations for Iraq to undertake austerity measures to mitigate macro-fiscal risks and stabilize debt. This includes controlling public sector wages and boosting non-oil revenues [pp. 2-3, 6-12].",
-              "2.1": "Income tax reform is discussed as part of broader tax adjustment strategies to increase non-oil revenues. The article suggests broadening the tax base and adjusting tax rates as part of fiscal consolidation efforts [pp. 3].",
-              "3.1": "Climate change impacts are briefly mentioned in relation to Iraq's vulnerability to natural disasters and the need for sustainable environmental policies [pp. 6].",
-              "3.2": "Land use and natural resource management are discussed in the context of oil production and its economic implications. The article raises concerns about the sustainability of relying heavily on oil revenues and the environmental impact of such practices [pp. 2-3, 5-6].",
-              "5.2": "Pension reform is considered necessary to reduce fiscal pressures and align public benefits with the private sector. The article suggests increasing the retirement age and adjusting pension benefits as part of broader fiscal consolidation efforts [pp. 3, 10].",
-              "5.4": "Cost recovery measures are mentioned in relation to payments to international oil companies, highlighting the fiscal challenges associated with high operational costs in the oil sector [pp. 6].",
-              "5.6": "Education is identified as a priority area for protecting against budget cuts, with suggestions to improve vocational training and align skills with market needs as part of economic diversification efforts [pp. 3].",
-              "6.1": "Foreign direct investment is discussed as a potential source of economic diversification and private sector development. The article emphasizes the need for a business-friendly environment to attract investment and reduce dependency on oil [pp. 5].",
-              "7.5": "The banking sector's role in economic stability is highlighted, with discussions on reforming state-owned banks and enhancing private banking services to support financial stability and economic growth [pp. 3, 6].",
-              "8.1": "Digital infrastructure improvements are suggested to enhance governance and financial sector operations. The article discusses the integration of digital technologies in banking and public administration to improve efficiency and transparency [pp. 3].",
-              "9.1": "Governance/legal reforms are emphasized as essential for improving public sector management and legal frameworks. The article suggests that enhancing governance could lead to better economic management and more effective public policies [pp. 3-4, 6-12].",
-              "9.2": "Political economy considerations are mentioned in relation to stakeholder consultations and public acceptance of reforms. The article notes the importance of engaging with civil society and other stakeholders to ensure the social acceptability of economic policies [pp. 1-2]."
+              "1": "Austerity measures are central to the IMF's recommendations for Iraq, focusing on fiscal consolidation to manage debt and economic risks [pp. 2-12].",
+              "1.1": "Fiscal consolidation is advised to stabilize Iraq's debt by reviewing expenditure and enhancing non-oil revenues through tax reforms [pp. 2-12].",
+              "1.5": "Productivity improvements are suggested through structural reforms in the labor market and public sector efficiency [pp. 3, 12].",
+              "2.1": "Income tax reforms are proposed to broaden the tax base and increase revenue, which is part of broader fiscal consolidation efforts [pp. 3].",
+              "3.1": "Climate change impacts are acknowledged, particularly in the context of oil sector vulnerabilities and natural disaster risks [pp. 6, 12].",
+              "3.2": "Land and natural resource management is discussed in terms of oil dependency and its economic implications, with suggestions for diversifying revenue sources [pp. 2-12].",
+              "4.1": "Gender impacts are briefly mentioned in the context of labor force participation and legal reforms to improve women's economic roles [pp. 4].",
+              "4.3": "Social impacts of policies are considered, particularly how fiscal consolidation might affect poverty rates and income distribution [pp. 5].",
+              "5.2": "Pension reforms are recommended to reduce fiscal pressures and align public benefits with the private sector, which is part of broader austerity measures [pp. 3, 12].",
+              "5.4": "Cost recovery measures in the oil sector are noted as part of financial strategies to manage external payments and preserve fiscal health [pp. 6].",
+              "5.6": "Education reforms are suggested to align skills with market needs and improve productivity, which is part of structural reforms to boost economic growth [pp. 4].",
+              "6.1": "Foreign direct investment is discussed as a potential area for growth, emphasizing the need for a business-friendly environment [pp. 5].",
+              "7.5": "Banking sector reforms are highlighted, focusing on enhancing credit systems and financial stability through governance improvements [pp. 3, 12].",
+              "8.1": "Digital infrastructure improvements are recommended to support governance reforms and enhance financial sector operations [pp. 3, 12].",
+              "9.1": "Governance and legal reforms are extensively discussed as crucial for combating corruption, enhancing transparency, and supporting economic reforms [pp. 2-12].",
+              "9.2": "Political economy considerations are mentioned in terms of stakeholder consultations to enhance public acceptance and implementation of reforms [pp. 1, 2]."
             }
           }
         }
@@ -493,7 +501,7 @@
                 "name": "Governance"
               }
             ],
-            "summary": "The article discusses Kiribati's economic strategies under IMF guidance, focusing on austerity measures like fiscal consolidation, climate adaptation policies, and governance improvements. These reforms aim to stabilize the economy and enhance resilience against climate impacts but raise concerns about their social implications, particularly for vulnerable populations. The emphasis on governance seeks to ensure transparency and accountability in implementing these policies.",
+            "summary": "The article discusses Kiribati's economic strategies under IMF guidance, focusing on austerity measures like fiscal consolidation, climate adaptation policies, and governance improvements. These reforms aim to stabilize the economy and enhance resilience against climate impacts. However, the emphasis on austerity and fiscal consolidation could risk social welfare and heighten vulnerabilities for marginalized communities, potentially leading to increased inequality and reduced public sector capabilities.",
             "all_themes": [
               "1",
               "1.1",
@@ -513,22 +521,22 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures in Kiribati, guided by the IMF, include fiscal consolidation and structural reforms aimed at stabilizing the economy by managing debt and enhancing public financial management. These measures are critical for long-term economic stability but pose risks of reduced public investment and social spending, which could impact vulnerable groups [pp. 2-6].",
-              "3": "Climate and environmental policies in Kiribati are focused on adaptation and mitigation strategies to manage the impacts of climate change. These include investments in climate-resilient infrastructure and policies to align with global climate goals [pp. 2-6].",
-              "9": "Governance and legal reforms in Kiribati are focused on enhancing transparency and accountability in economic management. These reforms are crucial for implementing effective policies and ensuring sustainable development [pp. 2-6].",
-              "1.1": "Fiscal consolidation in Kiribati is emphasized through measures such as freezing nominal wages, reforming VAT, and streamlining subsidies. These efforts are part of broader structural reforms to ensure fiscal sustainability amid economic challenges [pp. 2-6].",
-              "1.5": "Productivity measures are briefly mentioned as factors influencing medium-term economic growth in Kiribati. The focus is on enhancing productivity through structural reforms and better public financial management [pp. 2, 4].",
-              "2.1": "Tax reforms in Kiribati include efforts to reform VAT and reduce tax exemptions as part of broader fiscal consolidation efforts. These reforms aim to increase government revenue and manage fiscal deficits effectively [pp. 3].",
-              "3.1": "Climate policies in Kiribati involve significant investment in climate adaptation measures to protect against natural disasters and enhance resilience. The focus is on sustainable infrastructure and aligning with international climate goals [pp. 2-6].",
-              "3.2": "Land use and natural resource management in Kiribati are critical for economic sustainability. Policies focus on sustainable agriculture and protecting natural resources, which are vital for the island's economic and environmental health [pp. 9].",
-              "4.1": "Gender policies in Kiribati are not explicitly detailed in the article, but the broader context of social policies includes considerations for impacts on various demographic groups, including women and marginalized communities [pp. 5].",
-              "4.3": "Social impacts in Kiribati are considered in the context of poverty and inequality. Economic policies are evaluated for their distributional effects, particularly on low-income and vulnerable populations [pp. 5].",
-              "5.5": "Health policies in Kiribati include efforts to improve the quality of healthcare services as part of the government's development agenda. These policies aim to strengthen the health system and improve public health outcomes [pp. 6].",
-              "5.6": "Education policies in Kiribati focus on improving the quality of education as part of long-term development goals. Investments in education are crucial for enhancing human capital and supporting economic growth [pp. 6].",
-              "7.5": "Financial inclusion in Kiribati is targeted through policies that aim to improve access to financial services and support small businesses. These efforts are part of broader economic development strategies to enhance financial stability and growth [pp. 3, 6].",
-              "8.1": "Digitalisation and work policies in Kiribati include efforts to enhance connectivity and integrate digital infrastructure into economic development plans. These policies aim to support the digital economy and improve labor market outcomes [pp. 6, 9].",
-              "9.1": "Governance structures in Kiribati are strengthened through the establishment of financial supervisory institutions and improvements in public financial management. These efforts are essential for effective governance and economic stability [pp. 2-6].",
-              "9.2": "Political economy and engagement in Kiribati involve consultations and strategies to ensure public acceptance and effective implementation of reforms. These efforts are crucial for maintaining social stability and achieving policy goals [pp. 1, 2, 8]."
+              "1": "Austerity measures in Kiribati, guided by the IMF, include fiscal consolidation efforts aimed at stabilizing the economy through structural reforms and public financial management. These measures are critical for long-term growth but pose risks of deepening inequalities and reducing public sector effectiveness [pp. 2-3, 6].",
+              "3": "Climate and environmental policies in Kiribati are focused on adaptation strategies to manage the impacts of climate change, which include investing in climate-resilient infrastructure and policies to mitigate environmental risks [pp. 3, 6, 9-11].",
+              "9": "Governance and legal reforms in Kiribati are focused on enhancing transparency, accountability, and institutional capacity. These reforms are essential for effective economic management and sustainable development [pp. 2-3, 6].",
+              "1.1": "Fiscal consolidation is highlighted as a necessary strategy for Kiribati to manage its debts and enhance public investment efficiency. This includes freezing nominal wages and reforming VAT, which are seen as steps towards sustainable economic management [pp. 2-3, 6].",
+              "1.5": "Productivity challenges in Kiribati are acknowledged, with the IMF noting the need for structural reforms to enhance productivity as a means to support economic growth [pp. 2, 8].",
+              "2.1": "VAT reforms and the rationalization of tax exemptions are discussed as part of Kiribati's fiscal consolidation strategy. These reforms aim to increase fiscal space and support sustainable development, though they could impose heavier burdens on lower-income groups [pp. 3].",
+              "3.1": "Climate policies are a significant focus, with Kiribati investing in climate adaptation projects to protect against natural disasters and enhance environmental sustainability. These efforts are crucial for the island's long-term resilience to climate impacts [pp. 3, 6, 9-11].",
+              "3.2": "Natural resource management and the use of oil resources are mentioned, reflecting Kiribati's reliance on natural resources for economic stability and the challenges posed by environmental vulnerabilities [pp. 5, 9].",
+              "4.1": "The article discusses the distributional impacts of economic policies on poverty and inequality in Kiribati, highlighting the disparities in income distribution and the challenges of managing economic reforms without exacerbating social inequalities [pp. 5].",
+              "4.3": "Social impacts of policies are critically evaluated with data on poverty and inequality, showing significant disparities that could be exacerbated by fiscal austerity measures [pp. 5].",
+              "5.5": "Health sector policies in Kiribati include efforts to improve the quality of healthcare services as part of the broader social and economic development strategy. However, challenges remain in ensuring equitable access to health services across the population [pp. 4, 6].",
+              "5.6": "Education policies are aimed at improving the quality of education in Kiribati, which is essential for long-term economic and social development. The focus is on enhancing educational outcomes to support economic resilience and reduce vulnerabilities [pp. 4, 6].",
+              "7.5": "Financial inclusion strategies are discussed as part of efforts to enhance the economic resilience of Kiribati's population. These policies aim to improve access to financial services, which is crucial for supporting economic activities and reducing poverty [pp. 3, 6].",
+              "8.1": "Digital infrastructure and connectivity are recognized as vital for Kiribati's development, with investments aimed at enhancing digital access to support economic activities and improve governance [pp. 6, 9].",
+              "9.1": "Governance improvements are emphasized as crucial for managing Kiribati's economic and environmental challenges. Strengthening governance frameworks is seen as key to enhancing public sector efficiency and accountability [pp. 2-3, 6].",
+              "9.2": "Engagement and consultation processes are highlighted, showing the IMF's focus on incorporating stakeholder perspectives in the formulation of economic policies in Kiribati. This approach aims to ensure that reforms are well-understood and effectively implemented [pp. 1, 2, 6, 8]."
             }
           }
         }
@@ -572,7 +580,7 @@
             "top_subthemes": [
               {
                 "number": "1.1",
-                "name": "Fiscal sustainability and structural reforms"
+                "name": "Fiscal sustainability"
               },
               {
                 "number": "3.1",
@@ -580,10 +588,10 @@
               },
               {
                 "number": "7.5",
-                "name": "Credit and banking sector resilience"
+                "name": "Financial inclusion"
               }
             ],
-            "summary": "The article discusses Denmark's economic strategies under IMF guidance, focusing on maintaining fiscal sustainability through austerity measures, enhancing climate adaptation, and ensuring financial sector resilience. It critically examines the social implications of these policies, particularly the potential risks associated with austerity measures on public welfare and the trade-offs involved in prioritizing fiscal health over social spending. The emphasis on climate adaptation reflects a proactive approach to environmental challenges, but the article also highlights the need for equitable implementation that does not disproportionately affect vulnerable populations.",
+            "summary": "The article discusses Denmark's economic strategies under IMF guidance, focusing on maintaining fiscal sustainability through austerity measures, enhancing climate adaptation, and strengthening financial sector resilience. It critically examines the social implications of these policies, particularly the potential risks of austerity on public welfare and the trade-offs involved in prioritizing financial sector stability over broader economic inclusivity. The emphasis on climate adaptation is noted as a positive step, yet the approach raises concerns about the sustainability of such measures without addressing broader environmental impacts.",
             "all_themes": [
               "1",
               "1.1",
@@ -603,22 +611,22 @@
               "9.2"
             ],
             "theme_summaries": {
-              "1": "Austerity measures are emphasized, with a focus on maintaining fiscal sustainability through structural reforms and prudent fiscal management. The article discusses the need for Denmark to balance its fiscal policies to sustain its welfare state while managing increased expenditures, particularly in defense and aging-related costs [pp. 2, 6].",
-              "3": "Climate and environmental policies are significant, with a focus on adapting to climate change. Denmark is advised to strengthen its climate adaptation strategies to manage risks associated with sea level rise and coastal erosion [pp. 4].",
-              "7": "Financial sector policies focus on maintaining stability and resilience. The article discusses the robustness of Danish banks, the need for vigilant monitoring of financial risks, and the implementation of regulatory standards to safeguard financial stability [pp. 3, 7].",
-              "1.1": "Fiscal sustainability is a recurring theme, with structural reforms suggested to support Denmark's economic resilience. The IMF advises Denmark to continue its efforts in structural reforms to enhance labor supply, manage aging-related expenditures, and maintain high income levels, which are crucial for sustaining the welfare state [pp. 2, 6].",
-              "2.2": "Anti-money laundering measures are discussed as part of financial sector policies to strengthen Denmark's resilience against financial crimes and terrorism financing. The article emphasizes the importance of robust frameworks to manage these risks [pp. 3].",
-              "3.1": "Climate adaptation efforts are highlighted as essential for sustainable growth. Denmark is developing a national climate adaptation plan, which includes measures for coastal and groundwater protection and urban flood management [pp. 4].",
-              "3.2": "The article mentions Denmark's oil fields, indicating the ongoing relevance of fossil fuel industries in the economy. This inclusion points to the challenges of balancing economic benefits from natural resources with environmental sustainability [pp. 2].",
-              "5.1": "Social security systems are briefly mentioned, underscoring the importance of maintaining robust social safety nets in the face of fiscal austerity measures. The article does not delve deeply into specific reforms or impacts on these systems [pp. 9].",
-              "5.5": "Health sector policies are discussed in the context of fiscal sustainability. Denmark is increasing its spending on health, long-term care, and climate measures, which are part of broader fiscal considerations to ensure sustainability while addressing public needs [pp. 6].",
-              "5.6": "Education policies are linked to labor market reforms, with an emphasis on vocational education and training to align with market needs, particularly in digital and AI technologies. This is part of broader structural reforms aimed at enhancing productivity and economic growth [pp. 6, 8].",
-              "7.2": "Monetary tightening is referenced in the context of Denmark's policy adjustments following ECB rate cuts. The article discusses the impacts of these adjustments on financial conditions and lending practices [pp. 12].",
-              "7.4": "Credit market conditions are examined, noting the easing of credit standards and the growth of credit in the economy. The article highlights the importance of balanced credit growth to support economic activities without exacerbating financial risks [pp. 12].",
-              "7.5": "The resilience of the banking sector is emphasized, with specific attention to credit risk provisioning and the capitalization of banks. The article notes the strong profitability and asset quality of Danish banks, which contribute to the overall stability of the financial system [pp. 3, 7].",
-              "8.1": "AI and digitalization are identified as key areas for Denmark's economic strategy. The article suggests that embracing digital technologies and AI can enhance productivity and competitiveness, which are crucial for long-term economic growth [pp. 4, 8].",
-              "9.1": "Institutions are noted for their role in supporting Denmark's economic resilience and policy implementation. The article highlights the strength of Danish institutions in managing external shocks and maintaining a stable economic environment [pp. 3, 9].",
-              "9.2": "Consultations and stakeholder engagements are mentioned as part of the IMF's review processes. The article includes references to consultations with Danish officials, which are part of the broader dialogue on policy recommendations and economic assessments [pp. 1, 2, 6]."
+              "1": "Austerity measures are central to the IMF's recommendations for Denmark, focusing on maintaining fiscal sustainability through structural reforms and careful fiscal management. The emphasis is on balancing defense and aging-related expenditures without compromising the welfare state, suggesting a cautious approach to public spending [pp. 2, 6].",
+              "3": "Climate and environmental policies are addressed through the development of a national climate adaptation plan, which includes coastal and groundwater protection and urban flood management. The IMF supports these initiatives, aligning them with broader economic resilience strategies [pp. 4].",
+              "7": "Financial sector policies in Denmark are geared towards ensuring stability and resilience. The IMF's recommendations include close monitoring of banks and non-bank financial institutions, reflecting concerns about systemic risks and the need for robust regulatory frameworks [pp. 3, 7].",
+              "1.1": "Fiscal sustainability is repeatedly emphasized, with Denmark advised to uphold robust fiscal practices in light of increased defense spending and demographic changes. Structural reforms are advocated to support high income levels and preserve fiscal space, highlighting the IMF's focus on long-term economic stability [pp. 2, 6].",
+              "2.2": "Anti-money laundering measures are discussed as part of Denmark's financial sector policy, reflecting the IMF's broader focus on enhancing financial transparency and combating illicit financial flows [pp. 3].",
+              "3.1": "Climate adaptation efforts in Denmark are highlighted, with specific measures such as the reform of the property insurance scheme to reflect risk-based premiums. This is part of a broader strategy to prepare for environmental changes, particularly those affecting coastal areas [pp. 4].",
+              "3.2": "The article mentions the reopening of the Tyra oil field, indicating the ongoing relevance of fossil fuel operations in Denmark's economic landscape. This inclusion points to the complex balance between economic benefits from natural resource exploitation and environmental sustainability [pp. 2].",
+              "5.1": "Social security systems are briefly mentioned, suggesting an ongoing commitment to maintaining these structures amidst fiscal adjustments. However, specific reforms or changes to these systems are not detailed [pp. 9].",
+              "5.5": "Health sector spending is noted as part of the fiscal considerations, with an emphasis on supporting health and long-term care within the context of broader public finance management [pp. 6].",
+              "5.6": "Education and training are identified as crucial for enhancing labor supply and addressing skill mismatches in the workforce. This is part of structural reforms aimed at boosting productivity and economic growth [pp. 6, 8].",
+              "7.2": "Monetary tightening is referenced in the context of Denmark's policy adjustments following ECB rate cuts, illustrating the interconnectedness of Danish monetary policy with broader European financial conditions [pp. 12].",
+              "7.4": "Credit growth is discussed with a focus on maintaining prudent lending practices, especially in light of recent financial conditions and the potential risks associated with real estate markets [pp. 12].",
+              "7.5": "Financial inclusion is addressed through the robustness of banks' credit modeling practices and the need for comprehensive risk provisioning. This reflects a focus on maintaining a stable and inclusive financial sector [pp. 3].",
+              "8.1": "Artificial intelligence and digitalization are highlighted as areas for policy development, aiming to enhance Denmark's economic competitiveness and address future labor market needs [pp. 4, 8].",
+              "9.1": "Institutions are noted for their role in supporting Denmark's economic resilience and stability. The robustness of financial and governmental institutions is seen as a key factor in managing external shocks and maintaining economic integrity [pp. 3].",
+              "9.2": "Consultations under the Article IV framework are mentioned, indicating the IMF's engagement with Danish authorities to discuss economic policies and developments. This process underscores the collaborative approach taken in the formulation of economic strategies [pp. 1, 2, 6]."
             }
           }
         }
@@ -640,7 +648,77 @@
         "stock_no": "1AUTEA2025001",
         "issn": "1934-7685"
       },
-      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/02/Austria-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568230"
+      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/02/Austria-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-568230",
+      "ai_analysis": [
+        {
+          "model": "gpt-4-turbo",
+          "content": {
+            "top_themes": [
+              {
+                "number": "1",
+                "name": "Austerity"
+              },
+              {
+                "number": "7",
+                "name": "Financial Sector and Credit"
+              },
+              {
+                "number": "9",
+                "name": "Governance/legal reforms"
+              }
+            ],
+            "top_subthemes": [
+              {
+                "number": "1.1",
+                "name": "Fiscal consolidation"
+              },
+              {
+                "number": "7.5",
+                "name": "Financial inclusion"
+              },
+              {
+                "number": "9.1",
+                "name": "Governance/legal reforms"
+              }
+            ],
+            "summary": "The article discusses Austria's economic challenges and the IMF's recommendations, focusing on austerity measures, financial sector stability, and governance reforms. Austerity, tagged as fiscal consolidation, is highlighted as a strategy to manage public debt and inflation, despite potential risks to social welfare. The financial sector's resilience is noted, particularly in banking, with an emphasis on managing credit risks and maintaining capital adequacy. Governance reforms are suggested to enhance regulatory frameworks and legal structures to support economic growth and financial stability, reflecting a critical perspective on the potential social impacts and trade-offs involved.",
+            "all_themes": [
+              "1",
+              "1.1",
+              "1.5",
+              "3.1",
+              "4.1",
+              "4.2",
+              "4.3",
+              "5.1",
+              "5.5",
+              "5.6",
+              "7.2",
+              "7.4",
+              "7.5",
+              "9.1",
+              "9.2"
+            ],
+            "theme_summaries": {
+              "1": "Austerity measures, particularly fiscal consolidation, are central to the discussions, aiming to manage the fiscal deficit and public debt. The need for fiscal adjustment to address demographic challenges and spending pressures is emphasized, alongside the potential social impacts of such policies [pp. 2-7].",
+              "1.1": "Fiscal consolidation is repeatedly mentioned as a necessary step for Austria to reduce its fiscal deficit and stabilize public debt levels. This includes measures to cut public spending and increase efficiency in healthcare [pp. 2-7].",
+              "1.5": "Productivity growth is a concern, with the article noting that low productivity is a significant barrier to economic growth. Measures to enhance productivity are linked to broader fiscal and structural reforms [pp. 2-6].",
+              "3.1": "Climate policies are discussed in the context of Austria's fiscal measures and green transition goals. The emphasis is on integrating climate considerations into fiscal consolidation efforts and leveraging fiscal policies for environmental sustainability [pp. 3, 7].",
+              "4.1": "Gender policies are briefly mentioned in relation to education attainment levels in Austria, highlighting the importance of inclusive educational policies [pp. 5].",
+              "4.2": "Childcare and eldercare are identified as critical areas for investment to support labor market participation and demographic challenges. Expanding these services is seen as essential for boosting productivity and economic growth [pp. 4].",
+              "4.3": "Poverty rates are discussed in the context of social transfers and their role in mitigating poverty. The effectiveness of these transfers in reducing poverty rates is highlighted, with a focus on the need for targeted social policies [pp. 5].",
+              "5.1": "Social transfers are mentioned as a mechanism to mitigate poverty, with a focus on the targeting of these transfers to effectively address poverty without excessive fiscal burden [pp. 5].",
+              "5.5": "Healthcare spending efficiency is a recurring theme, with discussions on the need to optimize healthcare costs without compromising service quality. This is part of broader fiscal consolidation efforts [pp. 3, 7].",
+              "5.6": "Education expenditure and its rationalization are noted, particularly in the context of fiscal pressures and the need to maintain educational quality amid budget constraints [pp. 5].",
+              "7.2": "Monetary tightening in the euro area is mentioned as a factor influencing Austria's economic conditions, particularly affecting demand and inflation rates [pp. 2, 10].",
+              "7.4": "Credit growth is described as low, influenced by weak demand and tight monetary policy. The article discusses the implications of low credit growth for economic recovery and financial stability [pp. 9].",
+              "7.5": "Financial inclusion and the stability of the banking sector are emphasized, with specific mention of the resilience of banks to potential credit risks and the importance of maintaining strong capital positions [pp. 4, 7, 9].",
+              "9.1": "Governance and legal reforms are discussed as essential for supporting economic growth and regulatory efficiency. The need for reforms to enhance labor supply and reduce regulatory barriers is highlighted [pp. 3, 4].",
+              "9.2": "Political economy and consultation processes are mentioned in the context of the IMF's engagement with Austria, focusing on the importance of stakeholder engagement in the reform process [pp. 1, 2, 6]."
+            }
+          }
+        }
+      ]
     },
     {
       "title": "Nigeria: 2025 Article IV Consultation-Press Release; Staff Report; and Statement by the Executive Director for Nigeria",
@@ -658,7 +736,91 @@
         "stock_no": "1NGAEA2025001",
         "issn": "1934-7685"
       },
-      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/01/Nigeria-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568220"
+      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/07/01/Nigeria-2025-Article-IV-Consultation-Press-Release-Staff-Report-and-Statement-by-the-568220",
+      "ai_analysis": [
+        {
+          "model": "gpt-4-turbo",
+          "content": {
+            "top_themes": [
+              {
+                "number": "9",
+                "name": "Governance/legal reforms"
+              },
+              {
+                "number": "3",
+                "name": "Climate and environment"
+              },
+              {
+                "number": "7",
+                "name": "Financial sector policies"
+              }
+            ],
+            "top_subthemes": [
+              {
+                "number": "9.1",
+                "name": "Governance/legal reforms"
+              },
+              {
+                "number": "3.2",
+                "name": "Land use, forests and natural resource management"
+              },
+              {
+                "number": "7.5",
+                "name": "Financial inclusion"
+              }
+            ],
+            "summary": "The article discusses significant governance reforms in Nigeria, emphasizing enhanced macroeconomic stability and resilience but noting that benefits are yet to reach all citizens, with poverty rates remaining high. Environmental policies focus on hydrocarbon production and agriculture, with concerns about climate shocks and food insecurity. Financial sector policies highlight strengthening of the banking system and financial inclusion, yet the broader impacts on economic equity and social stability are underexplored, potentially marginalizing vulnerable groups.",
+            "all_themes": [
+              "1",
+              "1.1",
+              "1.4",
+              "1.5",
+              "2.1",
+              "2.2",
+              "3",
+              "3.1",
+              "3.2",
+              "4.3",
+              "5.5",
+              "5.6",
+              "6.2",
+              "6.3",
+              "7",
+              "7.2",
+              "7.4",
+              "7.5",
+              "8.1",
+              "9",
+              "9.1",
+              "9.2"
+            ],
+            "theme_summaries": {
+              "1": "Austerity measures are implicitly discussed through the context of fiscal policies aimed at enhancing macroeconomic stability, with references to structural reforms and fiscal sustainability [pp. 6, 12, 13].",
+              "3": "Environmental and climate policies are discussed in relation to hydrocarbon production, agriculture, and the impact of climate shocks on food security and economic stability [pp. 2, 3, 6].",
+              "7": "Financial sector policies are extensively discussed, focusing on banking reforms, financial inclusion, and the strengthening of regulatory frameworks to support economic stability and growth [pp. 3, 9].",
+              "9": "Governance and legal reforms are a central theme, with discussions on enhancing macroeconomic governance, legal frameworks, and institutional reforms to support policy effectiveness and transparency [pp. 2, 3, 6].",
+              "1.1": "Structural reforms are mentioned as part of broader governance and fiscal policy discussions, focusing on enhancing productivity and economic resilience [pp. 6, 12].",
+              "1.4": "Privatization and public service reform are indirectly addressed through discussions on governance reforms and fiscal policies, particularly in the context of enhancing public sector efficiency [pp. 6, 12].",
+              "1.5": "Labour market reforms are noted in the context of improving productivity and economic resilience, with specific mention of challenges in agriculture and oil production sectors [pp. 6, 12].",
+              "2.1": "VAT reforms are discussed as part of fiscal policy adjustments, with a focus on enhancing revenue mobilization and addressing public discontent over tax distribution and rate hikes [pp. 9, 10].",
+              "2.2": "Anti-money laundering efforts are highlighted as part of governance reforms, with specific actions taken to address deficiencies and improve financial transparency [pp. 6, 11].",
+              "3.1": "Climate policies are mentioned in the context of hydrocarbon production and investments, with an emphasis on adapting to climate shocks and enhancing resilience [pp. 2, 3, 6].",
+              "3.2": "Land use and natural resource management are central to discussions on oil and agriculture production, with a focus on security improvements and boosting output [pp. 2, 3, 6].",
+              "4.3": "Social impacts are discussed in terms of rising poverty and food insecurity, highlighting the need for targeted social policies and better governance to mitigate these issues [pp. 2, 3].",
+              "5.5": "Health spending is addressed in the context of fiscal policies and international aid, with emphasis on enhancing the quality of public health services and addressing funding cuts [pp. 6, 17].",
+              "5.6": "Education spending is discussed as part of broader fiscal and social policies, with a focus on improving educational outcomes and addressing structural challenges in the sector [pp. 6, 17].",
+              "6.2": "Public-private partnerships are mentioned in relation to contingent liabilities and the need for careful management of fiscal risks associated with these arrangements [pp. 12].",
+              "6.3": "External financing and debt issues are discussed, particularly in relation to Eurobond issuances and the management of external rollover needs, highlighting the challenges of maintaining fiscal and external stability [pp. 7, 14].",
+              "7.2": "Monetary policies favoring financial sector growth are discussed in terms of inflation targeting and the need for a robust monetary policy framework to support economic stability [pp. 3, 9].",
+              "7.4": "Credit and debt market expansions are addressed through discussions on private sector credit growth and the challenges of managing increased corporate and household debt [pp. 8, 14].",
+              "7.5": "Financial inclusion is highlighted as a key aspect of financial sector reforms, with efforts to increase banking access and support capital market development discussed as part of broader economic resilience strategies [pp. 3, 9].",
+              "8.1": "Digitalisation is briefly mentioned in the context of improving data quality and supporting modernization of economic and financial systems [pp. 13].",
+              "9.1": "Governance reforms are extensively discussed, focusing on improvements in fiscal management, regulatory frameworks, and institutional strengthening to enhance economic resilience and stability [pp. 2, 3, 6].",
+              "9.2": "Political economy and public engagement are addressed in terms of stakeholder consultations and the need for broad-based support for reforms to ensure social acceptability and sustainability [pp. 1, 2, 6]."
+            }
+          }
+        }
+      ]
     },
     {
       "title": "Jamaica: 2025 Article IV Consultation-Press Release; and Staff Report",
@@ -676,7 +838,83 @@
         "stock_no": "1JAMEA2025001",
         "issn": "1934-7685"
       },
-      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Jamaica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567997"
+      "detail_page_url": "https://www.imf.org/en/Publications/CR/Issues/2025/06/25/Jamaica-2025-Article-IV-Consultation-Press-Release-and-Staff-Report-567997",
+      "ai_analysis": [
+        {
+          "model": "gpt-4-turbo",
+          "content": {
+            "top_themes": [
+              {
+                "number": "9",
+                "name": "Governance/legal reforms"
+              },
+              {
+                "number": "3",
+                "name": "Climate and environment"
+              },
+              {
+                "number": "7",
+                "name": "Financial sector policies"
+              }
+            ],
+            "top_subthemes": [
+              {
+                "number": "9.1",
+                "name": "Governance/legal reforms"
+              },
+              {
+                "number": "3.1",
+                "name": "Climate policies"
+              },
+              {
+                "number": "3.2",
+                "name": "Land use, forests and natural resource management"
+              }
+            ],
+            "summary": "The article discusses Jamaica's engagement with IMF reforms, focusing on governance/legal reforms, climate and environmental policies, and financial sector policies. Governance reforms are highlighted through institutional investments and legal changes aimed at enhancing macroeconomic stability and resilience to shocks. Climate discussions emphasize adaptation and resilience, particularly in agriculture, while financial sector policies focus on maintaining stability through regulatory improvements and monitoring. These reforms, while potentially strengthening economic stability, must be critically assessed for their broader social impacts, especially on vulnerable populations.",
+            "all_themes": [
+              "1",
+              "1.1",
+              "1.5",
+              "2.1",
+              "3",
+              "3.1",
+              "3.2",
+              "4.1",
+              "5.6",
+              "6.1",
+              "7",
+              "7.2",
+              "7.4",
+              "7.5",
+              "8.1",
+              "9",
+              "9.1",
+              "9.2"
+            ],
+            "theme_summaries": {
+              "1": "Austerity measures are discussed in terms of fiscal responsibility and management, with a focus on maintaining primary surpluses and managing public debt [pp. 3, 6, 8, 13].",
+              "3": "Climate and environmental issues are integrated into various policy discussions, emphasizing resilience and adaptation strategies, particularly in agriculture [pp. 2, 3, 9].",
+              "7": "Financial sector policies are extensively discussed, focusing on stability, regulatory improvements, and monitoring to ensure resilience to economic shocks [pp. 4, 7, 10].",
+              "9": "Governance and legal reforms are central to the discussions, focusing on institutional strengthening, legal frameworks, and policy reforms to support macroeconomic stability [pp. 2, 3, 6, 8, 13].",
+              "1.1": "Public financial management reforms are part of broader governance and legal reforms aimed at enhancing fiscal responsibility and transparency [pp. 3, 13].",
+              "1.5": "Productivity issues are addressed through reforms aimed at removing structural impediments and enhancing resource allocation [pp. 4].",
+              "2.1": "Income tax policies are mentioned in the context of reforms to enhance tax compliance and administration, as well as in discussions about the wage bill reform [pp. 6, 14].",
+              "3.1": "Climate policies are discussed in terms of resilience and sustainability, with specific references to climate change adaptation and mitigation strategies [pp. 3, 9].",
+              "3.2": "Land use and agriculture are frequently mentioned in the context of climate resilience, with specific impacts from natural disasters affecting agricultural productivity [pp. 2, 3, 9].",
+              "4.1": "Primary fiscal surpluses are a focal point in discussions about fiscal responsibility and debt management, with implications for public sector financial health [pp. 3, 5, 6, 8].",
+              "5.6": "Education reforms are briefly mentioned as part of broader policy discussions aimed at improving productivity and addressing structural impediments [pp. 4].",
+              "6.1": "Foreign direct investment is discussed in terms of economic outlook and potential growth, with a focus on maintaining a favorable business environment [pp. 6].",
+              "7.2": "Inflation targeting is part of the monetary policy framework aimed at stabilizing prices and supporting economic growth [pp. 4].",
+              "7.4": "Securitization of future revenue flows is mentioned as a financial strategy to support fiscal positions [pp. 6].",
+              "7.5": "Banking sector competition and credit expansion are discussed as part of financial sector reforms aimed at improving resource allocation and economic stability [pp. 4, 7].",
+              "8.1": "Digitalisation and connectivity are mentioned in the context of improving tax and customs administration and enhancing legal grid connectivity [pp. 14].",
+              "9.1": "Reforms in governance and legal frameworks are discussed extensively, with a focus on enhancing fiscal responsibility, transparency, and institutional effectiveness [pp. 2, 3, 6, 8, 13].",
+              "9.2": "Political economy and stakeholder engagement are highlighted in the context of consultations and reforms, emphasizing the importance of social acceptability and inclusive policy-making [pp. 1, 2, 6, 14]."
+            }
+          }
+        }
+      ]
     },
     {
       "title": "Libya: 2025 Article IV Consultation-Press Release; and Staff Report",
