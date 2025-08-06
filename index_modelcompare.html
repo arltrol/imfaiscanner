@@ -170,12 +170,23 @@
   </header>
   <div id="container">
     <aside id="sidebar">
+      <div class="filter-group">
+  <h3>Choose AI Model</h3>
+  <select id="modelSelect" onchange="changeModel()" style="width: 100%; padding: 6px; font-size: 1em;">
+<option value="modelcompare/reports_scrapev2_001.json">Model Version 001 (default)</option>
+<option value="modelcompare/reports_scrapev2_002.json">Model Version 002</option>
+<option value="modelcompare/reports_scrapev2_003.json">Model Version 003</option>
+<option value="modelcompare/reports_scrapev2_004.json">Model Version 004</option>
+<option value="modelcompare/reports_scrapev2_005.json">Model Version 005</option>
+<option value="modelcompare/reports_scrapev2_006.json">Model Version 006</option>
+  </select>
+</div>
       <div style="margin-bottom: 15px;">
   <button id="clear-filters" style="background: #eee; border: 1px solid #ccc; padding: 6px 12px; font-size: 0.9em; cursor: pointer;">
     🔄 Clear All Filters
   </button>
 </div>
-
+ 
       <div class="filter-group">
         <h3>By theme</h3>
         <label style="font-size: 0.9em; color: #003366; cursor: pointer; display: inline-block; margin-bottom: 8px;">
@@ -190,17 +201,7 @@
         <h3>By region</h3>
         <div id="regionList"></div>
       </div>
-        <div class="filter-group">
-  <h3>Choose AI Model</h3>
-  <select id="modelSelect" onchange="changeModel()" style="width: 100%; padding: 6px; font-size: 1em;">
-<option value="modelcompare/reports_scrapev2_001.json">Model Version 001 (default)</option>
-<option value="modelcompare/reports_scrapev2_002.json">Model Version 002</option>
-<option value="modelcompare/reports_scrapev2_003.json">Model Version 003</option>
-<option value="modelcompare/reports_scrapev2_004.json">Model Version 004</option>
-<option value="modelcompare/reports_scrapev2_005.json">Model Version 005</option>
-<option value="modelcompare/reports_scrapev2_006.json">Model Version 006</option>
-  </select>
-</div>
+       
 <div class="filter-group">
   <h3>By country</h3>
   <select id="countrySelect" onchange="toggleCountry(this.value)" style="width: 100%; padding: 6px; font-size: 0.95em;">
