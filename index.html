@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI IMF Article IV Scanner</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -288,6 +286,20 @@
   ]
 };
 
+    // 🔧 Force canonical labels for primary themes by code
+const correctedThemeMap = {
+  "1": "Austerity",
+  "2": "Tax",
+  "3": "Climate and Environment",
+  "4": "Social and Gendered Impacts",
+  "5": "Social Services",
+  "6": "Private and External Sector",
+  "7": "Financialisation",
+  "8": "Digitisation",
+  "9": "Governance"
+};
+
+
 const SUBTHEME_LABELS = Object.fromEntries(
   Object.values(THEME_MAP).flat().map(entry => {
     const [code, ...labelParts] = entry.trim().split(' ');
@@ -518,7 +530,11 @@ if (isFilteringThemes && (!ai || !ai.content?.all_themes)) return false;
       </div>
       <div class="meta"><strong>${r.publication_date}</strong> | <em>${r.country || 'Unknown'}, ${r.region || 'Unknown Region'}</em></div>
       <div class="summary">${content.summary || 'No AI summary available yet.'}</div>
-      <div class="themes"><strong>Themes:</strong> ${(content.top_themes || []).map(t => t.name).join(', ') || 'Not analyzed yet'}</div>
+<div class="themes"><strong>Top 3 Themes:</strong> ${
+  (content.top_themes || [])
+    .map(t => correctedThemeMap[t.number] || `Unknown (${t.number})`)
+    .join(', ') || 'Not analyzed yet'
+}</div>
       <div class="tags">${(content.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('') || ''}</div>
       <div class="expand" onclick="toggleDetails(this)">+ Expand Details</div>
       <div class="publication-details">
